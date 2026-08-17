@@ -6,7 +6,7 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 5 of ~20 routes.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 12 of ~20 routes.**
 
 | Area | Status |
 |---|---|
@@ -14,9 +14,10 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 | Design tokens / brand system | ✅ Done |
 | Shared layout (header, mega-menu, mobile nav, footer) | ✅ Done |
 | Shared page components (`Section`, `Quote`, `PageHero`) | ✅ Done |
+| Science visualization components (`ProcessPathway`, `EvidenceLadder`, `DetailList`, `PageCta`, `StatusBadge`, `ResearchLibrary`) | ✅ Done |
 | Homepage | ✅ Done |
 | Institution pages — about, founder, africa, biology-first | ✅ Done |
-| Science pages (science, labs, evidence, regulatory, quality, responsible-science, IP) | ⬜ Not started |
+| Science pages — science, labs, evidence, regulatory, quality, responsible-science, IP | ✅ Done |
 | Division pages (index + 6 divisions) | ⬜ Not started |
 | Future, privacy, terms | ⬜ Not started |
 | Contact page (UI only, no submission yet) | ⬜ Not started |
@@ -25,6 +26,27 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Science section complete
+
+- Extracted reusable science-section components into `src/components/`:
+  `ProcessPathway`, `EvidenceLadder`, `DetailList`, `PageCta`, `StatusBadge`, and client-side
+  `ResearchLibrary` (ported from the PHP Labs research filter grid).
+- Extended `src/lib/content/science.ts` and `src/lib/content/evidence.ts` with Labs page data,
+  regulatory categories, IP types, responsible-science rejections, and evidence research notes.
+- Ported all seven Science routes from their PHP sources (`science.php`, `labs.php`,
+  `evidence.php`, `regulatory.php`, `quality.php`, `responsible-science.php`,
+  `intellectual-property.php`):
+  - `/science` — scientific position, development pathway, systems thinking
+  - `/labs` — capabilities, continuum, future fields, research library
+  - `/science/evidence` — nine-level evidence ladder
+  - `/science/regulatory` — regulatory categories and clinical-research pathway
+  - `/science/quality` — quality framework and technical-file architecture
+  - `/science/responsible-science` — institutional doctrine and rejection list
+  - `/intellectual-property` — IP types and platform cards (BMX-24™, BRP-1™)
+- Made `PageHero.intro` optional (Responsible Science has no hero intro in the source).
+- Made `Section` accept an optional `id` for in-page anchors (`/science#framework`).
+- `npm run lint` and `npm run build` clean — 15 static routes total.
 
 ## 2026-08-17 — Institution section complete
 

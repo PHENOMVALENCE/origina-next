@@ -22,14 +22,14 @@ commit if trivial). Order, roughly by information architecture:
 - [x] `/africa` — from `africa.php`
 - [x] `/biology-first` — from `biology-first.php`
 
-**Science**
-- [ ] `/science` — from `science.php`
-- [ ] `/labs` — from `labs.php`
-- [ ] `/science/evidence` — from `evidence.php`
-- [ ] `/science/regulatory` — from `regulatory.php`
-- [ ] `/science/quality` — from `quality.php`
-- [ ] `/science/responsible-science` — from `responsible-science.php`
-- [ ] `/intellectual-property` — from `intellectual-property.php`
+**Science** — ✅ complete
+- [x] `/science` — from `science.php`
+- [x] `/labs` — from `labs.php`
+- [x] `/science/evidence` — from `evidence.php`
+- [x] `/science/regulatory` — from `regulatory.php`
+- [x] `/science/quality` — from `quality.php`
+- [x] `/science/responsible-science` — from `responsible-science.php`
+- [x] `/intellectual-property` — from `intellectual-property.php`
 
 **Divisions**
 - [ ] `/divisions` — from `divisions.php`

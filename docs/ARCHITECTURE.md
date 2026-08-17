@@ -44,19 +44,25 @@ one-off arbitrary Tailwind values, so the palette stays centralized and auditabl
 ## Component structure
 
 - `src/app/` — App Router routes. One `page.tsx` per route; shared chrome lives in `layout.tsx`.
-- `src/components/` — shared UI (`SiteHeader`, `SiteFooter`, and page-building blocks as they're
-  extracted — e.g. the homepage's local `Section`/`Fact`/`Quote` helpers should move here once a
-  second page needs them, rather than being duplicated).
-- `src/lib/` — non-UI logic and data (`navigation.ts` today; will grow to include content modules
-  and, later, the Postgres client/query layer).
+- `src/components/` — shared UI (`SiteHeader`, `SiteFooter`, page-building blocks:
+  `Section`, `Quote`, `PageHero`, `ProcessPathway`, `EvidenceLadder`, `DetailList`, `PageCta`,
+  `StatusBadge`, `ResearchLibrary`).
+- `src/lib/` — non-UI logic and data (`navigation.ts`, typed content modules under
+  `src/lib/content/`).
 
 ## Content modeling
 
-Not yet formalized beyond `navigation.ts`. As pages are ported, prefer typed data modules in
-`src/lib/content/` (mirroring the PHP site's `content/*.php` shape: e.g. an evidence-levels array,
-a divisions index, a development-pathway array) over hardcoding arrays inline in each page
-component, once more than one page needs the same shape. The homepage currently hardcodes its
-data inline as a starting point — revisit this once 2-3 more pages reveal the real shared shapes.
+Typed data modules live in `src/lib/content/` (mirroring the PHP site's `content/*.php`):
+
+| Module | Source | Used by |
+|---|---|---|
+| `navigation.ts` | `content/navigation.php` | Header, footer |
+| `science.ts` | `content/science.php` + page-specific Labs/Regulatory/IP copy | Homepage, Science section |
+| `evidence.ts` | `content/evidence.php` | Homepage, `/science/evidence`, `/biology-first` |
+| `divisions.ts` | `content/divisions.php` | Homepage previews, `/intellectual-property` |
+
+Page components compose these modules with shared UI in `src/components/`. Do not invent copy —
+port faithfully from the corresponding PHP file in the sibling `origina` repo.
 
 ## Routing plan
 
