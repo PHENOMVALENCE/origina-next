@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { contactDirectory, contactMeta, messageGuide } from "@/lib/content/contact";
+import { isValidSentReference } from "@/lib/enquiries/validation";
 
 export const metadata: Metadata = {
   title: "Contact ORIGINA™ — Build with ORIGINA",
@@ -11,11 +12,12 @@ export const metadata: Metadata = {
 };
 
 type ContactPageProps = {
-  searchParams: Promise<{ subject?: string }>;
+  searchParams: Promise<{ subject?: string; sent?: string }>;
 };
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const { subject = "" } = await searchParams;
+  const { subject = "", sent = "" } = await searchParams;
+  const sentReference = isValidSentReference(sent) ? sent : "";
 
   return (
     <>
@@ -81,7 +83,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </p>
             </div>
             <div className="lg:col-span-7">
-              <EnquiryForm defaultSubject={subject} />
+              <EnquiryForm defaultSubject={subject} sentReference={sentReference} />
             </div>
           </div>
         </div>
