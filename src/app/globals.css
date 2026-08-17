@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens ported from the ORIGINA PHP site's brand system
+ * (css/origina.css, css/institutional.css) — see docs/DESIGN_SYSTEM.md
+ * in the origina-next repo (or origina/docs/DESIGN_SYSTEM.md) for the
+ * source of truth these were extracted from.
+ */
+@theme {
+  --color-noir: #161210;
+  --color-ivory: #f8f4ec;
+  --color-gold: #b5924a;
+  --color-gold-light: #d6bd83;
+  --color-graphite: #3a332c;
+  --color-stone: #9a8e80;
+  --color-oxblood: #7a171b;
+  --color-cream: #eee6d8;
+  --color-sage: #566b46;
+  --color-surface-muted: #f0e9df;
+  --color-border-subtle: rgba(58, 51, 44, 0.14);
+  --color-border-gold: rgba(181, 146, 74, 0.35);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
+
+  --content-max: 1440px;
+  --transition-fast: 0.25s;
+  --transition-med: 0.45s;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-noir);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
