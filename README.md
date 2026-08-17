@@ -44,3 +44,13 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run dev` — start the dev server (Turbopack)
 - `npm run build` — production build
 - `npm run lint` — ESLint
+
+## Workflow & documentation
+
+- [`AGENTS.md`](AGENTS.md) — branching model, commit conventions, content rules, validation
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — stack, design tokens, component/content structure
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — phased plan (what's left)
+- [`docs/PROGRESS.md`](docs/PROGRESS.md) — session-by-session status log
+
+Repository: https://github.com/PHENOMVALENCE/origina-next — `main` is production, all
+implementation work happens on `codex/master-changes` via pull request.
