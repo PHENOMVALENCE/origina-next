@@ -10,7 +10,7 @@ this file describes the plan, not day-to-day state.
 - Shared layout: `SiteHeader` (mega-menu + mobile nav), `SiteFooter`, `navigation.ts`
 - Homepage — full content port, establishing the page-building pattern
 
-## Phase 2 — Public pages (in progress)
+## Phase 2 — Public pages ✅ complete
 
 Port each page's real content from the corresponding PHP file in the `origina` repo. One page is
 one commit (or a small group of closely related pages, e.g. the three legal pages, may share a
@@ -40,14 +40,14 @@ commit if trivial). Order, roughly by information architecture:
 - [x] `/divisions/novia` — from `novia.php`
 - [x] `/divisions/skin-safari` — from `skin-safari.php`
 
-**Future & legal**
-- [ ] `/future` — from `future.php` (Academy/Ventures/Research Institute/Foundation/∞ sections)
-- [ ] `/privacy` — from `privacy.php`
-- [ ] `/terms` — from `terms.php`
+**Future & legal** — ✅ complete
+- [x] `/future` — from `future.php` (Academy/Ventures/Research Institute/Foundation/∞ sections)
+- [x] `/privacy` — from `privacy.php`
+- [x] `/terms` — from `terms.php`
 
-**Contact**
-- [ ] `/contact` — from `contact.php`. Static form UI can be ported in this phase; real submission
-      handling waits for Phase 3 (needs Postgres).
+**Contact** — ✅ complete (UI only)
+- [x] `/contact` — from `contact.php`. Static form UI ported; real submission handling waits for
+      Phase 3 (needs Postgres).
 
 Extract shared UI as patterns repeat (e.g. once 2-3 pages need the same evidence-ladder or
 process-pathway visualization the homepage already sketches, pull it into `src/components/`).

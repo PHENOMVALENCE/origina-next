@@ -6,7 +6,7 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 19 of ~20 routes.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete — 26 routes.**
 
 | Area | Status |
 |---|---|
@@ -18,13 +18,25 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 | Institution pages — about, founder, africa, biology-first | ✅ Done |
 | Science pages (7 routes) | ✅ Done |
 | Division pages (index + 6 divisions) | ✅ Done |
-| Future, privacy, terms | ⬜ Not started |
-| Contact page (UI only, no submission yet) | ⬜ Not started |
+| Future, privacy, terms | ✅ Done |
+| Contact page (UI only, no submission yet) | ✅ Done |
 | Backend / Postgres / contact form submission | ⬜ Not started (Phase 3) |
 | Admin CMS | ⬜ Not started (Phase 4) |
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Phase 2 public pages complete
+
+- Added `src/lib/content/future.ts` and `/future` — institutional horizon roadmap (Academy,
+  Ventures, Research Institute, Foundation, unnamed division), expansion test, and closing CTA.
+- Ported `/privacy` and `/terms` from `privacy.php` and `terms.php`.
+- Added `src/lib/content/contact.ts`, client `EnquiryForm` component, and `/contact` — directory
+  grid, enquiry form UI (submission deferred to Phase 3), direct email block, message guide, and
+  closing band. Form pre-selects enquiry category from `?subject=` query param.
+- Made `PageHero.kicker` optional for legal pages without a kicker in the PHP source.
+- `npm run lint` and `npm run build` clean — 26 routes total (`/contact` is dynamic for
+  searchParams).
 
 ## 2026-08-17 — Divisions section complete
 
