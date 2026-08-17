@@ -31,15 +31,14 @@ commit if trivial). Order, roughly by information architecture:
 - [x] `/science/responsible-science` — from `responsible-science.php`
 - [x] `/intellectual-property` — from `intellectual-property.php`
 
-**Divisions**
-- [ ] `/divisions` — from `divisions.php`
-- [ ] `/divisions/b-melanox` — from `bmelanox.php` (highest content density — product gallery,
-      research-area wheel, BMX-24 platform section)
-- [ ] `/divisions/bettyworld` — from `bettyworld.php`
-- [ ] `/divisions/bvalence` — from `bvalence.php`
-- [ ] `/divisions/divine` — from `divine.php`
-- [ ] `/divisions/novia` — from `novia.php`
-- [ ] `/divisions/skin-safari` — from `skin-safari.php`
+**Divisions** — ✅ complete
+- [x] `/divisions` — from `divisions.php`
+- [x] `/divisions/b-melanox` — from `bmelanox.php`
+- [x] `/divisions/bettyworld` — from `bettyworld.php`
+- [x] `/divisions/bvalence` — from `bvalence.php`
+- [x] `/divisions/divine` — from `divine.php`
+- [x] `/divisions/novia` — from `novia.php`
+- [x] `/divisions/skin-safari` — from `skin-safari.php`
 
 **Future & legal**
 - [ ] `/future` — from `future.php` (Academy/Ventures/Research Institute/Foundation/∞ sections)

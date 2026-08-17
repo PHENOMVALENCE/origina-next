@@ -6,19 +6,18 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 12 of ~20 routes.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 19 of ~20 routes.**
 
 | Area | Status |
 |---|---|
 | Scaffold, tooling, CI-equivalent (lint/build) | ✅ Done |
 | Design tokens / brand system | ✅ Done |
 | Shared layout (header, mega-menu, mobile nav, footer) | ✅ Done |
-| Shared page components (`Section`, `Quote`, `PageHero`) | ✅ Done |
-| Science visualization components (`ProcessPathway`, `EvidenceLadder`, `DetailList`, `PageCta`, `StatusBadge`, `ResearchLibrary`) | ✅ Done |
+| Shared page components (`Section`, `Quote`, `PageHero`, etc.) | ✅ Done |
 | Homepage | ✅ Done |
 | Institution pages — about, founder, africa, biology-first | ✅ Done |
-| Science pages — science, labs, evidence, regulatory, quality, responsible-science, IP | ✅ Done |
-| Division pages (index + 6 divisions) | ⬜ Not started |
+| Science pages (7 routes) | ✅ Done |
+| Division pages (index + 6 divisions) | ✅ Done |
 | Future, privacy, terms | ⬜ Not started |
 | Contact page (UI only, no submission yet) | ⬜ Not started |
 | Backend / Postgres / contact form submission | ⬜ Not started (Phase 3) |
@@ -26,6 +25,19 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Divisions section complete
+
+- Copied B-Melanox product photography from the PHP repo into `public/img/products/`.
+- Added `InstitutionMap` and `ProductGallery` components for division index and B-Melanox dossier.
+- Extended `src/lib/content/divisions.ts` with division-specific page content (B-Melanox focus
+  areas, BValence domains, NOVIA pillars, Skin Safari areas, etc.).
+- Ported all seven Division routes from PHP sources:
+  - `/divisions` — institution map + division index
+  - `/divisions/b-melanox` — platform, focus wheel, product grid, dossier gallery
+  - `/divisions/bettyworld`, `/divisions/bvalence`, `/divisions/divine`
+  - `/divisions/novia`, `/divisions/skin-safari`
+- `npm run lint` and `npm run build` clean — 22 static routes total.
 
 ## 2026-08-17 — Science section complete
 
