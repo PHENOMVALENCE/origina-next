@@ -1,68 +1,12 @@
+import Image from "next/image";
 import Link from "next/link";
+import { Section } from "@/components/Section";
+import { Quote } from "@/components/Quote";
+import { biologyFirst, developmentPathway, labsFunctions } from "@/lib/content/science";
+import { evidenceLevels, evidencePrinciples } from "@/lib/content/evidence";
+import { divisions, statusLabels } from "@/lib/content/divisions";
 
-const biologyPillars = [
-  {
-    name: "Biology First™",
-    text: "Every innovation begins by understanding living systems.",
-  },
-  {
-    name: "Systems Thinking™",
-    text: "Pigmentation, inflammation, barrier function, ageing, cellular processes and environmental exposure interact.",
-  },
-  {
-    name: "Platform Innovation™",
-    text: "Develop scientific platforms capable of supporting multiple products, protocols and applications.",
-  },
-];
-
-const responsibleScienceStatements = [
-  "A scientific hypothesis is not a clinical result.",
-  "A promising formulation is not automatically a proven treatment.",
-  "A laboratory mechanism is not automatically evidence of human clinical efficacy.",
-];
-
-const labsFunctions = [
-  { num: "01", title: "Biological Research" },
-  { num: "02", title: "Formulation Science" },
-  { num: "03", title: "Analytical Development" },
-  { num: "04", title: "Safety & Quality" },
-  { num: "05", title: "Clinical Evaluation" },
-  { num: "06", title: "Intellectual Property" },
-  { num: "07", title: "Manufacturing Translation" },
-];
-
-const developmentPathway = [
-  "Biological hypothesis",
-  "Literature & evidence review",
-  "Target / pathway selection",
-  "Ingredient & technology selection",
-  "Formulation development",
-  "Stability & compatibility assessment",
-  "Microbiological / safety evaluation",
-  "Analytical & quality testing",
-  "Regulatory classification",
-  "Human evaluation where appropriate",
-  "Manufacturing scale-up",
-  "Regulatory submission / registration",
-  "Post-market monitoring",
-];
-
-const divisions = [
-  { name: "B-Melanox™", role: "Pigmentation Science", status: "ACTIVE", href: "/divisions/b-melanox" },
-  { name: "BettyWorld", role: "Everyday Dermatological Skincare", status: "ACTIVE", href: "/divisions/bettyworld" },
-  { name: "BValence™", role: "Ageing & Longevity Biology", status: "RESEARCH", href: "/divisions/bvalence" },
-  { name: "DIVINE™", role: "Luxury Makeup Science", status: "EMERGING", href: "/divisions/divine" },
-  { name: "NOVIA™", role: "Luxury Body Care", status: "ACTIVE", href: "/divisions/novia" },
-  { name: "Skin Safari™", role: "Education · Media · Scientific Communication", status: "EMERGING", href: "/divisions/skin-safari" },
-];
-
-const evidenceLevels = [
-  "Hypothesis",
-  "In-vitro",
-  "Ex-vivo",
-  "Formulation testing",
-  "Instrumental / biophysical testing",
-];
+const divisionPreviews = divisions.filter((division) => division.slug !== "labs");
 
 export default function Home() {
   return (
@@ -100,8 +44,14 @@ export default function Home() {
             <Fact value="∞" label="Possibility" />
           </div>
         </div>
-        <div className="relative hidden items-center justify-center bg-[radial-gradient(circle_at_center,rgba(181,146,74,0.12),transparent_55%),linear-gradient(145deg,#241d19,#100d0b)] lg:flex">
-          <span className="font-serif text-[16rem] leading-none text-gold/90">O</span>
+        <div className="relative hidden overflow-hidden bg-[radial-gradient(circle_at_center,rgba(181,146,74,0.12),transparent_55%),linear-gradient(145deg,#241d19,#100d0b)] lg:block">
+          <Image
+            src="/img/founder/founder-07.jpeg"
+            alt="Dr. Elizabeth Consoli in a professional setting representing ORIGINA institutional science"
+            fill
+            priority
+            className="object-cover opacity-90 mix-blend-luminosity"
+          />
         </div>
       </section>
 
@@ -137,8 +87,8 @@ export default function Home() {
 
       {/* 02 · Biology First */}
       <Section tone="cream" eyebrow="02 · Biology First™" title="A philosophical framework for innovation.">
-        <div className="grid gap-8 border-t border-border-subtle pt-8 sm:grid-cols-3">
-          {biologyPillars.map((pillar) => (
+        <div className="grid gap-8 border-t border-border-subtle pt-8 sm:grid-cols-2 lg:grid-cols-4">
+          {biologyFirst.pillars.map((pillar) => (
             <article key={pillar.name}>
               <h3 className="font-serif text-2xl">{pillar.name}</h3>
               <p className="mt-2 text-sm text-graphite/85">{pillar.text}</p>
@@ -146,7 +96,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 space-y-4 bg-noir p-8 text-ivory lg:p-12">
-          {responsibleScienceStatements.map((statement) => (
+          {evidencePrinciples.map((statement) => (
             <blockquote key={statement} className="font-serif text-xl italic text-ivory/90">
               &ldquo;{statement}&rdquo;
             </blockquote>
@@ -241,14 +191,14 @@ export default function Home() {
       {/* 08 · Divisions */}
       <Section tone="ivory" eyebrow="08 · Divisions" title="Distinct expressions. Shared institution.">
         <div className="grid gap-px overflow-hidden rounded-lg border border-border-subtle bg-border-subtle sm:grid-cols-2 lg:grid-cols-3">
-          {divisions.map((division) => (
+          {divisionPreviews.map((division) => (
             <Link
-              key={division.name}
+              key={division.slug}
               href={division.href}
               className="flex flex-col gap-2 bg-ivory p-6 transition-colors hover:bg-cream"
             >
               <span className="w-fit rounded-full border border-gold/40 px-2.5 py-0.5 text-[0.55rem] uppercase tracking-[0.15em] text-oxblood">
-                {division.status}
+                {statusLabels[division.status]}
               </span>
               <strong className="font-serif text-xl">{division.name}</strong>
               <small className="text-xs text-stone">{division.role}</small>
@@ -264,12 +214,12 @@ export default function Home() {
           must correspond to the strength of the evidence.
         </p>
         <ol className="flex flex-col gap-2 border-t border-gold/20 pt-6">
-          {evidenceLevels.map((level, index) => (
-            <li key={level} className="flex items-center gap-4 text-sm text-ivory/85">
+          {evidenceLevels.slice(0, 5).map((level, index) => (
+            <li key={level.id} className="flex items-center gap-4 text-sm text-ivory/85">
               <span className="grid h-7 w-7 place-content-center rounded-full border border-gold/40 text-xs text-gold">
                 {index + 1}
               </span>
-              {level}
+              {level.label}
             </li>
           ))}
         </ol>
@@ -315,47 +265,5 @@ function Fact({ value, label }: { value: string; label: string }) {
       <strong className="block font-serif text-3xl text-gold">{value}</strong>
       <span className="text-[0.6rem] uppercase tracking-[0.18em] text-stone">{label}</span>
     </div>
-  );
-}
-
-function Quote({ children, light }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <blockquote
-      className={`border-l-2 border-gold py-1 pl-4 font-serif text-lg italic ${light ? "text-ivory" : "text-graphite"}`}
-    >
-      {children}
-    </blockquote>
-  );
-}
-
-const tones = {
-  ivory: "bg-ivory text-graphite",
-  cream: "bg-cream text-graphite",
-  noir: "bg-noir text-ivory",
-  oxblood: "bg-gradient-to-br from-[#420b0e] to-oxblood text-ivory",
-  graphite: "bg-graphite text-ivory",
-} as const;
-
-function Section({
-  tone = "ivory",
-  eyebrow,
-  title,
-  center,
-  children,
-}: {
-  tone?: keyof typeof tones;
-  eyebrow: string;
-  title: string;
-  center?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className={tones[tone]}>
-      <div className={`mx-auto max-w-(--content-max) px-6 py-20 lg:px-16 lg:py-28 ${center ? "text-center" : ""}`}>
-        <p className="mb-3 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{eyebrow}</p>
-        <h2 className="mb-10 font-serif text-4xl leading-tight sm:text-5xl">{title}</h2>
-        {children}
-      </div>
-    </section>
   );
 }

@@ -14,12 +14,15 @@ This is an early, in-progress migration. Built so far:
 - Shared navigation data (`src/lib/navigation.ts`), ported from the PHP site's
   `content/navigation.php`
 - `SiteHeader` (mega-menu + mobile nav) and `SiteFooter` components (`src/components/`)
-- Homepage (`src/app/page.tsx`) — full content port of the PHP site's `index.php`, as the
-  template pattern for the remaining pages
+- Shared page components: `Section`, `Quote`, `PageHero`, `ProcessPathway`, `EvidenceLadder`,
+  `DetailList`, `PageCta`, `StatusBadge`, `ResearchLibrary`
+- Homepage (`src/app/page.tsx`) — full content port of the PHP site's `index.php`
+- Institution section — `/about`, `/founder`, `/africa`, `/biology-first`
+- Science section — `/science`, `/labs`, `/science/evidence`, `/science/regulatory`,
+  `/science/quality`, `/science/responsible-science`, `/intellectual-property`
 
-Not started yet: the other ~25 public pages, the contact form + Postgres backend, and the admin
-CMS (auth, publications, enquiries, users, analytics, audit log) — the admin migration is a later
-phase per the agreed sequencing (public site first).
+Not started yet: division pages (~7 routes), future/legal pages, contact form UI, Postgres backend,
+and admin CMS — see `docs/ROADMAP.md`.
 
 ## Decisions carried over from planning
 
@@ -44,3 +47,13 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run dev` — start the dev server (Turbopack)
 - `npm run build` — production build
 - `npm run lint` — ESLint
+
+## Workflow & documentation
+
+- [`AGENTS.md`](AGENTS.md) — branching model, commit conventions, content rules, validation
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — stack, design tokens, component/content structure
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — phased plan (what's left)
+- [`docs/PROGRESS.md`](docs/PROGRESS.md) — session-by-session status log
+
+Repository: https://github.com/PHENOMVALENCE/origina-next — `main` is production, all
+implementation work happens on `codex/master-changes` via pull request.
