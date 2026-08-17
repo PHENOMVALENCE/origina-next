@@ -9,7 +9,7 @@ export function PageHero({
   crumb: string;
   kicker: string;
   title: React.ReactNode;
-  intro: string;
+  intro?: string;
 }) {
   return (
     <section className="bg-noir pt-32 pb-20 text-ivory lg:pt-40 lg:pb-28">
@@ -23,7 +23,7 @@ export function PageHero({
         </p>
         <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{kicker}</p>
         <h1 className="max-w-3xl font-serif text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">{title}</h1>
-        <p className="mt-6 max-w-xl text-[#b7aca0]">{intro}</p>
+        {intro ? <p className="mt-6 max-w-xl text-[#b7aca0]">{intro}</p> : null}
       </div>
     </section>
   );
