@@ -17,3 +17,12 @@ export const evidencePrinciples = [
   "A promising formulation is not automatically a proven treatment.",
   "A laboratory mechanism is not automatically evidence of human clinical efficacy.",
 ];
+
+export const researchRecordPlaceholder = {
+  meta: ["Future state", "Planned"],
+  title: "Research record architecture",
+  text: "Structured records will be published as work reaches appropriate standards for public disclosure.",
+};
+
+export const evidenceResearchNote =
+  "Future research records will support metadata including research title, platform, evidence level, population, methodology, and publication status. Empty states are preferable to fabricated data.";
