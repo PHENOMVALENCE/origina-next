@@ -7,7 +7,7 @@ export function PageHero({
   intro,
 }: {
   crumb: string;
-  kicker: string;
+  kicker?: string;
   title: React.ReactNode;
   intro?: string;
 }) {
@@ -21,7 +21,9 @@ export function PageHero({
           <span>/</span>
           {crumb}
         </p>
-        <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{kicker}</p>
+        {kicker ? (
+          <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{kicker}</p>
+        ) : null}
         <h1 className="max-w-3xl font-serif text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">{title}</h1>
         {intro ? <p className="mt-6 max-w-xl text-[#b7aca0]">{intro}</p> : null}
       </div>
