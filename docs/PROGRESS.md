@@ -6,15 +6,16 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): started — 1 of ~20 routes.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): in progress — 5 of ~20 routes.**
 
 | Area | Status |
 |---|---|
 | Scaffold, tooling, CI-equivalent (lint/build) | ✅ Done |
 | Design tokens / brand system | ✅ Done |
 | Shared layout (header, mega-menu, mobile nav, footer) | ✅ Done |
+| Shared page components (`Section`, `Quote`, `PageHero`) | ✅ Done |
 | Homepage | ✅ Done |
-| Institution pages (about, founder, africa, biology-first) | ⬜ Not started |
+| Institution pages — about, founder, africa, biology-first | ✅ Done |
 | Science pages (science, labs, evidence, regulatory, quality, responsible-science, IP) | ⬜ Not started |
 | Division pages (index + 6 divisions) | ⬜ Not started |
 | Future, privacy, terms | ⬜ Not started |
@@ -24,6 +25,19 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Institution section complete
+
+- Extracted `Section`, `Quote`, and `PageHero` into `src/components/` (previously duplicated
+  inline in the homepage) — every inner page now builds on the same primitives.
+- Ported all four Institution pages from their PHP sources, verified against the running dev
+  server (each returns 200 and renders its real content, not a stub):
+  - `/founder` — from `founder.php`
+  - `/about` — from `about.php`
+  - `/africa` — from `africa.php`
+  - `/biology-first` — from `biology-first.php`, reusing the `biologyFirst`/`evidencePrinciples`
+    content modules added alongside the homepage refactor
+- `npm run lint` and `npm run build` clean after each page.
 
 ## 2026-08-17 — Repo setup, GitHub workflow, documentation
 

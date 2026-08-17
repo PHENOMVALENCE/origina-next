@@ -16,11 +16,11 @@ Port each page's real content from the corresponding PHP file in the `origina` r
 one commit (or a small group of closely related pages, e.g. the three legal pages, may share a
 commit if trivial). Order, roughly by information architecture:
 
-**Institution**
-- [ ] `/about` — from `about.php`
-- [ ] `/founder` — from `founder.php`
-- [ ] `/africa` — from `africa.php`
-- [ ] `/biology-first` — from `biology-first.php`
+**Institution** — ✅ complete
+- [x] `/about` — from `about.php`
+- [x] `/founder` — from `founder.php`
+- [x] `/africa` — from `africa.php`
+- [x] `/biology-first` — from `biology-first.php`
 
 **Science**
 - [ ] `/science` — from `science.php`
