@@ -6,7 +6,7 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete — 26 routes.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete.** **Phase 3 (Backend): in progress.**
 
 | Area | Status |
 |---|---|
@@ -19,12 +19,24 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 | Science pages (7 routes) | ✅ Done |
 | Division pages (index + 6 divisions) | ✅ Done |
 | Future, privacy, terms | ✅ Done |
-| Contact page (UI only, no submission yet) | ✅ Done |
-| Backend / Postgres / contact form submission | ⬜ Not started (Phase 3) |
+| Contact page (UI) | ✅ Done |
+| Postgres schema + enquiry Server Action | ✅ Done |
+| Production Postgres provisioning + migration | ⬜ Human step |
 | Admin CMS | ⬜ Not started (Phase 4) |
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Phase 3 backend started (contact form persistence)
+
+- Added Drizzle ORM + Postgres client (`src/db/`), `enquiries` schema mirroring the PHP site, and
+  checked-in migration SQL (`drizzle/0000_enquiries.sql`).
+- Implemented enquiry Server Action (`src/app/contact/actions.ts`) with PHP-parity validation,
+  honeypot, IP hash rate limiting (3 per 10 minutes), and `ORI-YYYYMMDD-XXXX` reference generation.
+- Wired `EnquiryForm` to the Server Action via `useActionState`; success state via `?sent=` query
+  param matches the PHP redirect flow.
+- Optional Resend notification when `ORIGINA_NOTIFY_EMAIL` and `RESEND_API_KEY` are set.
+- Added `docs/SETUP.md` and `.env.example` documenting environment variable names.
 
 ## 2026-08-17 — Phase 2 public pages complete
 

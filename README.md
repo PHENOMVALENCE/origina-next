@@ -22,9 +22,11 @@ This is an early, in-progress migration. Built so far:
   `/science/quality`, `/science/responsible-science`, `/intellectual-property`
 - Division section — `/divisions` + six division routes under `/divisions/*`
 - Future & legal — `/future`, `/privacy`, `/terms`
-- Contact page — `/contact` (enquiry form UI; submission in Phase 3)
+- Contact page — `/contact` with enquiry form Server Action (requires `DATABASE_URL`; see
+  `docs/SETUP.md`)
 
-Not started yet: Postgres backend, contact form submission, and admin CMS — see `docs/ROADMAP.md`.
+Backend: Drizzle + Postgres for enquiries. Production database provisioning is a human step.
+Admin CMS not started — see `docs/ROADMAP.md`.
 
 ## Decisions carried over from planning
 

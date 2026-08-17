@@ -52,15 +52,13 @@ commit if trivial). Order, roughly by information architecture:
 Extract shared UI as patterns repeat (e.g. once 2-3 pages need the same evidence-ladder or
 process-pathway visualization the homepage already sketches, pull it into `src/components/`).
 
-## Phase 3 — Backend (contact form + persistence)
+## Phase 3 — Backend (contact form + persistence) (in progress)
 
-- Provision Postgres (Vercel Postgres or Neon) — needs an account decision, not something an
-  agent can provision unilaterally.
-- Prisma or Drizzle schema for an `enquiries` table (mirroring the PHP site's `enquiries` schema:
-  reference, name, email, phone, organization, subject/category, message, status, timestamps).
-- Contact form as a Server Action or route handler: validation, honeypot/spam mitigation (mirror
-  the PHP site's approach), rate limiting, and an email notification (e.g. Resend) — no secrets
-  committed to the repo; use environment variables documented (names only) in `docs/SETUP.md`.
+- [x] Drizzle schema for `enquiries` (mirrors PHP SQLite schema)
+- [x] Contact form Server Action — validation, honeypot, IP rate limiting, reference generation
+- [x] Optional Resend email notification via `ORIGINA_NOTIFY_EMAIL` + `RESEND_API_KEY`
+- [ ] Provision production Postgres (Neon or Vercel Postgres) — human account decision
+- [ ] Run migration against production database before cutover
 
 ## Phase 4 — Admin CMS
 
