@@ -1,51 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
-
-const biologyPillars = [
-  {
-    name: "Biology First™",
-    text: "Every innovation begins by understanding living systems.",
-  },
-  {
-    name: "Systems Thinking™",
-    text: "Pigmentation, inflammation, barrier function, ageing, cellular processes and environmental exposure interact.",
-  },
-  {
-    name: "Platform Innovation™",
-    text: "Develop scientific platforms capable of supporting multiple products, protocols and applications.",
-  },
-];
-
-const responsibleScienceStatements = [
-  "A scientific hypothesis is not a clinical result.",
-  "A promising formulation is not automatically a proven treatment.",
-  "A laboratory mechanism is not automatically evidence of human clinical efficacy.",
-];
-
-const labsFunctions = [
-  { num: "01", title: "Biological Research" },
-  { num: "02", title: "Formulation Science" },
-  { num: "03", title: "Analytical Development" },
-  { num: "04", title: "Safety & Quality" },
-  { num: "05", title: "Clinical Evaluation" },
-  { num: "06", title: "Intellectual Property" },
-  { num: "07", title: "Manufacturing Translation" },
-];
-
-const developmentPathway = [
-  "Biological hypothesis",
-  "Literature & evidence review",
-  "Target / pathway selection",
-  "Ingredient & technology selection",
-  "Formulation development",
-  "Stability & compatibility assessment",
-  "Microbiological / safety evaluation",
-  "Analytical & quality testing",
-  "Regulatory classification",
-  "Human evaluation where appropriate",
-  "Manufacturing scale-up",
-  "Regulatory submission / registration",
-  "Post-market monitoring",
-];
+import { biologyFirst, developmentPathway, labsFunctions } from "@/lib/content/science";
+import { evidenceLevels, evidencePrinciples } from "@/lib/content/evidence";
 
 const divisions = [
   { name: "B-Melanox™", role: "Pigmentation Science", status: "ACTIVE", href: "/divisions/b-melanox" },
@@ -54,14 +10,6 @@ const divisions = [
   { name: "DIVINE™", role: "Luxury Makeup Science", status: "EMERGING", href: "/divisions/divine" },
   { name: "NOVIA™", role: "Luxury Body Care", status: "ACTIVE", href: "/divisions/novia" },
   { name: "Skin Safari™", role: "Education · Media · Scientific Communication", status: "EMERGING", href: "/divisions/skin-safari" },
-];
-
-const evidenceLevels = [
-  "Hypothesis",
-  "In-vitro",
-  "Ex-vivo",
-  "Formulation testing",
-  "Instrumental / biophysical testing",
 ];
 
 export default function Home() {
@@ -100,8 +48,14 @@ export default function Home() {
             <Fact value="∞" label="Possibility" />
           </div>
         </div>
-        <div className="relative hidden items-center justify-center bg-[radial-gradient(circle_at_center,rgba(181,146,74,0.12),transparent_55%),linear-gradient(145deg,#241d19,#100d0b)] lg:flex">
-          <span className="font-serif text-[16rem] leading-none text-gold/90">O</span>
+        <div className="relative hidden overflow-hidden bg-[radial-gradient(circle_at_center,rgba(181,146,74,0.12),transparent_55%),linear-gradient(145deg,#241d19,#100d0b)] lg:block">
+          <Image
+            src="/img/founder/founder-07.jpeg"
+            alt="Dr. Elizabeth Consoli in a professional setting representing ORIGINA institutional science"
+            fill
+            priority
+            className="object-cover opacity-90 mix-blend-luminosity"
+          />
         </div>
       </section>
 
@@ -137,8 +91,8 @@ export default function Home() {
 
       {/* 02 · Biology First */}
       <Section tone="cream" eyebrow="02 · Biology First™" title="A philosophical framework for innovation.">
-        <div className="grid gap-8 border-t border-border-subtle pt-8 sm:grid-cols-3">
-          {biologyPillars.map((pillar) => (
+        <div className="grid gap-8 border-t border-border-subtle pt-8 sm:grid-cols-2 lg:grid-cols-4">
+          {biologyFirst.pillars.map((pillar) => (
             <article key={pillar.name}>
               <h3 className="font-serif text-2xl">{pillar.name}</h3>
               <p className="mt-2 text-sm text-graphite/85">{pillar.text}</p>
@@ -146,7 +100,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 space-y-4 bg-noir p-8 text-ivory lg:p-12">
-          {responsibleScienceStatements.map((statement) => (
+          {evidencePrinciples.map((statement) => (
             <blockquote key={statement} className="font-serif text-xl italic text-ivory/90">
               &ldquo;{statement}&rdquo;
             </blockquote>
@@ -264,12 +218,12 @@ export default function Home() {
           must correspond to the strength of the evidence.
         </p>
         <ol className="flex flex-col gap-2 border-t border-gold/20 pt-6">
-          {evidenceLevels.map((level, index) => (
-            <li key={level} className="flex items-center gap-4 text-sm text-ivory/85">
+          {evidenceLevels.slice(0, 5).map((level, index) => (
+            <li key={level.id} className="flex items-center gap-4 text-sm text-ivory/85">
               <span className="grid h-7 w-7 place-content-center rounded-full border border-gold/40 text-xs text-gold">
                 {index + 1}
               </span>
-              {level}
+              {level.label}
             </li>
           ))}
         </ol>
