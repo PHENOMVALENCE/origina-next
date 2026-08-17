@@ -4,15 +4,9 @@ import { Section } from "@/components/Section";
 import { Quote } from "@/components/Quote";
 import { biologyFirst, developmentPathway, labsFunctions } from "@/lib/content/science";
 import { evidenceLevels, evidencePrinciples } from "@/lib/content/evidence";
+import { divisions, statusLabels } from "@/lib/content/divisions";
 
-const divisions = [
-  { name: "B-Melanox™", role: "Pigmentation Science", status: "ACTIVE", href: "/divisions/b-melanox" },
-  { name: "BettyWorld", role: "Everyday Dermatological Skincare", status: "ACTIVE", href: "/divisions/bettyworld" },
-  { name: "BValence™", role: "Ageing & Longevity Biology", status: "RESEARCH", href: "/divisions/bvalence" },
-  { name: "DIVINE™", role: "Luxury Makeup Science", status: "EMERGING", href: "/divisions/divine" },
-  { name: "NOVIA™", role: "Luxury Body Care", status: "ACTIVE", href: "/divisions/novia" },
-  { name: "Skin Safari™", role: "Education · Media · Scientific Communication", status: "EMERGING", href: "/divisions/skin-safari" },
-];
+const divisionPreviews = divisions.filter((division) => division.slug !== "labs");
 
 export default function Home() {
   return (
@@ -197,14 +191,14 @@ export default function Home() {
       {/* 08 · Divisions */}
       <Section tone="ivory" eyebrow="08 · Divisions" title="Distinct expressions. Shared institution.">
         <div className="grid gap-px overflow-hidden rounded-lg border border-border-subtle bg-border-subtle sm:grid-cols-2 lg:grid-cols-3">
-          {divisions.map((division) => (
+          {divisionPreviews.map((division) => (
             <Link
-              key={division.name}
+              key={division.slug}
               href={division.href}
               className="flex flex-col gap-2 bg-ivory p-6 transition-colors hover:bg-cream"
             >
               <span className="w-fit rounded-full border border-gold/40 px-2.5 py-0.5 text-[0.55rem] uppercase tracking-[0.15em] text-oxblood">
-                {division.status}
+                {statusLabels[division.status]}
               </span>
               <strong className="font-serif text-xl">{division.name}</strong>
               <small className="text-xs text-stone">{division.role}</small>
