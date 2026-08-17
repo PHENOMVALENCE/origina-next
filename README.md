@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ORIGINA — Next.js rebuild
 
-## Getting Started
+Next.js (App Router) + TypeScript + Tailwind CSS v4 rebuild of the ORIGINA institutional site,
+replacing the PHP + SQLite implementation at `c:\xampp\htdocs\origina`. See that repo's
+`docs/origina-institutional-architecture.md` for the brand/content architecture this is porting.
 
-First, run the development server:
+## Status
+
+This is an early, in-progress migration. Built so far:
+
+- Project scaffold (Next.js 16, React 19, Tailwind v4, ESLint)
+- Design tokens (`src/app/globals.css`) ported from the PHP site's `css/origina.css` and
+  `css/institutional.css` — brand colors, `Cormorant Garamond`/`Montserrat` type via `next/font`
+- Shared navigation data (`src/lib/navigation.ts`), ported from the PHP site's
+  `content/navigation.php`
+- `SiteHeader` (mega-menu + mobile nav) and `SiteFooter` components (`src/components/`)
+- Homepage (`src/app/page.tsx`) — full content port of the PHP site's `index.php`, as the
+  template pattern for the remaining pages
+
+Not started yet: the other ~25 public pages, the contact form + Postgres backend, and the admin
+CMS (auth, publications, enquiries, users, analytics, audit log) — the admin migration is a later
+phase per the agreed sequencing (public site first).
+
+## Decisions carried over from planning
+
+- **Backend**: managed Postgres (Vercel Postgres/Neon) + Prisma or Drizzle, once the contact form
+  needs real persistence — not yet wired up.
+- **Design**: rebuilt with Tailwind + design tokens rather than a literal 1:1 port of the old
+  markup/CSS, matching the same brand (colors, type, motion feel) with cleaner component code.
+- **Hosting**: intended for Vercel. The PHP site keeps serving production until this is ready to
+  cut over.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — start the dev server (Turbopack)
+- `npm run build` — production build
+- `npm run lint` — ESLint
