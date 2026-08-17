@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Section } from "@/components/Section";
+import { Quote } from "@/components/Quote";
 import { biologyFirst, developmentPathway, labsFunctions } from "@/lib/content/science";
 import { evidenceLevels, evidencePrinciples } from "@/lib/content/evidence";
 
@@ -269,47 +271,5 @@ function Fact({ value, label }: { value: string; label: string }) {
       <strong className="block font-serif text-3xl text-gold">{value}</strong>
       <span className="text-[0.6rem] uppercase tracking-[0.18em] text-stone">{label}</span>
     </div>
-  );
-}
-
-function Quote({ children, light }: { children: React.ReactNode; light?: boolean }) {
-  return (
-    <blockquote
-      className={`border-l-2 border-gold py-1 pl-4 font-serif text-lg italic ${light ? "text-ivory" : "text-graphite"}`}
-    >
-      {children}
-    </blockquote>
-  );
-}
-
-const tones = {
-  ivory: "bg-ivory text-graphite",
-  cream: "bg-cream text-graphite",
-  noir: "bg-noir text-ivory",
-  oxblood: "bg-gradient-to-br from-[#420b0e] to-oxblood text-ivory",
-  graphite: "bg-graphite text-ivory",
-} as const;
-
-function Section({
-  tone = "ivory",
-  eyebrow,
-  title,
-  center,
-  children,
-}: {
-  tone?: keyof typeof tones;
-  eyebrow: string;
-  title: string;
-  center?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className={tones[tone]}>
-      <div className={`mx-auto max-w-(--content-max) px-6 py-20 lg:px-16 lg:py-28 ${center ? "text-center" : ""}`}>
-        <p className="mb-3 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{eyebrow}</p>
-        <h2 className="mb-10 font-serif text-4xl leading-tight sm:text-5xl">{title}</h2>
-        {children}
-      </div>
-    </section>
   );
 }
