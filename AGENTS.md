@@ -32,6 +32,12 @@ Allowed types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `style`, `per
 One logical change per commit. A page port, a bug fix, a docs update, and a dependency bump are
 separate commits even within the same request. Do not bundle unrelated changes.
 
+## Commit attribution (critical)
+
+All commits must credit the repository owner only (**PHENOMVALENCE** / Phenom Valence). Never add
+`Co-authored-by`, `Co-Authored-By`, or any AI/agent attribution trailer to commit messages. Do not
+append "Generated with …" footers.
+
 ## Content rules (critical)
 
 This project ports a real institution's public site. The same claims-safety rules that govern the

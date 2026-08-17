@@ -20,9 +20,10 @@ This is an early, in-progress migration. Built so far:
 - Institution section — `/about`, `/founder`, `/africa`, `/biology-first`
 - Science section — `/science`, `/labs`, `/science/evidence`, `/science/regulatory`,
   `/science/quality`, `/science/responsible-science`, `/intellectual-property`
+- Division section — `/divisions` + six division routes under `/divisions/*`
 
-Not started yet: division pages (~7 routes), future/legal pages, contact form UI, Postgres backend,
-and admin CMS — see `docs/ROADMAP.md`.
+Not started yet: future/legal pages, contact form UI, Postgres backend, and admin CMS — see
+`docs/ROADMAP.md`.
 
 ## Decisions carried over from planning
 
