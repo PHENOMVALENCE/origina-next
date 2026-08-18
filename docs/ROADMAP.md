@@ -10,7 +10,7 @@ this file describes the plan, not day-to-day state.
 - Shared layout: `SiteHeader` (mega-menu + mobile nav), `SiteFooter`, `navigation.ts`
 - Homepage — full content port, establishing the page-building pattern
 
-## Phase 2 — Public pages (in progress)
+## Phase 2 — Public pages ✅ complete
 
 Port each page's real content from the corresponding PHP file in the `origina` repo. One page is
 one commit (or a small group of closely related pages, e.g. the three legal pages, may share a
@@ -40,38 +40,37 @@ commit if trivial). Order, roughly by information architecture:
 - [x] `/divisions/novia` — from `novia.php`
 - [x] `/divisions/skin-safari` — from `skin-safari.php`
 
-**Future & legal**
-- [ ] `/future` — from `future.php` (Academy/Ventures/Research Institute/Foundation/∞ sections)
-- [ ] `/privacy` — from `privacy.php`
-- [ ] `/terms` — from `terms.php`
+**Future & legal** — ✅ complete
+- [x] `/future` — from `future.php` (Academy/Ventures/Research Institute/Foundation/∞ sections)
+- [x] `/privacy` — from `privacy.php`
+- [x] `/terms` — from `terms.php`
 
-**Contact**
-- [ ] `/contact` — from `contact.php`. Static form UI can be ported in this phase; real submission
-      handling waits for Phase 3 (needs Postgres).
+**Contact** — ✅ complete (UI only)
+- [x] `/contact` — from `contact.php`. Static form UI ported; real submission handling waits for
+      Phase 3 (needs Postgres).
 
 Extract shared UI as patterns repeat (e.g. once 2-3 pages need the same evidence-ladder or
 process-pathway visualization the homepage already sketches, pull it into `src/components/`).
 
-## Phase 3 — Backend (contact form + persistence)
+## Phase 3 — Backend (contact form + persistence) (in progress)
 
-- Provision Postgres (Vercel Postgres or Neon) — needs an account decision, not something an
-  agent can provision unilaterally.
-- Prisma or Drizzle schema for an `enquiries` table (mirroring the PHP site's `enquiries` schema:
-  reference, name, email, phone, organization, subject/category, message, status, timestamps).
-- Contact form as a Server Action or route handler: validation, honeypot/spam mitigation (mirror
-  the PHP site's approach), rate limiting, and an email notification (e.g. Resend) — no secrets
-  committed to the repo; use environment variables documented (names only) in `docs/SETUP.md`.
+- [x] Drizzle schema for `enquiries` (mirrors PHP SQLite schema)
+- [x] Contact form Server Action — validation, honeypot, IP rate limiting, reference generation
+- [x] Optional Resend email notification via `ORIGINA_NOTIFY_EMAIL` + `RESEND_API_KEY`
+- [ ] Provision production Postgres (Neon or Vercel Postgres) — human account decision
+- [ ] Run migration against production database before cutover
 
-## Phase 4 — Admin CMS
+## Phase 4 — Admin CMS (in progress)
 
 Recreates the PHP site's `admin/` feature set against the same Postgres database:
 
-- Auth (session or JWT-based; role model: owner/admin/editor, matching the PHP site)
-- Publications CRUD (the live news/research archive, `updates.php` equivalent)
-- Enquiries inbox (status workflow, assignment, notes)
-- Users/roles management
-- Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
-- Audit log
+- [x] Auth — iron-session cookies, owner setup, login/logout, bcrypt passwords, audit events
+- [x] Enquiries inbox — list/filter/search, detail view, status/priority/assignment workflow
+- [ ] Publications CRUD (the live news/research archive, `updates.php` equivalent)
+- [ ] Users/roles management
+- [ ] Site content / homepage editorial
+- [ ] Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
+- [ ] Audit log viewer
 
 This phase starts only after Phase 2 + Phase 3 are live and verified, per the agreed
 public-site-first sequencing.

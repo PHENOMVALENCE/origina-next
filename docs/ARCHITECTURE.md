@@ -5,7 +5,7 @@
 - **Framework**: Next.js 16 (App Router), React 19, TypeScript (strict, via `next build`)
 - **Styling**: Tailwind CSS v4 (CSS-first `@theme` config, no `tailwind.config.js`)
 - **Fonts**: `next/font/google` — Cormorant Garamond (serif, editorial) + Montserrat (sans, UI)
-- **Backend** (not yet built): managed Postgres (Vercel Postgres or Neon) + Prisma or Drizzle
+- **Backend**: managed Postgres (Vercel Postgres or Neon) + Drizzle ORM
 - **Hosting target**: Vercel
 
 ## Why this stack
@@ -48,7 +48,8 @@ one-off arbitrary Tailwind values, so the palette stays centralized and auditabl
   `Section`, `Quote`, `PageHero`, `ProcessPathway`, `EvidenceLadder`, `DetailList`, `PageCta`,
   `StatusBadge`, `ResearchLibrary`).
 - `src/lib/` — non-UI logic and data (`navigation.ts`, typed content modules under
-  `src/lib/content/`).
+  `src/lib/content/`, enquiry helpers under `src/lib/enquiries/`).
+- `src/db/` — Drizzle schema and Postgres client (`getDb()`).
 
 ## Content modeling
 
@@ -97,7 +98,6 @@ new interactive components to this bar.
 
 ## What's deliberately deferred
 
-- Postgres schema / Prisma or Drizzle setup — wait until the contact form needs real persistence.
-- Admin CMS — entire later phase.
+- Admin CMS — entire later phase (Phase 4).
 - MDX or a headless CMS for content — not needed yet; typed data modules are sufficient for the
   current page count and the content doesn't change often enough to justify a CMS this early.

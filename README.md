@@ -15,15 +15,18 @@ This is an early, in-progress migration. Built so far:
   `content/navigation.php`
 - `SiteHeader` (mega-menu + mobile nav) and `SiteFooter` components (`src/components/`)
 - Shared page components: `Section`, `Quote`, `PageHero`, `ProcessPathway`, `EvidenceLadder`,
-  `DetailList`, `PageCta`, `StatusBadge`, `ResearchLibrary`
+  `DetailList`, `PageCta`, `StatusBadge`, `ResearchLibrary`, `EnquiryForm`
 - Homepage (`src/app/page.tsx`) — full content port of the PHP site's `index.php`
 - Institution section — `/about`, `/founder`, `/africa`, `/biology-first`
 - Science section — `/science`, `/labs`, `/science/evidence`, `/science/regulatory`,
   `/science/quality`, `/science/responsible-science`, `/intellectual-property`
 - Division section — `/divisions` + six division routes under `/divisions/*`
+- Future & legal — `/future`, `/privacy`, `/terms`
+- Contact page — `/contact` with enquiry form Server Action (requires `DATABASE_URL`; see
+  `docs/SETUP.md`)
 
-Not started yet: future/legal pages, contact form UI, Postgres backend, and admin CMS — see
-`docs/ROADMAP.md`.
+Backend: Drizzle + Postgres for enquiries. Production database provisioning is a human step.
+Admin CMS not started — see `docs/ROADMAP.md`.
 
 ## Decisions carried over from planning
 
