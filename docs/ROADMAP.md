@@ -60,16 +60,17 @@ process-pathway visualization the homepage already sketches, pull it into `src/c
 - [ ] Provision production Postgres (Neon or Vercel Postgres) — human account decision
 - [ ] Run migration against production database before cutover
 
-## Phase 4 — Admin CMS
+## Phase 4 — Admin CMS (in progress)
 
 Recreates the PHP site's `admin/` feature set against the same Postgres database:
 
-- Auth (session or JWT-based; role model: owner/admin/editor, matching the PHP site)
-- Publications CRUD (the live news/research archive, `updates.php` equivalent)
-- Enquiries inbox (status workflow, assignment, notes)
-- Users/roles management
-- Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
-- Audit log
+- [x] Auth — iron-session cookies, owner setup, login/logout, bcrypt passwords, audit events
+- [x] Enquiries inbox — list/filter/search, detail view, status/priority/assignment workflow
+- [ ] Publications CRUD (the live news/research archive, `updates.php` equivalent)
+- [ ] Users/roles management
+- [ ] Site content / homepage editorial
+- [ ] Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
+- [ ] Audit log viewer
 
 This phase starts only after Phase 2 + Phase 3 are live and verified, per the agreed
 public-site-first sequencing.

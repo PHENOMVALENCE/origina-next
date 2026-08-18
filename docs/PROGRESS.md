@@ -6,7 +6,7 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
 ## Current status (2026-08-17)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete.** **Phase 3 (Backend): in progress.**
+**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete.** **Phase 3 (Backend): code complete.** **Phase 4 (Admin CMS): in progress.**
 
 | Area | Status |
 |---|---|
@@ -22,10 +22,21 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 | Contact page (UI) | ✅ Done |
 | Postgres schema + enquiry Server Action | ✅ Done |
 | Production Postgres provisioning + migration | ⬜ Human step |
-| Admin CMS | ⬜ Not started (Phase 4) |
+| Admin auth (setup, login, session) | ✅ Done |
+| Admin enquiries inbox + workflow | ✅ Done |
+| Admin publications, users, content, analytics | ⬜ Not started |
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-17 — Phase 4 admin started (auth + enquiries inbox)
+
+- Added `users` and `audit_log` tables (`drizzle/0001_users.sql`) with Drizzle schema updates.
+- Implemented iron-session admin auth: `/admin/setup`, `/admin/login`, sign-out, bcrypt passwords,
+  login audit events.
+- Added admin shell UI (ported from PHP admin CSS) with overview dashboard and enquiries inbox at
+  `/admin/enquiries` plus detail/workflow page at `/admin/enquiries/[id]`.
+- Middleware sets pathname header so admin routes render without public site header/footer.
 
 ## 2026-08-17 — Phase 3 backend started (contact form persistence)
 
