@@ -3,10 +3,24 @@ export const siteTagline = "Biology First™";
 export const siteDescription =
   "ORIGINA is a multi-divisional innovation institution built at the intersection of biology, clinical science, technology, and human wellbeing. Beginning in Africa. Serving the world.";
 
+function normalizeSiteUrl(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  if (!trimmed) return undefined;
+
+  try {
+    const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+    return new URL(withProtocol).origin;
+  } catch {
+    return undefined;
+  }
+}
+
 export function getSiteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? process.env.ORIGINA_SITE_URL ?? "https://origina.co").replace(
-    /\/$/,
-    "",
+  return (
+    normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL) ??
+    normalizeSiteUrl(process.env.ORIGINA_SITE_URL) ??
+    normalizeSiteUrl(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ??
+    "https://origina.co"
   );
 }
 
