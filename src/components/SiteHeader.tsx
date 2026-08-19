@@ -67,12 +67,12 @@ export function SiteHeader() {
           <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
             <Image src="/img/brand/origina-mark.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" />
           </span>
-          <span className="truncate text-[0.62rem] font-semibold tracking-[0.26em] sm:text-[0.72rem] sm:tracking-[0.32em]">
+          <span className="truncate text-[0.62rem] font-semibold tracking-[0.26em] sm:text-[0.72rem] sm:tracking-[0.32em] lg:tracking-[0.2em] xl:tracking-[0.32em]">
             ORIGINA
           </span>
         </Link>
 
-        <div ref={navRef} role="menubar" className="hidden items-center gap-1 xl:flex">
+        <div ref={navRef} role="menubar" className="hidden min-w-0 items-center justify-center gap-0.5 lg:flex xl:gap-1">
           {primaryNav.map((item) => {
             const panelLinks = item.panel ? panels[item.panel] : null;
             if (!panelLinks) {
@@ -81,7 +81,7 @@ export function SiteHeader() {
                   key={item.label}
                   href={item.href}
                   role="menuitem"
-                  className="rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em]"
+                  className="whitespace-nowrap rounded-sm px-1.5 py-2 text-[0.55rem] uppercase tracking-[0.1em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em]"
                 >
                   {item.label}
                 </Link>
@@ -97,7 +97,7 @@ export function SiteHeader() {
                   aria-expanded={isOpen}
                   aria-controls={`panel-${item.panel}`}
                   onClick={() => setOpenPanel(isOpen ? null : item.label)}
-                  className={`flex items-center gap-1 rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] transition-colors xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em] ${
+                  className={`flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-2 text-[0.55rem] uppercase tracking-[0.1em] transition-colors xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em] ${
                     isOpen ? "bg-white/8 text-gold" : "text-ivory/85 hover:bg-white/5 hover:text-gold"
                   }`}
                 >
@@ -131,7 +131,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/contact" className="btn-primary hidden px-5 py-2.5 md:inline-flex">
+          <Link href="/contact" className="btn-primary hidden px-5 py-2.5 md:inline-flex lg:px-4 xl:px-5">
             Contact
           </Link>
           <button
@@ -140,7 +140,7 @@ export function SiteHeader() {
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((open) => !open)}
-            className="grid h-11 w-11 place-content-center rounded-full border border-gold/40 text-ivory xl:hidden"
+            className="grid h-11 w-11 place-content-center rounded-full border border-gold/40 text-ivory lg:hidden"
           >
             <span className="sr-only">{mobileOpen ? "Close" : "Menu"}</span>
             {mobileOpen ? "✕" : "☰"}
@@ -166,7 +166,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     <div
       id="mobile-menu"
       aria-hidden={!open}
-      className={`pointer-events-auto fixed inset-0 z-40 flex flex-col bg-noir/98 text-ivory backdrop-blur-xl transition-transform duration-300 xl:hidden ${
+      className={`pointer-events-auto fixed inset-0 z-40 flex flex-col bg-noir/98 text-ivory backdrop-blur-xl transition-transform duration-300 lg:hidden ${
         open ? "translate-x-0" : "translate-x-full"
       }`}
       style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
