@@ -12,28 +12,32 @@ export type NavItem = {
 export const primaryNav: NavItem[] = [
   { label: "Institution", href: "/about", panel: "institution" },
   { label: "Science", href: "/science", panel: "science" },
+  { label: "Platforms", href: "/platforms", panel: "platforms" },
   { label: "Divisions", href: "/divisions", panel: "divisions" },
-  { label: "Evidence", href: "/science/evidence" },
+  { label: "Evidence", href: "/science/evidence", panel: "evidence" },
+  { label: "Founder", href: "/founder" },
   { label: "Future", href: "/future", panel: "future" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const panels = {
   institution: [
-    { label: "About", href: "/about" },
-    { label: "Biology First™", href: "/biology-first" },
+    { label: "About ORIGINA", href: "/about" },
     { label: "Africa Originating", href: "/africa" },
-    { label: "Founder", href: "/founder" },
+    { label: "Culture & Talent", href: "/culture" },
+    { label: "Intellectual Property", href: "/intellectual-property" },
   ] satisfies NavLink[],
   science: [
     { label: "ORIGINA Labs™", href: "/labs" },
     { label: "Biology First™", href: "/biology-first" },
     { label: "Scientific Position", href: "/science#position" },
-    { label: "Clinical & Scientific Evidence", href: "/science/evidence" },
-    { label: "Regulatory Science", href: "/science/regulatory" },
-    { label: "Quality & Safety", href: "/science/quality" },
-    { label: "Intellectual Property", href: "/intellectual-property" },
-    { label: "Responsible Science", href: "/science/responsible-science" },
+    { label: "Development Framework", href: "/science#framework" },
+    { label: "Research", href: "/labs#research" },
+  ] satisfies NavLink[],
+  platforms: [
+    { label: "Platform overview", href: "/platforms" },
+    { label: "BMX-24™", href: "/divisions/b-melanox" },
+    { label: "BRP-1™", href: "/intellectual-property" },
   ] satisfies NavLink[],
   divisions: [
     { label: "B-Melanox™", href: "/divisions/b-melanox" },
@@ -42,6 +46,13 @@ export const panels = {
     { label: "DIVINE™", href: "/divisions/divine" },
     { label: "NOVIA™", href: "/divisions/novia" },
     { label: "Skin Safari™", href: "/divisions/skin-safari" },
+  ] satisfies NavLink[],
+  evidence: [
+    { label: "Scientific Evidence", href: "/science/evidence" },
+    { label: "Quality & Safety", href: "/science/quality" },
+    { label: "Regulatory Science", href: "/science/regulatory" },
+    { label: "Clinical Research", href: "/science/evidence#clinical" },
+    { label: "Responsible Science", href: "/science/responsible-science" },
   ] satisfies NavLink[],
   future: [
     { label: "Academy", href: "/future#academy" },
@@ -67,15 +78,25 @@ export const footerNav = {
     title: "Science",
     links: [
       { label: "ORIGINA Labs™", href: "/labs" },
-      { label: "Evidence", href: "/science/evidence" },
-      { label: "Regulatory", href: "/science/regulatory" },
-      { label: "Quality", href: "/science/quality" },
+      { label: "Scientific Position", href: "/science#position" },
+      { label: "Development Framework", href: "/science#framework" },
+    ] satisfies NavLink[],
+  },
+  platforms: {
+    title: "Platforms",
+    links: [
+      { label: "BMX-24™", href: "/divisions/b-melanox" },
+      { label: "BRP-1™", href: "/intellectual-property" },
       { label: "Intellectual Property", href: "/intellectual-property" },
     ] satisfies NavLink[],
   },
   divisions: {
     title: "Divisions",
     links: panels.divisions,
+  },
+  evidence: {
+    title: "Evidence & Quality",
+    links: panels.evidence,
   },
   future: {
     title: "Future",

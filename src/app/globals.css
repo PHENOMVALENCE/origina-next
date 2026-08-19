@@ -153,15 +153,15 @@ h4 {
   }
 
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-gold px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-noir transition-colors duration-200 hover:bg-gold-light sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm bg-gold px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-noir transition-colors duration-200 hover:bg-gold-light sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-ivory/35 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-ivory/35 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .btn-secondary-dark {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-graphite/20 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-graphite/20 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .text-link {
@@ -363,6 +363,58 @@ h4 {
 
   .pillar-card-index {
     @apply mb-3 block text-[0.58rem] tracking-[0.16em] text-gold;
+  }
+
+  .scientific-label {
+    @apply text-[0.58rem] font-medium uppercase tracking-[0.18em];
+  }
+
+  .scientific-metadata {
+    @apply text-[0.56rem] uppercase tracking-[0.14em] text-stone;
+  }
+
+  .content-status {
+    @apply inline-flex items-center border px-2 py-1 text-[0.52rem] font-medium uppercase tracking-[0.12em];
+  }
+
+  .content-status--current {
+    @apply border-sage/40 bg-sage-light text-sage;
+  }
+
+  .content-status--development {
+    @apply border-gold/35 bg-cream text-graphite;
+  }
+
+  .content-status--research {
+    @apply border-border-subtle bg-surface-muted text-graphite;
+  }
+
+  .content-status--future {
+    @apply border-gold/25 bg-noir/5 text-stone;
+  }
+
+  .institutional-panel {
+    @apply border border-border-subtle bg-ivory p-5 sm:p-6;
+  }
+
+  .systems-thinking {
+    @apply border-l border-gold/30 pl-5 sm:pl-6;
+  }
+
+  .systems-thinking__node {
+    @apply relative border-b border-border-subtle py-4 last:border-b-0;
+  }
+
+  .systems-thinking__connector {
+    @apply mt-3 block text-center text-sm text-gold/70;
+  }
+
+  .unnamed-division {
+    @apply flex min-h-[40vh] flex-col items-center justify-center bg-noir px-6 py-20 text-center text-ivory sm:min-h-[50vh] sm:py-28;
+  }
+
+  .unnamed-division__symbol {
+    @apply font-serif text-6xl text-gold sm:text-8xl;
   }
 }
 

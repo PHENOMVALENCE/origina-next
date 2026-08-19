@@ -81,7 +81,7 @@ export function SiteHeader() {
                   key={item.label}
                   href={item.href}
                   role="menuitem"
-                  className="rounded-full px-3 py-2 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold"
+                  className="rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em]"
                 >
                   {item.label}
                 </Link>
@@ -97,7 +97,7 @@ export function SiteHeader() {
                   aria-expanded={isOpen}
                   aria-controls={`panel-${item.panel}`}
                   onClick={() => setOpenPanel(isOpen ? null : item.label)}
-                  className={`flex items-center gap-1 rounded-full px-3 py-2 text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${
+                  className={`flex items-center gap-1 rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] transition-colors xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em] ${
                     isOpen ? "bg-white/8 text-gold" : "text-ivory/85 hover:bg-white/5 hover:text-gold"
                   }`}
                 >

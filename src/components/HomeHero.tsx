@@ -39,8 +39,12 @@ export function HomeHero() {
           <p className="home-hero-kicker lg:hidden">{image.caption} · Evidence-led innovation beginning with skin of colour.</p>
 
           <Eyebrow tone="dark" plain className="home-hero-eyebrow">
-            ORIGINA™ · Biology First™ · Dar es Salaam
+            Biology First™ · Dar es Salaam, Tanzania
           </Eyebrow>
+
+          <p className="font-serif text-[0.72rem] uppercase tracking-[0.28em] text-gold-light sm:text-[0.78rem]">
+            ORIGINA™
+          </p>
 
           <h1 className="display-title home-hero-title">
             Beginning in Africa.

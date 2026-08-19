@@ -37,7 +37,7 @@ export default function BMelanoxPage() {
             <span className="text-gold-light">biology.</span>
           </>
         }
-        intro="B-Melanox is ORIGINA's pigmentation-science platform with specific emphasis on skin of colour."
+        intro="B-Melanox is ORIGINA's pigmentation-science division — with skin of colour as its starting population, not its limit."
       />
 
       <Section eyebrow="01 · Question" title="The research question.">
@@ -59,9 +59,12 @@ export default function BMelanoxPage() {
         tone="cream"
         eyebrow="Platform"
         title="BMX-24™"
-        intro="Proprietary pigment regulation platform. Clinical studies are not currently complete—wording remains appropriately conservative."
+        intro="Proprietary pigment regulation platform. Clinical studies are not yet complete — wording remains appropriately conservative."
       >
-        <LeadCopy>Non-hydroquinone approaches to hyperpigmentation in skin of colour.</LeadCopy>
+        <LeadCopy>
+          Developed as a proprietary pigment-regulation platform originating from research into non-hydroquinone
+          approaches to hyperpigmentation in skin of colour.
+        </LeadCopy>
       </Section>
 
       <Section

@@ -122,11 +122,12 @@ export const labsResearchCards = [
 ];
 
 export const systemsThinking = [
-  "Pigmentation interacts with inflammation",
-  "Barrier function interacts with environmental exposure",
-  "Ageing interacts with cellular signalling",
-  "Extracellular matrix integrity matters",
-  "Metabolic stress influences biological systems",
+  "Pigmentation",
+  "Inflammation",
+  "Barrier function",
+  "Environment",
+  "Cellular ageing",
+  "Metabolic stress",
 ];
 
 export const regulatoryCategories = [
@@ -140,7 +141,7 @@ export const regulatoryCategories = [
   },
   {
     title: "Medicines",
-    text: "Authorized only where products meet applicable pharmaceutical regulatory requirements.",
+    text: "Subject to applicable Tanzania Medicines and Medical Devices Authority (TMDA) frameworks where products meet pharmaceutical regulatory requirements.",
   },
   {
     title: "Clinical investigations",
