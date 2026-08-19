@@ -21,12 +21,14 @@ export function PageCta({
   tone?: "noir" | "graphite";
 }) {
   return (
-    <section className={`${tone === "graphite" ? "bg-graphite" : "bg-noir"} py-16 text-ivory lg:py-20`}>
+    <section className={`${tone === "graphite" ? "bg-graphite" : "bg-noir"} py-12 text-ivory sm:py-16 lg:py-20`}>
       <div className="site-container">
         {eyebrow ? <Eyebrow tone="dark">{eyebrow}</Eyebrow> : null}
-        {title ? <h2 className="mb-4 max-w-2xl font-serif text-4xl leading-tight sm:text-5xl">{title}</h2> : null}
-        {intro ? <p className="mb-8 max-w-xl text-[0.9375rem] leading-relaxed text-stone">{intro}</p> : null}
-        <div className="flex flex-wrap gap-4">
+        {title ? (
+          <h2 className="section-title-light mb-4 max-w-2xl sm:mb-6">{title}</h2>
+        ) : null}
+        {intro ? <p className="section-intro text-stone">{intro}</p> : null}
+        <div className="cta-actions">
           {links.map((link) => (
             <Button
               key={link.href + link.label}
