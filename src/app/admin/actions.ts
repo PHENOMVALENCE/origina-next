@@ -4,9 +4,18 @@ import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { getDb } from "@/db";
 import { enquiries, users } from "@/db/schema";
+import type { PublicationStatus, PublicationType } from "@/db/schema";
 import { passwordNeedsRehash, hashPassword, verifyPassword } from "@/lib/auth/password";
 import { getSession, type SessionUser } from "@/lib/auth/session";
 import { auditEvent, findUserByEmail, updateUserPasswordHash, userCount } from "@/lib/auth/users";
+import {
+  beginTwoFactorLogin,
+} from "@/app/admin/user-actions";
+import { isTwoFactorRequired } from "@/lib/auth/email";
+import {
+  savePublication,
+  validatePublicationInput,
+} from "@/lib/publications/admin";
 
 export type AuthActionState = {
   error?: string;
@@ -73,6 +82,10 @@ export async function login(_prev: AuthActionState, formData: FormData): Promise
     email: user.email,
     role: user.role as SessionUser["role"],
   };
+
+  if (isTwoFactorRequired()) {
+    await beginTwoFactorLogin(sessionUser);
+  }
 
   const session = await getSession();
   session.user = sessionUser;
@@ -145,4 +158,58 @@ export async function updateEnquiryWorkflow(
     .where(eq(enquiries.id, enquiryId));
 
   return { success: "Enquiry updated." };
+}
+
+export type PublicationActionState = {
+  error?: string;
+  success?: string;
+};
+
+export async function savePublicationAction(
+  publicationId: number,
+  _prev: PublicationActionState,
+  formData: FormData,
+): Promise<PublicationActionState> {
+  const session = await getSession();
+  if (!session.user) {
+    redirect("/admin/login");
+  }
+
+  const input = {
+    type: String(formData.get("type") ?? "institutional"),
+    slug: String(formData.get("slug") ?? "")
+      .trim()
+      .toLowerCase(),
+    title: String(formData.get("title") ?? "").trim(),
+    excerpt: String(formData.get("excerpt") ?? "").trim(),
+    body: String(formData.get("body") ?? "").trim(),
+    status: String(formData.get("status") ?? "draft"),
+  };
+
+  const validationError = validatePublicationInput(input);
+  if (validationError) {
+    return { error: validationError };
+  }
+
+  try {
+    await savePublication({
+      id: publicationId > 0 ? publicationId : undefined,
+      type: input.type as PublicationType,
+      slug: input.slug,
+      title: input.title,
+      excerpt: input.excerpt,
+      body: input.body,
+      status: input.status as PublicationStatus,
+      updatedBy: session.user.id,
+    });
+
+    await auditEvent("publication.saved", { slug: input.slug }, session.user.id);
+    redirect("/admin/publications");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unable to save publication.";
+    if (message.includes("unique") || message.includes("duplicate")) {
+      return { error: "That slug is already in use." };
+    }
+    return { error: message };
+  }
 }
