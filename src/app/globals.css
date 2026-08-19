@@ -198,6 +198,54 @@ h4 {
   .compare-panel {
     @apply border border-border-subtle bg-ivory p-8;
   }
+
+  .editorial-frame {
+    @apply relative;
+  }
+
+  .editorial-frame-accent {
+    @apply pointer-events-none absolute inset-y-6 left-0 w-px bg-gold/60;
+  }
+
+  .editorial-caption {
+    @apply mt-3 text-[0.62rem] uppercase tracking-[0.14em] text-stone;
+  }
+
+  .image-break {
+    @apply relative overflow-hidden;
+  }
+
+  .photo-mosaic {
+    @apply grid gap-4;
+  }
+
+  .photo-mosaic--duo {
+    @apply grid-cols-2;
+  }
+
+  .photo-mosaic--trio {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .division-card {
+    @apply relative flex min-h-[320px] flex-col overflow-hidden border border-border-subtle bg-noir transition-all duration-300 hover:border-gold/40 hover:shadow-[var(--shadow-soft)];
+  }
+
+  .division-card-media {
+    @apply relative h-44 overflow-hidden;
+  }
+
+  .division-card-body {
+    @apply flex flex-1 flex-col p-6;
+  }
+
+  .hero-panel {
+    @apply relative min-h-[280px] overflow-hidden sm:min-h-[360px] lg:min-h-[520px];
+  }
+
+  .hero-panel-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-noir via-noir/25 to-noir/10;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
