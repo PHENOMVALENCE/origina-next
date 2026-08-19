@@ -60,6 +60,7 @@ export const footerNav = {
       { label: "Founder", href: "/founder" },
       { label: "Africa Originating", href: "/africa" },
       { label: "Biology First™", href: "/biology-first" },
+      { label: "Culture & Talent", href: "/culture" },
     ] satisfies NavLink[],
   },
   science: {
@@ -92,6 +93,7 @@ export const footerNav = {
       { label: "Contact", href: "/contact" },
       { label: "Collaboration", href: "/contact?subject=scientific#enquiry-form" },
       { label: "Media", href: "/contact?subject=media#enquiry-form" },
+      { label: "Updates", href: "/updates" },
     ] satisfies NavLink[],
   },
 } as const;
