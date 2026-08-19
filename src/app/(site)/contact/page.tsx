@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/EnquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
+import { EditorialImage } from "@/components/SplitSection";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { createPageMetadata } from "@/lib/metadata";
 import { contactDirectory, contactMeta, messageGuide } from "@/lib/content/contact";
 import { isValidSentReference } from "@/lib/enquiries/validation";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact ORIGINA™ — Build with ORIGINA",
@@ -39,6 +40,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </>
         }
         intro="Scientific collaboration, manufacturing development, investment, brand partnerships, and scientific communication."
+        image={founderImages.conversation}
       />
 
       <section className="bg-graphite pb-24 pt-4">
@@ -111,16 +113,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               ))}
             </dl>
           </div>
-          <figure className="relative min-h-[480px] overflow-hidden rounded-sm lg:min-h-[560px]">
-            <Image
-              src="/img/founder/founder-09.jpeg"
-              alt="Dr. Elizabeth Consoli greeting a dermatology professional"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <figcaption className="mt-3 text-xs uppercase tracking-[0.12em] text-stone">Begin with a conversation</figcaption>
-          </figure>
+          <EditorialImage
+            image={founderImages.conversation}
+            variant="portrait"
+            tone="none"
+            className="relative min-h-[480px] lg:min-h-[560px]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
         </div>
       </Section>
 

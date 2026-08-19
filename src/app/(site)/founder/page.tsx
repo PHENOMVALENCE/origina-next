@@ -6,6 +6,7 @@ import { Section } from "@/components/Section";
 import { MediaFigure, PhotoGrid, SplitSection } from "@/components/SplitSection";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Dr. Elizabeth Consoli — Founder of ORIGINA™",
@@ -36,11 +37,16 @@ export default function FounderPage() {
           </>
         }
         intro="MD, MBChB · Medical Doctor · Cosmetic Formulation Scientist · Founder of ORIGINA™"
+        image={founderImages.portraitClinical}
       />
 
       <Section tone="ivory" eyebrow="01 · Roles">
         <SplitSection>
-          <MediaFigure src="/img/founder/founder-01.jpeg" alt="Dr. Elizabeth Consoli, Founder of ORIGINA" />
+          <MediaFigure
+            src={founderImages.portraitClinical.src}
+            alt={founderImages.portraitClinical.alt}
+            caption={founderImages.portraitClinical.caption}
+          />
           <div>
             <h2 className="section-title">Institutional roles</h2>
             <ul className="space-y-3 body-copy">
@@ -76,10 +82,7 @@ export default function FounderPage() {
       <Section tone="ivory" eyebrow="03 · Mandate">
         <SplitSection reverse>
           <PhotoGrid
-            images={[
-              { src: "/img/founder/founder-02.jpeg", alt: "Dr. Elizabeth Consoli at a professional event" },
-              { src: "/img/founder/founder-09.jpeg", alt: "Dr. Elizabeth Consoli in conversation", offset: true },
-            ]}
+            images={[founderImages.professionalEvent, { ...founderImages.conversation, offset: true }]}
           />
           <div>
             <h2 className="section-title">

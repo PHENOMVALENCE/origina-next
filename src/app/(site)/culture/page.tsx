@@ -8,6 +8,7 @@ import { MediaFigure, SplitSection } from "@/components/SplitSection";
 import { TagList } from "@/components/TagList";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Culture & Talent — ORIGINA",
@@ -76,6 +77,7 @@ export default function CulturePage() {
           </>
         }
         intro="Every member is expected to contribute ideas, not simply perform tasks. Credentials are respected. Capability is required. Character is essential."
+        image={founderImages.multidisciplinary}
       />
 
       <Section tone="ivory" eyebrow="01 · People" title="The person behind the work.">
@@ -107,9 +109,9 @@ export default function CulturePage() {
       <Section tone="cream" eyebrow="02 · Working at Origina">
         <SplitSection reverse>
           <MediaFigure
-            src="/img/founder/founder-08.jpeg"
-            alt="Dr. Elizabeth Consoli standing with a multidisciplinary professional community"
-            caption="Expertise grows through community"
+            src={founderImages.multidisciplinary.src}
+            alt={founderImages.multidisciplinary.alt}
+            caption={founderImages.multidisciplinary.caption}
           />
           <div>
             <h2 className="section-title">

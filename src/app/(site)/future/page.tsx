@@ -7,6 +7,7 @@ import { MediaFigure, SplitSection } from "@/components/SplitSection";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
 import { expansionChecks, roadmapItems } from "@/lib/content/future";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Future Divisions — Origina",
@@ -29,6 +30,7 @@ export default function FuturePage() {
           </>
         }
         intro="Origina's framework is designed to expand when the capacity to execute with excellence arrives—not before."
+        image={founderImages.exchange}
       />
 
       <Section eyebrow="01 · Discipline" title="Expansion with discipline.">
@@ -77,9 +79,9 @@ export default function FuturePage() {
       <Section tone="cream" eyebrow="02 · Expansion test">
         <SplitSection reverse>
           <MediaFigure
-            src="/img/founder/founder-06.jpeg"
-            alt="Dr. Elizabeth Consoli exchanging ideas with a professional community"
-            caption="Ideas advance through exchange"
+            src={founderImages.exchange.src}
+            alt={founderImages.exchange.alt}
+            caption={founderImages.exchange.caption}
           />
           <div>
             <h2 className="section-title">

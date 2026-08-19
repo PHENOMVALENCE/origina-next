@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { EditorialImage, SplitSection } from "@/components/SplitSection";
 import { createPageMetadata } from "@/lib/metadata";
 import { biologyFirst } from "@/lib/content/science";
 import { evidencePrinciples } from "@/lib/content/evidence";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Biology First™ — ORIGINA",
@@ -22,6 +24,7 @@ export default function BiologyFirstPage() {
         kicker="Philosophical framework"
         title="Biology First™"
         intro={biologyFirst.summary}
+        image={founderImages.exchange}
       />
 
       <Section
@@ -29,17 +32,20 @@ export default function BiologyFirstPage() {
         title="A framework for innovation."
         intro="Every programme at ORIGINA begins by understanding living systems before designing intervention."
       >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <SplitSection reverse>
+          <EditorialImage image={founderImages.formulation} variant="portrait" tone="light" />
+          <div className="grid gap-6 sm:grid-cols-2">
           {biologyFirst.pillars.map((pillar) => (
             <article key={pillar.name} className="institutional-card">
               <h3 className="font-serif text-2xl text-graphite">{pillar.name}</h3>
               <p className="mt-3 body-copy">{pillar.text}</p>
             </article>
           ))}
-        </div>
+          </div>
+        </SplitSection>
       </Section>
 
-      <Section tone="noir" eyebrow="Principles" title="Evidence discipline.">
+      <Section tone="noir" eyebrow="Principles" title="What we stand by.">
         <div className="principle-stack">
           {evidencePrinciples.map((statement) => (
             <blockquote key={statement}>&ldquo;{statement}&rdquo;</blockquote>

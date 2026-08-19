@@ -5,9 +5,11 @@ import { PageHero } from "@/components/PageHero";
 import { ProcessPathway } from "@/components/ProcessPathway";
 import { Quote } from "@/components/Quote";
 import { Section } from "@/components/Section";
+import { EditorialImage, ImageBreak, SplitSection } from "@/components/SplitSection";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
 import { developmentPathway, systemsThinking } from "@/lib/content/science";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Science — ORIGINA™",
@@ -31,6 +33,7 @@ export default function SciencePage() {
           </>
         }
         intro="ORIGINA operates at the intersection of biology, dermatology, formulation science, biotechnology, and human wellbeing. Skin science is where we begin—not where we end."
+        image={founderImages.formulation}
       />
 
       <Section
@@ -39,23 +42,22 @@ export default function SciencePage() {
         id="position"
         intro="Population-aware, evidence-based formulation—not one-formula thinking."
       >
-        <div className="grid gap-10 lg:grid-cols-2">
-          <LeadCopy>What changes when human biology is studied from the perspective of melanin-rich skin?</LeadCopy>
-          <div className="space-y-5 body-copy">
-            <p>
-              Research considerations include pigmentation, post-inflammatory hyperpigmentation, melasma, acne, barrier
-              dysfunction, photoageing, inflammation, ageing, cosmetic tolerability, formulation design, and clinical
-              evaluation.
-            </p>
-            <Quote>
-              Skin colour is an important biological and clinical consideration—not a single biological category.
-            </Quote>
-            <p>
-              Relevant variables can include Fitzpatrick skin type, ancestry, phenotype, disease state, environmental
-              exposure, and individual biology.
-            </p>
+        <SplitSection reverse>
+          <EditorialImage image={founderImages.multidisciplinary} variant="portrait" tone="light" />
+          <div className="space-y-5">
+            <LeadCopy>What changes when human biology is studied from the perspective of melanin-rich skin?</LeadCopy>
+            <div className="body-copy space-y-5">
+              <p>
+                Research considerations include pigmentation, post-inflammatory hyperpigmentation, melasma, acne,
+                barrier dysfunction, photoageing, inflammation, ageing, cosmetic tolerability, formulation design, and
+                clinical evaluation.
+              </p>
+              <Quote>
+                Skin colour is an important biological and clinical consideration—not a single biological category.
+              </Quote>
+            </div>
           </div>
-        </div>
+        </SplitSection>
       </Section>
 
       <Section
@@ -68,7 +70,13 @@ export default function SciencePage() {
         <ProcessPathway steps={developmentPathway} />
       </Section>
 
-      <Section tone="noir" eyebrow="03 · Systems thinking" title="Biology is interconnected.">
+      <ImageBreak
+        image={founderImages.recognition}
+        title="Biology is interconnected."
+        subtitle="Systems thinking governs how ORIGINA connects research questions to responsible outputs."
+      />
+
+      <Section tone="noir" eyebrow="03 · Systems thinking" title="Every variable affects the whole.">
         <DetailList tone="dark" items={systemsThinking.map((title) => ({ title }))} />
       </Section>
 

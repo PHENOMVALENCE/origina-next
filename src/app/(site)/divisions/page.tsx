@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { DivisionCard } from "@/components/DivisionCard";
 import { InstitutionMap } from "@/components/InstitutionMap";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
-import { StatusBadge } from "@/components/StatusBadge";
+import { ImageBreak } from "@/components/SplitSection";
 import { createPageMetadata } from "@/lib/metadata";
 import { divisions } from "@/lib/content/divisions";
+import { productImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Divisions — ORIGINA™",
@@ -29,23 +30,27 @@ export default function DivisionsPage() {
           </>
         }
         intro="Brands are expressions of the institution. Research is part of the institutional infrastructure."
+        image={productImages.lifestyleTwo}
       />
 
-      <Section eyebrow="Architecture" title="How divisions connect." intro="Each division carries a specific scientific focus while operating under shared institutional standards.">
+      <Section
+        eyebrow="Architecture"
+        title="How divisions connect."
+        intro="Each division carries a specific scientific focus while operating under shared institutional standards."
+      >
         <InstitutionMap />
       </Section>
+
+      <ImageBreak
+        image={productImages.detail}
+        title="Products are outputs. Brands are expressions."
+        subtitle="Every division operates under the same evidence, quality, and institutional standards."
+      />
 
       <Section tone="cream" eyebrow="Directory" title="All divisions">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {divisions.map((division) => (
-            <Link key={division.slug} href={division.href} className="institutional-card group">
-              <StatusBadge status={division.status} />
-              <strong className="mt-3 block font-serif text-2xl text-graphite group-hover:text-oxblood">
-                {division.name}
-              </strong>
-              <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.12em] text-stone">{division.role}</span>
-              <span className="mt-3 block body-copy">{division.tagline}</span>
-            </Link>
+            <DivisionCard key={division.slug} division={division} />
           ))}
         </div>
       </Section>

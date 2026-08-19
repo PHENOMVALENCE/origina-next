@@ -1,4 +1,15 @@
 import Image from "next/image";
+import type { ImageAsset } from "@/lib/content/images";
+
+type EditorialVariant = "portrait" | "landscape" | "square" | "cinematic";
+type EditorialTone = "light" | "dark" | "none";
+
+const aspect: Record<EditorialVariant, string> = {
+  portrait: "aspect-4/5",
+  landscape: "aspect-[16/10]",
+  square: "aspect-square",
+  cinematic: "aspect-[21/9]",
+};
 
 export function SplitSection({
   reverse,
@@ -11,13 +22,57 @@ export function SplitSection({
 }) {
   return (
     <div
-      className={`grid items-center gap-10 lg:grid-cols-2 ${reverse ? "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1" : ""} ${className}`}
+      className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${reverse ? "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1" : ""} ${className}`}
     >
       {children}
     </div>
   );
 }
 
+export function EditorialImage({
+  image,
+  variant = "portrait",
+  tone = "light",
+  priority = false,
+  className = "",
+  sizes = "(max-width: 1024px) 100vw, 50vw",
+}: {
+  image: ImageAsset;
+  variant?: EditorialVariant;
+  tone?: EditorialTone;
+  priority?: boolean;
+  className?: string;
+  sizes?: string;
+}) {
+  return (
+    <figure className={`editorial-frame ${className}`}>
+      <div className={`relative overflow-hidden ${aspect[variant]}`}>
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority={priority}
+          className="object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+          sizes={sizes}
+        />
+        {tone !== "none" ? (
+          <div
+            className={`pointer-events-none absolute inset-0 ${
+              tone === "dark"
+                ? "bg-gradient-to-t from-noir/75 via-noir/15 to-transparent"
+                : "bg-gradient-to-t from-ivory/40 via-transparent to-transparent"
+            }`}
+            aria-hidden="true"
+          />
+        ) : null}
+        <span className="editorial-frame-accent" aria-hidden="true" />
+      </div>
+      {image.caption ? <figcaption className="editorial-caption">{image.caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+/** @deprecated Use EditorialImage — kept for gradual migration. */
 export function MediaFigure({
   src,
   alt,
@@ -32,28 +87,99 @@ export function MediaFigure({
   className?: string;
 }) {
   return (
-    <figure className={className}>
-      <div className="relative aspect-4/5 overflow-hidden rounded-sm">
-        <Image src={src} alt={alt} fill className="object-cover" sizes={sizes} />
-      </div>
-      {caption ? (
-        <figcaption className="mt-3 text-[0.62rem] uppercase tracking-[0.14em] text-stone">{caption}</figcaption>
-      ) : null}
-    </figure>
+    <EditorialImage
+      image={{ src, alt, caption }}
+      tone="none"
+      sizes={sizes}
+      className={className}
+    />
   );
 }
 
 export function PhotoGrid({
   images,
 }: {
-  images: readonly { src: string; alt: string; offset?: boolean }[];
+  images: readonly (ImageAsset & { offset?: boolean })[];
 }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {images.map((image) => (
-        <div key={image.src} className={`relative aspect-3/4 overflow-hidden rounded-sm ${image.offset ? "mt-8" : ""}`}>
-          <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="25vw" />
-        </div>
+    <div className="photo-mosaic photo-mosaic--duo">
+      {images.map((image, index) => (
+        <EditorialImage
+          key={image.src}
+          image={image}
+          variant="portrait"
+          tone="none"
+          sizes="25vw"
+          className={index === 1 || image.offset ? "mt-12 lg:mt-16" : ""}
+        />
+      ))}
+    </div>
+  );
+}
+
+export function ImageBreak({
+  image,
+  title,
+  subtitle,
+}: {
+  image: ImageAsset;
+  title?: string;
+  subtitle?: string;
+}) {
+  return (
+    <section className="image-break" aria-label={image.alt}>
+      <div className="relative min-h-[42vh] lg:min-h-[52vh]">
+        <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="100vw" />
+        <div className="absolute inset-0 bg-gradient-to-r from-noir/85 via-noir/45 to-noir/20" aria-hidden="true" />
+        {(title || subtitle) && (
+          <div className="absolute inset-0 flex items-end">
+            <div className="site-container pb-12 lg:pb-16">
+              {title ? <p className="font-serif text-3xl text-ivory sm:text-4xl lg:text-5xl">{title}</p> : null}
+              {subtitle ? (
+                <p className="mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-stone">{subtitle}</p>
+              ) : null}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export function PhotoMosaic({
+  images,
+  layout = "duo",
+}: {
+  images: readonly ImageAsset[];
+  layout?: "duo" | "trio";
+}) {
+  if (layout === "trio" && images.length >= 3) {
+    return (
+      <div className="photo-mosaic photo-mosaic--trio">
+        <EditorialImage image={images[0]} variant="portrait" tone="none" sizes="33vw" />
+        <EditorialImage image={images[1]} variant="portrait" tone="none" sizes="33vw" className="mt-10" />
+        <EditorialImage
+          image={images[2]}
+          variant="landscape"
+          tone="none"
+          sizes="33vw"
+          className="sm:col-span-2 lg:col-span-1"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="photo-mosaic photo-mosaic--duo">
+      {images.slice(0, 2).map((image, index) => (
+        <EditorialImage
+          key={image.src}
+          image={image}
+          variant="portrait"
+          tone="none"
+          sizes="25vw"
+          className={index === 1 ? "mt-12 lg:mt-16" : ""}
+        />
       ))}
     </div>
   );
