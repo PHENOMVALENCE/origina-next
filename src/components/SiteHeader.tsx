@@ -62,12 +62,14 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="ORIGINA home"
-          className="inline-flex items-center gap-3 rounded-full py-1 pl-1 pr-3 text-ivory transition-opacity hover:opacity-90"
+          className="inline-flex min-w-0 items-center gap-2 rounded-full py-1 pl-1 pr-2 text-ivory transition-opacity hover:opacity-90 sm:gap-3 sm:pr-3"
         >
-          <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
+          <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
             <Image src="/img/brand/origina-mark.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" />
           </span>
-          <span className="hidden text-[0.72rem] font-semibold tracking-[0.32em] sm:inline">ORIGINA</span>
+          <span className="truncate text-[0.62rem] font-semibold tracking-[0.26em] sm:text-[0.72rem] sm:tracking-[0.32em]">
+            ORIGINA
+          </span>
         </Link>
 
         <div ref={navRef} role="menubar" className="hidden items-center gap-1 xl:flex">
