@@ -1,31 +1,37 @@
 import Link from "next/link";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export function PageHero({
   crumb,
   kicker,
   title,
   intro,
+  variant = "default",
 }: {
   crumb: string;
   kicker?: string;
   title: React.ReactNode;
   intro?: string;
+  variant?: "default" | "gradient";
 }) {
+  const bgClass =
+    variant === "gradient"
+      ? "bg-[radial-gradient(circle_at_80%_40%,rgba(181,146,74,0.16),transparent_30%)] bg-noir"
+      : "bg-noir";
+
   return (
-    <section className="bg-noir pt-32 pb-20 text-ivory lg:pt-40 lg:pb-28">
-      <div className="mx-auto max-w-(--content-max) px-6 lg:px-16">
-        <p className="mb-6 flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.15em] text-stone">
-          <Link href="/" className="hover:text-gold">
+    <section className={`${bgClass} pt-32 pb-20 text-ivory lg:pt-40 lg:pb-28`}>
+      <div className="site-container">
+        <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.15em] text-stone">
+          <Link href="/" className="transition-colors hover:text-gold">
             Home
           </Link>
-          <span>/</span>
-          {crumb}
-        </p>
-        {kicker ? (
-          <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{kicker}</p>
-        ) : null}
-        <h1 className="max-w-3xl font-serif text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">{title}</h1>
-        {intro ? <p className="mt-6 max-w-xl text-[#b7aca0]">{intro}</p> : null}
+          <span aria-hidden="true">/</span>
+          <span className="text-ivory/80">{crumb}</span>
+        </nav>
+        {kicker ? <Eyebrow tone="dark">{kicker}</Eyebrow> : null}
+        <h1 className="display-title max-w-4xl">{title}</h1>
+        {intro ? <p className="mt-6 max-w-2xl text-[0.9375rem] leading-relaxed muted-on-dark">{intro}</p> : null}
       </div>
     </section>
   );
