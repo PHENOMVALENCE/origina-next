@@ -99,24 +99,24 @@ export const bMelanoxFocusAreas = [
 export const bMelanoxProducts = [
   {
     image: "/img/products/bmelanox-01.jpeg",
-    alt: "B-Melanox Night Intensive Pigment Corrector with its packaging",
-    label: "01 · PRODUCT SYSTEM",
-    title: "B-Melanox Corrector",
-    text: "A focused product expression emerging from the platform's work in pigmentation science.",
+    alt: "B-Melanox pigment cream product presentation",
+    label: "01 · CURRENT EXPRESSION",
+    title: "B-Melanox Pigment Cream",
+    text: "Primary intensive pigment-management formulation. Product claims, availability, and protocols remain subject to formal validation.",
   },
   {
     image: "/img/products/bmelanox-03.jpeg",
-    alt: "B-Melanox pigment corrector in a botanical still life",
-    label: "02 · MATERIAL LANGUAGE",
-    title: "Science, presented clearly",
-    text: "Clinical precision is balanced with a warm, considered material language.",
+    alt: "B-Melanox supportive cleansing system",
+    label: "02 · SUPPORT SYSTEM",
+    title: "B-Melanox Cleanser",
+    text: "Supportive cleansing system designed to complement pigment-management protocols without compromising barrier integrity.",
   },
   {
     image: "/img/products/bmelanox-06.jpeg",
-    alt: "B-Melanox pigment corrector and carton shown together",
-    label: "03 · COMPLETE PRESENTATION",
-    title: "Designed as one system",
-    text: "Formula, dispensing, protection, and packaging are considered as a unified experience.",
+    alt: "B-Melanox exfoliant product system",
+    label: "03 · SUPPORT SYSTEM",
+    title: "B-Melanox Exfoliant",
+    text: "Controlled resurfacing and pigment-renewal support within a disciplined product ecosystem.",
   },
 ];
 

@@ -62,12 +62,14 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="ORIGINA home"
-          className="inline-flex items-center gap-3 rounded-full py-1 pl-1 pr-3 text-ivory transition-opacity hover:opacity-90"
+          className="inline-flex min-w-0 items-center gap-2 rounded-full py-1 pl-1 pr-2 text-ivory transition-opacity hover:opacity-90 sm:gap-3 sm:pr-3"
         >
-          <span className="grid h-10 w-10 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
+          <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
             <Image src="/img/brand/origina-mark.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" />
           </span>
-          <span className="hidden text-[0.72rem] font-semibold tracking-[0.32em] sm:inline">ORIGINA</span>
+          <span className="truncate text-[0.62rem] font-semibold tracking-[0.26em] sm:text-[0.72rem] sm:tracking-[0.32em]">
+            ORIGINA
+          </span>
         </Link>
 
         <div ref={navRef} role="menubar" className="hidden items-center gap-1 xl:flex">
@@ -79,7 +81,7 @@ export function SiteHeader() {
                   key={item.label}
                   href={item.href}
                   role="menuitem"
-                  className="rounded-full px-3 py-2 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold"
+                  className="rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em]"
                 >
                   {item.label}
                 </Link>
@@ -95,7 +97,7 @@ export function SiteHeader() {
                   aria-expanded={isOpen}
                   aria-controls={`panel-${item.panel}`}
                   onClick={() => setOpenPanel(isOpen ? null : item.label)}
-                  className={`flex items-center gap-1 rounded-full px-3 py-2 text-[0.68rem] uppercase tracking-[0.16em] transition-colors ${
+                  className={`flex items-center gap-1 rounded-sm px-2 py-2 text-[0.58rem] uppercase tracking-[0.14em] transition-colors xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em] ${
                     isOpen ? "bg-white/8 text-gold" : "text-ivory/85 hover:bg-white/5 hover:text-gold"
                   }`}
                 >

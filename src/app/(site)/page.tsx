@@ -1,80 +1,53 @@
 import Image from "next/image";
+import Link from "next/link";
 import { DivisionCard } from "@/components/DivisionCard";
 import { EvidenceLadder } from "@/components/EvidenceLadder";
-import { EditorialImage, ImageBreak, SplitSection } from "@/components/SplitSection";
+import { HomeHero } from "@/components/HomeHero";
 import { InstitutionMap } from "@/components/InstitutionMap";
 import { PageCta } from "@/components/PageCta";
 import { ProcessPathway } from "@/components/ProcessPathway";
 import { Quote, QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { SystemsThinking } from "@/components/SystemsThinking";
+import { EditorialImage, SplitSection } from "@/components/SplitSection";
+import { ContentStatus } from "@/components/ContentStatus";
 import { LeadCopy } from "@/components/ui/LeadCopy";
+import { ScientificLabel } from "@/components/ui/ScientificLabel";
 import { TextLink } from "@/components/ui/TextLink";
-import { biologyFirst, developmentPathway, labsFunctions } from "@/lib/content/science";
+import { biologyFirst, developmentPathway, labsFunctions, qualityFramework } from "@/lib/content/science";
 import { evidenceLevels, evidencePrinciples } from "@/lib/content/evidence";
 import { divisions } from "@/lib/content/divisions";
-import { founderImages, productImages } from "@/lib/content/images";
+import { platforms } from "@/lib/content/platforms";
+import { roadmapItems } from "@/lib/content/future";
+import { founderImages } from "@/lib/content/images";
 
 const divisionPreviews = divisions.filter((division) => division.slug !== "labs");
+const futurePreview = roadmapItems.filter((item) => !item.unnamed);
 
 export default function Home() {
   return (
     <>
-      <section className="relative grid min-h-0 grid-cols-1 overflow-hidden bg-noir text-ivory lg:min-h-[92vh] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative order-2 flex flex-col justify-center px-4 pt-6 pb-12 sm:px-6 lg:order-1 lg:px-16 lg:pt-44 lg:pb-16">
-          <Eyebrow tone="dark" className="mb-2">
-            ORIGINA™ · Biology First™ · Dar es Salaam
-          </Eyebrow>
-          <h1 className="font-serif text-[2.35rem] leading-[0.94] sm:text-5xl lg:text-[6.25rem]">Beginning in Africa.</h1>
-          <p className="mt-2 font-serif text-2xl text-gold-light sm:text-3xl lg:text-5xl">Serving the world.</p>
-          <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed muted-on-dark">
-            A multi-divisional innovation institution built at the intersection of biology, clinical science,
-            technology, and human wellbeing.
-          </p>
-          <p className="mt-3 text-sm text-stone">Founded in Africa. Designed without limits. Built for the world.</p>
-          <div className="cta-actions mt-6 sm:mt-8">
-            <Button href="/about">Explore ORIGINA</Button>
-            <Button href="/labs" variant="secondary">
-              Enter ORIGINA Labs™
-            </Button>
-          </div>
-          <div className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-gold/20 pt-6 sm:gap-6 sm:pt-8 lg:mt-16">
-            <Fact value="2024" label="Established" />
-            <Fact value="DSM" label="Tanzania" />
-            <Fact value="∞" label="Possibility" />
-          </div>
-        </div>
-        <div className="hero-panel order-1 lg:order-2">
-          <Image
-            src={founderImages.lifestyle.src}
-            alt={founderImages.lifestyle.alt}
-            fill
-            priority
-            className="object-cover object-top lg:object-center"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-          <div className="hero-panel-overlay" aria-hidden="true" />
-          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8">
-            <p className="text-[0.68rem] uppercase tracking-[0.16em] text-gold">{founderImages.lifestyle.caption}</p>
-            <p className="mt-1 max-w-sm text-sm text-stone">Evidence-led innovation beginning with skin of colour.</p>
-          </div>
-        </div>
-      </section>
+      <HomeHero />
 
+      <div className="home-section-bridge" aria-hidden="true">
+        <p>ORIGINA / Institution · Biology First™ · Evidence-led innovation</p>
+      </div>
+
+      {/* 02 · The Institution */}
       <Section
+        id="institutional-thesis"
         tone="ivory"
-        eyebrow="01 · Institutional thesis"
+        eyebrow="02 · The institution"
         title="We begin with biology."
         intro="Human biology is interconnected. ORIGINA studies systems — not symptoms in isolation — before designing intervention."
       >
         <SplitSection reverse>
-          <EditorialImage image={founderImages.multidisciplinary} variant="portrait" tone="light" />
+          <div className="space-y-8">
+            <SystemsThinking />
+            <LeadCopy>Understand the biological system before attempting to change it.</LeadCopy>
+          </div>
           <div className="space-y-6">
-            <LeadCopy>
-              Pigmentation interacts with inflammation. Barrier function interacts with environmental exposure. Ageing
-              interacts with cellular signalling. Understand the biological system before attempting to change it.
-            </LeadCopy>
+            <EditorialImage image={founderImages.multidisciplinary} variant="portrait" tone="light" />
             <div className="space-y-5 body-copy">
               <p>
                 Skin of colour is ORIGINA&apos;s first scientific specialization because those populations have
@@ -82,21 +55,49 @@ export default function Home() {
                 development.
               </p>
               <Quote>It is our starting point, not our limitation.</Quote>
-              <TextLink href="/biology-first">Explore Biology First™</TextLink>
+              <TextLink href="/about">Explore the institution</TextLink>
             </div>
           </div>
         </SplitSection>
       </Section>
 
+      {/* 03 · Scientific Position */}
+      <Section tone="noir" eyebrow="03 · Scientific position" title="Skin of colour is where we begin.">
+        <SplitSection>
+          <LeadCopy light>
+            What changes when human biology is studied from the perspective of melanin-rich skin?
+          </LeadCopy>
+          <div className="space-y-5 body-copy-light">
+            <p>
+              Research considerations include pigmentation, post-inflammatory hyperpigmentation, melasma, acne, barrier
+              dysfunction, photoageing, inflammation, ageing, cosmetic tolerability, formulation design, and clinical
+              evaluation.
+            </p>
+            <Quote light large>
+              Skin colour is an important biological and clinical consideration — not a single biological category.
+            </Quote>
+            <p className="text-sm text-stone">
+              Fitzpatrick skin type, ancestry, phenotype, disease state, environmental exposure, and individual biology
+              all matter — without simplistic biological determinism.
+            </p>
+            <TextLink href="/science#position" light>
+              Read the scientific position
+            </TextLink>
+          </div>
+        </SplitSection>
+      </Section>
+
+      {/* 04 · Biology First */}
       <Section
         tone="cream"
-        eyebrow="02 · Biology First™"
+        eyebrow="04 · Biology First™"
         title="A philosophical framework for innovation."
-        intro="Four pillars that govern how ORIGINA asks questions, designs research, and evaluates claims."
+        intro="Four principles that govern how ORIGINA asks questions, designs research, and evaluates claims."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {biologyFirst.pillars.map((pillar) => (
-            <article key={pillar.name} className="institutional-card">
+          {biologyFirst.pillars.map((pillar, index) => (
+            <article key={pillar.name} className="institutional-panel">
+              <span className="pillar-card-index">{String(index + 1).padStart(2, "0")}</span>
               <h3 className="font-serif text-2xl text-graphite">{pillar.name}</h3>
               <p className="mt-3 body-copy">{pillar.text}</p>
             </article>
@@ -104,7 +105,10 @@ export default function Home() {
         </div>
         <div className="mt-10 grid overflow-hidden rounded-sm bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
           <div className="p-6 sm:p-8 lg:p-12">
-            <div className="principle-stack">
+            <ScientificLabel tone="gold" className="text-gold">
+              Evidence progression
+            </ScientificLabel>
+            <div className="principle-stack mt-6">
               {evidencePrinciples.map((statement) => (
                 <blockquote key={statement}>&ldquo;{statement}&rdquo;</blockquote>
               ))}
@@ -121,64 +125,34 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-noir via-noir/40 to-transparent" aria-hidden="true" />
           </div>
         </div>
+        <TextLink href="/biology-first" className="mt-8">
+          Explore Biology First™
+        </TextLink>
       </Section>
 
-      <Section
-        eyebrow="03 · Institutional architecture"
-        title="A scientific institution — not a single brand."
-        intro="ORIGINA connects research, formulation, IP, clinical evaluation, products, education, and future ventures. Products are outputs. Brands are expressions."
-      >
-        <InstitutionMap />
-      </Section>
-
-      <ImageBreak
-        image={founderImages.formulation}
-        title="Skin of colour is where we begin."
-        subtitle="Population-aware, evidence-based formulation — not one-formula thinking."
-      />
-
-      <Section tone="noir" eyebrow="04 · Scientific position" title="Biology studied from melanin-rich skin.">
-        <SplitSection>
-          <LeadCopy light>What changes when human biology is studied from the perspective of melanin-rich skin?</LeadCopy>
-          <div className="space-y-5 body-copy-light">
-            <p>
-              Research considerations include pigmentation, post-inflammatory hyperpigmentation, melasma, barrier
-              dysfunction, photoageing, inflammation, formulation design, and clinical evaluation.
-            </p>
-            <Quote light large>
-              Skin colour is an important biological and clinical consideration — not a single biological category.
-            </Quote>
-            <TextLink href="/science" light>
-              Examine the scientific position
-            </TextLink>
-          </div>
-        </SplitSection>
-      </Section>
-
+      {/* 05 · ORIGINA Labs */}
       <Section
         tone="ivory"
         eyebrow="05 · ORIGINA Labs™"
         title="The scientific engine of ORIGINA."
-        intro="ORIGINA Labs is the institutional R&D function — not merely a visual label."
+        intro="Research · Formulation · Clinical Science · IP · Manufacturing Development"
       >
         <SplitSection reverse>
           <EditorialImage image={founderImages.recognition} variant="portrait" tone="light" />
           <div>
-            <p className="font-serif text-2xl text-graphite">
-              Research · Formulation · Clinical Science · IP · Manufacturing
-            </p>
-            <p className="mt-4 body-copy">
-              From hypothesis to technical file, the Labs function translates biological questions into evidence,
-              prototypes, and repeatable methods.
+            <p className="body-copy">
+              ORIGINA Labs is the institutional R&D function — not merely a visual label. From hypothesis to technical
+              file, the Labs function translates biological questions into evidence, prototypes, and repeatable methods.
             </p>
             <DetailFunctions items={labsFunctions} />
             <TextLink href="/labs" className="mt-6">
-              Enter the Labs
+              Enter ORIGINA Labs™
             </TextLink>
           </div>
         </SplitSection>
       </Section>
 
+      {/* 06 · Development Framework */}
       <Section
         tone="cream"
         eyebrow="06 · Development framework"
@@ -191,71 +165,160 @@ export default function Home() {
         </TextLink>
       </Section>
 
-      <Section tone="oxblood" eyebrow="07 · Platforms" title="BMX-24™">
-        <SplitSection reverse>
-          <div>
-            <p className="font-serif text-2xl text-ivory/95">Non-hydroquinone approaches to hyperpigmentation.</p>
-            <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-ivory/80">
-              Developed from research into pigment regulation, barrier preservation, and long-term management in
-              melanin-rich skin.
-            </p>
-            <TextLink href="/divisions/b-melanox" light className="mt-6 inline-flex">
-              Follow the B-Melanox platform
-            </TextLink>
-          </div>
-          <EditorialImage image={productImages.pigmentCorrector} variant="portrait" tone="dark" />
-        </SplitSection>
+      {/* 07 · Platforms */}
+      <Section tone="graphite" eyebrow="07 · Platforms" title="Proprietary science platforms.">
+        <div className="grid gap-4 lg:grid-cols-2">
+          {platforms.map((platform) => (
+            <article key={platform.id} className="institutional-panel border-white/10 bg-noir/40 text-ivory">
+              <ScientificLabel tone="gold">Platform / {platform.name}</ScientificLabel>
+              <h3 className="mt-3 font-serif text-2xl">{platform.name}</h3>
+              <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
+              <p className="mt-4 text-[0.9375rem] leading-relaxed text-stone">{platform.summary}</p>
+              <ContentStatus status={platform.status} />
+              <TextLink href={platform.href} light className="mt-6">
+                View platform
+              </TextLink>
+            </article>
+          ))}
+        </div>
       </Section>
 
+      {/* 08 · Institutional architecture + Divisions */}
       <Section
-        tone="ivory"
         eyebrow="08 · Divisions"
-        title="Distinct expressions. Shared institution."
-        intro="Each division carries a specific scientific focus while operating under shared institutional standards."
+        title="A scientific institution — not a single brand."
+        intro="Distinct expressions. Shared institution. Products are outputs. Brands are expressions."
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <InstitutionMap />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {divisionPreviews.map((division) => (
             <DivisionCard key={division.slug} division={division} />
           ))}
         </div>
       </Section>
 
+      {/* 09 · Evidence & Quality */}
       <Section
         tone="noir"
         eyebrow="09 · Evidence & quality"
         title="Evidence has levels. Quality is designed in."
-        intro="ORIGINA is ambitious scientifically and conservative in claims. The strength of a claim must match the strength of the evidence."
+        intro="ORIGINA is ambitious scientifically and conservative in claims."
       >
         <EvidenceLadder levels={evidenceLevels.slice(0, 6)} tone="dark" />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {qualityFramework.slice(0, 6).map((item) => (
+            <div key={item.title} className="border border-gold/15 p-4">
+              <h3 className="font-serif text-lg text-ivory">{item.title}</h3>
+              <p className="mt-2 text-sm text-stone">{item.text}</p>
+            </div>
+          ))}
+        </div>
         <TextLink href="/science/evidence" light className="mt-8 inline-flex">
-          Understand the evidence ladder
+          Understand evidence & quality
         </TextLink>
       </Section>
 
+      {/* 10 · Responsible Science */}
       <QuoteBand>
         &ldquo;If the evidence is preliminary, we call it preliminary. If the evidence is strong, we show it. If we do
         not know, we say we do not know.&rdquo;
       </QuoteBand>
 
+      <Section tone="ivory" eyebrow="10 · Responsible science" title="Ambition without scientific inflation.">
+        <p className="max-w-3xl body-copy">
+          ORIGINA will not deliberately use unsupported clinically proven claims, exaggerated anti-ageing claims,
+          unauthorized disease-treatment claims, or regulatory language implying approval where approval has not
+          occurred.
+        </p>
+        <TextLink href="/science/responsible-science" className="mt-6">
+          Read the responsible science doctrine
+        </TextLink>
+      </Section>
+
+      {/* 11 · Founder */}
+      <Section tone="cream" eyebrow="11 · Founder" title="Dr. Elizabeth Consoli">
+        <SplitSection reverse>
+          <EditorialImage image={founderImages.portraitClinical} variant="portrait" tone="light" />
+          <div className="space-y-4">
+            <p className="scientific-metadata">MD, MBChB · Medical Doctor · Cosmetic Formulation Scientist</p>
+            <LeadCopy>
+              Scientific innovation does not need to originate elsewhere to become globally relevant.
+            </LeadCopy>
+            <p className="body-copy">
+              Founder & Director — ORIGINA™. Founder / Scientific Director — ORIGINA Labs™. Creator — BMX-24™ platform.
+              Focus — Skin of colour, formulation science, and biological systems.
+            </p>
+            <TextLink href="/founder">Read founder profile</TextLink>
+          </div>
+        </SplitSection>
+      </Section>
+
+      {/* 12 · Africa Originating */}
+      <Section tone="noir" eyebrow="12 · Africa originating" title="Africa is the origin. Not the limitation.">
+        <SplitSection>
+          <LeadCopy light>Dar es Salaam is presented proudly — as the place where ORIGINA begins.</LeadCopy>
+          <div className="space-y-5 body-copy-light">
+            <p>
+              Africa can originate scientific platforms, clinical research, advanced formulations, intellectual property,
+              technology, global brands, and new institutions.
+            </p>
+            <Quote light>
+              The ambition is not to build an African version of an existing foreign company. The ambition is to build
+              something globally relevant that happens to have originated in Africa.
+            </Quote>
+            <TextLink href="/africa" light>
+              Explore Africa originating
+            </TextLink>
+          </div>
+        </SplitSection>
+      </Section>
+
+      {/* 13 · Future ORIGINA */}
+      <Section tone="ivory" eyebrow="13 · Future ORIGINA" title="Built for expansion with discipline.">
+        <div className="grid gap-4 sm:grid-cols-2">
+          {futurePreview.map((item) => (
+            <article key={item.id} id={item.id} className="institutional-panel">
+              <ScientificLabel>{item.label}</ScientificLabel>
+              <h3 className="mt-2 font-serif text-2xl text-graphite">{item.title}</h3>
+              <p className="mt-3 body-copy">{item.description}</p>
+              <ContentStatus status="future" />
+            </article>
+          ))}
+        </div>
+        <TextLink href="/future" className="mt-8">
+          View institutional horizon
+        </TextLink>
+      </Section>
+
+      {/* 14 · Unnamed Division */}
+      <section className="unnamed-division" id="unnamed">
+        <ScientificLabel tone="gold" className="text-gold">
+          ∞ · Open possibility
+        </ScientificLabel>
+        <p className="unnamed-division__symbol" aria-hidden="true">
+          ∞
+        </p>
+        <h2 className="mt-6 max-w-lg font-serif text-3xl sm:text-4xl">What has not yet been named.</h2>
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-stone">
+          The most important division of ORIGINA may not exist today. ORIGINA deliberately leaves room for discoveries
+          that do not yet have a commercial category.
+        </p>
+        <Link href="/future#unnamed" className="text-link-light mt-8">
+          Explore the unnamed division
+        </Link>
+      </section>
+
+      {/* 15 · Contact CTA */}
       <PageCta
-        eyebrow="Responsible science"
-        title="Ambition without scientific inflation."
-        intro="Read the institutional doctrine on claim discipline, regulatory alignment, and responsible communication."
+        eyebrow="Build with ORIGINA"
+        title="Enquire with ORIGINA."
+        intro="Scientific collaboration, manufacturing development, investment, brand partnerships, and scientific communication."
         links={[
-          { href: "/science/responsible-science", label: "Read the doctrine" },
-          { href: "/contact", label: "Enquire with ORIGINA", variant: "secondary" },
+          { href: "/contact", label: "Enquire with ORIGINA" },
+          { href: "/labs", label: "Enter ORIGINA Labs™", variant: "secondary" },
         ]}
       />
     </>
-  );
-}
-
-function Fact({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <strong className="block font-serif text-3xl text-gold">{value}</strong>
-      <span className="text-[0.62rem] uppercase tracking-[0.16em] text-stone">{label}</span>
-    </div>
   );
 }
 
@@ -263,7 +326,10 @@ function DetailFunctions({ items }: { items: readonly { num: string; title: stri
   return (
     <div className="mt-8 border-t border-gold/25">
       {items.map((fn) => (
-        <div key={fn.num} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-gold/15 py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
+        <div
+          key={fn.num}
+          className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-gold/15 py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5"
+        >
           <span className="font-serif text-2xl text-gold">{fn.num}</span>
           <span className="font-serif text-xl text-graphite">{fn.title}</span>
         </div>
