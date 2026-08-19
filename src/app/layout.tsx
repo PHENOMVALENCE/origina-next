@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -24,25 +21,10 @@ export const metadata: Metadata = {
     "ORIGINA is a multi-divisional innovation institution built at the intersection of biology, clinical science, technology, and human wellbeing. Beginning in Africa. Serving the world.",
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const pathname = (await headers()).get("x-pathname") ?? "";
-  const isAdmin = pathname.startsWith("/admin");
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${montserrat.variable} antialiased`}>
-      <body className={isAdmin ? "admin-root" : "flex min-h-screen flex-col font-sans"}>
-        {isAdmin ? (
-          children
-        ) : (
-          <>
-            <SiteHeader />
-            <main id="main" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </>
-        )}
-      </body>
+      <body className="flex min-h-screen flex-col font-sans">{children}</body>
     </html>
   );
 }
