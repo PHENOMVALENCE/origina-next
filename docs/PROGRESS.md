@@ -4,30 +4,52 @@ Living record of what's been done, session by session. Update this in the same c
 immediately following `docs:` commit) whenever meaningful progress lands. Newest entries at top.
 See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
-## Current status (2026-08-17)
+## Current status (2026-08-19)
 
-**Phase 1 (Foundation): complete.** **Phase 2 (Public pages): complete.** **Phase 3 (Backend): code complete.** **Phase 4 (Admin CMS): in progress.**
+**Phase 1–3: complete.** **Phase 4: mostly complete.** **Phase 5: ready for cutover prep.**
 
 | Area | Status |
 |---|---|
-| Scaffold, tooling, CI-equivalent (lint/build) | ✅ Done |
+| Scaffold, tooling, CI (lint/build) | ✅ Done |
 | Design tokens / brand system | ✅ Done |
 | Shared layout (header, mega-menu, mobile nav, footer) | ✅ Done |
-| Shared page components (`Section`, `Quote`, `PageHero`, etc.) | ✅ Done |
-| Homepage | ✅ Done |
-| Institution pages — about, founder, africa, biology-first | ✅ Done |
-| Science pages (7 routes) | ✅ Done |
-| Division pages (index + 6 divisions) | ✅ Done |
-| Future, privacy, terms | ✅ Done |
-| Contact page (UI) | ✅ Done |
+| Shared page components | ✅ Done |
+| All public pages (28 routes) | ✅ Done |
+| SEO (sitemap, robots, OG, JSON-LD) | ✅ Done |
 | Postgres schema + enquiry Server Action | ✅ Done |
 | Production Postgres provisioning + migration | ⬜ Human step |
 | Admin auth (setup, login, session) | ✅ Done |
 | Admin enquiries inbox + workflow | ✅ Done |
-| Admin publications, users, content, analytics | ⬜ Not started |
+| Admin publications CRUD + `/updates` | ✅ Done |
+| Analytics beacon + admin dashboard | ✅ Done |
+| Users/roles, content editing, audit viewer | ✅ Users, audit, auth tokens done · ⬜ Content editing |
 
 Repo: https://github.com/PHENOMVALENCE/origina-next · working branch `codex/master-changes` ·
 production branch `main`.
+
+## 2026-08-19 — Admin auth & team management
+
+- Added `auth_tokens` table and migration (`drizzle/0004_auth_tokens.sql`) for password reset and
+  optional two-factor sign-in.
+- Implemented user management at `/admin/users` (list, create, edit, enable/disable toggle) for
+  owners and admins.
+- Added audit log viewer at `/admin/audit` (latest 200 security events).
+- Added password reset flow at `/admin/forgot-password` and `/admin/reset-password` via Resend.
+- Optional email 2FA when `ORIGINA_REQUIRE_2FA=1`, with verification at `/admin/verify`.
+
+## 2026-08-19 — Production readiness pass
+
+- Added missing public routes: `/culture` (ported from PHP), `/updates` (DB-driven publications).
+- Implemented publications admin CRUD at `/admin/publications` with Drizzle migration
+  (`drizzle/0002_publications.sql`).
+- Added privacy-conscious analytics: `/api/metrics` beacon, `site_metrics` table
+  (`drizzle/0003_site_metrics.sql`), admin dashboard at `/admin/analytics`.
+- SEO infrastructure: `sitemap.ts`, `robots.ts`, Open Graph/Twitter metadata helpers, Organization
+  JSON-LD, branded `not-found.tsx`.
+- Production config: security headers, legacy URL redirects in `next.config.ts`, GitHub Actions CI.
+- Refactored layout into `(site)` route group — public pages now statically generated; admin routes
+  remain dynamic.
+- Updated footer navigation with Culture & Updates links matching the PHP site.
 
 ## 2026-08-17 — Phase 4 admin started (auth + enquiries inbox)
 

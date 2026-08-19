@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 type LoginPageProps = {
-  searchParams: Promise<{ setup?: string }>;
+  searchParams: Promise<{ setup?: string; reset?: string }>;
 };
 
 export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
@@ -25,7 +25,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
     }
   }
 
-  const { setup } = await searchParams;
+  const { setup, reset } = await searchParams;
 
   return (
     <main className="login-card">
@@ -34,7 +34,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
       </div>
       <h1>Origina Admin</h1>
       <p>Manage the institution&apos;s public content and team.</p>
-      <LoginForm setupComplete={setup === "1"} />
+      <LoginForm setupComplete={setup === "1"} resetComplete={reset === "1"} />
       <Link className="mt-4 block text-center text-sm text-[#766b61]" href="/">
         Return to website
       </Link>

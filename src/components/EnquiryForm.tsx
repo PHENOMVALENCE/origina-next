@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { submitEnquiry, type EnquiryActionState } from "@/app/contact/actions";
+import { submitEnquiry, type EnquiryActionState } from "@/app/(site)/contact/actions";
 import { enquirySubjectOptions } from "@/lib/content/contact";
 
 const initialState: EnquiryActionState = {};

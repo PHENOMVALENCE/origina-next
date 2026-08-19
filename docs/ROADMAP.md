@@ -66,11 +66,12 @@ Recreates the PHP site's `admin/` feature set against the same Postgres database
 
 - [x] Auth — iron-session cookies, owner setup, login/logout, bcrypt passwords, audit events
 - [x] Enquiries inbox — list/filter/search, detail view, status/priority/assignment workflow
-- [ ] Publications CRUD (the live news/research archive, `updates.php` equivalent)
-- [ ] Users/roles management
+- [x] Publications CRUD (the live news/research archive, `updates.php` equivalent)
+- [x] Users/roles management
 - [ ] Site content / homepage editorial
-- [ ] Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
-- [ ] Audit log viewer
+- [x] Analytics (page views, load/LCP timing — lightweight, no third-party tracker)
+- [x] Audit log viewer
+- [x] Password reset + optional email 2FA (`ORIGINA_REQUIRE_2FA=1`)
 
 This phase starts only after Phase 2 + Phase 3 are live and verified, per the agreed
 public-site-first sequencing.
