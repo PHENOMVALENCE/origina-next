@@ -47,7 +47,7 @@ export default function BMelanoxPage() {
             hydroquinone-based approaches, while developing a system appropriate for melanin-rich skin?
           </Quote>
           <div
-            className="mx-auto grid h-48 w-48 place-content-center rounded-full border border-gold/30 bg-cream font-serif text-6xl text-oxblood lg:mx-0"
+            className="mx-auto grid h-36 w-36 place-content-center rounded-full border border-gold/30 bg-cream font-serif text-5xl text-oxblood sm:h-44 sm:w-44 sm:text-6xl lg:mx-0"
             aria-hidden="true"
           >
             B

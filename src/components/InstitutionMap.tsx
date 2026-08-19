@@ -8,13 +8,13 @@ export function InstitutionMap() {
 
   return (
     <div className="flex flex-col items-center gap-0" aria-label="ORIGINA institutional architecture">
-      <div className="w-full max-w-lg rounded-sm border border-gold/35 bg-noir px-8 py-7 text-center text-ivory shadow-[var(--shadow-soft)]">
-        <span className="font-serif text-3xl tracking-wide">ORIGINA™</span>
+      <div className="w-full max-w-lg rounded-sm border border-gold/35 bg-noir px-5 py-5 text-center text-ivory shadow-[var(--shadow-soft)] sm:px-8 sm:py-7">
+        <span className="font-serif text-2xl tracking-wide sm:text-3xl">ORIGINA™</span>
         <p className="mt-2 text-[0.75rem] uppercase tracking-[0.16em] text-stone">Multi-divisional innovation institution</p>
       </div>
       <div className="h-10 w-px bg-gold/45" aria-hidden="true" />
-      <div className="w-full max-w-lg rounded-sm border border-gold/30 bg-graphite px-8 py-6 text-center text-ivory">
-        <Link href="/labs" className="font-serif text-2xl transition-colors hover:text-gold">
+      <div className="w-full max-w-lg rounded-sm border border-gold/30 bg-graphite px-5 py-5 text-center text-ivory sm:px-8 sm:py-6">
+        <Link href="/labs" className="font-serif text-xl transition-colors hover:text-gold sm:text-2xl">
           ORIGINA Labs™
         </Link>
         <p className="mt-2 text-[0.68rem] uppercase tracking-[0.14em] text-stone">Research · Platforms · Evidence · IP</p>

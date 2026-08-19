@@ -21,25 +21,25 @@ const divisionPreviews = divisions.filter((division) => division.slug !== "labs"
 export default function Home() {
   return (
     <>
-      <section className="relative grid min-h-[92vh] grid-cols-1 overflow-hidden bg-noir text-ivory lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative order-2 flex flex-col justify-center px-6 pt-8 pb-16 lg:order-1 lg:px-16 lg:pt-44">
+      <section className="relative grid min-h-0 grid-cols-1 overflow-hidden bg-noir text-ivory lg:min-h-[92vh] lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative order-2 flex flex-col justify-center px-4 pt-6 pb-12 sm:px-6 lg:order-1 lg:px-16 lg:pt-44 lg:pb-16">
           <Eyebrow tone="dark" className="mb-2">
             ORIGINA™ · Biology First™ · Dar es Salaam
           </Eyebrow>
-          <h1 className="font-serif text-5xl leading-[0.9] sm:text-6xl lg:text-[6.25rem]">Beginning in Africa.</h1>
-          <p className="mt-2 font-serif text-3xl text-gold-light sm:text-4xl lg:text-5xl">Serving the world.</p>
+          <h1 className="font-serif text-[2.35rem] leading-[0.94] sm:text-5xl lg:text-[6.25rem]">Beginning in Africa.</h1>
+          <p className="mt-2 font-serif text-2xl text-gold-light sm:text-3xl lg:text-5xl">Serving the world.</p>
           <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed muted-on-dark">
             A multi-divisional innovation institution built at the intersection of biology, clinical science,
             technology, and human wellbeing.
           </p>
           <p className="mt-3 text-sm text-stone">Founded in Africa. Designed without limits. Built for the world.</p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="cta-actions mt-6 sm:mt-8">
             <Button href="/about">Explore ORIGINA</Button>
             <Button href="/labs" variant="secondary">
               Enter ORIGINA Labs™
             </Button>
           </div>
-          <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-gold/20 pt-8 lg:mt-16">
+          <div className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-gold/20 pt-6 sm:gap-6 sm:pt-8 lg:mt-16">
             <Fact value="2024" label="Established" />
             <Fact value="DSM" label="Tanzania" />
             <Fact value="∞" label="Possibility" />
@@ -55,7 +55,7 @@ export default function Home() {
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="hero-panel-overlay" aria-hidden="true" />
-          <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-8">
             <p className="text-[0.68rem] uppercase tracking-[0.16em] text-gold">{founderImages.lifestyle.caption}</p>
             <p className="mt-1 max-w-sm text-sm text-stone">Evidence-led innovation beginning with skin of colour.</p>
           </div>
@@ -94,7 +94,7 @@ export default function Home() {
         title="A philosophical framework for innovation."
         intro="Four pillars that govern how ORIGINA asks questions, designs research, and evaluates claims."
       >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {biologyFirst.pillars.map((pillar) => (
             <article key={pillar.name} className="institutional-card">
               <h3 className="font-serif text-2xl text-graphite">{pillar.name}</h3>
@@ -102,15 +102,15 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="mt-12 grid overflow-hidden rounded-sm bg-noir lg:grid-cols-[1fr_0.9fr]">
-          <div className="p-8 lg:p-12">
+        <div className="mt-10 grid overflow-hidden rounded-sm bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
+          <div className="p-6 sm:p-8 lg:p-12">
             <div className="principle-stack">
               {evidencePrinciples.map((statement) => (
                 <blockquote key={statement}>&ldquo;{statement}&rdquo;</blockquote>
               ))}
             </div>
           </div>
-          <div className="relative min-h-[240px]">
+          <div className="relative min-h-[200px] sm:min-h-[240px]">
             <Image
               src={founderImages.formulation.src}
               alt={founderImages.formulation.alt}
@@ -263,7 +263,7 @@ function DetailFunctions({ items }: { items: readonly { num: string; title: stri
   return (
     <div className="mt-8 border-t border-gold/25">
       {items.map((fn) => (
-        <div key={fn.num} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-gold/15 py-5">
+        <div key={fn.num} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-gold/15 py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
           <span className="font-serif text-2xl text-gold">{fn.num}</span>
           <span className="font-serif text-xl text-graphite">{fn.title}</span>
         </div>

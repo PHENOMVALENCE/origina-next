@@ -12,7 +12,7 @@ export function DetailList({
       {items.map((item, index) => (
         <article
           key={item.title}
-          className={`grid gap-4 border-b py-6 last:border-b-0 sm:grid-cols-[4rem_1fr] ${
+          className={`grid gap-3 border-b py-4 last:border-b-0 sm:grid-cols-[3.5rem_1fr] sm:gap-4 sm:py-6 ${
             isDark ? "border-gold/15" : "border-border-subtle"
           }`}
         >

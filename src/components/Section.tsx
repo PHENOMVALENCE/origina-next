@@ -42,7 +42,7 @@ export function Section({
         ) : null}
         {intro ? (
           <p
-            className={`${center ? "mx-auto" : ""} mb-10 max-w-2xl text-[0.9375rem] leading-relaxed ${
+            className={`section-intro ${center ? "mx-auto" : ""} ${
               isDark ? "text-stone" : "text-graphite/85"
             }`}
           >

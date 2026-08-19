@@ -27,13 +27,19 @@
   --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
 
   --content-max: 1440px;
-  --header-offset: 5.5rem;
-  --section-y: clamp(4.5rem, 8vw, 7rem);
+  --header-offset: 4.75rem;
+  --section-y: clamp(3rem, 6vw, 7rem);
   --transition-fast: 0.25s;
   --transition-med: 0.45s;
 
   --shadow-soft: 0 18px 60px rgba(8, 6, 5, 0.12);
   --shadow-nav: 0 18px 60px rgba(8, 6, 5, 0.28);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-offset: 5.5rem;
+  }
 }
 
 html {
@@ -48,6 +54,7 @@ body {
   font-size: 0.9375rem;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1,
@@ -71,15 +78,33 @@ h4 {
 
 @layer components {
   .site-container {
-    @apply mx-auto max-w-(--content-max) px-6 lg:px-16;
+    @apply mx-auto max-w-(--content-max) px-4 sm:px-6 lg:px-16;
   }
 
   .section-shell {
     @apply py-(--section-y);
   }
 
+  .section-intro {
+    @apply mb-6 max-w-2xl text-[0.9375rem] leading-relaxed sm:mb-10;
+  }
+
+  .page-hero-shell {
+    @apply pt-28 pb-14 text-ivory sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-28;
+  }
+
+  .cta-actions {
+    @apply flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4;
+  }
+
+  .cta-actions .btn-primary,
+  .cta-actions .btn-secondary,
+  .cta-actions .btn-secondary-dark {
+    @apply w-full sm:w-auto;
+  }
+
   .eyebrow {
-    @apply mb-4 flex items-center gap-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-gold;
+    @apply mb-3 flex items-center gap-2 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-gold sm:mb-4 sm:gap-3 sm:text-[0.68rem] sm:tracking-[0.22em];
   }
 
   .eyebrow::before {
@@ -96,11 +121,11 @@ h4 {
   }
 
   .lead-serif {
-    @apply font-serif text-2xl leading-snug text-graphite sm:text-3xl;
+    @apply font-serif text-xl leading-snug text-graphite sm:text-2xl lg:text-3xl;
   }
 
   .lead-serif-light {
-    @apply font-serif text-2xl leading-snug text-ivory/95 sm:text-3xl;
+    @apply font-serif text-xl leading-snug text-ivory/95 sm:text-2xl lg:text-3xl;
   }
 
   .body-copy {
@@ -116,27 +141,27 @@ h4 {
   }
 
   .display-title {
-    @apply font-serif text-5xl leading-[0.92] sm:text-6xl lg:text-7xl;
+    @apply font-serif text-[2.35rem] leading-[0.94] sm:text-5xl sm:leading-[0.92] lg:text-7xl;
   }
 
   .section-title {
-    @apply mb-8 max-w-3xl font-serif text-4xl leading-[1.02] sm:text-5xl;
+    @apply mb-6 max-w-3xl font-serif text-[1.85rem] leading-[1.06] sm:mb-8 sm:text-4xl sm:leading-[1.02] lg:text-5xl;
   }
 
   .section-title-light {
-    @apply mb-8 max-w-3xl font-serif text-4xl leading-[1.02] text-ivory sm:text-5xl;
+    @apply mb-6 max-w-3xl font-serif text-[1.85rem] leading-[1.06] text-ivory sm:mb-8 sm:text-4xl sm:leading-[1.02] lg:text-5xl;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-gold px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-noir transition-colors duration-200 hover:bg-gold-light;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-gold px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-noir transition-colors duration-200 hover:bg-gold-light sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-ivory/35 px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-ivory/35 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .btn-secondary-dark {
-    @apply inline-flex items-center justify-center rounded-full border border-graphite/20 px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-graphite/20 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
   }
 
   .text-link {
@@ -148,15 +173,15 @@ h4 {
   }
 
   .institutional-card {
-    @apply border border-border-subtle bg-ivory p-6 transition-all duration-200 hover:border-gold/35 hover:bg-cream hover:shadow-[var(--shadow-soft)];
+    @apply border border-border-subtle bg-ivory p-5 transition-all duration-200 hover:border-gold/35 hover:bg-cream hover:shadow-[var(--shadow-soft)] sm:p-6;
   }
 
   .quote-band {
-    @apply border-y border-gold/20 bg-noir py-16 text-center;
+    @apply border-y border-gold/20 bg-noir px-4 py-12 text-center sm:py-16;
   }
 
   .quote-band blockquote {
-    @apply mx-auto max-w-3xl font-serif text-3xl leading-snug text-ivory sm:text-4xl;
+    @apply mx-auto max-w-3xl font-serif text-2xl leading-snug text-ivory sm:text-3xl lg:text-4xl;
   }
 
   .principle-stack {
@@ -180,7 +205,7 @@ h4 {
   }
 
   .legal-prose h2 {
-    @apply mb-4 font-serif text-3xl text-graphite;
+    @apply mb-4 font-serif text-2xl text-graphite sm:text-3xl;
   }
 
   .legal-prose p {
@@ -192,11 +217,11 @@ h4 {
   }
 
   .publication-item {
-    @apply grid gap-4 border-b border-border-subtle pb-8 last:border-b-0 lg:grid-cols-[8rem_1fr_6rem];
+    @apply grid gap-3 border-b border-border-subtle pb-6 last:border-b-0 sm:gap-4 sm:pb-8 lg:grid-cols-[8rem_1fr_6rem];
   }
 
   .compare-panel {
-    @apply border border-border-subtle bg-ivory p-8;
+    @apply border border-border-subtle bg-ivory p-5 sm:p-8;
   }
 
   .editorial-frame {
@@ -220,7 +245,7 @@ h4 {
   }
 
   .photo-mosaic--duo {
-    @apply grid-cols-2;
+    @apply grid-cols-1 sm:grid-cols-2;
   }
 
   .photo-mosaic--trio {
@@ -228,19 +253,19 @@ h4 {
   }
 
   .division-card {
-    @apply relative flex min-h-[320px] flex-col overflow-hidden border border-border-subtle bg-noir transition-all duration-300 hover:border-gold/40 hover:shadow-[var(--shadow-soft)];
+    @apply relative flex min-h-[280px] flex-col overflow-hidden border border-border-subtle bg-noir transition-all duration-300 hover:border-gold/40 hover:shadow-[var(--shadow-soft)] sm:min-h-[320px];
   }
 
   .division-card-media {
-    @apply relative h-44 overflow-hidden;
+    @apply relative h-36 overflow-hidden sm:h-44;
   }
 
   .division-card-body {
-    @apply flex flex-1 flex-col p-6;
+    @apply flex flex-1 flex-col p-5 sm:p-6;
   }
 
   .hero-panel {
-    @apply relative min-h-[280px] overflow-hidden sm:min-h-[360px] lg:min-h-[520px];
+    @apply relative min-h-[220px] overflow-hidden sm:min-h-[300px] lg:min-h-[520px];
   }
 
   .hero-panel-overlay {

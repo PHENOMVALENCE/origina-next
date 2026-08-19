@@ -9,7 +9,7 @@ export const metadata = createPageMetadata({
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] flex-col items-center justify-center bg-noir px-6 py-32 text-center text-ivory">
+    <section className="flex min-h-[60vh] flex-col items-center justify-center bg-noir px-4 py-24 text-center text-ivory sm:px-6 sm:py-32">
       <Eyebrow tone="dark" plain className="justify-center">
         404
       </Eyebrow>
@@ -22,7 +22,7 @@ export default function NotFound() {
         The page you requested may have moved or no longer exists. Return to the institutional home or contact
         Origina directly.
       </p>
-      <div className="mt-10 flex flex-wrap justify-center gap-4">
+      <div className="cta-actions mt-8 justify-center sm:mt-10">
         <Button href="/">Home</Button>
         <Button href="/contact" variant="secondary">
           Contact

@@ -53,7 +53,7 @@ export default function NoviaPage() {
         </SplitSection>
       </Section>
 
-      <section className="bg-sage py-16 text-center text-ivory">
+      <section className="bg-sage py-12 text-center text-ivory sm:py-16">
         <div className="site-container">
           <div className="mx-auto max-w-xl space-y-2 font-serif text-2xl lg:text-3xl">
             {noviaStatements.map((line) => (
