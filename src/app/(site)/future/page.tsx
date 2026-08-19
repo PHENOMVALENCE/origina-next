@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContentStatus } from "@/components/ContentStatus";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { QuoteBand } from "@/components/Quote";
@@ -21,7 +22,7 @@ export default function FuturePage() {
       <PageHero
         variant="gradient"
         crumb="Future"
-        kicker="Future divisions"
+        kicker="ORIGINA / Future"
         title={
           <>
             Built for the ideas
@@ -63,6 +64,11 @@ export default function FuturePage() {
               <h2 className="font-serif text-3xl leading-none sm:text-4xl lg:text-6xl">{item.title}</h2>
               <div>
                 <p className={`text-sm ${item.unnamed ? "text-noir/80" : "text-stone"}`}>{item.description}</p>
+                {!item.unnamed ? (
+                  <div className="mt-4">
+                    <ContentStatus status="future" />
+                  </div>
+                ) : null}
                 <small
                   className={`mt-4 block text-[0.48rem] tracking-[0.13em] lg:absolute lg:right-0 lg:bottom-3 ${
                     item.unnamed ? "text-noir/60" : "text-[#6f655d]"
