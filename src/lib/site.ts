@@ -52,6 +52,7 @@ export const organizationJsonLd = {
 /** Public routes included in sitemap.xml */
 export const publicRoutes = [
   "",
+  "/platforms",
   "/about",
   "/science",
   "/biology-first",
