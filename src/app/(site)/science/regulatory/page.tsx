@@ -10,7 +10,7 @@ import { clinicalResearchPathway, regulatoryCategories, regulatoryDisclaimer } f
 export const metadata: Metadata = createPageMetadata({
   title: "Regulatory Science — ORIGINA™",
   description:
-    "Science does not replace regulation. ORIGINA works across multiple regulatory categories with appropriate classification and claims architecture.",
+    "Science does not replace regulation. ORIGINA works across cosmetic (TBS), medicines, devices, and clinical research (TMDA) with appropriate classification.",
   path: "/science/regulatory",
 });
 
@@ -20,7 +20,7 @@ export default function RegulatoryPage() {
       <PageHero
         variant="gradient"
         crumb="Regulatory Science"
-        kicker="Regulatory science"
+        kicker="ORIGINA / Evidence & Quality"
         title={
           <>
             Science does not
@@ -28,17 +28,39 @@ export default function RegulatoryPage() {
             <span className="text-gold-light">replace regulation.</span>
           </>
         }
-        intro="ORIGINA may work across multiple regulatory categories. These categories do not share one regulatory pathway."
+        intro="Cosmetics, medicines, medical devices, and clinical investigations may follow different regulatory pathways. Classification precedes claims."
       />
 
-      <Section eyebrow="01 · Categories" title="Regulatory classification precedes claims.">
+      <Section eyebrow="01 · Regulatory architecture" title="Classification precedes claims.">
+        <div className="mb-8 grid gap-4 sm:grid-cols-2">
+          <div className="institutional-panel border-gold/25">
+            <p className="scientific-label text-gold">Cosmetics · Tanzania</p>
+            <p className="mt-3 body-copy">
+              Cosmetic products placed on the Tanzanian market are subject to applicable Tanzania Bureau of Standards
+              (TBS) frameworks. ORIGINA does not claim TBS approval unless explicitly documented.
+            </p>
+          </div>
+          <div className="institutional-panel border-gold/25">
+            <p className="scientific-label text-gold">Medicines · Devices · Clinical trials</p>
+            <p className="mt-3 body-copy">
+              Medicines, medical devices, diagnostics, and regulated clinical investigations fall under applicable
+              Tanzania Medicines and Medical Devices Authority (TMDA) frameworks where relevant.
+            </p>
+          </div>
+        </div>
         <DetailList items={regulatoryCategories} />
         <div className="mt-8">
           <Quote>Regulatory classification precedes claims architecture.</Quote>
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Clinical research" title="Clinical research pathway" intro={clinicalResearchPathway}>
+      <Section
+        tone="cream"
+        eyebrow="02 · Clinical research"
+        title="Clinical research pathway"
+        id="clinical"
+        intro={clinicalResearchPathway}
+      >
         <p className="body-copy">
           <strong>Important:</strong> {regulatoryDisclaimer}
         </p>

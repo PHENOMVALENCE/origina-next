@@ -136,16 +136,16 @@ export const regulatoryCategories = [
     text: "Product categories subject to applicable cosmetic regulatory frameworks, including Tanzania Bureau of Standards (TBS) requirements for cosmetic products placed on the Tanzanian market.",
   },
   {
-    title: "Medical devices",
-    text: "Distinct classification, conformity assessment, and claims architecture from cosmetic products.",
-  },
-  {
     title: "Medicines",
     text: "Subject to applicable Tanzania Medicines and Medical Devices Authority (TMDA) frameworks where products meet pharmaceutical regulatory requirements.",
   },
   {
+    title: "Medical devices & diagnostics",
+    text: "Subject to applicable TMDA frameworks where products meet medical device or diagnostic regulatory requirements—distinct from cosmetic classification.",
+  },
+  {
     title: "Clinical investigations",
-    text: "Regulated clinical research remains conceptually separate from cosmetic product marketing.",
+    text: "Regulated clinical research remains conceptually separate from cosmetic product marketing. Clinical trials follow applicable TMDA pathways where required.",
   },
 ];
 
@@ -157,6 +157,37 @@ export const regulatoryDisclaimer =
 
 export const technicalFileArchitecture =
   "The intended internal technical-file architecture includes formula specification, raw-material specifications, supplier qualification, Certificate of Analysis documentation, manufacturing specification, batch records, stability data, microbiological testing, packaging compatibility, safety assessment, claims substantiation, labelling review, regulatory documentation, complaint records, and change-control history.";
+
+export const technicalFileItems = [
+  "Formula specification",
+  "Raw-material specifications",
+  "Supplier qualification",
+  "Certificate of Analysis documentation",
+  "Manufacturing specification",
+  "Batch records",
+  "Stability data",
+  "Microbiological testing",
+  "Packaging compatibility",
+  "Safety assessment",
+  "Claims substantiation",
+  "Labelling review",
+  "Regulatory documentation",
+  "Complaint / adverse-event records",
+  "Change-control history",
+] as const;
+
+export const clinicalResearchPrinciples = [
+  "Scientifically justified protocols",
+  "Ethics review",
+  "Informed consent",
+  "Participant safety",
+  "Predefined endpoints",
+  "Statistical methodology",
+  "Adverse-event monitoring",
+  "Data integrity",
+  "Investigator responsibilities",
+  "Appropriate reporting",
+] as const;
 
 export const ipTypes = [
   {
