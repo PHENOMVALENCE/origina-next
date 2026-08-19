@@ -32,7 +32,7 @@ export function DivisionCard({ division }: { division: DivisionPreview }) {
       ) : null}
       <div className="division-card-body text-ivory">
         <StatusBadge status={division.status} />
-        <strong className="mt-3 block font-serif text-2xl transition-colors group-hover:text-gold-light">
+        <strong className="mt-3 block font-serif text-xl transition-colors group-hover:text-gold-light sm:text-2xl">
           {division.name}
         </strong>
         <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.12em] text-stone">{division.role}</span>

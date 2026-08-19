@@ -7,10 +7,10 @@ export function SiteFooter() {
 
   return (
     <footer className="bg-noir-deep text-stone">
-      <div className="site-container py-20 lg:py-24">
-        <div className="mb-16 border-b border-white/10 pb-16">
+      <div className="site-container py-14 sm:py-16 lg:py-24">
+        <div className="mb-12 border-b border-white/10 pb-12 sm:mb-16 sm:pb-16">
           <p className="eyebrow eyebrow--plain text-gold">ORIGINA™ · Biology First™</p>
-          <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-ivory sm:text-5xl">
+          <h2 className="mt-3 max-w-2xl font-serif text-3xl leading-tight text-ivory sm:mt-4 sm:text-4xl lg:text-5xl">
             Beginning in Africa.
             <br />
             <span className="text-gold-light">Serving the world.</span>
@@ -26,8 +26,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-6">
-          <div className="col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-6">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="text-[0.78rem] font-semibold tracking-[0.32em] text-ivory">
               ORIGINA
             </Link>

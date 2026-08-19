@@ -53,14 +53,14 @@ export default function FuturePage() {
             <article
               key={item.id}
               id={item.id}
-              className={`relative grid gap-6 border-b border-gold/25 py-12 lg:grid-cols-[170px_1.1fr_1fr] lg:items-end lg:gap-8 ${
-                item.unnamed ? "mt-8 border-0 bg-gold p-8 text-noir lg:p-12" : ""
+              className={`relative grid gap-4 border-b border-gold/25 py-8 sm:grid-cols-[7rem_1fr] sm:gap-6 sm:py-10 lg:grid-cols-[170px_1.1fr_1fr] lg:items-end lg:gap-8 ${
+                item.unnamed ? "mt-6 border-0 bg-gold p-6 text-noir sm:mt-8 sm:p-8 lg:p-12" : ""
               }`}
             >
               <span className={`text-[0.53rem] tracking-[0.15em] ${item.unnamed ? "text-noir" : "text-gold"}`}>
                 {item.label}
               </span>
-              <h2 className="font-serif text-4xl leading-none sm:text-5xl lg:text-6xl">{item.title}</h2>
+              <h2 className="font-serif text-3xl leading-none sm:text-4xl lg:text-6xl">{item.title}</h2>
               <div>
                 <p className={`text-sm ${item.unnamed ? "text-noir/80" : "text-stone"}`}>{item.description}</p>
                 <small
@@ -91,7 +91,7 @@ export default function FuturePage() {
             </h2>
             <div className="border-t border-border-subtle">
               {expansionChecks.map((check, index) => (
-                <div key={check} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border-subtle py-5">
+                <div key={check} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border-subtle py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
                   <span className="text-gold">{String(index + 1).padStart(2, "0")}</span>
                   <p className="font-serif text-xl text-graphite">{check}</p>
                 </div>

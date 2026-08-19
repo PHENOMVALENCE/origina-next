@@ -43,25 +43,25 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         image={founderImages.conversation}
       />
 
-      <section className="bg-graphite pb-24 pt-4">
+      <section className="bg-graphite pb-16 pt-4 sm:pb-24">
         <div className="site-container">
-          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-stone">
+          <p className="mb-6 max-w-2xl text-sm leading-relaxed text-stone sm:mb-8">
             Choose the enquiry type that best matches your intent. Each route connects to the same form with the
             appropriate category pre-selected.
           </p>
-          <div className="grid border-l border-gold/25 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 border-l border-gold/25 sm:grid-cols-2 lg:grid-cols-4">
             {contactDirectory.map((item) => (
               <Link
                 key={item.subject}
                 href={`/contact?subject=${item.subject}#enquiry-form`}
-                className="group flex min-h-[280px] flex-col border-b border-r border-gold/20 p-8 text-ivory transition-colors hover:border-gold/45 hover:bg-noir/40"
+                className="group flex min-h-[200px] flex-col border-b border-r border-gold/20 p-5 text-ivory transition-colors active:bg-noir/40 sm:min-h-[240px] sm:p-6 lg:min-h-[280px] lg:p-8 hover:border-gold/45 hover:bg-noir/40"
               >
                 <span className="text-[0.62rem] uppercase tracking-[0.16em] text-gold">{item.index}</span>
-                <h2 className="mt-auto font-serif text-2xl transition-colors group-hover:text-gold-light sm:text-3xl">
+                <h2 className="mt-auto font-serif text-xl transition-colors group-hover:text-gold-light sm:text-2xl lg:text-3xl">
                   {item.title}
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-stone">{item.description}</p>
-                <span className="mt-5 text-sm text-gold opacity-0 transition-opacity group-hover:opacity-100">
+                <p className="mt-2 text-sm leading-relaxed text-stone sm:mt-3">{item.description}</p>
+                <span className="mt-4 text-sm text-gold sm:mt-5 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
                   Select category →
                 </span>
               </Link>
@@ -71,9 +71,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       </section>
 
       <Section id="enquiry-form" tone="ivory" eyebrow="Send an enquiry" title="Start with substance.">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
-            <p className="lead-serif text-2xl sm:text-3xl">
+            <p className="lead-serif">
               Tell us who you are, what you are building, and why the conversation matters.
             </p>
             <p className="mt-4 body-copy">
@@ -96,10 +96,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <br />
               <span className="text-gold">to Origina.</span>
             </h2>
-            <p className="lead-serif text-2xl">Every serious enquiry is read with care.</p>
+            <p className="lead-serif">Every serious enquiry is read with care.</p>
             <a
               href="mailto:info@origina.co"
-              className="mt-8 flex items-center justify-between border-b border-form-border py-6 font-serif text-2xl text-oxblood transition-colors hover:text-gold sm:text-3xl"
+              className="mt-6 flex min-h-11 items-center justify-between border-b border-form-border py-4 font-serif text-xl text-oxblood transition-colors hover:text-gold sm:mt-8 sm:py-6 sm:text-2xl lg:text-3xl"
             >
               info@origina.co
               <span aria-hidden="true">↗</span>
@@ -117,7 +117,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             image={founderImages.conversation}
             variant="portrait"
             tone="none"
-            className="relative min-h-[480px] lg:min-h-[560px]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
@@ -128,9 +127,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <p className="lead-serif lg:col-span-5">Help us understand the substance of the conversation from the beginning.</p>
           <ol className="border-t border-border-subtle lg:col-span-7">
             {messageGuide.map((tip, index) => (
-              <li key={tip} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-border-subtle py-5">
-                <span className="font-serif text-xl text-gold">{String(index + 1).padStart(2, "0")}</span>
-                <p className="font-serif text-xl text-graphite">{tip}</p>
+              <li key={tip} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border-subtle py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
+                <span className="font-serif text-lg text-gold sm:text-xl">{String(index + 1).padStart(2, "0")}</span>
+                <p className="font-serif text-lg text-graphite sm:text-xl">{tip}</p>
               </li>
             ))}
           </ol>
@@ -142,9 +141,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         <br />a serious conversation.
       </QuoteBand>
 
-      <section className="bg-noir py-16 text-center">
+      <section className="bg-noir py-12 text-center sm:py-16">
         <div className="site-container">
-          <a href="mailto:info@origina.co" className="btn-primary">
+          <a href="mailto:info@origina.co" className="btn-primary w-full sm:w-auto">
             Compose an email
           </a>
         </div>

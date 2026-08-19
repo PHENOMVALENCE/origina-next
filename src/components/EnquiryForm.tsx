@@ -12,7 +12,7 @@ function isValidSubject(value: string): value is keyof typeof enquirySubjectOpti
 }
 
 function fieldClass(hasError: boolean): string {
-  return `w-full border-0 border-b bg-transparent py-3 text-base outline-none transition-colors ${
+  return `min-h-11 w-full border-0 border-b bg-transparent py-3 text-base outline-none transition-colors ${
     hasError ? "border-oxblood" : "border-form-border focus:border-gold"
   }`;
 }
@@ -32,7 +32,7 @@ export function EnquiryForm({
 
   if (sentReference) {
     return (
-      <div className="border border-form-border bg-form-bg p-6 shadow-[var(--shadow-soft)] sm:p-10 lg:p-12">
+      <div className="border border-form-border bg-form-bg p-4 shadow-[var(--shadow-soft)] sm:p-8 lg:p-12">
         <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-[#1e1916] to-noir p-8 text-ivory sm:p-12" role="status">
           <span className="inline-grid h-14 w-14 place-items-center rounded-full border border-gold text-xl text-gold">
             ✓
@@ -54,7 +54,7 @@ export function EnquiryForm({
   }
 
   return (
-    <div className="border border-form-border bg-form-bg p-6 shadow-[var(--shadow-soft)] sm:p-10 lg:p-12">
+    <div className="border border-form-border bg-form-bg p-4 shadow-[var(--shadow-soft)] sm:p-8 lg:p-12">
       <form action={formAction} className="relative grid gap-5 sm:grid-cols-2" noValidate>
         <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
           <label htmlFor="website">Website</label>
@@ -184,7 +184,7 @@ export function EnquiryForm({
           <button
             type="submit"
             disabled={isPending}
-            className="btn-primary disabled:opacity-60"
+            className="btn-primary w-full disabled:opacity-60 sm:w-auto"
           >
             {isPending ? "Sending…" : "Send enquiry"}
           </button>

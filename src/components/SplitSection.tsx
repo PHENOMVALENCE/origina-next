@@ -22,7 +22,7 @@ export function SplitSection({
 }) {
   return (
     <div
-      className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${reverse ? "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1" : ""} ${className}`}
+      className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16 ${reverse ? "[&>*:first-child]:lg:order-2 [&>*:last-child]:lg:order-1" : ""} ${className}`}
     >
       {children}
     </div>
@@ -110,7 +110,7 @@ export function PhotoGrid({
           variant="portrait"
           tone="none"
           sizes="25vw"
-          className={index === 1 || image.offset ? "mt-12 lg:mt-16" : ""}
+          className={index === 1 || image.offset ? "sm:mt-12 lg:mt-16" : ""}
         />
       ))}
     </div>
@@ -128,15 +128,17 @@ export function ImageBreak({
 }) {
   return (
     <section className="image-break" aria-label={image.alt}>
-      <div className="relative min-h-[42vh] lg:min-h-[52vh]">
+      <div className="relative min-h-[28vh] sm:min-h-[38vh] lg:min-h-[52vh]">
         <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="100vw" />
-        <div className="absolute inset-0 bg-gradient-to-r from-noir/85 via-noir/45 to-noir/20" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-noir/90 via-noir/55 to-noir/25 sm:from-noir/85 sm:via-noir/45 sm:to-noir/20" aria-hidden="true" />
         {(title || subtitle) && (
           <div className="absolute inset-0 flex items-end">
-            <div className="site-container pb-12 lg:pb-16">
-              {title ? <p className="font-serif text-3xl text-ivory sm:text-4xl lg:text-5xl">{title}</p> : null}
+            <div className="site-container pb-8 sm:pb-12 lg:pb-16">
+              {title ? (
+                <p className="font-serif text-2xl leading-tight text-ivory sm:text-3xl lg:text-5xl">{title}</p>
+              ) : null}
               {subtitle ? (
-                <p className="mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-stone">{subtitle}</p>
+                <p className="mt-2 max-w-xl text-[0.875rem] leading-relaxed text-stone sm:mt-3 sm:text-[0.9375rem]">{subtitle}</p>
               ) : null}
             </div>
           </div>

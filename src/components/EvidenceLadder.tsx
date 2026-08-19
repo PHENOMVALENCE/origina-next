@@ -12,7 +12,7 @@ export function EvidenceLadder({
       {levels.map((level, index) => (
         <li
           key={level.id}
-          className={`grid grid-cols-[3rem_1fr] items-center gap-4 border-b py-4 last:border-b-0 ${
+          className={`grid grid-cols-[2.5rem_1fr] items-center gap-3 border-b py-3 last:border-b-0 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-4 ${
             isDark ? "border-gold/15 text-ivory/90" : "border-border-subtle text-graphite/90"
           }`}
         >

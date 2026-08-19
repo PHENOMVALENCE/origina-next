@@ -44,7 +44,7 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 lg:px-6">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4 lg:px-6">
       <a
         href="#main"
         className="pointer-events-auto fixed left-4 top-[-5rem] z-[999] bg-gold px-4 py-3 text-noir focus:top-4"
@@ -53,7 +53,7 @@ export function SiteHeader() {
       </a>
       <nav
         aria-label="Primary navigation"
-        className={`pointer-events-auto mx-auto flex max-w-(--content-max) items-center justify-between gap-4 rounded-full border px-3 py-2 transition-all duration-300 sm:px-4 ${
+        className={`pointer-events-auto mx-auto flex max-w-(--content-max) items-center justify-between gap-2 rounded-full border px-2 py-1.5 transition-all duration-300 sm:gap-4 sm:px-3 sm:py-2 md:px-4 ${
           scrolled
             ? "border-gold/40 bg-noir/95 shadow-[var(--shadow-nav)] backdrop-blur-xl"
             : "border-gold/25 bg-noir/80 shadow-[var(--shadow-soft)] backdrop-blur-md"
@@ -164,11 +164,12 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     <div
       id="mobile-menu"
       aria-hidden={!open}
-      className={`pointer-events-auto fixed inset-0 z-40 bg-noir/98 text-ivory backdrop-blur-xl transition-transform duration-300 xl:hidden ${
+      className={`pointer-events-auto fixed inset-0 z-40 flex flex-col bg-noir/98 text-ivory backdrop-blur-xl transition-transform duration-300 xl:hidden ${
         open ? "translate-x-0" : "translate-x-full"
       }`}
+      style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
     >
-      <div className="flex items-center justify-between px-6 py-5">
+      <div className="flex shrink-0 items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
         <span className="text-[0.78rem] font-semibold tracking-[0.32em]">ORIGINA</span>
         <button
           type="button"
@@ -179,22 +180,22 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           ✕
         </button>
       </div>
-      <nav aria-label="Mobile navigation" className="flex flex-col gap-8 overflow-y-auto px-6 py-4 pb-24">
+      <nav aria-label="Mobile navigation" className="flex flex-1 flex-col gap-6 overflow-y-auto overscroll-contain px-4 py-2 pb-[max(6rem,env(safe-area-inset-bottom))] sm:gap-8 sm:px-6 sm:py-4">
         {primaryNav.map((item) => {
           const panelLinks = item.panel ? panels[item.panel] : null;
           if (!panelLinks) {
             return (
-              <Link key={item.label} href={item.href} onClick={onClose} className="font-serif text-3xl text-ivory">
+              <Link key={item.label} href={item.href} onClick={onClose} className="font-serif text-2xl text-ivory sm:text-3xl">
                 {item.label}
               </Link>
             );
           }
           return (
             <div key={item.label}>
-              <p className="eyebrow eyebrow--plain mb-3">{item.label}</p>
-              <div className="flex flex-col gap-3 border-l border-gold/25 pl-4">
+              <p className="eyebrow eyebrow--plain mb-2 sm:mb-3">{item.label}</p>
+              <div className="flex flex-col gap-2.5 border-l border-gold/25 pl-3 sm:gap-3 sm:pl-4">
                 {panelLinks.map((link) => (
-                  <Link key={link.label} href={link.href} onClick={onClose} className="text-base text-ivory/90 hover:text-gold">
+                  <Link key={link.label} href={link.href} onClick={onClose} className="text-[0.9375rem] text-ivory/90 hover:text-gold sm:text-base">
                     {link.label}
                   </Link>
                 ))}
@@ -202,7 +203,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             </div>
           );
         })}
-        <Link href="/contact" onClick={onClose} className="btn-primary mt-4 w-fit">
+        <Link href="/contact" onClick={onClose} className="btn-primary mt-2 w-full sm:mt-4 sm:w-fit">
           Contact ORIGINA
         </Link>
       </nav>

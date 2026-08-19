@@ -1,8 +1,8 @@
 export function Quote({ children, light, large }: { children: React.ReactNode; light?: boolean; large?: boolean }) {
   return (
     <blockquote
-      className={`border-l-2 border-gold py-1 pl-5 font-serif italic ${
-        large ? "text-xl sm:text-2xl" : "text-lg"
+      className={`border-l-2 border-gold py-1 pl-4 font-serif italic sm:pl-5 ${
+        large ? "text-lg sm:text-xl lg:text-2xl" : "text-base sm:text-lg"
       } ${light ? "text-ivory/92" : "text-graphite"}`}
     >
       {children}
