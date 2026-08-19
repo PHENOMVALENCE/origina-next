@@ -4,14 +4,37 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/app/admin/actions";
-import type { SessionUser } from "@/lib/auth/session";
+import { hasRole, type SessionUser } from "@/lib/auth/roles";
 
-const navItems = [
+const baseNavItems = [
   { href: "/admin", label: "Overview", match: (path: string) => path === "/admin" },
   {
     href: "/admin/enquiries",
     label: "Enquiries",
     match: (path: string) => path.startsWith("/admin/enquiries"),
+  },
+  {
+    href: "/admin/publications",
+    label: "Publications",
+    match: (path: string) => path.startsWith("/admin/publications"),
+  },
+] as const;
+
+const adminNavItems = [
+  {
+    href: "/admin/analytics",
+    label: "Analytics",
+    match: (path: string) => path.startsWith("/admin/analytics"),
+  },
+  {
+    href: "/admin/users",
+    label: "Users",
+    match: (path: string) => path.startsWith("/admin/users"),
+  },
+  {
+    href: "/admin/audit",
+    label: "Audit log",
+    match: (path: string) => path.startsWith("/admin/audit"),
   },
 ] as const;
 
@@ -19,6 +42,12 @@ function getTitle(pathname: string): string {
   if (pathname === "/admin") return "Overview";
   if (pathname === "/admin/enquiries") return "Enquiries";
   if (pathname.startsWith("/admin/enquiries/")) return "Enquiry";
+  if (pathname === "/admin/publications") return "Publications";
+  if (pathname.startsWith("/admin/publications/")) return "Publication";
+  if (pathname === "/admin/analytics") return "Analytics";
+  if (pathname === "/admin/users") return "Users";
+  if (pathname.startsWith("/admin/users/")) return "User";
+  if (pathname === "/admin/audit") return "Audit log";
   return "Administration";
 }
 
@@ -33,6 +62,8 @@ export function AdminShell({
 }) {
   const pathname = usePathname();
   const title = getTitle(pathname);
+  const canManageTeam = hasRole(user, ["owner", "admin"]);
+  const navItems = canManageTeam ? [...baseNavItems, ...adminNavItems] : baseNavItems;
 
   return (
     <div className="admin-shell">

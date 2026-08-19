@@ -3,6 +3,8 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { getCurrentUser } from "@/lib/auth/session";
 import { getEnquiryStatusCounts } from "@/lib/enquiries/admin";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardLayout({
   children,
 }: {

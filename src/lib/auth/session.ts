@@ -1,16 +1,17 @@
 import { getIronSession, type SessionOptions } from "iron-session";
 import { cookies } from "next/headers";
-import type { UserRole } from "@/db/schema";
+import type { SessionUser } from "@/lib/auth/roles";
 
-export type SessionUser = {
-  id: number;
-  name: string;
-  email: string;
-  role: UserRole;
-};
+export type { SessionUser } from "@/lib/auth/roles";
+export { hasRole } from "@/lib/auth/roles";
 
 export type SessionData = {
   user?: SessionUser;
+  pending2fa?: {
+    user: SessionUser;
+    token: string;
+    codeHash: string;
+  };
 };
 
 function getSessionPassword(): string {
@@ -41,8 +42,4 @@ export async function getSession() {
 export async function getCurrentUser(): Promise<SessionUser | null> {
   const session = await getSession();
   return session.user ?? null;
-}
-
-export function hasRole(user: SessionUser, roles: UserRole[]): boolean {
-  return roles.includes(user.role);
 }

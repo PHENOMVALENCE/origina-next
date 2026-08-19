@@ -1,18 +1,25 @@
 import Link from "next/link";
 import { count, eq } from "drizzle-orm";
+import { getAverageMetric, getPageViewCount } from "@/lib/metrics/admin";
 import { getDb } from "@/db";
 import { users } from "@/db/schema";
 import { formatEnquiryStatus, getEnquiryStatusCounts, getRecentEnquiries } from "@/lib/enquiries/admin";
 import { enquirySubjectLabel } from "@/lib/enquiries/labels";
+import { listAllPublications } from "@/lib/publications/admin";
 
 export default async function AdminOverviewPage() {
   const db = getDb();
   const enquiryCounts = await getEnquiryStatusCounts();
   const recentEnquiries = await getRecentEnquiries(5);
+  const publications = await listAllPublications();
+  const pageViews = await getPageViewCount();
+  const loadTiming = await getAverageMetric("load_ms");
   const [activeUsers] = await db
     .select({ total: count() })
     .from(users)
     .where(eq(users.active, true));
+
+  const publishedCount = publications.filter((item) => item.publication.status === "published").length;
 
   return (
     <>
@@ -26,8 +33,20 @@ export default async function AdminOverviewPage() {
           <strong>{enquiryCounts.in_progress}</strong>
         </div>
         <div className="metric-card">
+          <span>Published updates</span>
+          <strong>{publishedCount}</strong>
+        </div>
+        <div className="metric-card">
+          <span>Page views (30d)</span>
+          <strong>{pageViews}</strong>
+        </div>
+        <div className="metric-card">
           <span>Active admin users</span>
           <strong>{Number(activeUsers?.total ?? 0)}</strong>
+        </div>
+        <div className="metric-card">
+          <span>Avg load (7d)</span>
+          <strong>{loadTiming.samples > 0 ? `${loadTiming.average} ms` : "—"}</strong>
         </div>
       </div>
 
@@ -87,12 +106,28 @@ export default async function AdminOverviewPage() {
       </section>
 
       <section className="panel">
-        <h2>Implementation note</h2>
-        <p className="mb-0">
-          Contact enquiries are stored in the Origina database. Use the inbox to manage responses.
-          Publications, content editing, analytics, and user management will follow in later admin
-          phases.
+        <h2>Admin modules</h2>
+        <p className="mb-4">
+          Enquiries, publications, analytics, user management, and audit logging are available.
+          Homepage content editing remains planned for a later phase.
         </p>
+        <div className="flex flex-wrap gap-3">
+          <Link className="btn-admin" href="/admin/enquiries">
+            Enquiries inbox
+          </Link>
+          <Link className="btn-admin secondary" href="/admin/publications">
+            Publications
+          </Link>
+          <Link className="btn-admin secondary" href="/admin/analytics">
+            Analytics
+          </Link>
+          <Link className="btn-admin secondary" href="/admin/users">
+            Users
+          </Link>
+          <Link className="btn-admin secondary" href="/admin/audit">
+            Audit log
+          </Link>
+        </div>
       </section>
     </>
   );
