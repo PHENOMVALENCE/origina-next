@@ -26,7 +26,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-6">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 xl:grid-cols-7">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="text-[0.78rem] font-semibold tracking-[0.32em] text-ivory">
               ORIGINA
