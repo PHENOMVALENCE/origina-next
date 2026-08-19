@@ -11,18 +11,18 @@ built vs. outstanding.
 ## Repository workflow
 
 - **Protected production branch**: `main`
-- **Agent working branch**: `codex/master-changes`
-- All implementation work (features, fixes, content ports, refactors) happens on
-  `codex/master-changes`, in small, individually-reviewable commits, pushed regularly.
-- Open a pull request from `codex/master-changes` to `main` to bring work to production.
-  Do not merge your own pull requests — merging is a human decision.
-- Never force-push, never rewrite published history on either branch.
+- **Feature branches**: `codex/*` (e.g. `codex/editorial-imagery`)
+- All implementation work happens on feature branches, in small individually-reviewable commits,
+  pushed regularly. Open a pull request into `main` to bring work to production.
+- Do not merge your own pull requests — merging is a human decision.
+- Never force-push, never rewrite published history on `main`.
+- **Legacy:** `codex/master-changes` was merged via PR #4 and is no longer the active branch.
 
 ## Before starting work
 
 1. Confirm you're in the `origina-next` directory (not the sibling `origina` PHP repo).
-2. `git fetch origin --prune`, then check out or fast-forward `codex/master-changes`.
-3. Read `docs/PROGRESS.md` for current state before starting new work, so status stays accurate.
+2. `git fetch origin --prune`, then branch from latest `origin/main`.
+3. Read `docs/PROGRESS.md` for current state before starting new work.
 
 ## Commit style
 
@@ -30,13 +30,12 @@ Conventional Commits: `type: short description`, lowercase, imperative, no trail
 Allowed types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `style`, `perf`, `build`, `ci`.
 
 One logical change per commit. A page port, a bug fix, a docs update, and a dependency bump are
-separate commits even within the same request. Do not bundle unrelated changes.
+separate commits even within the same request.
 
 ## Commit attribution (critical)
 
 All commits must credit the repository owner only (**PHENOMVALENCE** / Phenom Valence). Never add
-`Co-authored-by`, `Co-Authored-By`, or any AI/agent attribution trailer to commit messages. Do not
-append "Generated with …" footers.
+`Co-authored-by`, `Co-Authored-By`, or any AI/agent attribution trailer to commit messages.
 
 ## Content rules (critical)
 
@@ -48,8 +47,7 @@ PHP source apply here:
 - Never write "clinically proven," "TBS/TMDA/TFDA approved," "patented," "FDA approved," etc.
   unless the source PHP page already states it with that exact status.
 - `™` denotes trademark, not patent.
-- If a source page's content isn't ported yet, don't stub it with placeholder/lorem content on a
-  live route — either don't create the route yet, or mark it clearly as in-progress.
+- Photography alt text and captions live in `src/lib/content/images.ts` — keep them accurate.
 
 ## Validation (run before every commit)
 
@@ -58,31 +56,29 @@ npm run lint
 npm run build
 ```
 
-Fix real errors and warnings; do not suppress them to force a green run. `npm run build` also
-type-checks (TypeScript is strict via `next build`). Do not commit code that fails either.
+Fix real errors and warnings; do not suppress them. Do not commit code that fails either.
 
 ## Documentation policy
 
-Keep these current as part of the same commit (or an immediately following `docs:` commit) when
-they change:
+Keep these current when they change (same commit or immediately following `docs:` commit):
 
-- `docs/PROGRESS.md` — what's done, what's in progress, updated every session
-- `docs/ROADMAP.md` — what's left, phased
-- `docs/ARCHITECTURE.md` — technical decisions (stack, design tokens, content modeling, routing)
-- `README.md` — setup/run instructions, kept accurate
+| File | Purpose |
+|---|---|
+| `docs/PROGRESS.md` | Session log, PR history, current status table |
+| `docs/ROADMAP.md` | Phased plan, checkboxes for remaining work |
+| `docs/ARCHITECTURE.md` | Stack, routes, design system, components, database |
+| `docs/SETUP.md` | Env vars, migrations, admin, deployment checklist |
+| `README.md` | Quick status, scripts, links to docs |
 
 ## Pull requests
 
-1. Push to `codex/master-changes`.
-2. Check for an existing open PR from `codex/master-changes` to `main`; update it (new commits
-   land automatically) rather than opening a duplicate.
-3. PR body: Summary, what changed, validation results (lint/build), and any follow-ups.
+1. Push feature branch to origin.
+2. Check for an existing open PR from the same branch; update it rather than opening a duplicate.
+3. PR body: Summary, what changed, validation results (lint/build), test plan.
 4. Never merge or approve the PR yourself.
 
 ## Prohibited actions
 
 Never merge/approve PRs, push directly to `main`, force-push, delete branches, rewrite published
 history, expose secrets/credentials/env values, or change hosting/deployment/DNS configuration
-without explicit instruction. Stop and ask when uncertain about something irreversible — but do
-not stop to ask permission for ordinary implementation work (building pages, writing components,
-committing, pushing to `codex/master-changes`) once the direction is established.
+without explicit instruction.
