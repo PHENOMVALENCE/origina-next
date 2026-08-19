@@ -3,10 +3,11 @@ import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
-import { MediaFigure, PhotoGrid, SplitSection } from "@/components/SplitSection";
+import { EditorialImage, PhotoGrid, SplitSection } from "@/components/SplitSection";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { TextLink } from "@/components/ui/TextLink";
 import { createPageMetadata } from "@/lib/metadata";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About ORIGINA — Innovation Institution",
@@ -52,6 +53,7 @@ export default function AboutPage() {
           </>
         }
         intro="Origina is an innovation institution dedicated to the discovery, development, and advancement of ideas, technologies, products, systems, and people that improve human life."
+        image={founderImages.portraitClinical}
       />
 
       <Section
@@ -134,11 +136,7 @@ export default function AboutPage() {
 
       <Section tone="ivory" eyebrow="05 · Founder">
         <SplitSection>
-          <MediaFigure
-            src="/img/founder/founder-01.jpeg"
-            alt="Dr. Elizabeth Consoli in her clinical environment"
-            caption="Scientific direction · Dar es Salaam"
-          />
+          <EditorialImage image={founderImages.portraitClinical} variant="portrait" tone="light" />
           <div>
             <h2 className="section-title">
               Dr. Elizabeth
@@ -171,8 +169,8 @@ export default function AboutPage() {
         <SplitSection reverse>
           <PhotoGrid
             images={[
-              { src: "/img/founder/founder-02.jpeg", alt: "Dr. Elizabeth Consoli at a professional event" },
-              { src: "/img/founder/founder-09.jpeg", alt: "Dr. Elizabeth Consoli in conversation", offset: true },
+              founderImages.professionalEvent,
+              { ...founderImages.conversation, offset: true },
             ]}
           />
           <div>

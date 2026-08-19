@@ -3,11 +3,12 @@ import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { ResearchLibrary } from "@/components/ResearchLibrary";
 import { Section } from "@/components/Section";
-import { MediaFigure, SplitSection } from "@/components/SplitSection";
+import { EditorialImage, SplitSection } from "@/components/SplitSection";
 import { TagList } from "@/components/TagList";
 import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
 import { labsCapabilities, labsContinuum, labsFutureFields } from "@/lib/content/science";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "ORIGINA Labs — Research & Development",
@@ -31,6 +32,7 @@ export default function LabsPage() {
           </>
         }
         intro="Research · Formulation · Clinical Science · IP · Manufacturing Development"
+        image={founderImages.recognition}
       />
 
       <Section tone="ivory" eyebrow="01 · Philosophy">
@@ -47,11 +49,7 @@ export default function LabsPage() {
               under the direct scientific direction of Dr. Elizabeth Consoli.
             </p>
           </div>
-          <MediaFigure
-            src="/img/founder/founder-03.jpeg"
-            alt="Dr. Elizabeth Consoli receiving recognition from the Tanzania Society for Dermatovenereology"
-            caption="Science · Community · Recognition"
-          />
+          <EditorialImage image={founderImages.recognition} variant="portrait" tone="light" />
         </SplitSection>
       </Section>
 
@@ -86,11 +84,7 @@ export default function LabsPage() {
 
       <Section tone="ivory" eyebrow="03 · Horizon">
         <SplitSection>
-          <MediaFigure
-            src="/img/founder/founder-05.jpeg"
-            alt="Dr. Elizabeth Consoli discussing a skin-care formulation with a participant"
-            caption="Knowledge in practice"
-          />
+          <EditorialImage image={founderImages.formulation} variant="portrait" tone="light" />
           <div>
             <h2 className="section-title">
               Skin science is

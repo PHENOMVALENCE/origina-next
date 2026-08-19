@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { DetailList } from "@/components/DetailList";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
-import { QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
+import { ImageBreak } from "@/components/SplitSection";
 import { createPageMetadata } from "@/lib/metadata";
 import { responsibleScienceRejections } from "@/lib/content/science";
+import { founderImages } from "@/lib/content/images";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Responsible Science — ORIGINA™",
@@ -29,15 +30,14 @@ export default function ResponsibleSciencePage() {
           </>
         }
         intro="ORIGINA is ambitious scientifically and conservative in claims. The strength of a claim must match the strength of the evidence."
+        image={founderImages.formulation}
       />
 
-      <QuoteBand>
-        If the evidence is preliminary, we call it preliminary.
-        <br />
-        If the evidence is strong, we show it.
-        <br />
-        If we do not know, we say we do not know.
-      </QuoteBand>
+      <ImageBreak
+        image={founderImages.recognition}
+        title="If the evidence is preliminary, we call it preliminary."
+        subtitle="If the evidence is strong, we show it. If we do not know, we say we do not know."
+      />
 
       <Section tone="noir" eyebrow="01 · Rejections" title="What we reject">
         <DetailList tone="dark" items={responsibleScienceRejections.map((title) => ({ title }))} />
