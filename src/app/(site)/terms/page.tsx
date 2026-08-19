@@ -1,32 +1,31 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms of Use — ORIGINA™",
   description: "Terms governing use of the ORIGINA institutional website.",
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (
     <>
-      <PageHero crumb="Terms" title="Terms of Use" />
+      <PageHero crumb="Terms" title="Terms of Use" intro="Conditions governing use of this institutional website." />
 
       <Section>
-        <div className="max-w-3xl space-y-4 text-sm leading-relaxed text-graphite/90">
+        <div className="legal-prose">
           <p>
-            This website provides institutional information about ORIGINA™. Content does not constitute
-            medical advice, product authorization, or regulatory approval.
+            This website provides institutional information about ORIGINA™. Content does not constitute medical advice,
+            product authorization, or regulatory approval.
           </p>
           <p>
-            Product information, availability, and claims remain subject to formal validation. Do not
-            reproduce institutional content without permission.
+            Product information, availability, and claims remain subject to formal validation. Do not reproduce
+            institutional content without permission.
           </p>
           <p>
-            For enquiries:{" "}
-            <a href="mailto:info@origina.co" className="text-oxblood hover:underline">
-              info@origina.co
-            </a>
+            For enquiries: <a href="mailto:info@origina.co">info@origina.co</a>
           </p>
         </div>
       </Section>

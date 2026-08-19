@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
-import { Quote } from "@/components/Quote";
+import { QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
+import { MediaFigure, SplitSection } from "@/components/SplitSection";
+import { TagList } from "@/components/TagList";
+import { LeadCopy } from "@/components/ui/LeadCopy";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -62,61 +65,32 @@ export default function CulturePage() {
   return (
     <>
       <PageHero
+        variant="gradient"
         crumb="Culture"
         kicker="Culture & talent"
         title={
           <>
             We do not seek employees.
             <br />
-            <em className="not-italic text-gold-light">We seek builders.</em>
+            <span className="text-gold-light">We seek builders.</span>
           </>
         }
         intro="Every member is expected to contribute ideas, not simply perform tasks. Credentials are respected. Capability is required. Character is essential."
       />
 
-      <Section tone="ivory">
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">01</p>
-            <h2 className="font-serif text-4xl leading-tight sm:text-5xl">
-              The person
-              <br />
-              <em className="not-italic text-gold">behind the work.</em>
-            </h2>
-          </div>
-          <div className="lg:col-span-7">
-            <p className="mb-8 text-lg text-graphite/85">
-              Origina is built by people whose thinking, discipline, and character compound over time.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {traits.map((trait) => (
-                <span
-                  key={trait}
-                  className="rounded-full border border-border-subtle px-4 py-2 text-[0.72rem] uppercase tracking-[0.12em] text-graphite"
-                >
-                  {trait}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+      <Section tone="ivory" eyebrow="01 · People" title="The person behind the work.">
+        <SplitSection>
+          <LeadCopy>Origina is built by people whose thinking, discipline, and character compound over time.</LeadCopy>
+          <TagList items={traits} />
+        </SplitSection>
       </Section>
 
-      <Section tone="noir">
-        <div className="mb-12 grid gap-8 lg:grid-cols-2">
-          <div>
-            <p className="mb-3 text-[0.66rem] uppercase tracking-[0.2em] text-gold">The Origina Standard</p>
-            <h2 className="font-serif text-4xl leading-tight sm:text-5xl">
-              Eight values.
-              <br />
-              <em className="not-italic text-gold-light">One way of operating.</em>
-            </h2>
-          </div>
-          <p className="text-[#b7aca0]">
-            Not slogans on a wall. Expectations visible in decisions, quality, responsibility, and how
-            people treat one another.
-          </p>
-        </div>
+      <Section
+        tone="noir"
+        eyebrow="The Origina Standard"
+        title="Eight values. One way of operating."
+        intro="Not slogans on a wall. Expectations visible in decisions, quality, responsibility, and how people treat one another."
+      >
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map(([title, text], index) => (
             <article key={title} className="border border-white/10 p-6">
@@ -130,56 +104,41 @@ export default function CulturePage() {
         </div>
       </Section>
 
-      <Section tone="cream">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <figure>
-            <div className="relative aspect-4/5 overflow-hidden rounded-sm">
-              <Image
-                src="/img/founder/founder-08.jpeg"
-                alt="Dr. Elizabeth Consoli standing with a multidisciplinary professional community"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-            <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone">
-              Expertise grows through community
-            </figcaption>
-          </figure>
+      <Section tone="cream" eyebrow="02 · Working at Origina">
+        <SplitSection reverse>
+          <MediaFigure
+            src="/img/founder/founder-08.jpeg"
+            alt="Dr. Elizabeth Consoli standing with a multidisciplinary professional community"
+            caption="Expertise grows through community"
+          />
           <div>
-            <p className="mb-4 text-[0.66rem] uppercase tracking-[0.2em] text-gold">02</p>
-            <p className="mb-3 text-[0.66rem] uppercase tracking-[0.2em] text-graphite">Working at Origina</p>
-            <h2 className="mb-6 font-serif text-4xl leading-tight sm:text-5xl">
+            <h2 className="section-title">
               Capability and
               <br />
-              <em className="not-italic text-gold">character.</em>
+              <span className="text-gold">character.</span>
             </h2>
-            <p className="mb-8 text-graphite/85">
-              We value expertise, but we do not confuse credentials with contribution. The environment
-              should reward clear thinking, rigorous execution, intellectual generosity, and the
-              confidence to challenge assumptions responsibly.
+            <p className="body-copy">
+              We value expertise, but we do not confuse credentials with contribution. The environment should reward
+              clear thinking, rigorous execution, intellectual generosity, and the confidence to challenge assumptions
+              responsibly.
             </p>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {workPrinciples.map((item) => (
-                <div key={item.title} className="border border-border-subtle p-4">
+                <div key={item.title} className="institutional-card">
                   <strong className="block font-serif text-xl text-noir">{item.title}</strong>
-                  <span className="mt-1 block text-sm text-graphite/80">{item.text}</span>
+                  <span className="mt-1 block body-copy">{item.text}</span>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </SplitSection>
       </Section>
 
-      <section className="bg-graphite py-16 text-ivory">
-        <div className="mx-auto max-w-(--content-max) px-6 lg:px-16">
-          <Quote light>
-            Institutions outlive individuals.
-            <br />
-            Standards are how they do it.
-          </Quote>
-        </div>
-      </section>
+      <QuoteBand>
+        Institutions outlive individuals.
+        <br />
+        Standards are how they do it.
+      </QuoteBand>
 
       <PageCta
         eyebrow="Talent & collaboration"
@@ -190,21 +149,19 @@ export default function CulturePage() {
         ]}
       />
 
-      <Section tone="ivory" eyebrow="Culture in practice" title="Knowledge moves between people.">
-        <p className="mb-10 max-w-2xl text-graphite/85">
-          Origina&apos;s culture is not only an internal standard. It is expressed through listening,
-          demonstration, professional exchange, and the confidence to make scientific knowledge useful
-          in real settings.
-        </p>
+      <Section
+        tone="ivory"
+        eyebrow="03 · Culture in practice"
+        title="Knowledge moves between people."
+        intro="Origina's culture is expressed through listening, demonstration, professional exchange, and the confidence to make scientific knowledge useful in real settings."
+      >
         <div className="grid gap-6 md:grid-cols-3">
           {communityPhotos.map((photo) => (
             <figure key={photo.src}>
               <div className="relative aspect-4/5 overflow-hidden rounded-sm">
                 <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="33vw" />
               </div>
-              <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone">
-                {photo.caption}
-              </figcaption>
+              <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone">{photo.caption}</figcaption>
             </figure>
           ))}
         </div>

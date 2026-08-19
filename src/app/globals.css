@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 /*
- * Design tokens ported from the ORIGINA PHP site's brand system
- * (css/origina.css, css/institutional.css) — see docs/DESIGN_SYSTEM.md
- * in the origina-next repo (or origina/docs/DESIGN_SYSTEM.md) for the
- * source of truth these were extracted from.
+ * ORIGINA institutional design system
+ * Tokens ported from origina/css/origina.css and institutional.css
  */
 @theme {
   --color-noir: #161210;
+  --color-noir-deep: #0d0b09;
   --color-ivory: #f8f4ec;
   --color-gold: #b5924a;
   --color-gold-light: #d6bd83;
   --color-graphite: #3a332c;
   --color-stone: #9a8e80;
+  --color-muted-dark: #b7aca0;
   --color-oxblood: #7a171b;
   --color-cream: #eee6d8;
   --color-sage: #566b46;
+  --color-sage-light: #e5efe1;
   --color-surface-muted: #f0e9df;
+  --color-form-bg: #fffdf8;
+  --color-form-border: #d8cec1;
   --color-border-subtle: rgba(58, 51, 44, 0.14);
   --color-border-gold: rgba(181, 146, 74, 0.35);
 
@@ -24,23 +27,189 @@
   --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
 
   --content-max: 1440px;
+  --header-offset: 5.5rem;
+  --section-y: clamp(4.5rem, 8vw, 7rem);
   --transition-fast: 0.25s;
   --transition-med: 0.45s;
+
+  --shadow-soft: 0 18px 60px rgba(8, 6, 5, 0.12);
+  --shadow-nav: 0 18px 60px rgba(8, 6, 5, 0.28);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
 }
 
 body {
   background: var(--color-ivory);
   color: var(--color-noir);
-  font-size: 15px;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
   line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(181, 146, 74, 0.25);
+  color: var(--color-noir);
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto max-w-(--content-max) px-6 lg:px-16;
+  }
+
+  .section-shell {
+    @apply py-(--section-y);
+  }
+
+  .eyebrow {
+    @apply mb-4 flex items-center gap-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-gold;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-8 shrink-0 bg-gold/70;
+  }
+
+  .eyebrow--plain::before {
+    display: none;
+  }
+
+  .eyebrow--dark {
+    @apply text-gold-light;
+  }
+
+  .lead-serif {
+    @apply font-serif text-2xl leading-snug text-graphite sm:text-3xl;
+  }
+
+  .lead-serif-light {
+    @apply font-serif text-2xl leading-snug text-ivory/95 sm:text-3xl;
+  }
+
+  .body-copy {
+    @apply text-[0.9375rem] leading-relaxed text-graphite/88;
+  }
+
+  .body-copy-light {
+    @apply text-[0.9375rem] leading-relaxed text-stone;
+  }
+
+  .muted-on-dark {
+    color: var(--color-muted-dark);
+  }
+
+  .display-title {
+    @apply font-serif text-5xl leading-[0.92] sm:text-6xl lg:text-7xl;
+  }
+
+  .section-title {
+    @apply mb-8 max-w-3xl font-serif text-4xl leading-[1.02] sm:text-5xl;
+  }
+
+  .section-title-light {
+    @apply mb-8 max-w-3xl font-serif text-4xl leading-[1.02] text-ivory sm:text-5xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-gold px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-noir transition-colors duration-200 hover:bg-gold-light;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-ivory/35 px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center rounded-full border border-graphite/20 px-6 py-3.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood;
+  }
+
+  .text-link {
+    @apply inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-oxblood transition-colors hover:text-gold;
+  }
+
+  .text-link-light {
+    @apply inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-gold transition-colors hover:text-gold-light;
+  }
+
+  .institutional-card {
+    @apply border border-border-subtle bg-ivory p-6 transition-all duration-200 hover:border-gold/35 hover:bg-cream hover:shadow-[var(--shadow-soft)];
+  }
+
+  .quote-band {
+    @apply border-y border-gold/20 bg-noir py-16 text-center;
+  }
+
+  .quote-band blockquote {
+    @apply mx-auto max-w-3xl font-serif text-3xl leading-snug text-ivory sm:text-4xl;
+  }
+
+  .principle-stack {
+    @apply space-y-5 border-l-2 border-gold/30 pl-6;
+  }
+
+  .principle-stack blockquote {
+    @apply font-serif text-xl italic leading-relaxed text-ivory/92 sm:text-2xl;
+  }
+
+  .reading-progress {
+    @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-150;
+  }
+
+  .tag-chip {
+    @apply rounded-full border border-border-subtle px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] text-graphite;
+  }
+
+  .legal-prose {
+    @apply max-w-3xl space-y-10;
+  }
+
+  .legal-prose h2 {
+    @apply mb-4 font-serif text-3xl text-graphite;
+  }
+
+  .legal-prose p {
+    @apply text-[0.9375rem] leading-relaxed text-graphite/88;
+  }
+
+  .legal-prose a {
+    @apply text-oxblood transition-colors hover:text-gold;
+  }
+
+  .publication-item {
+    @apply grid gap-4 border-b border-border-subtle pb-8 last:border-b-0 lg:grid-cols-[8rem_1fr_6rem];
+  }
+
+  .compare-panel {
+    @apply border border-border-subtle bg-ivory p-8;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

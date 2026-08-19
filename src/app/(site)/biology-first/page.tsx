@@ -1,64 +1,60 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
+import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 import { biologyFirst } from "@/lib/content/science";
 import { evidencePrinciples } from "@/lib/content/evidence";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Biology First™ — ORIGINA",
   description:
     "Biology First™ is ORIGINA's philosophical framework: every innovation begins by understanding living systems.",
-};
+  path: "/biology-first",
+});
 
 export default function BiologyFirstPage() {
   return (
     <>
       <PageHero
+        variant="gradient"
         crumb="Biology First™"
         kicker="Philosophical framework"
         title="Biology First™"
         intro={biologyFirst.summary}
       />
 
-      <section className="bg-ivory py-20 lg:py-28">
-        <div className="mx-auto max-w-(--content-max) px-6 lg:px-16">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {biologyFirst.pillars.map((pillar) => (
-              <article key={pillar.name}>
-                <h3 className="font-serif text-2xl">{pillar.name}</h3>
-                <p className="mt-2 text-sm text-graphite/85">{pillar.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-noir py-20 text-ivory lg:py-28">
-        <div className="mx-auto flex max-w-(--content-max) flex-col gap-4 px-6 lg:px-16">
-          {evidencePrinciples.map((statement) => (
-            <blockquote key={statement} className="font-serif text-xl italic text-ivory/90">
-              &ldquo;{statement}&rdquo;
-            </blockquote>
+      <Section
+        eyebrow="Four pillars"
+        title="A framework for innovation."
+        intro="Every programme at ORIGINA begins by understanding living systems before designing intervention."
+      >
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {biologyFirst.pillars.map((pillar) => (
+            <article key={pillar.name} className="institutional-card">
+              <h3 className="font-serif text-2xl text-graphite">{pillar.name}</h3>
+              <p className="mt-3 body-copy">{pillar.text}</p>
+            </article>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="bg-ivory py-16">
-        <div className="mx-auto flex max-w-(--content-max) flex-wrap gap-4 px-6 lg:px-16">
-          <Link
-            href="/science"
-            className="rounded-full bg-gold px-6 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-noir hover:bg-gold-light"
-          >
-            Scientific position
-          </Link>
-          <Link
-            href="/science/responsible-science"
-            className="rounded-full border border-graphite/25 px-6 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-graphite hover:border-gold hover:text-oxblood"
-          >
-            Responsible science
-          </Link>
+      <Section tone="noir" eyebrow="Principles" title="Evidence discipline.">
+        <div className="principle-stack">
+          {evidencePrinciples.map((statement) => (
+            <blockquote key={statement}>&ldquo;{statement}&rdquo;</blockquote>
+          ))}
         </div>
-      </section>
+      </Section>
+
+      <PageCta
+        eyebrow="Continue"
+        title="Follow the scientific position."
+        links={[
+          { href: "/science", label: "Scientific position" },
+          { href: "/science/responsible-science", label: "Responsible science", variant: "secondary" },
+        ]}
+      />
     </>
   );
 }

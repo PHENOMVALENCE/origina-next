@@ -12,8 +12,8 @@ function isValidSubject(value: string): value is keyof typeof enquirySubjectOpti
 }
 
 function fieldClass(hasError: boolean): string {
-  return `border-0 border-b bg-transparent py-3 text-base outline-none ${
-    hasError ? "border-oxblood" : "border-[#cfc3b6] focus:border-gold"
+  return `w-full border-0 border-b bg-transparent py-3 text-base outline-none transition-colors ${
+    hasError ? "border-oxblood" : "border-form-border focus:border-gold"
   }`;
 }
 
@@ -32,26 +32,20 @@ export function EnquiryForm({
 
   if (sentReference) {
     return (
-      <div className="border border-[#d8cec1] bg-[#fffdf8] p-6 shadow-[0_30px_80px_rgba(58,51,44,0.1)] sm:p-10 lg:p-14">
-        <div
-          className="relative overflow-hidden bg-linear-to-br from-[#1e1916] to-noir p-8 text-ivory sm:p-12"
-          role="status"
-        >
+      <div className="border border-form-border bg-form-bg p-6 shadow-[var(--shadow-soft)] sm:p-10 lg:p-12">
+        <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-[#1e1916] to-noir p-8 text-ivory sm:p-12" role="status">
           <span className="inline-grid h-14 w-14 place-items-center rounded-full border border-gold text-xl text-gold">
             ✓
           </span>
           <h2 className="mt-6 font-serif text-4xl sm:text-5xl">Message received.</h2>
-          <p className="mt-4 max-w-lg text-sm text-[#b8ada2]">
+          <p className="mt-4 max-w-lg text-sm muted-on-dark">
             Thank you for writing to Origina. Your enquiry is now in our review queue and the
             appropriate team will respond using the details you supplied.
           </p>
           <p className="mt-8 border-t border-gold/25 pt-5 text-[0.62rem] uppercase tracking-[0.14em] text-gold">
             Reference · {sentReference}
           </p>
-          <Link
-            href="/contact#enquiry-form"
-            className="mt-6 inline-block rounded-full bg-gold px-6 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-noir hover:bg-gold-light"
-          >
+          <Link href="/contact#enquiry-form" className="btn-primary mt-6 inline-flex">
             Send another enquiry
           </Link>
         </div>
@@ -60,7 +54,7 @@ export function EnquiryForm({
   }
 
   return (
-    <div className="border border-[#d8cec1] bg-[#fffdf8] p-6 shadow-[0_30px_80px_rgba(58,51,44,0.1)] sm:p-10 lg:p-14">
+    <div className="border border-form-border bg-form-bg p-6 shadow-[var(--shadow-soft)] sm:p-10 lg:p-12">
       <form action={formAction} className="relative grid gap-5 sm:grid-cols-2" noValidate>
         <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
           <label htmlFor="website">Website</label>
@@ -69,7 +63,7 @@ export function EnquiryForm({
 
         {errors.form ? (
           <div
-            className="border-l-3 border-oxblood bg-[#f6e9e7] px-4 py-3 text-sm text-[#692024] sm:col-span-2"
+            className="border-l-4 border-oxblood bg-[#f6e9e7] px-4 py-3 text-sm text-[#692024] sm:col-span-2"
             role="alert"
           >
             {errors.form}
@@ -190,10 +184,9 @@ export function EnquiryForm({
           <button
             type="submit"
             disabled={isPending}
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-gold px-6 py-3.5 text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-noir hover:bg-gold-light disabled:opacity-60"
+            className="btn-primary disabled:opacity-60"
           >
             {isPending ? "Sending…" : "Send enquiry"}
-            <span aria-hidden="true">↗</span>
           </button>
         </div>
       </form>

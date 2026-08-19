@@ -3,50 +3,50 @@ import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { StatusBadge } from "@/components/StatusBadge";
+import { TagList } from "@/components/TagList";
+import { createPageMetadata } from "@/lib/metadata";
 import { skinSafariAreas } from "@/lib/content/divisions";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Skin Safari™ — Education & Scientific Communication",
   description:
     "Skin Safari is ORIGINA's education, media, and scientific communication division. Science should travel.",
-};
+  path: "/divisions/skin-safari",
+});
 
 export default function SkinSafariPage() {
   return (
     <>
       <PageHero
+        variant="gradient"
         crumb="Skin Safari™"
         kicker="Education · Media · Scientific communication"
         title={
           <>
             Science should
             <br />
-            <em className="not-italic text-gold-light">travel.</em>
+            <span className="text-gold-light">travel.</span>
           </>
         }
+        intro="Education, media, and scientific communication—making institutional knowledge accessible without diluting its rigor."
       />
 
-      <Section>
-        <div className="flex flex-wrap gap-2">
-          {skinSafariAreas.map((area) => (
-            <span
-              key={area}
-              className="rounded-full border border-border-subtle px-3 py-1.5 text-[0.62rem] uppercase tracking-[0.12em] text-graphite/85"
-            >
-              {area}
-            </span>
-          ))}
-        </div>
-        <p className="mt-6 max-w-2xl text-sm text-graphite/85">
-          Future ecosystem: documentaries, courses, publications, interviews, scientific media, and
-          professional education.
+      <Section eyebrow="01 · Focus areas" title="Where knowledge goes public.">
+        <TagList items={skinSafariAreas} />
+        <p className="mt-6 max-w-2xl body-copy">
+          Future ecosystem: documentaries, courses, publications, interviews, scientific media, and professional
+          education.
         </p>
-        <div className="mt-4">
+        <div className="mt-6">
           <StatusBadge status="emerging" />
         </div>
       </Section>
 
-      <PageCta links={[{ href: "/contact?subject=media#enquiry-form", label: "Media enquiries" }]} />
+      <PageCta
+        eyebrow="Media"
+        title="Bring a communication opportunity."
+        links={[{ href: "/contact?subject=media#enquiry-form", label: "Media enquiries" }]}
+      />
     </>
   );
 }

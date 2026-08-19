@@ -4,47 +4,49 @@ import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { Quote } from "@/components/Quote";
 import { Section } from "@/components/Section";
-import {
-  clinicalResearchPathway,
-  regulatoryCategories,
-  regulatoryDisclaimer,
-} from "@/lib/content/science";
+import { createPageMetadata } from "@/lib/metadata";
+import { clinicalResearchPathway, regulatoryCategories, regulatoryDisclaimer } from "@/lib/content/science";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Regulatory Science — ORIGINA™",
   description:
     "Science does not replace regulation. ORIGINA works across multiple regulatory categories with appropriate classification and claims architecture.",
-};
+  path: "/science/regulatory",
+});
 
 export default function RegulatoryPage() {
   return (
     <>
       <PageHero
+        variant="gradient"
         crumb="Regulatory Science"
         kicker="Regulatory science"
         title={
           <>
             Science does not
             <br />
-            <em className="not-italic text-gold-light">replace regulation.</em>
+            <span className="text-gold-light">replace regulation.</span>
           </>
         }
         intro="ORIGINA may work across multiple regulatory categories. These categories do not share one regulatory pathway."
       />
 
-      <Section>
+      <Section eyebrow="01 · Categories" title="Regulatory classification precedes claims.">
         <DetailList items={regulatoryCategories} />
-        <Quote>Regulatory classification precedes claims architecture.</Quote>
+        <div className="mt-8">
+          <Quote>Regulatory classification precedes claims architecture.</Quote>
+        </div>
       </Section>
 
-      <Section tone="cream" title="Clinical research pathway">
-        <p className="mb-4 text-sm text-graphite/85">{clinicalResearchPathway}</p>
-        <p className="text-sm text-graphite/85">
+      <Section tone="cream" eyebrow="02 · Clinical research" title="Clinical research pathway" intro={clinicalResearchPathway}>
+        <p className="body-copy">
           <strong>Important:</strong> {regulatoryDisclaimer}
         </p>
       </Section>
 
       <PageCta
+        eyebrow="Continue"
+        title="Follow the quality and claims framework."
         links={[
           { href: "/science/quality", label: "Quality framework" },
           { href: "/science/responsible-science", label: "Claims discipline", variant: "secondary" },

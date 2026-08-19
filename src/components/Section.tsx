@@ -1,3 +1,5 @@
+import { Eyebrow } from "@/components/ui/Eyebrow";
+
 export const sectionTones = {
   ivory: "bg-ivory text-graphite",
   cream: "bg-cream text-graphite",
@@ -12,6 +14,7 @@ export function Section({
   tone = "ivory",
   eyebrow,
   title,
+  intro,
   center,
   id,
   children,
@@ -19,15 +22,33 @@ export function Section({
   tone?: SectionTone;
   eyebrow?: string;
   title?: string;
+  intro?: string;
   center?: boolean;
   id?: string;
   children: React.ReactNode;
 }) {
+  const isDark = tone === "noir" || tone === "oxblood" || tone === "graphite";
+
   return (
     <section id={id} className={sectionTones[tone]}>
-      <div className={`mx-auto max-w-(--content-max) px-6 py-20 lg:px-16 lg:py-28 ${center ? "text-center" : ""}`}>
-        {eyebrow && <p className="mb-3 text-[0.66rem] uppercase tracking-[0.2em] text-gold">{eyebrow}</p>}
-        {title && <h2 className="mb-10 font-serif text-4xl leading-tight sm:text-5xl">{title}</h2>}
+      <div className={`site-container section-shell ${center ? "text-center" : ""}`}>
+        {eyebrow ? (
+          <Eyebrow plain tone={isDark ? "dark" : "default"} className={center ? "justify-center" : ""}>
+            {eyebrow}
+          </Eyebrow>
+        ) : null}
+        {title ? (
+          <h2 className={`section-title ${isDark ? "text-ivory" : ""} ${center ? "mx-auto" : ""}`}>{title}</h2>
+        ) : null}
+        {intro ? (
+          <p
+            className={`${center ? "mx-auto" : ""} mb-10 max-w-2xl text-[0.9375rem] leading-relaxed ${
+              isDark ? "text-stone" : "text-graphite/85"
+            }`}
+          >
+            {intro}
+          </p>
+        ) : null}
         {children}
       </div>
     </section>
