@@ -27,7 +27,7 @@ export default function IntellectualPropertyPage() {
           <>
             Ideas become
             <br />
-            <span className="text-gold-light">institutional assets.</span>
+            <span className="text-crimson">institutional assets.</span>
           </>
         }
         intro="ORIGINA's innovation architecture may identify and protect formulations, compositions, delivery systems, technologies, manufacturing processes, analytical methods, scientific platforms, trademarks, designs, and research outputs."
@@ -46,7 +46,7 @@ export default function IntellectualPropertyPage() {
           {platforms.map((platform) => (
             <article key={platform.id} className="institutional-panel">
               <ContentStatus status={platform.status} />
-              <strong className="mt-4 block font-serif text-2xl text-graphite">{platform.name}</strong>
+              <strong className="mt-4 block font-serif text-2xl text-ink">{platform.name}</strong>
               <small className="mt-2 block body-copy">{platform.subtitle}</small>
               <p className="mt-3 body-copy">{platform.summary}</p>
               <TextLink href={platform.href} className="mt-4">

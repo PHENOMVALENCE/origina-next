@@ -52,7 +52,7 @@ export default function DivinePage() {
 
       <PageHero
 
-        variant="gradient"
+        variant="dark"
 
         crumb="DIVINE™"
 
@@ -101,6 +101,7 @@ export default function DivinePage() {
 
 
       <PageCta
+        tone="noir"
 
         eyebrow="Continue"
 

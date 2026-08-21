@@ -73,7 +73,7 @@ export default function CulturePage() {
           <>
             We do not seek employees.
             <br />
-            <span className="text-gold-light">We seek builders.</span>
+            <span className="text-crimson">We seek builders.</span>
           </>
         }
         intro="Every member is expected to contribute ideas, not simply perform tasks. Credentials are respected. Capability is required. Character is essential."
@@ -96,7 +96,7 @@ export default function CulturePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {values.map(([title, text], index) => (
             <article key={title} className="border border-white/10 p-6">
-              <span className="text-[0.66rem] uppercase tracking-[0.2em] text-gold">
+              <span className="text-[0.75rem] uppercase tracking-[0.2em] text-ivory/60">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-4 font-serif text-2xl text-ivory">{title}</h3>
@@ -117,7 +117,7 @@ export default function CulturePage() {
             <h2 className="section-title">
               Capability and
               <br />
-              <span className="text-gold">character.</span>
+              <span className="text-crimson">character.</span>
             </h2>
             <p className="body-copy">
               We value expertise, but we do not confuse credentials with contribution. The environment should reward

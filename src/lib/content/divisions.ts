@@ -127,10 +127,12 @@ export const bMelanoxGalleryViews = [
 ];
 
 export const bMelanoxFutureExpansion = [
-  { num: "I", title: "Professional protocols", text: "Structured approaches for qualified professionals." },
-  { num: "II", title: "Clinical programs", text: "Evaluation and long-term management frameworks." },
-  { num: "III", title: "Education", text: "Resources for professionals and informed users." },
-  { num: "IV", title: "Research", text: "Scientific documentation and future publications." },
+  { num: "I", title: "Professional protocols", text: "Structured approaches for qualified professionals — future development." },
+  { num: "II", title: "Clinical programs", text: "Evaluation and long-term management frameworks where scientifically and regulatorily appropriate." },
+  { num: "III", title: "Additional formulations", text: "Extended product ecosystem beyond current expressions." },
+  { num: "IV", title: "Diagnostic / assessment tools", text: "Tools to support disciplined pigment assessment — subject to validation." },
+  { num: "V", title: "Scientific publications", text: "Research documentation released as work reaches appropriate disclosure standards." },
+  { num: "VI", title: "Treatment systems", text: "Integrated systems — only where classification and evidence support such description." },
 ];
 
 export const bValenceDomains = [

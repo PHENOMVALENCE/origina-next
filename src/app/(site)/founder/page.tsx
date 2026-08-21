@@ -33,7 +33,7 @@ export default function FounderPage() {
           <>
             Dr. Elizabeth
             <br />
-            <span className="text-gold-light">Consoli.</span>
+            <span className="text-crimson">Consoli.</span>
           </>
         }
         intro="MD, MBChB · Medical Doctor · Cosmetic Formulation Scientist · Founder of ORIGINA™"
@@ -51,7 +51,7 @@ export default function FounderPage() {
             <h2 className="section-title">Institutional roles</h2>
             <ul className="space-y-3 body-copy">
               {roles.map((role) => (
-                <li key={role} className="border-b border-border-subtle pb-3 last:border-b-0">
+                <li key={role} className="border-b border-rule pb-3 last:border-b-0">
                   {role}
                 </li>
               ))}
@@ -88,7 +88,7 @@ export default function FounderPage() {
             <h2 className="section-title">
               Reinforce the institution,
               <br />
-              <span className="text-gold">not celebrity.</span>
+              <span className="text-crimson">not celebrity.</span>
             </h2>
             <p className="body-copy">
               The founder establishes the intellectual culture; the institution is designed to carry it forward.

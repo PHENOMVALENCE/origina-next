@@ -25,7 +25,7 @@ export default function PlatformsPage() {
           <>
             Proprietary science
             <br />
-            <span className="text-gold-light">platforms.</span>
+            <span className="text-crimson">platforms.</span>
           </>
         }
         intro="Scientific platforms support multiple products, protocols, and future applications. ™ indicates trademark status — not patent status unless explicitly documented."
@@ -41,7 +41,7 @@ export default function PlatformsPage() {
                 </ScientificLabel>
                 <ContentStatus status={platform.status} />
               </div>
-              <h2 className="mt-4 font-serif text-3xl text-graphite">{platform.name}</h2>
+              <h2 className="mt-4 font-serif text-3xl text-ink">{platform.name}</h2>
               <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
               <p className="mt-4 max-w-3xl body-copy">{platform.summary}</p>
               <p className="mt-2 scientific-metadata">Division: {platform.division}</p>

@@ -28,7 +28,7 @@ export default function EvidencePage() {
           <>
             Evidence has
             <br />
-            <span className="text-gold-light">levels.</span>
+            <span className="text-crimson">levels.</span>
           </>
         }
         intro="ORIGINA is ambitious scientifically and conservative in claims. The strength of a claim must correspond to the strength of the evidence."
@@ -40,7 +40,7 @@ export default function EvidencePage() {
         intro="Marketing language must not jump between evidence levels. A study conducted by ORIGINA does not automatically mean clinically proven."
       >
         <EvidenceLadder levels={evidenceLevels} />
-        <div className="mt-10 space-y-4 border-t border-border-subtle pt-8">
+        <div className="mt-10 space-y-4 border-t border-rule pt-8">
           {evidencePrinciples.map((statement) => (
             <Quote key={statement}>{statement}</Quote>
           ))}
@@ -64,11 +64,11 @@ export default function EvidencePage() {
 
       <Section tone="ivory" eyebrow="03 · Research records" title="Research records" intro={evidenceResearchNote}>
         <article className="institutional-panel">
-          <p className="mb-3 flex justify-between gap-4 text-[0.62rem] uppercase tracking-[0.14em] text-stone">
+          <p className="mb-3 flex justify-between gap-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone">
             <span>{researchRecordPlaceholder.meta[0]}</span>
             <span>{researchRecordPlaceholder.meta[1]}</span>
           </p>
-          <h3 className="font-serif text-2xl text-graphite">{researchRecordPlaceholder.title}</h3>
+          <h3 className="font-serif text-2xl text-ink">{researchRecordPlaceholder.title}</h3>
           <p className="mt-3 body-copy">{researchRecordPlaceholder.text}</p>
         </article>
       </Section>

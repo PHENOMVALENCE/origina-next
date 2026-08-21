@@ -26,7 +26,7 @@ export default function ResponsibleSciencePage() {
           <>
             Ambition without
             <br />
-            <span className="text-gold-light">scientific inflation.</span>
+            <span className="text-crimson">scientific inflation.</span>
           </>
         }
         intro="ORIGINA is ambitious scientifically and conservative in claims. The strength of a claim must match the strength of the evidence."

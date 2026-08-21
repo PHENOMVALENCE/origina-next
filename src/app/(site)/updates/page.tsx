@@ -33,7 +33,7 @@ export default async function UpdatesPage() {
           <>
             Origina
             <br />
-            <span className="text-gold-light">updates.</span>
+            <span className="text-crimson">updates.</span>
           </>
         }
         intro="News, research records, and institutional field notes."
@@ -46,7 +46,7 @@ export default async function UpdatesPage() {
           ) : (
             items.map((item) => (
               <article key={item.id} className="publication-item">
-                <span className="text-[0.66rem] uppercase tracking-[0.18em] text-gold">
+                <span className="text-[0.75rem] uppercase tracking-[0.18em] text-crimson">
                   {formatPublicationType(item.type)}
                 </span>
                 <div>
@@ -54,7 +54,7 @@ export default async function UpdatesPage() {
                   {item.excerpt ? <p className="mt-3 body-copy">{item.excerpt}</p> : null}
                   {item.body ? (
                     <details className="mt-4">
-                      <summary className="cursor-pointer text-[0.72rem] uppercase tracking-[0.14em] text-gold">
+                      <summary className="cursor-pointer text-[0.72rem] uppercase tracking-[0.14em] text-crimson">
                         Read publication
                       </summary>
                       <p className="mt-4 whitespace-pre-wrap body-copy">{item.body}</p>

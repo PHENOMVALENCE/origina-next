@@ -98,14 +98,14 @@ export default function Home() {
           {biologyFirst.pillars.map((pillar, index) => (
             <article key={pillar.name} className="institutional-panel">
               <span className="pillar-card-index">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className="font-serif text-2xl text-graphite">{pillar.name}</h3>
+              <h3 className="font-serif text-2xl text-ink">{pillar.name}</h3>
               <p className="mt-3 body-copy">{pillar.text}</p>
             </article>
           ))}
         </div>
         <div className="mt-10 grid overflow-hidden rounded-sm bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
           <div className="p-6 sm:p-8 lg:p-12">
-            <ScientificLabel tone="gold" className="text-gold">
+            <ScientificLabel tone="crimson">
               Evidence progression
             </ScientificLabel>
             <div className="principle-stack mt-6">
@@ -170,7 +170,7 @@ export default function Home() {
         <div className="grid gap-4 lg:grid-cols-2">
           {platforms.map((platform) => (
             <article key={platform.id} className="institutional-panel border-white/10 bg-noir/40 text-ivory">
-              <ScientificLabel tone="gold">Platform / {platform.name}</ScientificLabel>
+              <ScientificLabel tone="dark">Platform / {platform.name}</ScientificLabel>
               <h3 className="mt-3 font-serif text-2xl">{platform.name}</h3>
               <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-stone">{platform.summary}</p>
@@ -207,7 +207,7 @@ export default function Home() {
         <EvidenceLadder levels={evidenceLevels.slice(0, 6)} tone="dark" />
         <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {qualityFramework.slice(0, 6).map((item) => (
-            <div key={item.title} className="border border-gold/15 p-4">
+            <div key={item.title} className="border border-white/12 p-4">
               <h3 className="font-serif text-lg text-ivory">{item.title}</h3>
               <p className="mt-2 text-sm text-stone">{item.text}</p>
             </div>
@@ -279,7 +279,7 @@ export default function Home() {
           {futurePreview.map((item) => (
             <article key={item.id} id={item.id} className="institutional-panel">
               <ScientificLabel>{item.label}</ScientificLabel>
-              <h3 className="mt-2 font-serif text-2xl text-graphite">{item.title}</h3>
+              <h3 className="mt-2 font-serif text-2xl text-ink">{item.title}</h3>
               <p className="mt-3 body-copy">{item.description}</p>
               <ContentStatus status="future" />
             </article>
@@ -292,7 +292,7 @@ export default function Home() {
 
       {/* 14 · Unnamed Division */}
       <section className="unnamed-division" id="unnamed">
-        <ScientificLabel tone="gold" className="text-gold">
+        <ScientificLabel tone="crimson">
           ∞ · Open possibility
         </ScientificLabel>
         <p className="unnamed-division__symbol" aria-hidden="true">
@@ -324,14 +324,14 @@ export default function Home() {
 
 function DetailFunctions({ items }: { items: readonly { num: string; title: string }[] }) {
   return (
-    <div className="mt-8 border-t border-gold/25">
+    <div className="mt-8 border-t border-crimson/25">
       {items.map((fn) => (
         <div
           key={fn.num}
-          className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-gold/15 py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5"
+          className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-crimson/15 py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5"
         >
-          <span className="font-serif text-2xl text-gold">{fn.num}</span>
-          <span className="font-serif text-xl text-graphite">{fn.title}</span>
+          <span className="font-serif text-2xl text-crimson">{fn.num}</span>
+          <span className="font-serif text-xl text-ink">{fn.title}</span>
         </div>
       ))}
     </div>

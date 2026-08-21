@@ -25,7 +25,7 @@ export default function QualityPage() {
           <>
             Designed for quality.
             <br />
-            <span className="text-gold-light">Tested for purpose.</span>
+            <span className="text-crimson">Tested for purpose.</span>
           </>
         }
         intro="Quality is designed into the system. Framework intentions — not claims of existing certification unless documented."
@@ -35,8 +35,8 @@ export default function QualityPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {qualityFramework.map((item, index) => (
             <article key={item.title} className="institutional-panel">
-              <span className="scientific-label text-gold">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className="mt-2 font-serif text-xl text-graphite">{item.title}</h3>
+              <span className="scientific-label text-crimson">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className="mt-2 font-serif text-xl text-ink">{item.title}</h3>
               <p className="mt-2 body-copy">{item.text}</p>
             </article>
           ))}
