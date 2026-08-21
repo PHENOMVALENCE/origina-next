@@ -8,7 +8,7 @@ export function SystemsThinking() {
       <ScientificLabel className="mb-4 block">Systems thinking · Conceptual model</ScientificLabel>
       {systemsThinking.map((term, index) => (
         <div key={term} className="systems-thinking__node">
-          <p className="font-serif text-xl text-graphite sm:text-2xl">{term}</p>
+          <p className="font-serif text-xl text-ink sm:text-2xl">{term}</p>
           {index < systemsThinking.length - 1 ? (
             <span className="systems-thinking__connector" aria-hidden="true">
               ↕

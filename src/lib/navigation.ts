@@ -17,7 +17,7 @@ export const primaryNav: NavItem[] = [
   { label: "Evidence", href: "/science/evidence", panel: "evidence" },
   { label: "Founder", href: "/founder" },
   { label: "Future", href: "/future", panel: "future" },
-  { label: "Contact", href: "/contact" },
+  // Contact is deliberately absent — it is the header's standing call to action.
 ];
 
 export const panels = {

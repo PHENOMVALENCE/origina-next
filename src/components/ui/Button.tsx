@@ -1,9 +1,16 @@
 import Link from "next/link";
 
-type ButtonVariant = "primary" | "secondary" | "secondary-dark";
+/**
+ * primary        — crimson fill. Institution layer.
+ * gold           — gold fill. Division layer only.
+ * secondary      — outlined, for dark grounds.
+ * secondary-dark — outlined, for light grounds.
+ */
+type ButtonVariant = "primary" | "gold" | "secondary" | "secondary-dark";
 
 const variantClass: Record<ButtonVariant, string> = {
   primary: "btn-primary",
+  gold: "btn-gold",
   secondary: "btn-secondary",
   "secondary-dark": "btn-secondary-dark",
 };

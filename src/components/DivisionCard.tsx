@@ -35,7 +35,7 @@ export function DivisionCard({ division }: { division: DivisionPreview }) {
         <strong className="mt-3 block font-serif text-xl transition-colors group-hover:text-gold-light sm:text-2xl">
           {division.name}
         </strong>
-        <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.12em] text-stone">{division.role}</span>
+        <span className="mt-1 block text-[0.75rem] uppercase tracking-[0.12em] text-stone">{division.role}</span>
         <span className="mt-auto pt-4 text-sm text-stone">{division.tagline}</span>
       </div>
     </Link>
