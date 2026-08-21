@@ -33,7 +33,7 @@ export function ProductGallery({ views }: { views: readonly GalleryView[] }) {
             }`}
           >
             <Image src={view.src} alt="" fill className="object-cover" />
-            <span className="absolute left-1 top-1 bg-noir/70 px-1.5 py-0.5 text-[0.55rem] text-ivory">
+            <span className="absolute left-1 top-1 bg-noir/70 px-1.5 py-0.5 text-[0.75rem] text-ivory">
               {view.label}
             </span>
           </button>

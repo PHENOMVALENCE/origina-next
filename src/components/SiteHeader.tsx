@@ -2,21 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { isDivisionLayer } from "@/lib/layer";
 import { panels, primaryNav } from "@/lib/navigation";
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const dark = isDivisionLayer(pathname ?? "/");
+
   const [openPanel, setOpenPanel] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!openPanel) return;
@@ -43,82 +40,94 @@ export function SiteHeader() {
     };
   }, [mobileOpen]);
 
+  const linkIdle = dark ? "text-ivory/85 hover:text-gold" : "text-ink-soft hover:text-crimson";
+  const linkActive = dark ? "text-gold" : "text-crimson";
+
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4 lg:px-6">
+    <header className={`site-header ${dark ? "site-header--dark" : "site-header--light"}`}>
       <a
         href="#main"
-        className="pointer-events-auto fixed left-4 top-[-5rem] z-[999] bg-gold px-4 py-3 text-noir focus:top-4"
+        className="fixed left-4 top-[-5rem] z-[999] bg-crimson px-5 py-3 text-paper focus:top-4"
       >
         Skip to content
       </a>
-      <nav
-        aria-label="Primary navigation"
-        className={`pointer-events-auto mx-auto flex max-w-(--content-max) items-center justify-between gap-2 rounded-full border px-2 py-1.5 transition-all duration-300 sm:gap-4 sm:px-3 sm:py-2 md:px-4 ${
-          scrolled
-            ? "border-gold/40 bg-noir/95 shadow-[var(--shadow-nav)] backdrop-blur-xl"
-            : "border-gold/25 bg-noir/80 shadow-[var(--shadow-soft)] backdrop-blur-md"
-        }`}
-      >
-        <Link
-          href="/"
-          aria-label="ORIGINA home"
-          className="inline-flex min-w-0 items-center gap-2 rounded-full py-1 pl-1 pr-2 text-ivory transition-opacity hover:opacity-90 sm:gap-3 sm:pr-3"
-        >
-          <span className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-gold/35 bg-noir">
-            <Image src="/img/brand/origina-mark.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" />
+
+      <div className="site-header-inner">
+        <Link href="/" aria-label="ORIGINA home" className={`site-wordmark ${dark ? "text-ivory" : "text-ink"}`}>
+          {/* The mark is drawn for a dark ground, so it keeps one in both layers
+              and reads as a seal rather than washing out on paper. */}
+          <span className="grid h-9 w-9 shrink-0 place-items-center overflow-hidden bg-noir">
+            {/* eager, not lazy: the mark is always in the initial viewport, and
+                lazy-loading the wordmark risks it popping in after paint.
+                Next emits a 1x/2x preload for it, which produces a benign
+                "preloaded but not used" notice in dev for the unused candidate. */}
+            <Image
+              src="/img/brand/origina-mark.png"
+              alt=""
+              width={24}
+              height={24}
+              loading="eager"
+              className="h-6 w-6 object-contain"
+            />
           </span>
-          <span className="truncate text-[0.62rem] font-semibold tracking-[0.26em] sm:text-[0.72rem] sm:tracking-[0.32em] lg:tracking-[0.2em] xl:tracking-[0.32em]">
-            ORIGINA
-          </span>
+          <span className="site-wordmark-text">ORIGINA</span>
         </Link>
 
-        <div ref={navRef} role="menubar" className="hidden min-w-0 items-center justify-center gap-0.5 lg:flex xl:gap-1">
+        <nav
+          aria-label="Primary navigation"
+          ref={navRef}
+          className="hidden min-w-0 items-center justify-center lg:flex"
+        >
           {primaryNav.map((item) => {
             const panelLinks = item.panel ? panels[item.panel] : null;
+
             if (!panelLinks) {
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  role="menuitem"
-                  className="whitespace-nowrap rounded-sm px-1.5 py-2 text-[0.55rem] uppercase tracking-[0.1em] text-ivory/85 transition-colors hover:bg-white/5 hover:text-gold xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em]"
+                  onClick={() => setOpenPanel(null)}
+                  className={`site-nav-link ${linkIdle}`}
                 >
                   {item.label}
                 </Link>
               );
             }
+
             const isOpen = openPanel === item.label;
             return (
               <div key={item.label} className="relative">
                 <button
                   type="button"
-                  role="menuitem"
                   aria-haspopup="true"
                   aria-expanded={isOpen}
                   aria-controls={`panel-${item.panel}`}
                   onClick={() => setOpenPanel(isOpen ? null : item.label)}
-                  className={`flex items-center gap-1 whitespace-nowrap rounded-sm px-1.5 py-2 text-[0.55rem] uppercase tracking-[0.1em] transition-colors xl:px-3 xl:text-[0.62rem] xl:tracking-[0.16em] ${
-                    isOpen ? "bg-white/8 text-gold" : "text-ivory/85 hover:bg-white/5 hover:text-gold"
-                  }`}
+                  className={`site-nav-link inline-flex items-center gap-1.5 ${isOpen ? linkActive : linkIdle}`}
                 >
                   {item.label}
-                  <span aria-hidden className={`text-[0.6rem] transition-transform ${isOpen ? "rotate-180" : ""}`}>
-                    ▾
-                  </span>
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 10 6"
+                    className={`h-[5px] w-[9px] shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  >
+                    <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
                 </button>
+
                 {isOpen ? (
                   <div
                     id={`panel-${item.panel}`}
-                    role="menu"
-                    className="absolute left-1/2 top-[calc(100%+0.75rem)] w-72 -translate-x-1/2 overflow-hidden rounded-2xl border border-gold/25 bg-noir/98 py-2 shadow-[var(--shadow-nav)] backdrop-blur-xl"
+                    className={`site-nav-panel ${dark ? "site-nav-panel--dark" : ""}`}
                   >
                     {panelLinks.map((link) => (
                       <Link
                         key={link.label}
                         href={link.href}
-                        role="menuitem"
                         onClick={() => setOpenPanel(null)}
-                        className="block px-5 py-2.5 text-[0.8125rem] text-ivory/90 transition-colors hover:bg-white/5 hover:text-gold"
+                        className={`site-nav-panel-link ${
+                          dark ? "text-ivory/90 hover:bg-white/5 hover:text-gold" : "text-ink-soft hover:bg-paper-sunk hover:text-crimson"
+                        }`}
                       >
                         {link.label}
                       </Link>
@@ -128,11 +137,11 @@ export function SiteHeader() {
               </div>
             );
           })}
-        </div>
+        </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/contact" className="btn-primary hidden px-5 py-2.5 md:inline-flex lg:px-4 xl:px-5">
-            Contact
+        <div className="flex items-center gap-3">
+          <Link href="/contact" className={`hidden md:inline-flex ${dark ? "btn-gold" : "btn-primary"} btn-compact`}>
+            Enquiries
           </Link>
           <button
             type="button"
@@ -140,20 +149,22 @@ export function SiteHeader() {
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((open) => !open)}
-            className="grid h-11 w-11 place-content-center rounded-full border border-gold/40 text-ivory lg:hidden"
+            className={`grid h-11 w-11 place-content-center border lg:hidden ${
+              dark ? "border-gold/40 text-ivory" : "border-rule-strong text-ink"
+            }`}
           >
             <span className="sr-only">{mobileOpen ? "Close" : "Menu"}</span>
-            {mobileOpen ? "✕" : "☰"}
+            <span aria-hidden>{mobileOpen ? "✕" : "☰"}</span>
           </button>
         </div>
-      </nav>
+      </div>
 
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileMenu open={mobileOpen} dark={dark} onClose={() => setMobileOpen(false)} />
     </header>
   );
 }
 
-function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+function MobileMenu({ open, dark, onClose }: { open: boolean; dark: boolean; onClose: () => void }) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -162,42 +173,52 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
+  const surface = dark ? "bg-noir text-ivory" : "bg-paper text-ink";
+  const railBorder = dark ? "border-gold/30" : "border-crimson/30";
+  const linkColor = dark ? "text-ivory/90 hover:text-gold" : "text-ink-soft hover:text-crimson";
+
   return (
     <div
       id="mobile-menu"
       aria-hidden={!open}
-      className={`pointer-events-auto fixed inset-0 z-40 flex flex-col bg-noir/98 text-ivory backdrop-blur-xl transition-transform duration-300 lg:hidden ${
+      className={`fixed inset-0 z-40 flex flex-col transition-transform duration-300 lg:hidden ${surface} ${
         open ? "translate-x-0" : "translate-x-full"
       }`}
       style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
     >
-      <div className="flex shrink-0 items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
-        <span className="text-[0.78rem] font-semibold tracking-[0.32em]">ORIGINA</span>
+      <div className={`flex shrink-0 items-center justify-between border-b px-5 py-4 sm:px-8 ${dark ? "border-white/15" : "border-rule"}`}>
+        <span className="text-[0.9375rem] font-semibold tracking-[0.22em]">ORIGINA</span>
         <button
           type="button"
           onClick={onClose}
           aria-label="Close menu"
-          className="grid h-10 w-10 place-content-center rounded-full border border-gold/40"
+          className={`grid h-10 w-10 place-content-center border ${dark ? "border-gold/40" : "border-rule-strong"}`}
         >
-          ✕
+          <span aria-hidden>✕</span>
         </button>
       </div>
-      <nav aria-label="Mobile navigation" className="flex flex-1 flex-col gap-6 overflow-y-auto overscroll-contain px-4 py-2 pb-[max(6rem,env(safe-area-inset-bottom))] sm:gap-8 sm:px-6 sm:py-4">
+
+      <nav
+        aria-label="Mobile navigation"
+        className="flex flex-1 flex-col gap-8 overflow-y-auto overscroll-contain px-5 py-6 pb-[max(6rem,env(safe-area-inset-bottom))] sm:px-8"
+      >
         {primaryNav.map((item) => {
           const panelLinks = item.panel ? panels[item.panel] : null;
+
           if (!panelLinks) {
             return (
-              <Link key={item.label} href={item.href} onClick={onClose} className="font-serif text-2xl text-ivory sm:text-3xl">
+              <Link key={item.label} href={item.href} onClick={onClose} className="font-serif text-3xl">
                 {item.label}
               </Link>
             );
           }
+
           return (
             <div key={item.label}>
-              <p className="eyebrow eyebrow--plain mb-2 sm:mb-3">{item.label}</p>
-              <div className="flex flex-col gap-2.5 border-l border-gold/25 pl-3 sm:gap-3 sm:pl-4">
+              <p className={`eyebrow eyebrow--plain mb-3 ${dark ? "eyebrow--dark" : ""}`}>{item.label}</p>
+              <div className={`flex flex-col gap-3 border-l pl-4 ${railBorder}`}>
                 {panelLinks.map((link) => (
-                  <Link key={link.label} href={link.href} onClick={onClose} className="text-[0.9375rem] text-ivory/90 hover:text-gold sm:text-base">
+                  <Link key={link.label} href={link.href} onClick={onClose} className={`text-base ${linkColor}`}>
                     {link.label}
                   </Link>
                 ))}
@@ -205,7 +226,8 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             </div>
           );
         })}
-        <Link href="/contact" onClick={onClose} className="btn-primary mt-2 w-full sm:mt-4 sm:w-fit">
+
+        <Link href="/contact" onClick={onClose} className={`${dark ? "btn-gold" : "btn-primary"} mt-2 w-full sm:w-fit`}>
           Contact ORIGINA
         </Link>
       </nav>

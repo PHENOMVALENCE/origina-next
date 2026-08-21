@@ -1,19 +1,24 @@
 import { statusLabels, type DivisionStatus } from "@/lib/content/divisions";
 
+/**
+ * Division status. Squared, hairline-bordered, set at the 11px institutional
+ * minimum. Sage marks what is operating; crimson marks what is in progress;
+ * neutral stone marks what is only planned.
+ */
 const statusStyles: Record<DivisionStatus, string> = {
-  active: "border-sage/40 bg-sage-light text-sage",
-  research: "border-gold/45 bg-gold/10 text-graphite",
-  development: "border-gold/35 bg-cream text-graphite",
-  emerging: "border-stone/40 bg-surface-muted text-graphite",
-  planned: "border-stone/35 bg-ivory text-stone",
-  future: "border-stone/30 bg-ivory text-stone",
-  open: "border-gold/30 bg-ivory text-stone",
+  active: "border-sage/45 bg-sage-light text-sage",
+  research: "border-crimson/35 bg-crimson/5 text-crimson",
+  development: "border-crimson/30 bg-crimson/5 text-crimson",
+  emerging: "border-stone/45 bg-paper-sunk text-ink-soft",
+  planned: "border-stone/40 bg-transparent text-stone",
+  future: "border-stone/35 bg-transparent text-stone",
+  open: "border-stone/35 bg-transparent text-stone",
 };
 
 export function StatusBadge({ status }: { status: DivisionStatus }) {
   return (
     <span
-      className={`inline-flex w-fit rounded-full border px-2.5 py-0.5 text-[0.55rem] font-semibold uppercase tracking-[0.14em] ${statusStyles[status]}`}
+      className={`inline-flex w-fit rounded-none border px-2.5 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.1em] ${statusStyles[status]}`}
     >
       {statusLabels[status]}
     </span>

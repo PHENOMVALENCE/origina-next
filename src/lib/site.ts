@@ -3,6 +3,8 @@ export const siteTagline = "Biology First™";
 export const siteDescription =
   "ORIGINA is a multi-divisional innovation institution built at the intersection of biology, clinical science, technology, and human wellbeing. Beginning in Africa. Serving the world.";
 
+import { roadmapItems } from "@/lib/content/future";
+
 function normalizeSiteUrl(value: string | undefined): string | undefined {
   const trimmed = value?.trim();
   if (!trimmed) return undefined;
@@ -72,6 +74,7 @@ export const publicRoutes = [
   "/founder",
   "/africa",
   "/future",
+  ...roadmapItems.map((item) => `/future/${item.id}` as const),
   "/culture",
   "/updates",
   "/contact",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageCta } from "@/components/PageCta";
+import { SectionNav } from "@/components/SectionNav";
 import { PageHero } from "@/components/PageHero";
 import { QuoteBand } from "@/components/Quote";
 import { Section } from "@/components/Section";
@@ -14,6 +15,15 @@ export const metadata: Metadata = createPageMetadata({
   description: "Discover ORIGINA's mission, vision, philosophy, founder, and institutional purpose.",
   path: "/about",
 });
+
+const sections = [
+  { id: "identity", label: "Identity" },
+  { id: "purpose", label: "Purpose" },
+  { id: "philosophy", label: "Philosophy" },
+  { id: "founder", label: "Founder" },
+  { id: "mandate", label: "Mandate" },
+  { id: "architecture", label: "Architecture" },
+] as const;
 
 const beliefs = [
   { title: "Great ideas", text: "can come from anywhere." },
@@ -49,14 +59,17 @@ export default function AboutPage() {
           <>
             Created for what
             <br />
-            <span className="text-gold-light">does not yet exist.</span>
+            <span className="text-crimson">does not yet exist.</span>
           </>
         }
         intro="Origina is an innovation institution dedicated to the discovery, development, and advancement of ideas, technologies, products, systems, and people that improve human life."
         image={founderImages.portraitClinical}
       />
 
+      <SectionNav items={sections} />
+
       <Section
+        id="identity"
         eyebrow="01 · Identity"
         title="What Origina is."
         intro="A home for thinkers and builders. A multi-industry platform. A long-term legacy organisation."
@@ -66,9 +79,9 @@ export default function AboutPage() {
           thinking—and innovation should never be limited by credentials, hierarchy, industry boundaries, or
           conventional approaches.
         </LeadCopy>
-        <div className="mt-10 grid gap-8 border-t border-border-subtle pt-8 sm:grid-cols-2">
+        <div className="mt-10 grid gap-8 border-t border-rule pt-8 sm:grid-cols-2">
           <div className="institutional-card">
-            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-oxblood">Not</span>
+            <span className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-crimson">Not</span>
             <p className="mt-3 body-copy leading-loose">
               A skincare company
               <br />A cosmetics company
@@ -77,7 +90,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="institutional-card">
-            <span className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-gold">Yes</span>
+            <span className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-crimson">Yes</span>
             <p className="mt-3 body-copy leading-loose">
               An innovation institution
               <br />A home for builders
@@ -88,14 +101,14 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · 03 · Purpose">
+      <Section id="purpose" tone="cream" eyebrow="02 · 03 · Purpose">
         <SplitSection>
           <div>
-            <p className="mb-2 text-[0.66rem] uppercase tracking-[0.2em] text-oxblood">Mission</p>
+            <p className="mb-2 text-[0.75rem] uppercase tracking-[0.2em] text-crimson">Mission</p>
             <h2 className="mb-4 font-serif text-3xl leading-tight sm:text-4xl">
               Turn knowledge
               <br />
-              into <span className="text-gold">action.</span>
+              into <span className="text-crimson">action.</span>
             </h2>
             <p className="body-copy">
               To discover, create, and advance transformative solutions that improve human life through science,
@@ -103,11 +116,11 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            <p className="mb-2 text-[0.66rem] uppercase tracking-[0.2em] text-oxblood">Vision</p>
+            <p className="mb-2 text-[0.75rem] uppercase tracking-[0.2em] text-crimson">Vision</p>
             <h2 className="mb-4 font-serif text-3xl leading-tight sm:text-4xl">
               Emerge from Africa.
               <br />
-              <span className="text-gold">Resonate globally.</span>
+              <span className="text-crimson">Resonate globally.</span>
             </h2>
             <p className="body-copy">
               To become one of the most respected innovation institutions emerging from Africa, recognised globally
@@ -118,15 +131,16 @@ export default function AboutPage() {
       </Section>
 
       <Section
+        id="philosophy"
         tone="noir"
         eyebrow="04 · Philosophy"
         title="The beliefs beneath the work."
         intro="Our philosophy guides every decision, formula, collaboration, and hire."
       >
-        <div className="border-t border-gold/20">
+        <div className="border-t border-white/20">
           {beliefs.map((belief, index) => (
-            <div key={belief.title} className="grid gap-4 border-b border-gold/15 py-5 sm:grid-cols-[3rem_1fr_1.5fr] sm:items-baseline">
-              <span className="text-gold">{String(index + 1).padStart(2, "0")}</span>
+            <div key={belief.title} className="grid gap-4 border-b border-white/12 py-5 sm:grid-cols-[3rem_1fr_1.5fr] sm:items-baseline">
+              <span className="text-ivory/70">{String(index + 1).padStart(2, "0")}</span>
               <h3 className="font-serif text-xl text-ivory">{belief.title}</h3>
               <p className="text-sm text-stone">{belief.text}</p>
             </div>
@@ -134,14 +148,14 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section tone="ivory" eyebrow="05 · Founder">
+      <Section id="founder" tone="ivory" eyebrow="05 · Founder">
         <SplitSection>
           <EditorialImage image={founderImages.portraitClinical} variant="portrait" tone="light" />
           <div>
             <h2 className="section-title">
               Dr. Elizabeth
               <br />
-              <span className="text-gold">Consoli.</span>
+              <span className="text-crimson">Consoli.</span>
             </h2>
             <p className="lead-serif text-2xl sm:text-3xl">
               Medical doctor. Cosmetic formulator. Skin of colour specialist. Institution builder.
@@ -160,12 +174,12 @@ export default function AboutPage() {
 
       <QuoteBand>
         &ldquo;The future is created by people willing to think beyond existing limitations.&rdquo;
-        <cite className="mt-4 block text-[0.66rem] uppercase not-italic tracking-[0.2em] text-gold">
+        <cite className="mt-4 block text-[0.75rem] uppercase not-italic tracking-[0.2em] text-crimson">
           Dr. Elizabeth Consoli · Founder
         </cite>
       </QuoteBand>
 
-      <Section tone="ivory" eyebrow="06 · Mandate">
+      <Section id="mandate" tone="ivory" eyebrow="06 · Mandate">
         <SplitSection reverse>
           <PhotoGrid
             images={[
@@ -177,17 +191,17 @@ export default function AboutPage() {
             <h2 className="section-title">
               Set the standard.
               <br />
-              <span className="text-gold">Build beyond self.</span>
+              <span className="text-crimson">Build beyond self.</span>
             </h2>
             <p className="lead-serif text-2xl sm:text-3xl">
               The founder establishes the intellectual culture; the institution is designed to carry it forward.
             </p>
-            <ol className="mt-8 flex flex-col gap-4 border-t border-border-subtle pt-6">
+            <ol className="mt-8 flex flex-col gap-4 border-t border-rule pt-6">
               {timeline.map((item) => (
                 <li key={item.period} className="grid gap-4 sm:grid-cols-[4rem_1fr]">
-                  <span className="text-[0.66rem] uppercase tracking-[0.15em] text-oxblood">{item.period}</span>
+                  <span className="text-[0.75rem] uppercase tracking-[0.15em] text-crimson">{item.period}</span>
                   <div>
-                    <h3 className="font-serif text-lg text-graphite">{item.title}</h3>
+                    <h3 className="font-serif text-lg text-ink">{item.title}</h3>
                     <p className="mt-1 body-copy">{item.text}</p>
                   </div>
                 </li>
@@ -198,16 +212,17 @@ export default function AboutPage() {
       </Section>
 
       <Section
+        id="architecture"
         tone="cream"
         eyebrow="07 · Architecture"
         title="The roles that move ideas forward."
         intro="Origina is building a multidisciplinary organisation. These functions define the capability being assembled as the institution grows."
       >
-        <div className="grid gap-6 border-t border-border-subtle pt-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 border-t border-rule pt-8 sm:grid-cols-2 lg:grid-cols-4">
           {roles.map((role, index) => (
             <article key={role.title} className="institutional-card">
-              <span className="text-gold">{String(index + 1).padStart(2, "0")}</span>
-              <h3 className="mt-2 font-serif text-xl text-graphite">{role.title}</h3>
+              <span className="text-ivory/70">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className="mt-2 font-serif text-xl text-ink">{role.title}</h3>
               <p className="mt-2 body-copy">{role.text}</p>
             </article>
           ))}

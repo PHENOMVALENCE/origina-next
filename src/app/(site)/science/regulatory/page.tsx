@@ -25,7 +25,7 @@ export default function RegulatoryPage() {
           <>
             Science does not
             <br />
-            <span className="text-gold-light">replace regulation.</span>
+            <span className="text-crimson">replace regulation.</span>
           </>
         }
         intro="Cosmetics, medicines, medical devices, and clinical investigations may follow different regulatory pathways. Classification precedes claims."
@@ -33,15 +33,15 @@ export default function RegulatoryPage() {
 
       <Section eyebrow="01 · Regulatory architecture" title="Classification precedes claims.">
         <div className="mb-8 grid gap-4 sm:grid-cols-2">
-          <div className="institutional-panel border-gold/25">
-            <p className="scientific-label text-gold">Cosmetics · Tanzania</p>
+          <div className="institutional-panel border-crimson/25">
+            <p className="scientific-label text-crimson">Cosmetics · Tanzania</p>
             <p className="mt-3 body-copy">
               Cosmetic products placed on the Tanzanian market are subject to applicable Tanzania Bureau of Standards
               (TBS) frameworks. ORIGINA does not claim TBS approval unless explicitly documented.
             </p>
           </div>
-          <div className="institutional-panel border-gold/25">
-            <p className="scientific-label text-gold">Medicines · Devices · Clinical trials</p>
+          <div className="institutional-panel border-crimson/25">
+            <p className="scientific-label text-crimson">Medicines · Devices · Clinical trials</p>
             <p className="mt-3 body-copy">
               Medicines, medical devices, diagnostics, and regulated clinical investigations fall under applicable
               Tanzania Medicines and Medical Devices Authority (TMDA) frameworks where relevant.

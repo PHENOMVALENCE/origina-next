@@ -67,6 +67,7 @@ Keep these current when they change (same commit or immediately following `docs:
 | `docs/PROGRESS.md` | Session log, PR history, current status table |
 | `docs/ROADMAP.md` | Phased plan, checkboxes for remaining work |
 | `docs/ARCHITECTURE.md` | Stack, routes, design system, components, database |
+| `docs/DESIGN.md` | Design standard: brand layers, type scale, components, rationale |
 | `docs/SETUP.md` | Env vars, migrations, admin, deployment checklist |
 | `README.md` | Quick status, scripts, links to docs |
 

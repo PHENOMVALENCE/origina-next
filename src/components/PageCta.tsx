@@ -7,37 +7,57 @@ type CtaLink = {
   variant?: "primary" | "secondary";
 };
 
+/**
+ * Closing call to action.
+ *
+ * Defaults to the institutional register: a sunk paper band opened by a rule,
+ * with a crimson primary action. Division pages pass `tone="noir"` to close in
+ * the product register with a gold action.
+ */
 export function PageCta({
   eyebrow,
   title,
   intro,
   links,
-  tone = "noir",
+  tone = "sunk",
 }: {
   eyebrow?: string;
   title?: React.ReactNode;
   intro?: string;
   links: CtaLink[];
-  tone?: "noir" | "graphite";
+  tone?: "sunk" | "noir" | "graphite";
 }) {
+  const isDark = tone === "noir" || tone === "graphite";
+  const ground = tone === "graphite" ? "bg-graphite" : tone === "noir" ? "bg-noir" : "bg-paper-sunk";
+
   return (
-    <section className={`${tone === "graphite" ? "bg-graphite" : "bg-noir"} py-12 text-ivory sm:py-16 lg:py-20`}>
-      <div className="site-container">
-        {eyebrow ? <Eyebrow tone="dark">{eyebrow}</Eyebrow> : null}
+    <section className={`${ground} ${isDark ? "text-ivory" : "text-ink"} border-t ${isDark ? "border-white/12" : "border-rule"}`}>
+      <div className="site-container py-16 sm:py-20 lg:py-24">
+        {eyebrow ? <Eyebrow tone={isDark ? "dark" : "default"}>{eyebrow}</Eyebrow> : null}
+
         {title ? (
-          <h2 className="section-title-light mb-4 max-w-2xl sm:mb-6">{title}</h2>
+          <h2 className={`section-title mb-5 max-w-2xl sm:mb-7 ${isDark ? "text-ivory" : ""}`}>{title}</h2>
         ) : null}
-        {intro ? <p className="section-intro text-stone">{intro}</p> : null}
+
+        {intro ? <p className={`section-intro ${isDark ? "text-muted-dark" : ""}`}>{intro}</p> : null}
+
         <div className="cta-actions">
-          {links.map((link) => (
-            <Button
-              key={link.href + link.label}
-              href={link.href}
-              variant={link.variant === "secondary" ? "secondary" : "primary"}
-            >
-              {link.label}
-            </Button>
-          ))}
+          {links.map((link) => {
+            const secondary = link.variant === "secondary";
+            const variant = isDark
+              ? secondary
+                ? "secondary"
+                : "gold"
+              : secondary
+                ? "secondary-dark"
+                : "primary";
+
+            return (
+              <Button key={link.href + link.label} href={link.href} variant={variant}>
+                {link.label}
+              </Button>
+            );
+          })}
         </div>
       </div>
     </section>

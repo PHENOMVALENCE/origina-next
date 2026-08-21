@@ -2,14 +2,33 @@
 
 /*
  * ORIGINA institutional design system
- * Tokens ported from origina/css/origina.css and institutional.css
+ *
+ * Two-layer brand architecture:
+ *   INSTITUTION LAYER - light paper ground, crimson accent, hairline rules.
+ *     Used by: home, about, science, labs, evidence, founder, africa, future, culture.
+ *   DIVISION LAYER - noir ground, gold accent.
+ *     Used by: division and product pages (B-Melanox, Novia, DIVINE, BValence).
+ *
+ * See docs/DESIGN.md for the rationale, scale, and usage rules.
  */
 @theme {
+  /* --- Institution layer (light) --- */
+  --color-paper: #fdfbf7;
+  --color-paper-sunk: #f5f0e6;
+  --color-ink: #1b1714;
+  --color-ink-soft: #4a423a;
+  --color-crimson: #7a171b;
+  --color-crimson-deep: #5c1114;
+  --color-crimson-light: #a3272c;
+
+  /* --- Division layer (dark) --- */
   --color-noir: #161210;
   --color-noir-deep: #0d0b09;
-  --color-ivory: #f8f4ec;
   --color-gold: #b5924a;
   --color-gold-light: #d6bd83;
+
+  /* --- Shared --- */
+  --color-ivory: #f8f4ec;
   --color-graphite: #3a332c;
   --color-stone: #9a8e80;
   --color-muted-dark: #b7aca0;
@@ -20,15 +39,23 @@
   --color-surface-muted: #f0e9df;
   --color-form-bg: #fffdf8;
   --color-form-border: #d8cec1;
+
+  /* --- Rules: hairlines are the primary institutional device --- */
+  --color-rule: rgba(27, 23, 20, 0.16);
+  --color-rule-soft: rgba(27, 23, 20, 0.09);
+  --color-rule-strong: rgba(27, 23, 20, 0.34);
+  --color-rule-crimson: rgba(122, 23, 27, 0.4);
   --color-border-subtle: rgba(58, 51, 44, 0.14);
   --color-border-gold: rgba(181, 146, 74, 0.35);
 
   --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
   --font-sans: var(--font-montserrat), "Montserrat", sans-serif;
 
-  --content-max: 1440px;
-  --header-offset: 4.75rem;
-  --section-y: clamp(3rem, 6vw, 7rem);
+  --content-max: 1320px;
+  --measure: 68ch;
+  --measure-tight: 58ch;
+  --header-offset: 4.25rem;
+  --section-y: clamp(4rem, 7vw, 8.5rem);
   --transition-fast: 0.25s;
   --transition-med: 0.45s;
 
@@ -36,24 +63,33 @@
   --shadow-nav: 0 18px 60px rgba(8, 6, 5, 0.28);
 }
 
+/* Matches the rendered header: 69px at lg, ~64px below it. */
 @media (min-width: 1024px) {
   :root {
-    --header-offset: 5.5rem;
+    --header-offset: 4.375rem;
   }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-offset);
+  scroll-padding-top: calc(var(--header-offset) + 1.5rem);
 }
 
+/*
+ * Institutional base type.
+ * Body copy sits at 17px / 1.72 - the readable, generous setting used by
+ * university and research-institute publishing. Nothing in the interface
+ * is permitted below 11px (0.6875rem).
+ */
 body {
-  background: var(--color-ivory);
-  color: var(--color-noir);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  line-height: 1.75;
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
@@ -63,53 +99,151 @@ h3,
 h4 {
   font-family: var(--font-serif);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-crimson);
   outline-offset: 3px;
 }
 
 ::selection {
-  background: rgba(181, 146, 74, 0.25);
-  color: var(--color-noir);
+  background: rgba(122, 23, 27, 0.16);
+  color: var(--color-ink);
 }
 
 @layer components {
+  /* ============================================================
+   * Structure
+   * ============================================================ */
   .site-container {
-    @apply mx-auto max-w-(--content-max) px-4 sm:px-6 lg:px-16;
+    @apply mx-auto max-w-(--content-max) px-5 sm:px-8 lg:px-12 xl:px-16;
   }
 
   .section-shell {
     @apply py-(--section-y);
   }
 
+  /* Text columns are held to a reading measure, never the full container. */
+  .measure {
+    max-width: var(--measure);
+  }
+
+  .measure-tight {
+    max-width: var(--measure-tight);
+  }
+
+  /* ============================================================
+   * Rules - the primary institutional device
+   * ============================================================ */
+  .rule {
+    @apply h-px w-full border-0 bg-rule;
+  }
+
+  .rule-soft {
+    @apply h-px w-full border-0 bg-rule-soft;
+  }
+
+  .rule-crimson {
+    @apply h-px w-16 border-0 bg-crimson;
+  }
+
+  .rule-gold {
+    @apply h-px w-16 border-0 bg-gold;
+  }
+
+  /* ============================================================
+   * Header - flat, full-bleed, grounded
+   * ============================================================ */
+  .site-header {
+    @apply fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300;
+  }
+
+  /* Opaque: the hero runs full-bleed beneath the header, and any translucency
+     ghosts the photograph through the bar. */
+  .site-header--light {
+    @apply border-rule bg-paper;
+  }
+
+  .site-header--dark {
+    @apply border-white/15 bg-noir;
+  }
+
+  .site-header-inner {
+    @apply mx-auto flex max-w-(--content-max) items-center justify-between gap-6 px-5 py-3.5 sm:px-8 lg:px-12 lg:py-4 xl:px-16;
+  }
+
+  .site-wordmark {
+    @apply inline-flex min-w-0 items-center gap-3 transition-opacity hover:opacity-80;
+  }
+
+  .site-wordmark-text {
+    @apply truncate text-[0.9375rem] font-semibold tracking-[0.22em] lg:text-base;
+  }
+
+  .site-nav-link {
+    @apply relative whitespace-nowrap px-3 py-2 text-[0.8125rem] font-medium tracking-[0.01em] transition-colors xl:px-4 xl:text-sm;
+  }
+
+  .site-nav-panel {
+    @apply absolute left-0 top-full w-72 border border-rule bg-paper py-2 shadow-[0_20px_50px_rgba(27,23,20,0.14)];
+  }
+
+  .site-nav-panel--dark {
+    @apply border-white/15 bg-noir shadow-[var(--shadow-nav)];
+  }
+
+  .site-nav-panel-link {
+    @apply block px-5 py-2.5 text-[0.9375rem] transition-colors;
+  }
+
+  /* ============================================================
+   * Editorial typography
+   * ============================================================ */
+  .display-title {
+    @apply font-serif text-[2.6rem] leading-[0.98] sm:text-[3.5rem] sm:leading-[0.95] lg:text-[5rem] xl:text-[5.75rem];
+  }
+
+  .section-title {
+    @apply mb-7 max-w-3xl font-serif text-[2rem] leading-[1.08] sm:mb-9 sm:text-[2.75rem] sm:leading-[1.04] lg:text-[3.35rem];
+  }
+
+  .section-title-light {
+    @apply mb-7 max-w-3xl font-serif text-[2rem] leading-[1.08] text-ivory sm:mb-9 sm:text-[2.75rem] sm:leading-[1.04] lg:text-[3.35rem];
+  }
+
+  .lead-serif {
+    @apply font-serif text-[1.5rem] leading-[1.35] text-ink sm:text-[1.85rem] lg:text-[2.15rem];
+  }
+
+  .lead-serif-light {
+    @apply font-serif text-[1.5rem] leading-[1.35] text-ivory/95 sm:text-[1.85rem] lg:text-[2.15rem];
+  }
+
+  .body-copy {
+    @apply text-[1.0625rem] leading-[1.72] text-ink-soft;
+  }
+
+  .body-copy-light {
+    @apply text-[1.0625rem] leading-[1.72] text-muted-dark;
+  }
+
   .section-intro {
-    @apply mb-6 max-w-2xl text-[0.9375rem] leading-relaxed sm:mb-10;
+    @apply mb-8 max-w-(--measure) text-[1.125rem] leading-[1.66] text-ink-soft sm:mb-12;
   }
 
-  .page-hero-shell {
-    @apply pt-28 pb-14 text-ivory sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-28;
+  .muted-on-dark {
+    color: var(--color-muted-dark);
   }
 
-  .cta-actions {
-    @apply flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4;
-  }
-
-  .cta-actions .btn-primary,
-  .cta-actions .btn-secondary,
-  .cta-actions .btn-secondary-dark {
-    @apply w-full sm:w-auto;
-  }
-
+  /* Eyebrow - small caps label, never below 11px. */
   .eyebrow {
-    @apply mb-3 flex items-center gap-2 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-gold sm:mb-4 sm:gap-3 sm:text-[0.68rem] sm:tracking-[0.22em];
+    @apply mb-4 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-crimson sm:mb-5 sm:text-[0.75rem];
   }
 
   .eyebrow::before {
     content: "";
-    @apply block h-px w-8 shrink-0 bg-gold/70;
+    @apply block h-px w-8 shrink-0 bg-crimson/60;
   }
 
   .eyebrow--plain::before {
@@ -120,120 +254,243 @@ h4 {
     @apply text-gold-light;
   }
 
-  .lead-serif {
-    @apply font-serif text-xl leading-snug text-graphite sm:text-2xl lg:text-3xl;
+  .eyebrow--dark::before {
+    @apply bg-gold/70;
   }
 
-  .lead-serif-light {
-    @apply font-serif text-xl leading-snug text-ivory/95 sm:text-2xl lg:text-3xl;
+  /* Section numbering - the ordinal index used on institutional pages. */
+  .section-index {
+    @apply mb-3 block font-serif text-[1.5rem] leading-none text-crimson/45;
   }
 
-  .body-copy {
-    @apply text-[0.9375rem] leading-relaxed text-graphite/88;
+  .section-index--dark {
+    @apply text-gold/50;
   }
 
-  .body-copy-light {
-    @apply text-[0.9375rem] leading-relaxed text-stone;
-  }
-
-  .muted-on-dark {
-    color: var(--color-muted-dark);
-  }
-
-  .display-title {
-    @apply font-serif text-[2.35rem] leading-[0.94] sm:text-5xl sm:leading-[0.92] lg:text-7xl;
-  }
-
-  .section-title {
-    @apply mb-6 max-w-3xl font-serif text-[1.85rem] leading-[1.06] sm:mb-8 sm:text-4xl sm:leading-[1.02] lg:text-5xl;
-  }
-
-  .section-title-light {
-    @apply mb-6 max-w-3xl font-serif text-[1.85rem] leading-[1.06] text-ivory sm:mb-8 sm:text-4xl sm:leading-[1.02] lg:text-5xl;
-  }
-
+  /* ============================================================
+   * Buttons - squared, generous, legible
+   * ============================================================ */
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-sm bg-gold px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-noir transition-colors duration-200 hover:bg-gold-light sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-crimson px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-200 hover:bg-crimson-deep;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-ivory/35 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-12 items-center justify-center rounded-none border border-ivory/40 px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ivory transition-colors duration-200 hover:border-gold hover:text-gold;
   }
 
   .btn-secondary-dark {
-    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-graphite/20 px-5 py-3 text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-graphite transition-colors duration-200 hover:border-gold hover:text-oxblood sm:px-6 sm:py-3.5 sm:text-[0.68rem] sm:tracking-[0.18em];
+    @apply inline-flex min-h-12 items-center justify-center rounded-none border border-rule-strong px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-200 hover:border-crimson hover:text-crimson;
   }
 
+  /* Gold primary - division layer only. */
+  .btn-gold {
+    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-gold px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-noir transition-colors duration-200 hover:bg-gold-light;
+  }
+
+  /*
+   * Compact button size, for the header call to action. Declared after the
+   * button bases so it wins on source order within the same layer — utility
+   * overrides lose to the component's own min-height.
+   */
+  .btn-compact {
+    @apply min-h-9 px-5 py-2 text-[0.75rem] tracking-[0.14em];
+  }
+
+  .cta-actions {
+    @apply flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4;
+  }
+
+  .cta-actions .btn-primary,
+  .cta-actions .btn-secondary,
+  .cta-actions .btn-secondary-dark,
+  .cta-actions .btn-gold {
+    @apply w-full sm:w-auto;
+  }
+
+  /* Text links carry a considered underline, not a colour change alone. */
   .text-link {
-    @apply inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-oxblood transition-colors hover:text-gold;
+    @apply inline-flex items-center gap-2 border-b border-crimson/35 pb-0.5 text-[0.9375rem] font-medium text-crimson transition-colors hover:border-crimson hover:text-crimson-deep;
   }
 
   .text-link-light {
-    @apply inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-gold transition-colors hover:text-gold-light;
+    @apply inline-flex items-center gap-2 border-b border-gold/40 pb-0.5 text-[0.9375rem] font-medium text-gold transition-colors hover:border-gold hover:text-gold-light;
   }
 
+  /* ============================================================
+   * Hero
+   * ============================================================ */
+  .page-hero-shell {
+    @apply pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28;
+  }
+
+  .page-hero--light {
+    @apply border-b border-rule bg-paper text-ink;
+  }
+
+  .page-hero--dark {
+    @apply bg-noir text-ivory;
+  }
+
+  .breadcrumb {
+    @apply mb-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.75rem] uppercase tracking-[0.14em] sm:mb-9;
+  }
+
+  /* ============================================================
+   * Cards and panels - restrained; rules over shadows
+   * ============================================================ */
   .institutional-card {
-    @apply border border-border-subtle bg-ivory p-5 transition-all duration-200 hover:border-gold/35 hover:bg-cream hover:shadow-[var(--shadow-soft)] sm:p-6;
+    @apply border border-rule bg-paper p-6 transition-colors duration-200 hover:border-crimson/40 sm:p-7;
   }
 
-  .quote-band {
-    @apply border-y border-gold/20 bg-noir px-4 py-12 text-center sm:py-16;
-  }
-
-  .quote-band blockquote {
-    @apply mx-auto max-w-3xl font-serif text-2xl leading-snug text-ivory sm:text-3xl lg:text-4xl;
-  }
-
-  .principle-stack {
-    @apply space-y-5 border-l-2 border-gold/30 pl-6;
-  }
-
-  .principle-stack blockquote {
-    @apply font-serif text-xl italic leading-relaxed text-ivory/92 sm:text-2xl;
-  }
-
-  .reading-progress {
-    @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-gold transition-transform duration-150;
-  }
-
-  .tag-chip {
-    @apply rounded-full border border-border-subtle px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] text-graphite;
-  }
-
-  .legal-prose {
-    @apply max-w-3xl space-y-10;
-  }
-
-  .legal-prose h2 {
-    @apply mb-4 font-serif text-2xl text-graphite sm:text-3xl;
-  }
-
-  .legal-prose p {
-    @apply text-[0.9375rem] leading-relaxed text-graphite/88;
-  }
-
-  .legal-prose a {
-    @apply text-oxblood transition-colors hover:text-gold;
-  }
-
-  .publication-item {
-    @apply grid gap-3 border-b border-border-subtle pb-6 last:border-b-0 sm:gap-4 sm:pb-8 lg:grid-cols-[8rem_1fr_6rem];
+  .institutional-panel {
+    @apply border border-rule bg-paper p-6 sm:p-7;
   }
 
   .compare-panel {
-    @apply border border-border-subtle bg-ivory p-5 sm:p-8;
+    @apply border border-rule bg-paper p-6 sm:p-8;
   }
 
+  /* An indexed card: number, rule, title, copy. */
+  .index-card {
+    @apply border-t border-rule-strong pt-6;
+  }
+
+  .pillar-card-index {
+    @apply mb-3 block font-serif text-[1.375rem] leading-none text-crimson/50;
+  }
+
+  /* ============================================================
+   * Quotes
+   * ============================================================ */
+  .quote-band {
+    @apply border-y border-rule bg-paper-sunk px-5 py-16 text-center sm:py-24;
+  }
+
+  .quote-band blockquote {
+    @apply mx-auto max-w-4xl font-serif text-[1.85rem] leading-[1.22] text-ink sm:text-[2.5rem] lg:text-[3rem];
+  }
+
+  .quote-band--dark {
+    @apply border-y border-gold/25 bg-noir;
+  }
+
+  .quote-band--dark blockquote {
+    @apply text-ivory;
+  }
+
+  .quote-attribution {
+    @apply mt-7 text-[0.75rem] uppercase tracking-[0.18em] text-stone;
+  }
+
+  .pull-quote {
+    @apply border-l-2 border-crimson py-1 pl-6 font-serif text-[1.5rem] leading-[1.3] text-ink sm:text-[1.75rem];
+  }
+
+  .pull-quote--dark {
+    @apply border-gold text-ivory;
+  }
+
+  .principle-stack {
+    @apply space-y-6 border-l-2 border-crimson/35 pl-7;
+  }
+
+  .principle-stack blockquote {
+    @apply font-serif text-[1.375rem] italic leading-relaxed text-ink sm:text-[1.5rem];
+  }
+
+  /* ============================================================
+   * Metadata, labels, status
+   * ============================================================ */
+  .scientific-label {
+    @apply text-[0.6875rem] font-semibold uppercase tracking-[0.18em];
+  }
+
+  .scientific-metadata {
+    @apply text-[0.6875rem] uppercase tracking-[0.14em] text-stone;
+  }
+
+  /* Page provenance line - institutions state when a page was reviewed. */
+  .page-meta {
+    @apply flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-rule pt-5 text-[0.75rem] text-stone;
+  }
+
+  .footnote {
+    @apply border-t border-rule pt-4 text-[0.8125rem] leading-relaxed text-stone;
+  }
+
+  .content-status {
+    @apply inline-flex items-center border px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.1em];
+  }
+
+  .content-status--current {
+    @apply border-sage/45 bg-sage-light text-sage;
+  }
+
+  .content-status--development {
+    @apply border-crimson/30 bg-crimson/5 text-crimson;
+  }
+
+  .content-status--research {
+    @apply border-rule bg-paper-sunk text-ink-soft;
+  }
+
+  .content-status--future {
+    @apply border-rule bg-transparent text-stone;
+  }
+
+  .tag-chip {
+    @apply rounded-none border border-rule px-4 py-2 text-[0.8125rem] tracking-[0.02em] text-ink-soft;
+  }
+
+  /* Statistic display - large serif figure over a small caps label. */
+  .stat-figure {
+    @apply font-serif text-[2.5rem] leading-none text-crimson sm:text-[3rem];
+  }
+
+  .stat-figure--dark {
+    @apply font-serif text-[2.5rem] leading-none text-gold sm:text-[3rem];
+  }
+
+  .stat-label {
+    @apply mt-2 text-[0.6875rem] uppercase tracking-[0.16em] text-stone;
+  }
+
+  /* ============================================================
+   * Long-form prose
+   * ============================================================ */
+  .legal-prose {
+    @apply max-w-(--measure) space-y-12;
+  }
+
+  .legal-prose h2 {
+    @apply mb-5 font-serif text-[1.85rem] text-ink sm:text-[2.25rem];
+  }
+
+  .legal-prose p {
+    @apply text-[1.0625rem] leading-[1.72] text-ink-soft;
+  }
+
+  .legal-prose a {
+    @apply border-b border-crimson/35 text-crimson transition-colors hover:border-crimson;
+  }
+
+  .publication-item {
+    @apply grid gap-3 border-b border-rule pb-7 last:border-b-0 sm:gap-5 sm:pb-9 lg:grid-cols-[9rem_1fr_7rem];
+  }
+
+  /* ============================================================
+   * Media
+   * ============================================================ */
   .editorial-frame {
     @apply relative;
   }
 
   .editorial-frame-accent {
-    @apply pointer-events-none absolute inset-y-6 left-0 w-px bg-gold/60;
+    @apply pointer-events-none absolute inset-y-6 left-0 w-px bg-crimson/50;
   }
 
   .editorial-caption {
-    @apply mt-3 text-[0.62rem] uppercase tracking-[0.14em] text-stone;
+    @apply mt-3 border-l border-rule pl-3 text-[0.75rem] leading-relaxed tracking-[0.02em] text-stone;
   }
 
   .image-break {
@@ -241,7 +498,7 @@ h4 {
   }
 
   .photo-mosaic {
-    @apply grid gap-4;
+    @apply grid gap-5;
   }
 
   .photo-mosaic--duo {
@@ -252,16 +509,19 @@ h4 {
     @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
   }
 
+  /* ============================================================
+   * Division layer (dark) components
+   * ============================================================ */
   .division-card {
-    @apply relative flex min-h-[280px] flex-col overflow-hidden border border-border-subtle bg-noir transition-all duration-300 hover:border-gold/40 hover:shadow-[var(--shadow-soft)] sm:min-h-[320px];
+    @apply relative flex min-h-[300px] flex-col overflow-hidden rounded-none border border-rule bg-noir transition-colors duration-300 hover:border-gold/50 sm:min-h-[340px];
   }
 
   .division-card-media {
-    @apply relative h-36 overflow-hidden sm:h-44;
+    @apply relative h-40 overflow-hidden sm:h-48;
   }
 
   .division-card-body {
-    @apply flex flex-1 flex-col p-5 sm:p-6;
+    @apply flex flex-1 flex-col p-6;
   }
 
   .hero-panel {
@@ -272,149 +532,129 @@ h4 {
     @apply absolute inset-0 bg-gradient-to-t from-noir via-noir/25 to-noir/10;
   }
 
+  /* ============================================================
+   * Homepage hero
+   * ============================================================ */
+  /*
+   * The hero is held to the viewport so its vertically centred content reads as
+   * centred. Left to grow with its content it ran ~1200px on a 720px screen,
+   * which pushed the composition below the fold.
+   */
   .home-hero {
-    @apply relative grid min-h-0 grid-cols-1 overflow-hidden lg:min-h-[92vh] lg:grid-cols-[1.05fr_0.95fr];
+    @apply relative grid min-h-0 grid-cols-1 overflow-hidden lg:h-[calc(100dvh-var(--header-offset))] lg:max-h-[880px] lg:min-h-[600px] lg:grid-cols-[1.05fr_0.95fr];
   }
 
   .home-hero-media {
-    @apply relative order-1 min-h-[clamp(17.5rem,58vh,28rem)] overflow-hidden lg:order-2 lg:min-h-[520px];
+    @apply relative order-1 min-h-[clamp(18rem,58vh,30rem)] overflow-hidden lg:order-2 lg:min-h-0;
   }
 
   .home-hero-media-shade {
     background-image:
-      linear-gradient(to bottom, rgba(22, 18, 16, 0.72) 0%, rgba(22, 18, 16, 0.08) 34%, rgba(22, 18, 16, 0.22) 68%, rgb(22, 18, 16) 100%);
+      linear-gradient(to bottom, rgba(27, 23, 20, 0.5) 0%, rgba(27, 23, 20, 0.05) 34%, rgba(27, 23, 20, 0.16) 68%, rgba(27, 23, 20, 0.68) 100%);
     @apply pointer-events-none absolute inset-0;
   }
 
   @media (min-width: 1024px) {
     .home-hero-media-shade {
-      background-image: linear-gradient(to top, rgb(22, 18, 16) 0%, rgba(22, 18, 16, 0.2) 42%, transparent 100%);
+      background-image: linear-gradient(to right, var(--color-paper) 0%, rgba(253, 251, 247, 0.3) 14%, transparent 42%);
     }
   }
 
   .home-hero-media-caption {
-    @apply absolute inset-x-0 bottom-0 hidden p-5 sm:p-6 lg:block lg:p-8;
+    @apply absolute inset-x-0 bottom-0 hidden p-6 lg:block lg:p-9;
   }
 
   .home-hero-content {
-    @apply relative order-2 flex flex-col justify-center px-4 pt-10 pb-14 sm:px-6 sm:pt-12 sm:pb-16 lg:order-1 lg:px-16 lg:pt-44 lg:pb-16;
+    @apply relative order-2 flex flex-col justify-center px-5 pt-14 pb-16 sm:px-8 sm:pt-16 sm:pb-20 lg:order-1 lg:px-12 lg:py-14 xl:px-16;
   }
 
   .home-hero-content-inner {
-    @apply relative max-w-xl lg:max-w-none;
+    @apply relative max-w-2xl lg:max-w-none;
   }
 
   .home-hero-accent {
-    @apply mb-5 h-px w-12 bg-gold/70 lg:mb-8 lg:w-16;
+    @apply mb-6 h-px w-16 bg-crimson lg:mb-7 lg:w-20;
   }
 
   .home-hero-kicker {
-    @apply mb-4 max-w-md text-[0.8125rem] leading-relaxed text-stone;
+    @apply mb-5 max-w-md text-[0.9375rem] leading-relaxed text-stone;
   }
 
   .home-hero-eyebrow {
-    @apply mb-4 text-[0.58rem] tracking-[0.16em] sm:mb-5 sm:text-[0.62rem] sm:tracking-[0.18em];
+    @apply mb-5 text-[0.6875rem] tracking-[0.2em] sm:text-[0.75rem];
   }
 
+  /* Sized so "Beginning in Africa." holds one line in the content column. */
   .home-hero-title {
-    @apply max-w-[12ch] text-[2.5rem] sm:max-w-none sm:text-5xl lg:text-[6.25rem];
+    @apply max-w-[13ch] text-[2.6rem] sm:max-w-none sm:text-[3.5rem] lg:text-[3.75rem] xl:text-[4.25rem];
   }
 
   .home-hero-tagline {
-    @apply mt-2 block font-serif text-[1.65rem] leading-[0.98] text-gold-light sm:mt-3 sm:text-3xl lg:mt-4 lg:text-5xl;
+    @apply mt-2 block font-serif text-[1.85rem] leading-[1.0] text-crimson sm:mt-3 sm:text-[2.5rem] lg:mt-3 lg:text-[2.75rem] xl:text-[3.15rem];
   }
 
   .home-hero-lede {
-    @apply mt-6 max-w-lg text-[0.9375rem] leading-relaxed sm:mt-7;
+    @apply mt-6 max-w-(--measure-tight) text-[1.0625rem] leading-[1.65] text-ink-soft sm:mt-7 lg:text-[1.125rem];
   }
 
   .home-hero-origin {
-    @apply mt-3 text-sm text-stone;
+    @apply mt-3 text-[0.9375rem] text-stone;
   }
 
   .home-hero-actions {
-    @apply mt-7 sm:mt-8;
+    @apply mt-8;
   }
 
   .home-hero-stats {
-    @apply mt-10 grid max-w-md grid-cols-3 gap-0 border-t border-gold/20 pt-6 sm:mt-12 sm:pt-8 lg:mt-16;
+    @apply mt-10 grid max-w-lg grid-cols-3 gap-0 border-t border-rule pt-6 sm:mt-12 sm:pt-7;
   }
 
   .home-hero-stat {
-    @apply px-0 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-gold/15 [&:not(:first-child)]:pl-4 sm:[&:not(:first-child)]:pl-6;
+    @apply px-0 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-rule [&:not(:first-child)]:pl-5 sm:[&:not(:first-child)]:pl-7;
   }
 
   .home-hero-scroll {
-    @apply mt-10 inline-flex items-center gap-3 text-[0.58rem] uppercase tracking-[0.2em] text-stone transition-colors hover:text-gold lg:mt-12;
+    @apply mt-10 hidden items-center gap-3 text-[0.6875rem] uppercase tracking-[0.18em] text-stone transition-colors hover:text-crimson lg:inline-flex;
   }
 
   .home-hero-scroll::after {
     content: "";
-    @apply block h-8 w-px bg-gold/40;
+    @apply block h-6 w-px bg-crimson/40;
   }
 
   .home-section-bridge {
-    @apply border-b border-gold/15 bg-gradient-to-b from-noir to-ivory px-4 py-3 sm:px-6;
+    @apply border-y border-rule bg-paper-sunk px-5 py-4 sm:px-8;
   }
 
   .home-section-bridge p {
-    @apply mx-auto max-w-(--content-max) text-center text-[0.58rem] uppercase tracking-[0.18em] text-stone;
+    @apply mx-auto max-w-(--content-max) text-center text-[0.6875rem] uppercase tracking-[0.18em] text-stone;
   }
 
-  .pillar-card-index {
-    @apply mb-3 block text-[0.58rem] tracking-[0.16em] text-gold;
-  }
-
-  .scientific-label {
-    @apply text-[0.58rem] font-medium uppercase tracking-[0.18em];
-  }
-
-  .scientific-metadata {
-    @apply text-[0.56rem] uppercase tracking-[0.14em] text-stone;
-  }
-
-  .content-status {
-    @apply inline-flex items-center border px-2 py-1 text-[0.52rem] font-medium uppercase tracking-[0.12em];
-  }
-
-  .content-status--current {
-    @apply border-sage/40 bg-sage-light text-sage;
-  }
-
-  .content-status--development {
-    @apply border-gold/35 bg-cream text-graphite;
-  }
-
-  .content-status--research {
-    @apply border-border-subtle bg-surface-muted text-graphite;
-  }
-
-  .content-status--future {
-    @apply border-gold/25 bg-noir/5 text-stone;
-  }
-
-  .institutional-panel {
-    @apply border border-border-subtle bg-ivory p-5 sm:p-6;
-  }
-
+  /* ============================================================
+   * Diagrams
+   * ============================================================ */
   .systems-thinking {
-    @apply border-l border-gold/30 pl-5 sm:pl-6;
+    @apply border-l border-crimson/35 pl-6 sm:pl-7;
   }
 
   .systems-thinking__node {
-    @apply relative border-b border-border-subtle py-4 last:border-b-0;
+    @apply relative border-b border-rule py-5 last:border-b-0;
   }
 
   .systems-thinking__connector {
-    @apply mt-3 block text-center text-sm text-gold/70;
+    @apply mt-3 block text-center text-sm text-crimson/60;
   }
 
   .unnamed-division {
-    @apply flex min-h-[40vh] flex-col items-center justify-center bg-noir px-6 py-20 text-center text-ivory sm:min-h-[50vh] sm:py-28;
+    @apply flex min-h-[40vh] flex-col items-center justify-center bg-noir px-6 py-24 text-center text-ivory sm:min-h-[50vh] sm:py-32;
   }
 
   .unnamed-division__symbol {
     @apply font-serif text-6xl text-gold sm:text-8xl;
+  }
+
+  .reading-progress {
+    @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-crimson transition-transform duration-150;
   }
 }
 

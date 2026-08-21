@@ -4,34 +4,37 @@ Living record of what's been done, session by session. Update this in the same c
 immediately following `docs:` commit) whenever meaningful progress lands. Newest entries at top.
 See `docs/ROADMAP.md` for the phased plan this is tracked against.
 
-## Current status (2026-08-19)
+## Current status (2026-08-20)
 
-**Phases 1–4: complete (except optional homepage CMS editing). Phase 5: ready for cutover prep.**
+**Project focus has shifted.** The migration off PHP is functionally complete. The active priority
+is now **frontend design quality** — making the public site read like a research institution.
+Backend work (admin CMS, database, cutover plumbing) is built and parked; no further investment
+there for now. See `docs/DESIGN.md` for the design standard.
 
 | Area | Status |
 |---|---|
 | Scaffold, tooling, CI (lint/build) | ✅ Done |
-| Institutional design system + UI primitives | ✅ Done ([PR #5](https://github.com/PHENOMVALENCE/origina-next/pull/5)) |
-| Editorial photography + image layout | ✅ Done — [PR #6](https://github.com/PHENOMVALENCE/origina-next/pull/6) open |
+| **Institutional design system (two-layer, light/dark)** | ✅ Done — 2026-08-20 |
+| **Typography scale (17px body, 11px floor)** | ✅ Done — 2026-08-20 |
+| **Full-bleed institutional header** | ✅ Done — 2026-08-20 |
+| **In-page section navigation** | 🟨 Applied to `/about`, `/labs` — roll out to other long pages |
+| Editorial photography + image layout | ✅ Done |
 | Shared layout (header, mega-menu, mobile nav, footer) | ✅ Done |
 | Shared page components | ✅ Done |
-| All public pages (25 `(site)` routes + SEO infra) | ✅ Done |
+| All public pages (27 `(site)` page files → 33 public routes) | ✅ Done |
 | SEO (sitemap, robots, OG, JSON-LD, branded 404) | ✅ Done |
-| Postgres schema + enquiry Server Action | ✅ Done |
-| Production Postgres provisioning + migration | ⬜ Human step |
-| Admin auth (setup, login, session, 2FA optional) | ✅ Done |
-| Admin enquiries inbox + workflow | ✅ Done |
-| Admin publications CRUD + `/updates` | ✅ Done |
-| Analytics beacon + admin dashboard | ✅ Done |
-| Users/roles, audit log, password reset | ✅ Done |
-| Site content / homepage CMS editing | ⬜ Optional — not started |
-| DNS cutover to Next.js deployment | ⬜ Human step |
+| Page provenance / "reviewed" metadata | ⬜ `meta` prop exists on `PageHero`; not yet populated |
+| Full Lighthouse / accessibility pass | ⬜ Outstanding |
+| Postgres schema + enquiry Server Action | ✅ Done (parked) |
+| Admin auth, enquiries, publications, users, analytics | ✅ Done (parked) |
+| Site content / homepage CMS editing | ❎ Dropped — dead feature in the PHP source (see below) |
+| Production Postgres provisioning + migration | ⬜ Human step (deferred) |
+| DNS cutover to Next.js deployment | ⬜ Human step (deferred) |
 
 **Repo:** https://github.com/PHENOMVALENCE/origina-next · **Production branch:** `main` ·
-**Active feature branch:** `codex/editorial-imagery` ([PR #6](https://github.com/PHENOMVALENCE/origina-next/pull/6))
+**Active feature branch:** `codex/institutional-rebuild`
 
-**Build:** `npm run lint` and `npm run build` pass — 35 App Router routes (25 static public,
-1 dynamic public `/updates`, 9+ admin/API routes).
+**Build:** `npm run lint` and `npm run build` pass clean.
 
 ### Merged pull requests (production)
 
@@ -62,6 +65,107 @@ See `docs/ROADMAP.md` for the phased plan this is tracked against.
 See `docs/SETUP.md` for full deployment instructions.
 
 ---
+
+## 2026-08-20 — Landing page revision
+
+Reviewed the rendered homepage and fixed what the design system pass had left or introduced.
+Every number below was measured in-browser, not estimated.
+
+**Composition — the main fault.** The hero grew with its content to **1205px on a 720px viewport**.
+Because its content is vertically centred, that pushed the whole composition below the fold: a dead
+gap under the header, buttons crammed at the bottom edge, and the statistics row invisible at
+y=909. The hero is now held to the viewport (`lg:h-[calc(100dvh-var(--header-offset))]`, clamped
+600–880px) and measures **650px**, with the stats and scroll cue both above the fold.
+
+Supporting changes: removed the redundant `ORIGINA™` serif label from the hero (the wordmark sits
+in the header 60px above it), reduced display sizes, and tightened the vertical spacing.
+
+**Header.**
+
+- Removed the duplicate `Contact` nav item — the header already carries a standing call to action.
+  Nav is now 7 items; the button reads "Enquiries".
+- The dropdown caret was a `text-[0.6rem]` character — 9.6px, below our own 11px floor, rendering
+  as a speck. Replaced with a 9×5px SVG chevron.
+- Added `.btn-compact` and used it for the header CTA, which was 124×48 and dominating the bar; it
+  is now 124×37. A `min-h-0` utility did **not** override `.btn-primary`'s `min-h-12`, so the size
+  belongs in the button system rather than in utilities.
+- `--header-offset` at `lg` corrected from 5.25rem to 4.375rem to match the rendered 69px header.
+- Made the header opaque — the hero runs full-bleed beneath it and 95% opacity ghosted the
+  photograph through the bar.
+- The brand mark is drawn for a dark ground and was washing out on paper; it now sits on a noir
+  roundel in both layers.
+
+**Images and fonts.**
+
+- The hero image was serving a **384px-wide file into a 601px box** and rendering soft — its
+  `sizes` did not describe the layout. Corrected to `(min-width: 1024px) 48vw, 100vw`; it now
+  serves at 1080px.
+- The brand mark was `loading="lazy"` despite sitting above the fold. Now `eager`.
+- Trimmed unused webfonts: Cormorant 500/600 and Montserrat 300 were downloaded on every page but
+  no rule used them (nothing pairs `font-serif` with a weight utility).
+
+**Verified:** hero 650px on a 720px viewport with all content above the fold; header 69px, opaque;
+CTA 124×37; hero image at w=1080; no horizontal overflow at 375×812 and the mobile stack intact;
+lint and build clean.
+
+**Known benign notice:** Next emits a 1x/2x preload for the 24px brand mark, so dev logs a
+"preloaded but not used" line for the unused candidate. Keeping `eager` was preferred over
+silencing it, since lazy-loading a header wordmark risks it popping in after paint.
+
+## 2026-08-20 — Institutional design system (two-layer rebuild)
+
+Project refocused from migration/backend onto frontend design quality. The brief: the site should
+read like a research institution (Harvard, Yale, Rockefeller), not a luxury brand. Full rationale
+in the new `docs/DESIGN.md`.
+
+**Audit findings that drove the work:**
+
+- Body copy was 15px; interface labels ran as low as **8.3px** and enquiry form labels **9px**;
+  desktop nav links **~8.8px**. Institutions use 17–20px body. This was both a design and an
+  accessibility problem.
+- Gold-on-noir was the default ground on nearly every page. That is luxury/cosmetics language and
+  fought the scientific-institution positioning established in PRs #9/#11.
+- The header was a floating `rounded-full` pill with backdrop blur — the most modern-SaaS element
+  on the site.
+
+**Decisions taken (owner-approved):** light institution layer / dark division layer; full-bleed
+flat institutional header.
+
+**Changes:**
+
+- Rebuilt `src/app/globals.css` as a two-layer system — paper/ink/crimson for the institution,
+  noir/ivory/gold for divisions. Added rule, measure, and statistic tokens.
+- Typography: body **15px → 17px**, nav **~8.8px → 14px**, buttons **~10.5px → 13px**. Established
+  an **11px hard floor** and raised 30 sub-11px instances across the public site.
+- Added `src/lib/layer.ts` — resolves brand layer from pathname; header, hero, and CTA read from it.
+- `SiteHeader` rebuilt: flat, full-bleed, hairline rule, squared, no pill, no blur-heavy float.
+- `PageHero` light by default, dark for the six division pages; added optional `meta` provenance line.
+- `PageCta` now closes institution pages in the light register (crimson action) and division pages
+  in the dark register (gold action).
+- `Section` gained `paper`/`sunk`/`crimson` tones (old names kept as aliases), plus `index` and
+  `divider`.
+- Rebuilt `InstitutionMap` hierarchy — crimson institution block, ink science block, paper panels.
+- `Quote`/`QuoteBand` gained attribution; `StatusBadge`, `ContentStatus`, `EnquiryForm`,
+  `SiteFooter`, `InstitutionMap`, `DetailList`, `EvidenceLadder`, `LabsCapabilities`,
+  `ProcessPathway`, `ResearchLibrary` all remapped to the institutional palette.
+- Radius squared site-wide; shadows replaced by hairline rules.
+- **New** `SectionNav` — sticky in-page section navigation with scroll tracking, applied to
+  `/about` and `/labs`.
+
+**Contrast correction:** the palette remap initially pushed crimson accents into dark bands on
+institution pages, where `#7a171b` on `#161210` is ~1.9:1 and unreadable. All such instances were
+found and switched to warm neutrals. Rule recorded in `docs/DESIGN.md`: crimson on light, gold on
+dark, never the reverse.
+
+**Validation:** `npm run lint` and `npm run build` pass clean. Rendered values verified in-browser:
+body 17px/1.72 on `#fdfbf7`, header radius 0, buttons crimson `#7a171b` at 13px, nav 14px, and the
+light/dark layer split confirmed across `/`, `/science`, and `/divisions/b-melanox`.
+
+**Not verified in-environment:** `SectionNav` scroll tracking. The preview pane runs hidden
+(`visibilityState: "hidden"`), so scroll events and `requestAnimationFrame` never fire. The
+position logic was verified correct by direct evaluation at every section offset, and the nav
+renders sticky with all anchors resolving — but live scroll-spy behaviour needs a check in a real
+browser.
 
 ## 2026-08-19 — Editorial photography & image layout
 

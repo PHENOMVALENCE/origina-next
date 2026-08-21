@@ -28,7 +28,7 @@ export default function SkinSafariPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="dark"
         crumb="Skin Safari™"
         kicker="Division / Scientific communication"
         title={
@@ -47,7 +47,7 @@ export default function SkinSafariPage() {
           {skinSafariAreas.map((area, index) => (
             <li key={area} className="institutional-panel">
               <span className="scientific-label">{String(index + 1).padStart(2, "0")}</span>
-              <p className="mt-2 font-serif text-lg text-graphite">{area}</p>
+              <p className="mt-2 font-serif text-lg text-ink">{area}</p>
             </li>
           ))}
         </ul>
@@ -63,6 +63,7 @@ export default function SkinSafariPage() {
       </Section>
 
       <PageCta
+        tone="noir"
         eyebrow="Media"
         title="Bring a communication opportunity."
         links={[{ href: "/contact?subject=media#enquiry-form", label: "Media enquiries" }]}

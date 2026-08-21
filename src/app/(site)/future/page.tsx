@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentStatus } from "@/components/ContentStatus";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
@@ -27,7 +28,7 @@ export default function FuturePage() {
           <>
             Built for the ideas
             <br />
-            <span className="text-gold-light">still without names.</span>
+            <span className="text-crimson">still without names.</span>
           </>
         }
         intro="Origina's framework is designed to expand when the capacity to execute with excellence arrives—not before."
@@ -45,33 +46,46 @@ export default function FuturePage() {
       </Section>
 
       <Section tone="noir" eyebrow="Institutional horizon">
-        <div className="flex flex-col gap-4 border-b border-gold/25 pb-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[0.66rem] uppercase tracking-[0.2em] text-gold">Roadmap</p>
-          <span className="text-[0.52rem] tracking-[0.16em] text-stone">PLANNED → EMERGING → UNNAMED</span>
+        <div className="flex flex-col gap-4 border-b border-white/15 pb-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[0.75rem] uppercase tracking-[0.2em] text-ivory/65">Roadmap</p>
+          <span className="text-[0.75rem] tracking-[0.16em] text-stone">PLANNED → EMERGING → UNNAMED</span>
         </div>
         <div>
           {roadmapItems.map((item) => (
             <article
               key={item.id}
               id={item.id}
-              className={`relative grid gap-4 border-b border-gold/25 py-8 sm:grid-cols-[7rem_1fr] sm:gap-6 sm:py-10 lg:grid-cols-[170px_1.1fr_1fr] lg:items-end lg:gap-8 ${
-                item.unnamed ? "mt-6 border-0 bg-gold p-6 text-noir sm:mt-8 sm:p-8 lg:p-12" : ""
+              className={`relative grid gap-4 border-b border-white/15 py-8 sm:grid-cols-[7rem_1fr] sm:gap-6 sm:py-10 lg:grid-cols-[170px_1.1fr_1fr] lg:items-end lg:gap-8 ${
+                item.unnamed ? "mt-6 border-0 bg-paper p-6 text-noir sm:mt-8 sm:p-8 lg:p-12" : ""
               }`}
             >
-              <span className={`text-[0.53rem] tracking-[0.15em] ${item.unnamed ? "text-noir" : "text-gold"}`}>
+              <span className={`text-[0.75rem] tracking-[0.15em] ${item.unnamed ? "text-crimson" : "text-ivory/70"}`}>
                 {item.label}
               </span>
               <h2 className="font-serif text-3xl leading-none sm:text-4xl lg:text-6xl">{item.title}</h2>
               <div>
-                <p className={`text-sm ${item.unnamed ? "text-noir/80" : "text-stone"}`}>{item.description}</p>
+                <p className={`text-sm ${item.unnamed ? "text-ink-soft" : "text-stone"}`}>{item.description}</p>
                 {!item.unnamed ? (
-                  <div className="mt-4">
+                  <div className="mt-4 flex flex-wrap items-center gap-4">
                     <ContentStatus status="future" />
+                    <Link
+                      href={`/future/${item.id}`}
+                      className="text-[0.75rem] uppercase tracking-[0.14em] text-ivory/75 transition-colors hover:text-ivory"
+                    >
+                      View horizon →
+                    </Link>
                   </div>
-                ) : null}
+                ) : (
+                  <Link
+                    href={`/future/${item.id}`}
+                    className="mt-4 inline-block text-[0.75rem] uppercase tracking-[0.14em] text-crimson transition-colors hover:text-crimson-deep"
+                  >
+                    Explore possibility →
+                  </Link>
+                )}
                 <small
-                  className={`mt-4 block text-[0.48rem] tracking-[0.13em] lg:absolute lg:right-0 lg:bottom-3 ${
-                    item.unnamed ? "text-noir/60" : "text-[#6f655d]"
+                  className={`mt-4 block text-[0.75rem] tracking-[0.13em] lg:absolute lg:right-0 lg:bottom-3 ${
+                    item.unnamed ? "text-stone" : "text-[#8a7f74]"
                   }`}
                 >
                   {item.footnote}
@@ -93,13 +107,13 @@ export default function FuturePage() {
             <h2 className="section-title">
               Before a new
               <br />
-              <span className="text-gold">division begins.</span>
+              <span className="text-crimson">division begins.</span>
             </h2>
-            <div className="border-t border-border-subtle">
+            <div className="border-t border-rule">
               {expansionChecks.map((check, index) => (
-                <div key={check} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-border-subtle py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
-                  <span className="text-gold">{String(index + 1).padStart(2, "0")}</span>
-                  <p className="font-serif text-xl text-graphite">{check}</p>
+                <div key={check} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-rule py-4 sm:grid-cols-[3rem_1fr] sm:gap-4 sm:py-5">
+                  <span className="text-crimson">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="font-serif text-xl text-ink">{check}</p>
                 </div>
               ))}
             </div>

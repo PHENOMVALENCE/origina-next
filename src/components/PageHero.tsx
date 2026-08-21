@@ -3,7 +3,15 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { ImageAsset } from "@/lib/content/images";
 
-function HeroImage({ image, mobileVariant = "landscape" }: { image: ImageAsset; mobileVariant?: "landscape" | "portrait" }) {
+function HeroImage({
+  image,
+  dark,
+  mobileVariant = "landscape",
+}: {
+  image: ImageAsset;
+  dark: boolean;
+  mobileVariant?: "landscape" | "portrait";
+}) {
   return (
     <figure className="editorial-frame">
       <div
@@ -19,10 +27,15 @@ function HeroImage({ image, mobileVariant = "landscape" }: { image: ImageAsset; 
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-noir/50 via-transparent to-transparent lg:from-noir/50" aria-hidden="true" />
-        <span className="editorial-frame-accent" aria-hidden="true" />
+        {dark ? (
+          <div className="absolute inset-0 bg-gradient-to-t from-noir/50 via-transparent to-transparent" aria-hidden="true" />
+        ) : null}
+        <span
+          className={`editorial-frame-accent ${dark ? "bg-gold/60" : ""}`}
+          aria-hidden="true"
+        />
       </div>
-      {image.caption ? <figcaption className="editorial-caption text-stone">{image.caption}</figcaption> : null}
+      {image.caption ? <figcaption className="editorial-caption">{image.caption}</figcaption> : null}
     </figure>
   );
 }
@@ -32,50 +45,58 @@ export function PageHero({
   kicker,
   title,
   intro,
-  variant = "default",
+  variant = "light",
   image,
+  meta,
 }: {
   crumb: string;
   kicker?: string;
   title: React.ReactNode;
   intro?: string;
-  variant?: "default" | "gradient";
+  /**
+   * "light" — institution layer (default).
+   * "dark"  — division / product layer.
+   * "gradient" and "default" are retained as aliases for existing pages.
+   */
+  variant?: "light" | "dark" | "gradient" | "default";
   image?: ImageAsset;
+  /** Optional provenance line, e.g. "Reviewed August 2026". */
+  meta?: string;
 }) {
-  const bgClass =
-    variant === "gradient"
-      ? "bg-[radial-gradient(circle_at_80%_40%,rgba(181,146,74,0.16),transparent_30%)] bg-noir"
-      : "bg-noir";
+  const dark = variant === "dark";
+  const shellTone = dark ? "page-hero--dark" : "page-hero--light";
 
   const breadcrumb = (
-    <nav
-      aria-label="Breadcrumb"
-      className="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.65rem] uppercase tracking-[0.14em] text-stone sm:mb-8 sm:text-[0.7rem] sm:tracking-[0.15em]"
-    >
-      <Link href="/" className="transition-colors hover:text-gold">
+    <nav aria-label="Breadcrumb" className={`breadcrumb ${dark ? "text-stone" : "text-stone"}`}>
+      <Link href="/" className={`transition-colors ${dark ? "hover:text-gold" : "hover:text-crimson"}`}>
         Home
       </Link>
       <span aria-hidden="true">/</span>
-      <span className="text-ivory/80">{crumb}</span>
+      <span className={dark ? "text-ivory/80" : "text-ink"}>{crumb}</span>
     </nav>
   );
 
   const copy = (
     <>
       {breadcrumb}
-      {kicker ? <Eyebrow tone="dark">{kicker}</Eyebrow> : null}
+      {kicker ? <Eyebrow tone={dark ? "dark" : "default"}>{kicker}</Eyebrow> : null}
       <h1 className="display-title max-w-4xl">{title}</h1>
-      {intro ? <p className="mt-4 max-w-2xl text-[0.875rem] leading-relaxed muted-on-dark sm:mt-6 sm:text-[0.9375rem]">{intro}</p> : null}
+      {intro ? (
+        <p className={`mt-7 max-w-(--measure) text-[1.125rem] leading-[1.66] ${dark ? "muted-on-dark" : "text-ink-soft"}`}>
+          {intro}
+        </p>
+      ) : null}
+      {meta ? <p className={`page-meta mt-10 max-w-(--measure) ${dark ? "border-white/15" : ""}`}>{meta}</p> : null}
     </>
   );
 
   if (image) {
     return (
-      <section className={`${bgClass} overflow-hidden page-hero-shell`}>
+      <section className={`${shellTone} overflow-hidden page-hero-shell`}>
         <div className="site-container">
-          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1fr_0.85fr] lg:items-end lg:gap-16">
+          <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-16">
             <div>{copy}</div>
-            <HeroImage image={image} />
+            <HeroImage image={image} dark={dark} />
           </div>
         </div>
       </section>
@@ -83,7 +104,7 @@ export function PageHero({
   }
 
   return (
-    <section className={`${bgClass} page-hero-shell`}>
+    <section className={`${shellTone} page-hero-shell`}>
       <div className="site-container">{copy}</div>
     </section>
   );

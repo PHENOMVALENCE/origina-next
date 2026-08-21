@@ -26,7 +26,7 @@ export default function AfricaPage() {
           <>
             Africa is the origin.
             <br />
-            <span className="text-gold-light">Not the limitation.</span>
+            <span className="text-crimson">Not the limitation.</span>
           </>
         }
         intro="Headquartered in Dar es Salaam, Tanzania. Geography is not presented as a ceiling."
@@ -65,7 +65,7 @@ export default function AfricaPage() {
             <h2 className="section-title-light">
               A global institution
               <br />
-              <span className="text-gold-light">with African origin.</span>
+              <span className="text-stone">with African origin.</span>
             </h2>
             <LeadCopy light>A multi-divisional innovation institution designed for worldwide relevance.</LeadCopy>
           </div>

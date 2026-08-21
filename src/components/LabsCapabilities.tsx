@@ -4,13 +4,13 @@ import { labsFunctions } from "@/lib/content/science";
 /** Seven institutional R&D capabilities — ORIGINA Labs */
 export function LabsCapabilities() {
   return (
-    <div className="border-t border-gold/25">
+    <div className="border-t border-rule-strong">
       {labsFunctions.map((item) => (
         <article
           key={item.num}
-          className="grid gap-4 border-b border-gold/15 py-6 last:border-b-0 sm:grid-cols-[4rem_1fr] sm:gap-6"
+          className="grid gap-4 border-b border-rule py-6 last:border-b-0 sm:grid-cols-[4rem_1fr] sm:gap-6"
         >
-          <ScientificLabel tone="gold" className="text-gold">
+          <ScientificLabel tone="crimson">
             {item.num}
           </ScientificLabel>
           <div>

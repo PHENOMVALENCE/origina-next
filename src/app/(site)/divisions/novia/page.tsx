@@ -18,7 +18,7 @@ export default function NoviaPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="dark"
         crumb="NOVIA™"
         kicker="Luxury body care"
         title={
@@ -72,7 +72,7 @@ export default function NoviaPage() {
           {noviaPillars.map((pillar) => (
             <article key={pillar.title} className="institutional-card">
               <span className="font-serif text-gold">{pillar.num}</span>
-              <h3 className="mt-2 font-serif text-xl text-graphite">{pillar.title}</h3>
+              <h3 className="mt-2 font-serif text-xl text-ink">{pillar.title}</h3>
               <p className="mt-2 body-copy">{pillar.text}</p>
             </article>
           ))}
@@ -112,6 +112,7 @@ export default function NoviaPage() {
       </QuoteBand>
 
       <PageCta
+        tone="noir"
         eyebrow="The lifestyle expression"
         title="Enter the world of Novia."
         links={[
