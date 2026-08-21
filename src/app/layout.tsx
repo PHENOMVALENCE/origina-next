@@ -3,17 +3,20 @@ import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import { getSiteUrl, getSocialImageUrl, organizationJsonLd, siteDescription, siteName, siteTagline } from "@/lib/site";
 import "./globals.css";
 
+// Only the weights the design system actually uses. Headings and display type
+// all sit at 400; italic is used by `.principle-stack blockquote`.
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
+// 400 body, 500 nav/labels, 600 buttons and eyebrows.
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
