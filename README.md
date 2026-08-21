@@ -57,6 +57,7 @@ Open [http://localhost:3000](http://localhost:3000).
 |---|---|
 | [`AGENTS.md`](AGENTS.md) | Branching, commits, content rules, validation |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Stack, routes, design system, components, database |
+| [`docs/DESIGN.md`](docs/DESIGN.md) | Design standard: brand layers, type scale, components, rationale |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Phased plan and remaining work |
 | [`docs/PROGRESS.md`](docs/PROGRESS.md) | Session-by-session log and PR history |
 | [`docs/SETUP.md`](docs/SETUP.md) | Env vars, migrations, admin, deployment |
