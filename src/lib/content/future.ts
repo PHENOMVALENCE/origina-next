@@ -5,6 +5,7 @@ export type RoadmapItem = {
   description: string;
   footnote: string;
   unnamed?: boolean;
+  focusAreas?: readonly string[];
 };
 
 export const roadmapItems: RoadmapItem[] = [
@@ -15,13 +16,23 @@ export const roadmapItems: RoadmapItem[] = [
     description:
       "Develop future innovators, researchers, clinicians, entrepreneurs, and creators. Education · Training · Talent.",
     footnote: "Subject to scientific feasibility, regulatory classification, evidence, and institutional capacity.",
+    focusAreas: [
+      "Researchers",
+      "Clinicians",
+      "Formulators",
+      "Scientists",
+      "Entrepreneurs",
+      "Innovators",
+      "Creators",
+    ],
   },
   {
     id: "ventures",
     label: "II · PLANNED",
     title: "ORIGINA Ventures",
     description: "Incubation · Investment · Innovation. Supporting internal and aligned external innovation.",
-    footnote: "INCUBATION · ENTERPRISE · IP",
+    footnote: "Does not imply that an operating investment fund currently exists unless explicitly confirmed.",
+    focusAreas: ["Incubation", "Strategic partnerships", "Aligned external innovators", "Institutional IP pathways"],
   },
   {
     id: "research-institute",
@@ -29,14 +40,24 @@ export const roadmapItems: RoadmapItem[] = [
     title: "ORIGINA Research Institute",
     description:
       "Advanced Research · Clinical Science across dermatology, skin biology, regenerative technologies, and biotechnology.",
-    footnote: "RESEARCH · CLINICAL · PUBLICATION",
+    footnote: "Future institutional development — not presented as an operating entity unless established.",
+    focusAreas: [
+      "Dermatology",
+      "Skin biology",
+      "Regenerative technologies",
+      "Ageing biology",
+      "Biotechnology",
+      "Clinical science",
+      "Future therapeutic technologies",
+    ],
   },
   {
     id: "foundation",
     label: "IV · FUTURE",
     title: "ORIGINA Foundation",
     description: "Impact · Education · Opportunity. Scholarships, scientific education, and community development.",
-    footnote: "IMPACT · ACCESS · COMMUNITY",
+    footnote: "Planned institutional direction — distinct from current operating divisions.",
+    focusAreas: ["Scholarships", "Scientific education", "Community development", "Access to knowledge", "Future African innovators"],
   },
   {
     id: "product-divisions",
@@ -44,7 +65,15 @@ export const roadmapItems: RoadmapItem[] = [
     title: "Future Product & Technology Divisions",
     description:
       "Nutritional science, medical devices, biotechnology, regenerative technologies, and future therapeutic fields.",
-    footnote: "SCIENCE · PRODUCTS · HUMAN LIFE",
+    footnote: "Subject to scientific feasibility, regulatory classification, and institutional capacity.",
+    focusAreas: [
+      "Nutritional science",
+      "Medical devices",
+      "Biotechnology",
+      "Regenerative technologies",
+      "Personal health technologies",
+      "Future therapeutic fields",
+    ],
   },
   {
     id: "unnamed",

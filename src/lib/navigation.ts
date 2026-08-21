@@ -55,11 +55,12 @@ export const panels = {
     { label: "Responsible Science", href: "/science/responsible-science" },
   ] satisfies NavLink[],
   future: [
-    { label: "Academy", href: "/future#academy" },
-    { label: "Ventures", href: "/future#ventures" },
-    { label: "Research Institute", href: "/future#research-institute" },
-    { label: "Foundation", href: "/future#foundation" },
-    { label: "∞ Unnamed Division", href: "/future#unnamed" },
+    { label: "Academy", href: "/future/academy" },
+    { label: "Ventures", href: "/future/ventures" },
+    { label: "Research Institute", href: "/future/research-institute" },
+    { label: "Foundation", href: "/future/foundation" },
+    { label: "Product Divisions", href: "/future/product-divisions" },
+    { label: "∞ Unnamed Division", href: "/future/unnamed" },
   ] satisfies NavLink[],
 };
 
@@ -101,11 +102,12 @@ export const footerNav = {
   future: {
     title: "Future",
     links: [
-      { label: "Academy", href: "/future#academy" },
-      { label: "Ventures", href: "/future#ventures" },
-      { label: "Research Institute", href: "/future#research-institute" },
-      { label: "Foundation", href: "/future#foundation" },
-      { label: "∞", href: "/future#unnamed" },
+      { label: "Academy", href: "/future/academy" },
+      { label: "Ventures", href: "/future/ventures" },
+      { label: "Research Institute", href: "/future/research-institute" },
+      { label: "Foundation", href: "/future/foundation" },
+      { label: "Product Divisions", href: "/future/product-divisions" },
+      { label: "∞", href: "/future/unnamed" },
     ] satisfies NavLink[],
   },
   connect: {
