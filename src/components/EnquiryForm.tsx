@@ -33,7 +33,7 @@ export function EnquiryForm({
 
   if (sentReference) {
     return (
-      <div className="border border-form-border bg-form-bg p-4 shadow-[var(--shadow-soft)] sm:p-8 lg:p-12">
+      <div className="border border-form-border bg-form-bg p-4 sm:p-8 lg:p-12">
         <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-[#1e1916] to-noir p-8 text-ivory sm:p-12" role="status">
           <span className="inline-grid h-14 w-14 place-items-center rounded-none border border-crimson text-xl text-crimson">
             ✓
@@ -55,7 +55,7 @@ export function EnquiryForm({
   }
 
   return (
-    <div className="border border-form-border bg-form-bg p-4 shadow-[var(--shadow-soft)] sm:p-8 lg:p-12">
+    <div className="border border-form-border bg-form-bg p-4 sm:p-8 lg:p-12">
       <form action={formAction} className="relative grid gap-5 sm:grid-cols-2" noValidate>
         <div className="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
           <label htmlFor="website">Website</label>

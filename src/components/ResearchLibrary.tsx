@@ -31,7 +31,7 @@ export function ResearchLibrary() {
               type="button"
               aria-pressed={isActive}
               onClick={() => setActiveFilter(filter.id)}
-              className={`rounded-full border px-4 py-2 text-[0.75rem] uppercase tracking-[0.14em] transition-colors ${
+              className={`rounded-none border px-4 py-2 text-[0.75rem] uppercase tracking-[0.14em] transition-colors ${
                 isActive
                   ? "border-crimson bg-crimson text-paper"
                   : "border-rule text-ink hover:border-crimson"
