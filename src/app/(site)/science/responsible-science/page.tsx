@@ -19,7 +19,7 @@ export default function ResponsibleSciencePage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Responsible Science"
         kicker="Institutional doctrine"
         title={

@@ -19,7 +19,7 @@ export default function DivisionsPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Divisions"
         kicker="Institutional divisions"
         title={
@@ -47,7 +47,7 @@ export default function DivisionsPage() {
         subtitle="Every division operates under the same evidence, quality, and institutional standards."
       />
 
-      <Section tone="cream" eyebrow="Directory" title="All divisions">
+      <Section tone="sunk" eyebrow="Directory" title="All divisions">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {divisions.map((division) => (
             <DivisionCard key={division.slug} division={division} />

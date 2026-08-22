@@ -54,7 +54,7 @@ export default function SkinSafariPage() {
         <ContentStatus status="research" />
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Future platform" title="Future capabilities.">
+      <Section tone="sunk" eyebrow="02 · Future platform" title="Future capabilities.">
         <p className="mb-8 max-w-2xl body-copy">
           Skin Safari is in development as ORIGINA&apos;s education and scientific communication platform — distinct from
           product marketing and division commerce.

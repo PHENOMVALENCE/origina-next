@@ -18,7 +18,7 @@ export default function RegulatoryPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Regulatory Science"
         kicker="ORIGINA / Evidence & Quality"
         title={
@@ -55,7 +55,7 @@ export default function RegulatoryPage() {
       </Section>
 
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="02 · Clinical research"
         title="Clinical research pathway"
         id="clinical"

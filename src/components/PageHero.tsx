@@ -56,9 +56,8 @@ export function PageHero({
   /**
    * "light" — institution layer (default).
    * "dark"  — division / product layer.
-   * "gradient" and "default" are retained as aliases for existing pages.
    */
-  variant?: "light" | "dark" | "gradient" | "default";
+  variant?: "light" | "dark";
   image?: ImageAsset;
   /** Optional provenance line, e.g. "Reviewed August 2026". */
   meta?: string;

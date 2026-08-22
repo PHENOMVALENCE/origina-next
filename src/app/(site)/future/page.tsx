@@ -21,7 +21,7 @@ export default function FuturePage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Future"
         kicker="ORIGINA / Future"
         title={
@@ -85,7 +85,7 @@ export default function FuturePage() {
                 )}
                 <small
                   className={`mt-4 block text-[0.75rem] tracking-[0.13em] lg:absolute lg:right-0 lg:bottom-3 ${
-                    item.unnamed ? "text-stone" : "text-[#8a7f74]"
+                    item.unnamed ? "text-stone-deep" : "text-stone"
                   }`}
                 >
                   {item.footnote}
@@ -96,7 +96,7 @@ export default function FuturePage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Expansion test">
+      <Section tone="sunk" eyebrow="02 · Expansion test">
         <SplitSection reverse>
           <MediaFigure
             src={founderImages.exchange.src}

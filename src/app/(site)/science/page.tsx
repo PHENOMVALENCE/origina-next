@@ -45,7 +45,7 @@ export default function SciencePage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Science"
         kicker="ORIGINA / Science"
         title={
@@ -97,12 +97,12 @@ export default function SciencePage() {
         </SplitSection>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Systems thinking" title="Every variable affects the whole.">
+      <Section tone="sunk" eyebrow="02 · Systems thinking" title="Every variable affects the whole.">
         <SystemsThinking />
       </Section>
 
       <Section
-        tone="ivory"
+        tone="paper"
         eyebrow="03 · Development framework"
         title="From hypothesis to product."
         id="framework"

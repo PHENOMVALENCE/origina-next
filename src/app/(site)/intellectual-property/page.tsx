@@ -20,7 +20,7 @@ export default function IntellectualPropertyPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Intellectual Property"
         kicker="ORIGINA / Institution"
         title={
@@ -37,7 +37,7 @@ export default function IntellectualPropertyPage() {
         <DetailList items={ipTypes} />
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Platform IP" title="Proprietary is not patented.">
+      <Section tone="sunk" eyebrow="02 · Platform IP" title="Proprietary is not patented.">
         <p className="mb-8 max-w-3xl body-copy">
           ™ indicates trademark status. Proprietary describes institutional ownership of know-how or platforms. Patent
           status is described only where explicit documentation supports it.

@@ -57,7 +57,7 @@ export default function BMelanoxPage() {
       </Section>
 
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="Platform"
         title="BMX-24™"
         intro="Proprietary pigment regulation platform. Clinical studies are not yet complete — wording remains appropriately conservative."
@@ -92,7 +92,7 @@ export default function BMelanoxPage() {
         <div className="grid gap-8 lg:grid-cols-3">
           {bMelanoxProducts.map((product) => (
             <article key={product.title} className="institutional-card">
-              <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-sm">
+              <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-none">
                 <Image src={product.image} alt={product.alt} fill className="object-cover" />
               </div>
               <span className="text-[0.75rem] uppercase tracking-[0.14em] text-stone">{product.label}</span>
@@ -103,7 +103,7 @@ export default function BMelanoxPage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="03 · Horizon" title="Beyond the product shelf.">
+      <Section tone="sunk" eyebrow="03 · Horizon" title="Beyond the product shelf.">
         <div className="mb-6">
           <ContentStatus status="future" />
         </div>
@@ -135,7 +135,7 @@ export default function BMelanoxPage() {
         ]}
       />
 
-      <Section tone="ivory" eyebrow="Product dossier · 01">
+      <Section tone="paper" eyebrow="Product dossier · 01">
         <SplitSection reverse>
           <ProductGallery views={bMelanoxGalleryViews} />
           <div>

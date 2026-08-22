@@ -41,12 +41,12 @@ export default function BValencePage() {
         <ContentStatus status="research" />
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Research domains" title="Ageing biology domains.">
+      <Section tone="sunk" eyebrow="02 · Research domains" title="Ageing biology domains.">
         <ScientificLabel className="mb-6 block">BValence / Research domains</ScientificLabel>
         <DetailList items={bValenceDomains} />
       </Section>
 
-      <Section tone="ivory" eyebrow="03 · Status" title="Research platform in development.">
+      <Section tone="paper" eyebrow="03 · Status" title="Research platform in development.">
         <StatusBadge status="research" />
         <p className="mt-4 max-w-2xl body-copy">
           BValence represents institutional research ambition — not completed clinical outcomes or commercial product

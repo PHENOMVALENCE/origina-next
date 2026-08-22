@@ -26,7 +26,7 @@ export default async function UpdatesPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Updates"
         kicker="Knowledge & progress"
         title={
@@ -39,7 +39,7 @@ export default async function UpdatesPage() {
         intro="News, research records, and institutional field notes."
       />
 
-      <Section tone="cream" eyebrow="Archive" title="Publications">
+      <Section tone="sunk" eyebrow="Archive" title="Publications">
         <div className="flex flex-col gap-8">
           {items.length === 0 ? (
             <p className="lead-serif text-2xl sm:text-3xl">The publication archive is being prepared.</p>

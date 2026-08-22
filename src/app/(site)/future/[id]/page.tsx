@@ -37,7 +37,7 @@ export default async function FutureDetailPage({ params }: FutureDetailPageProps
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb={item.title}
         kicker="ORIGINA / Future"
         title={item.unnamed ? <>What has not yet been named.</> : item.title}

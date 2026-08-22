@@ -18,7 +18,7 @@ export default function PlatformsPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Platforms"
         kicker="ORIGINA / Platforms"
         title={
@@ -53,7 +53,7 @@ export default function PlatformsPage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="IP distinction" title="Proprietary is not patented.">
+      <Section tone="sunk" eyebrow="IP distinction" title="Proprietary is not patented.">
         <p className="max-w-3xl body-copy">
           ORIGINA distinguishes proprietary platforms, trademarked names, patent applications, and granted patents.
           Platform descriptions use conservative language unless documentation supports a stronger status.
