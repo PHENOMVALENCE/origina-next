@@ -1,7 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { founderImages } from "@/lib/content/images";
+
+/*
+ * Landscape-composed shots only — founderImages.portraitClinical is a tall
+ * portrait crop and object-cover forces it into an unrecognisable close-up
+ * when stretched across the full-bleed hero. It has a proper home in the
+ * Founder section's portrait-aspect EditorialImage instead.
+ */
+const heroImages = [
+  founderImages.multidisciplinary,
+  founderImages.recognition,
+  founderImages.lifestyle,
+] as const;
 
 const stats = [
   { value: "2024", label: "Established" },
@@ -10,19 +25,37 @@ const stats = [
 ] as const;
 
 export function HomeHero() {
-  const image = founderImages.lifestyle;
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotion.matches) return;
+
+    const timer = window.setInterval(() => {
+      setActiveImage((current) => (current + 1) % heroImages.length);
+    }, 6500);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const image = heroImages[activeImage];
 
   return (
-    <section className="home-hero bg-paper text-ink">
+    <section className="home-hero bg-noir text-ivory">
       <div className="home-hero-media">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
-          className="object-cover object-[center_20%] lg:object-center"
-          sizes="(min-width: 1024px) 48vw, 100vw"
-        />
+        {heroImages.map((heroImage, index) => (
+          <Image
+            key={heroImage.src}
+            src={heroImage.src}
+            alt={index === activeImage ? heroImage.alt : ""}
+            fill
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+            aria-hidden={index === activeImage ? undefined : true}
+            className={`home-hero-image ${index === activeImage ? "home-hero-image--active" : ""}`}
+            sizes="(min-width: 1024px) 48vw, 100vw"
+          />
+        ))}
         {/* Blends the photograph into the paper ground on large screens. */}
         <div className="home-hero-media-shade" aria-hidden="true" />
         {/* Scrim behind the caption only. */}
@@ -30,11 +63,23 @@ export function HomeHero() {
           className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-48 bg-gradient-to-t from-noir/75 to-transparent lg:block"
           aria-hidden="true"
         />
-        <div className="home-hero-media-caption">
+        <div className="home-hero-media-caption" aria-live="polite">
           <p className="text-[0.75rem] uppercase tracking-[0.18em] text-gold-light">{image.caption}</p>
           <p className="mt-2 max-w-sm text-[0.9375rem] leading-relaxed text-ivory/90">
             Evidence-led innovation beginning with skin of colour.
           </p>
+          <div className="mt-5 flex gap-2" aria-label="Hero images">
+            {heroImages.map((heroImage, index) => (
+              <button
+                key={heroImage.src}
+                type="button"
+                aria-label={`Show hero image ${index + 1}`}
+                aria-pressed={index === activeImage}
+                onClick={() => setActiveImage(index)}
+                className={`h-1 transition-all ${index === activeImage ? "w-10 bg-gold" : "w-5 bg-ivory/50 hover:bg-ivory"}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -64,7 +109,7 @@ export function HomeHero() {
 
           <div className="cta-actions home-hero-actions">
             <Button href="/about">Explore ORIGINA</Button>
-            <Button href="/labs" variant="secondary-dark">
+            <Button href="/labs" variant="secondary">
               Enter ORIGINA Labs™
             </Button>
           </div>
