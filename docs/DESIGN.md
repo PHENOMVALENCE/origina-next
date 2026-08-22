@@ -40,6 +40,10 @@ portfolio.
 - **Gold never appears on an institution page.** It is reserved entirely for the division layer.
 - Dark sections on institution pages are **punctuation** — at most one or two per page, marking a
   turn in the argument. They are not the ground.
+- `ContentStatus` badges have the same problem: `--development` and `--future` rely on the paper
+  background showing through a near-transparent fill, so crimson text drops to ~1.9:1 on a noir
+  panel. Pass the `dark` prop wherever the badge sits on a dark ground (e.g. the homepage Platforms
+  section) — it repaints as a neutral ivory outline instead.
 
 ---
 
@@ -114,12 +118,24 @@ type is 13–14px.
 
 ### Homepage hero — `HomeHero`
 
-Held to the viewport: `lg:h-[calc(100dvh-var(--header-offset))]`, clamped between 600px and 880px.
+Full-bleed, auto-rotating photograph carousel on a noir ground (dark-mode punctuation opening the
+page — see *Accent discipline* above), not the institution's usual paper/crimson. Held to the
+viewport: `lg:h-[calc(100dvh-var(--header-offset))]`, clamped between 600px and 880px.
 
 This matters because the content is vertically centred. Left to grow with its content the hero ran
 **1205px on a 720px viewport**, so "centred" pushed the composition below the fold — a large dead
 gap under the header and the stats invisible. Holding it to the viewport is what makes the centring
-read. After the change: 650px, with the statistics row and scroll cue both above the fold.
+read.
+
+**Carousel images must be landscape-composed.** The rotation only uses founder photography that is
+already framed wide (group and event shots) — never a portrait-oriented photo. `object-cover`
+forces a portrait crop into an unrecognisable close-up when stretched across a full-bleed landscape
+box (verified in-browser: `founderImages.portraitClinical`, a tall clinical portrait, degraded to a
+tight crop of her chin at `object-center` and was pulled from the rotation). Portrait photography
+belongs in a portrait-aspect frame — the Founder section's `EditorialImage`, not the hero.
+
+Rotation auto-advances every 6.5s and respects `prefers-reduced-motion`; a dot control row lets a
+visitor jump to any frame directly (`aria-pressed`, `aria-live="polite"` on the caption region).
 
 Two related rules:
 
@@ -206,3 +222,6 @@ neutrals with crimson-light on the headline.
 6. Hold text to a measure; do not let it run the full container.
 7. Crimson on light, gold on dark, never the reverse.
 8. Let the type be large and the spacing generous. Restraint reads as authority.
+9. Match photo orientation to the box. A full-bleed landscape hero needs landscape-composed
+   photography — a portrait crop stretched with `object-cover` degrades into an unrecognisable
+   close-up no matter where `object-position` points.

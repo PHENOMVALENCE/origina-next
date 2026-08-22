@@ -106,6 +106,13 @@ against it.
 - [x] Reading measure (`--measure`) applied to text columns
 - [x] `SectionNav` — sticky in-page section navigation
 
+**Done (2026-08-22):**
+
+- [x] Homepage hero rebuilt as a full-bleed, auto-rotating photograph carousel (was a static
+      48/52 split panel) — verified in-browser at desktop and mobile widths
+- [x] Crimson-on-noir contrast fixed in the last two places it remained: the homepage's unnamed-
+      division eyebrow, and a `ContentStatus` `dark` variant for badges on dark panels
+
 **Outstanding:**
 
 - [ ] Verify `SectionNav` scroll tracking in a real browser (preview pane runs hidden, so scroll
@@ -118,6 +125,9 @@ against it.
 - [ ] Footnote / reference apparatus for scientific pages (`.footnote` exists, unused)
 - [ ] Full Lighthouse + accessibility audit across all routes
 - [ ] Review division pages for gold-layer consistency after the split
+- [ ] Audit other `ContentStatus` usages on dark grounds (`/divisions/*`, `InstitutionMap`,
+      `/platforms`) for the same crimson-on-noir contrast problem fixed on the homepage — only the
+      homepage's Platforms section got the new `dark` prop applied so far
 - [ ] Admin UI restyle — still functional-only, lowest priority
 
 ## Explicitly out of scope for now

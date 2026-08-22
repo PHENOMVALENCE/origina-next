@@ -66,6 +66,39 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-22 — Homepage hero rebuild and contrast fixes
+
+Continued and validated an in-progress hero redesign, then fixed what testing turned up. Verified
+in a real browser via Playwright against the dev server, not just read from source.
+
+**Hero.** `HomeHero` is now a full-bleed, auto-rotating photograph carousel on a noir ground (was a
+48/52 split panel on paper) — dot controls, `aria-live` caption, respects
+`prefers-reduced-motion`. Pulled `founderImages.portraitClinical` from the rotation: it's a tall
+portrait crop, and `object-cover` on the landscape hero box degraded it to an unrecognisable
+close-up of her chin regardless of `object-position`. The carousel now only uses the three
+founder photos that are actually landscape-composed. See `docs/DESIGN.md` §4 and rule of thumb 9.
+
+**Contrast fixes** (same crimson-on-noir problem `docs/DESIGN.md` already documents, found in two
+more places):
+
+- The homepage's "unnamed division" eyebrow (`∞ · Open possibility`) was `tone="crimson"` on the
+  section's noir background — ~1.9:1, unreadable. Changed to `tone="dark"`, matching the fix
+  already applied one section earlier in the same file.
+- `ContentStatus`'s `--development` and `--future` variants rely on the paper background showing
+  through a near-transparent fill, so they inherit the same problem on a dark panel. Added a `dark`
+  prop that repaints them as a neutral ivory outline, applied to the homepage Platforms section
+  (the only dark-ground usage on this page — other pages using `ContentStatus` on a dark ground are
+  unaudited and left as a follow-up).
+
+**Not a real bug, logged in case it recurs:** mid-session, one hero image (`founder-03.jpeg`)
+rendered solid black — the Next dev image optimizer had a stuck in-memory request lock from rapid
+repeated test traffic against one long-running `next dev` process. A dev-server restart cleared it;
+`sharp` processed the file fine in isolation throughout. Not a code or content issue.
+
+`npm run lint` and `npm run build` pass clean.
+
+---
+
 ## 2026-08-20 — Landing page revision
 
 Reviewed the rendered homepage and fixed what the design system pass had left or introduced.

@@ -395,7 +395,7 @@ h4 {
   }
 
   .principle-stack blockquote {
-    @apply font-serif text-[1.375rem] italic leading-relaxed text-ink sm:text-[1.5rem];
+    @apply font-serif text-[1.375rem] italic leading-relaxed text-ivory sm:text-[1.5rem];
   }
 
   /* ============================================================
@@ -436,6 +436,17 @@ h4 {
 
   .content-status--future {
     @apply border-rule bg-transparent text-stone;
+  }
+
+  /*
+   * Dark-ground override. `--development` and `--future` rely on the paper
+   * background showing through a near-transparent fill, so on a noir panel
+   * the crimson text drops to ~1.9:1 (unreadable). Repaint both as a neutral
+   * ivory outline instead of trying to keep crimson legible on noir.
+   */
+  .content-status--dark.content-status--development,
+  .content-status--dark.content-status--future {
+    @apply border-ivory/30 bg-ivory/5 text-ivory/80;
   }
 
   .tag-chip {
@@ -541,22 +552,30 @@ h4 {
    * which pushed the composition below the fold.
    */
   .home-hero {
-    @apply relative grid min-h-0 grid-cols-1 overflow-hidden lg:h-[calc(100dvh-var(--header-offset))] lg:max-h-[880px] lg:min-h-[600px] lg:grid-cols-[1.05fr_0.95fr];
+    @apply relative min-h-[clamp(46rem,calc(100dvh-var(--header-offset)),62rem)] overflow-hidden lg:h-[calc(100dvh-var(--header-offset))] lg:max-h-[880px] lg:min-h-[600px];
   }
 
   .home-hero-media {
-    @apply relative order-1 min-h-[clamp(18rem,58vh,30rem)] overflow-hidden lg:order-2 lg:min-h-0;
+    @apply absolute inset-0 overflow-hidden;
+  }
+
+  .home-hero-image {
+    @apply object-cover object-[center_18%] opacity-0 transition-opacity duration-1000 lg:object-center;
+  }
+
+  .home-hero-image--active {
+    @apply opacity-100;
   }
 
   .home-hero-media-shade {
     background-image:
-      linear-gradient(to bottom, rgba(27, 23, 20, 0.5) 0%, rgba(27, 23, 20, 0.05) 34%, rgba(27, 23, 20, 0.16) 68%, rgba(27, 23, 20, 0.68) 100%);
+      linear-gradient(to bottom, rgba(13, 11, 9, 0.78) 0%, rgba(13, 11, 9, 0.5) 42%, rgba(13, 11, 9, 0.68) 100%);
     @apply pointer-events-none absolute inset-0;
   }
 
   @media (min-width: 1024px) {
     .home-hero-media-shade {
-      background-image: linear-gradient(to right, var(--color-paper) 0%, rgba(253, 251, 247, 0.3) 14%, transparent 42%);
+      background-image: linear-gradient(90deg, rgba(13, 11, 9, 0.88) 0%, rgba(13, 11, 9, 0.66) 42%, rgba(13, 11, 9, 0.3) 100%);
     }
   }
 
@@ -565,7 +584,7 @@ h4 {
   }
 
   .home-hero-content {
-    @apply relative order-2 flex flex-col justify-center px-5 pt-14 pb-16 sm:px-8 sm:pt-16 sm:pb-20 lg:order-1 lg:px-12 lg:py-14 xl:px-16;
+    @apply relative z-10 flex min-h-[clamp(46rem,calc(100dvh-var(--header-offset)),62rem)] flex-col justify-center px-5 pt-24 pb-14 sm:px-8 sm:pt-28 sm:pb-20 lg:min-h-0 lg:px-16 lg:py-14 xl:px-24;
   }
 
   .home-hero-content-inner {
@@ -573,15 +592,15 @@ h4 {
   }
 
   .home-hero-accent {
-    @apply mb-6 h-px w-16 bg-crimson lg:mb-7 lg:w-20;
+    @apply mb-6 h-px w-16 bg-gold lg:mb-7 lg:w-20;
   }
 
   .home-hero-kicker {
-    @apply mb-5 max-w-md text-[0.9375rem] leading-relaxed text-stone;
+    @apply mb-5 max-w-md text-[0.9375rem] leading-relaxed text-ivory/80;
   }
 
   .home-hero-eyebrow {
-    @apply mb-5 text-[0.6875rem] tracking-[0.2em] sm:text-[0.75rem];
+    @apply mb-5 text-[0.6875rem] tracking-[0.2em] text-gold-light sm:text-[0.75rem];
   }
 
   /* Sized so "Beginning in Africa." holds one line in the content column. */
@@ -590,36 +609,36 @@ h4 {
   }
 
   .home-hero-tagline {
-    @apply mt-2 block font-serif text-[1.85rem] leading-[1.0] text-crimson sm:mt-3 sm:text-[2.5rem] lg:mt-3 lg:text-[2.75rem] xl:text-[3.15rem];
+    @apply mt-2 block font-serif text-[1.85rem] leading-[1.0] text-gold-light sm:mt-3 sm:text-[2.5rem] lg:mt-3 lg:text-[2.75rem] xl:text-[3.15rem];
   }
 
   .home-hero-lede {
-    @apply mt-6 max-w-(--measure-tight) text-[1.0625rem] leading-[1.65] text-ink-soft sm:mt-7 lg:text-[1.125rem];
+    @apply mt-6 max-w-(--measure-tight) text-[1.0625rem] leading-[1.65] text-ivory/90 sm:mt-7 lg:text-[1.125rem];
   }
 
   .home-hero-origin {
-    @apply mt-3 text-[0.9375rem] text-stone;
+    @apply mt-3 text-[0.9375rem] text-ivory/70;
   }
 
   .home-hero-actions {
-    @apply mt-8;
+    @apply mt-7 sm:mt-8;
   }
 
   .home-hero-stats {
-    @apply mt-10 grid max-w-lg grid-cols-3 gap-0 border-t border-rule pt-6 sm:mt-12 sm:pt-7;
+    @apply mt-8 grid max-w-lg grid-cols-3 gap-0 border-t border-white/25 pt-5 sm:mt-12 sm:pt-7;
   }
 
   .home-hero-stat {
-    @apply px-0 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-rule [&:not(:first-child)]:pl-5 sm:[&:not(:first-child)]:pl-7;
+    @apply px-0 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-white/25 [&:not(:first-child)]:pl-5 sm:[&:not(:first-child)]:pl-7;
   }
 
   .home-hero-scroll {
-    @apply mt-10 hidden items-center gap-3 text-[0.6875rem] uppercase tracking-[0.18em] text-stone transition-colors hover:text-crimson lg:inline-flex;
+    @apply mt-10 hidden items-center gap-3 text-[0.6875rem] uppercase tracking-[0.18em] text-ivory/70 transition-colors hover:text-gold-light lg:inline-flex;
   }
 
   .home-hero-scroll::after {
     content: "";
-    @apply block h-6 w-px bg-crimson/40;
+    @apply block h-6 w-px bg-gold/60;
   }
 
   .home-section-bridge {

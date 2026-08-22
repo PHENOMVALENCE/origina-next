@@ -87,7 +87,8 @@ export function SiteHeader() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpenPanel(null)}
-                  className={`site-nav-link ${linkIdle}`}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className={`site-nav-link ${pathname === item.href ? linkActive : linkIdle}`}
                 >
                   {item.label}
                 </Link>
@@ -125,6 +126,7 @@ export function SiteHeader() {
                         key={link.label}
                         href={link.href}
                         onClick={() => setOpenPanel(null)}
+                        aria-current={pathname === link.href ? "page" : undefined}
                         className={`site-nav-panel-link ${
                           dark ? "text-ivory/90 hover:bg-white/5 hover:text-gold" : "text-ink-soft hover:bg-paper-sunk hover:text-crimson"
                         }`}
@@ -159,12 +161,22 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <MobileMenu open={mobileOpen} dark={dark} onClose={() => setMobileOpen(false)} />
+      <MobileMenu open={mobileOpen} dark={dark} pathname={pathname ?? "/"} onClose={() => setMobileOpen(false)} />
     </header>
   );
 }
 
-function MobileMenu({ open, dark, onClose }: { open: boolean; dark: boolean; onClose: () => void }) {
+function MobileMenu({
+  open,
+  dark,
+  pathname,
+  onClose,
+}: {
+  open: boolean;
+  dark: boolean;
+  pathname: string;
+  onClose: () => void;
+}) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -180,7 +192,11 @@ function MobileMenu({ open, dark, onClose }: { open: boolean; dark: boolean; onC
   return (
     <div
       id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="ORIGINA navigation"
       aria-hidden={!open}
+      inert={!open}
       className={`fixed inset-0 z-40 flex flex-col transition-transform duration-300 lg:hidden ${surface} ${
         open ? "translate-x-0" : "translate-x-full"
       }`}
@@ -207,7 +223,13 @@ function MobileMenu({ open, dark, onClose }: { open: boolean; dark: boolean; onC
 
           if (!panelLinks) {
             return (
-              <Link key={item.label} href={item.href} onClick={onClose} className="font-serif text-3xl">
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={onClose}
+                aria-current={pathname === item.href ? "page" : undefined}
+                className="font-serif text-3xl"
+              >
                 {item.label}
               </Link>
             );
@@ -218,7 +240,13 @@ function MobileMenu({ open, dark, onClose }: { open: boolean; dark: boolean; onC
               <p className={`eyebrow eyebrow--plain mb-3 ${dark ? "eyebrow--dark" : ""}`}>{item.label}</p>
               <div className={`flex flex-col gap-3 border-l pl-4 ${railBorder}`}>
                 {panelLinks.map((link) => (
-                  <Link key={link.label} href={link.href} onClick={onClose} className={`text-base ${linkColor}`}>
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={onClose}
+                    aria-current={pathname === link.href ? "page" : undefined}
+                    className={`text-base ${linkColor}`}
+                  >
                     {link.label}
                   </Link>
                 ))}
