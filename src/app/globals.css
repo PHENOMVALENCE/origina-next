@@ -608,6 +608,25 @@ h4 {
     @apply absolute inset-x-0 bottom-0 hidden p-6 lg:block lg:p-9;
   }
 
+  /*
+   * .home-hero-content's height is driven by its own content, not the
+   * hero's actual (viewport-clamped) height, so its bottom edge sits at a
+   * roughly fixed ~614px from the hero top regardless of hero height.
+   * .home-hero-media-caption is bottom-pinned to the *actual* hero height,
+   * so it climbs upward as the hero shrinks on short viewports — measured
+   * to start overlapping the stats/scroll row below ~850px of viewport
+   * height (a very ordinary laptop browser height). Rather than trying to
+   * keep two independently-positioned blocks from colliding with padding
+   * math that would need retuning every time either block's content
+   * changes, drop the caption below the threshold where they'd collide:
+   * it's a nice-to-have image credit, not load-bearing content.
+   */
+  @media (min-width: 1024px) and (max-height: 899px) {
+    .home-hero-media-caption {
+      display: none;
+    }
+  }
+
   .home-hero-content {
     @apply relative z-10 flex min-h-[clamp(46rem,calc(100dvh-var(--header-offset)),62rem)] flex-col justify-center px-5 pt-24 pb-14 sm:px-8 sm:pt-28 sm:pb-20 lg:min-h-0 lg:px-16 lg:py-14 xl:px-24;
   }
