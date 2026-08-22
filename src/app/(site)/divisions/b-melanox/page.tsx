@@ -30,6 +30,7 @@ export default function BMelanoxPage() {
       <PageHero
         variant="dark"
         crumb="B-Melanox™"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Scientific pigmentation division"
         title={
           <>

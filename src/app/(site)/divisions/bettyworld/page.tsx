@@ -30,6 +30,7 @@ export default function BettyWorldPage() {
       <PageHero
         variant="dark"
         crumb="BettyWorld"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Division / Everyday dermatological skincare"
         title={
           <>

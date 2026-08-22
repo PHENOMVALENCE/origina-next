@@ -22,6 +22,7 @@ export default function BValencePage() {
       <PageHero
         variant="dark"
         crumb="BValence™"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Division / Ageing & longevity biology"
         title={
           <>

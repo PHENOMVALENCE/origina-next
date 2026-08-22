@@ -20,6 +20,7 @@ export default function RegulatoryPage() {
       <PageHero
         variant="light"
         crumb="Regulatory Science"
+        parent={{ label: "Science", href: "/science" }}
         kicker="ORIGINA / Evidence & Quality"
         title={
           <>

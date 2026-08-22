@@ -20,6 +20,7 @@ export default function QualityPage() {
       <PageHero
         variant="light"
         crumb="Quality & Safety"
+        parent={{ label: "Science", href: "/science" }}
         kicker="ORIGINA / Evidence & Quality"
         title={
           <>

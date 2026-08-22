@@ -21,6 +21,7 @@ export default function ResponsibleSciencePage() {
       <PageHero
         variant="light"
         crumb="Responsible Science"
+        parent={{ label: "Science", href: "/science" }}
         kicker="Institutional doctrine"
         title={
           <>

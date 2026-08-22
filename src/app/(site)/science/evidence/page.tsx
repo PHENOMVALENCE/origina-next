@@ -23,6 +23,7 @@ export default function EvidencePage() {
       <PageHero
         variant="light"
         crumb="Evidence"
+        parent={{ label: "Science", href: "/science" }}
         kicker="ORIGINA / Evidence & Quality"
         title={
           <>

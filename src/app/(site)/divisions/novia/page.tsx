@@ -20,6 +20,7 @@ export default function NoviaPage() {
       <PageHero
         variant="dark"
         crumb="NOVIA™"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Luxury body care"
         title={
           <>

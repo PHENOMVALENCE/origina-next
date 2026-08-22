@@ -39,6 +39,7 @@ export default async function FutureDetailPage({ params }: FutureDetailPageProps
       <PageHero
         variant="light"
         crumb={item.title}
+        parent={{ label: "Future", href: "/future" }}
         kicker="ORIGINA / Future"
         title={item.unnamed ? <>What has not yet been named.</> : item.title}
         intro={item.description}

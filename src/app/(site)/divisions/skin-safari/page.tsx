@@ -30,6 +30,7 @@ export default function SkinSafariPage() {
       <PageHero
         variant="dark"
         crumb="Skin Safari™"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Division / Scientific communication"
         title={
           <>

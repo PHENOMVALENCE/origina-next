@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Breadcrumbs, type BreadcrumbParent } from "@/components/Breadcrumbs";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { ImageAsset } from "@/lib/content/images";
 
@@ -42,6 +42,7 @@ function HeroImage({
 
 export function PageHero({
   crumb,
+  parent,
   kicker,
   title,
   intro,
@@ -50,6 +51,8 @@ export function PageHero({
   meta,
 }: {
   crumb: string;
+  /** Optional intermediate breadcrumb level, e.g. { label: "Science", href: "/science" }. */
+  parent?: BreadcrumbParent;
   kicker?: string;
   title: React.ReactNode;
   intro?: string;
@@ -65,19 +68,9 @@ export function PageHero({
   const dark = variant === "dark";
   const shellTone = dark ? "page-hero--dark" : "page-hero--light";
 
-  const breadcrumb = (
-    <nav aria-label="Breadcrumb" className={`breadcrumb ${dark ? "text-stone" : "text-stone"}`}>
-      <Link href="/" className={`transition-colors ${dark ? "hover:text-gold" : "hover:text-crimson"}`}>
-        Home
-      </Link>
-      <span aria-hidden="true">/</span>
-      <span className={dark ? "text-ivory/80" : "text-ink"}>{crumb}</span>
-    </nav>
-  );
-
   const copy = (
     <>
-      {breadcrumb}
+      <Breadcrumbs crumb={crumb} parent={parent} dark={dark} />
       {kicker ? <Eyebrow tone={dark ? "dark" : "default"}>{kicker}</Eyebrow> : null}
       <h1 className="display-title max-w-4xl">{title}</h1>
       {intro ? (
