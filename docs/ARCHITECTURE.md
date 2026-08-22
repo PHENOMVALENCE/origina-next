@@ -166,10 +166,12 @@ Extend `@theme` for new colors — avoid one-off arbitrary Tailwind values.
 
 | Component | Purpose |
 |---|---|
-| `SiteHeader` | Floating nav, mega-menu, mobile drawer |
+| `SiteHeader` | Flat full-bleed nav, mega-menu, mobile drawer |
 | `SiteFooter` | Institutional footer with link columns |
 | `PageHero` | Breadcrumb + kicker + title + intro; optional portrait image |
-| `Section` | Toned section shell (ivory/cream/noir/oxblood/graphite) |
+| `Breadcrumbs` | "Home / [parent] / crumb" trail, used by `PageHero` |
+| `Section` | Toned section shell (paper/sunk/noir/crimson/graphite) |
+| `ProcessPathway` | 13-stage development pipeline grouped into 4 phases |
 | `PageCta` | Closing call-to-action band |
 | `Quote` / `QuoteBand` | Pull quotes and full-width quote sections |
 | `SplitSection` | Two-column layout helper |

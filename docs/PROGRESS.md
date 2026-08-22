@@ -66,6 +66,69 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-22 — Design-system discipline pass (master redesign, Phase 1)
+
+Received a comprehensive (90-section) master redesign brief for the full site. Audited before
+writing code — own reads of ~15 core components plus a background research pass covering all 25
+public routes, every design token, content files, SEO, accessibility, and the `"use client"`
+footprint — and found that most of what the brief asks for already existed from the 2026-08-20
+design-system pass and the same-day hero work above. This pass is real gap-closing against actual
+audit findings, not a rebuild; the plan (with full audit findings) is preserved in git history via
+the approved plan file. Explicitly out of scope: the admin app (own disconnected `admin.css`
+palette — flagged, not touched, backend remains parked) and inventing copy for thin pages
+(`/divisions/bvalence`, `/divisions/skin-safari`, `/intellectual-property`, `/platforms`,
+`/science/quality`, `/science/responsible-science`, `/terms` — deferred, see `docs/ROADMAP.md`).
+
+**Naming debt.** Two tone/variant naming systems coexisted for the same visual results, and the
+"legacy" one was dominant, not rare: `Section`'s `tone="ivory"/"cream"/"oxblood"` (44 call sites
+across 21 of 25 routes) and `PageHero`'s `variant="gradient"/"default"` (18 of 25 routes) were
+documented as back-compat aliases for `paper/sunk/crimson` and `light`. Mechanically renamed every
+call site to the canonical name, then deleted the aliases — zero visual change, confirmed by build
+(TypeScript errors on any remaining legacy value) and a zero-match grep before removal. Checked
+first that this wasn't masking a live bug: all 6 division pages already correctly used `variant="dark"`.
+
+**Real AA contrast failures, found via computed contrast ratios, not by eye:**
+
+- `--color-stone` (#9a8e80) is ~5.8:1 on noir (fine) but only ~3.1:1 on `--color-paper`/
+  `--color-form-bg` (fails WCAG AA for normal text). It was being used directly on light grounds in
+  several places that read fine on screen but fail the math: the breadcrumb "Home" link/separators
+  on every light `PageHero` (≈19 institution routes), two lines of enquiry-form help text, and a
+  footnote in `future/page.tsx`'s "unnamed division" card. Added `--color-stone-deep` (#786d63,
+  ~4.9:1) as the AA-safe light-ground pairing and swapped all of the above to it — `--color-stone`
+  itself stays correct on dark grounds.
+- One line in `future/page.tsx` (`text-[#8a7f74]`) turned out to be the *opposite* of what it first
+  looked like: that hex is fine (4.76:1) because it's used on the noir background, not light — it
+  was reused with `--color-stone` instead (also fine there, 5.81:1) purely to remove the one-off hex,
+  not because it had a contrast problem.
+- Consolidated the remaining one-off hexes in `EnquiryForm.tsx` into named tokens:
+  `--color-noir-soft`, `--color-crimson-wash`/`--color-crimson-ink` (contrast-checked at 9.67:1,
+  already fine).
+- A third, undeclared shadow (`.site-nav-panel`'s light-mode dropdown) got its own token,
+  `--shadow-panel` — it's genuinely distinct from `--shadow-nav` (the dark-mode version), not a
+  duplicate to merge.
+- Documented the five hand-picked z-index values sitewide as a comment block in `globals.css`
+  rather than inventing an unneeded numeric scale.
+
+**Structural.** `ProcessPathway` (the 13-stage development framework) now groups into four labelled
+phases — Discovery/Development/Validation/Translation — by index range; step copy and order
+untouched. Extracted `Breadcrumbs` from `PageHero`'s inline markup and gave nested routes
+(`/science/*` subpages, `/divisions/*`, `/future/[id]`) a real "Home / Section / Page" trail instead
+of always "Home / Page". Capped the mobile-menu content at `sm:max-w-sm` so it reads as deliberately
+tablet-sized at 768–1023px instead of stretching a phone layout edge-to-edge; bumped the menu's
+close button from 40px to 44px to match the open-menu toggle and the brief's touch-target minimum.
+
+**Also squared** the remaining unjustified `rounded-sm` instances (`ProductGallery`, the homepage's
+Biology First panel, a culture-page photo frame, a b-melanox product photo) and reused
+`.section-title-light`/`.lead-serif-light` instead of re-typed arbitrary sizes in `SiteFooter` and
+`InstitutionMap`'s Labs link — its "ORIGINA™" institution-block size had no clean match to an
+existing scale class and was left as-is rather than forced into one.
+
+Verified in-browser (Playwright against the dev server, not just read from source): the phase-
+grouped `ProcessPathway`, breadcrumbs on light and dark `PageHero`, the enquiry form, squared photo
+corners, and the mobile menu at 375/768px. `npm run lint` and `npm run build` pass clean.
+
+---
+
 ## 2026-08-22 — Homepage hero rebuild and contrast fixes
 
 Continued and validated an in-progress hero redesign, then fixed what testing turned up. Verified
