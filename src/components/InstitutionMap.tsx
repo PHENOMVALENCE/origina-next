@@ -29,10 +29,7 @@ export function InstitutionMap() {
 
       <div className="mx-auto w-full max-w-lg border border-ink bg-ink p-6 text-center text-ivory sm:p-7">
         <ScientificLabel className="justify-center text-ivory/70">ORIGINA / Science</ScientificLabel>
-        <Link
-          href="/labs"
-          className="mt-3 block font-serif text-[1.5rem] transition-colors hover:text-crimson-light sm:text-[1.85rem]"
-        >
+        <Link href="/labs" className="mt-3 block lead-serif-light transition-colors hover:text-crimson-light">
           ORIGINA Labs™
         </Link>
         <p className="mt-2 text-[0.75rem] uppercase tracking-[0.14em] text-stone">
