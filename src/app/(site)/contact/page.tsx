@@ -30,7 +30,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Contact"
         kicker="Build with ORIGINA"
         title={
@@ -74,7 +74,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </section>
 
-      <Section id="enquiry-form" tone="ivory" eyebrow="Enquire with ORIGINA" title="Start with substance.">
+      <Section id="enquiry-form" tone="paper" eyebrow="Enquire with ORIGINA" title="Start with substance.">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
             <p className="lead-serif">
@@ -91,7 +91,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </Section>
 
-      <Section tone="cream">
+      <Section tone="sunk">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <Eyebrow>Write to us</Eyebrow>
@@ -126,7 +126,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </Section>
 
-      <Section tone="ivory" eyebrow="01 · Message guide" title="A useful first message.">
+      <Section tone="paper" eyebrow="01 · Message guide" title="A useful first message.">
         <div className="grid gap-10 lg:grid-cols-12">
           <p className="lead-serif lg:col-span-5">Help us understand the substance of the conversation from the beginning.</p>
           <ol className="border-t border-rule lg:col-span-7">

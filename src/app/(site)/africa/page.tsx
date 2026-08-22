@@ -19,7 +19,7 @@ export default function AfricaPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Africa Originating"
         kicker="Institutional origin"
         title={

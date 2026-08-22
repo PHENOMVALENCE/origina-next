@@ -32,7 +32,7 @@ export default function LabsPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="ORIGINA Labs™"
         kicker="ORIGINA / Science"
         title={
@@ -48,7 +48,7 @@ export default function LabsPage() {
 
       <SectionNav items={sections} />
 
-      <Section id="function" tone="ivory" eyebrow="01 · Institutional function">
+      <Section id="function" tone="paper" eyebrow="01 · Institutional function">
         <SplitSection reverse>
           <div>
             <h2 className="section-title">
@@ -79,7 +79,7 @@ export default function LabsPage() {
         <LabsCapabilities />
       </Section>
 
-      <Section id="continuum" tone="cream" eyebrow="03 · Continuum" title="From question to repeatable output." intro="Five connected stages within the broader development framework.">
+      <Section id="continuum" tone="sunk" eyebrow="03 · Continuum" title="From question to repeatable output." intro="Five connected stages within the broader development framework.">
         <div className="grid gap-6 border-t border-rule pt-6 sm:grid-cols-2 lg:grid-cols-5">
           {labsContinuum.map((item) => (
             <article key={item.title} className="institutional-panel">
@@ -91,7 +91,7 @@ export default function LabsPage() {
         </div>
       </Section>
 
-      <Section tone="ivory" eyebrow="04 · Horizon" id="research">
+      <Section tone="paper" eyebrow="04 · Horizon" id="research">
         <SplitSection>
           <EditorialImage image={founderImages.formulation} variant="portrait" tone="light" />
           <div>
@@ -108,7 +108,7 @@ export default function LabsPage() {
 
       <Section
         id="archive"
-        tone="cream"
+        tone="sunk"
         eyebrow="05 · Knowledge archive"
         title="Research in active development."
         intro="A living index of questions, protocols, and evidence streams. Public briefs are released as work reaches appropriate disclosure standards — not before."

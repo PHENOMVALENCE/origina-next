@@ -36,7 +36,7 @@ export default function Home() {
       {/* 02 · The Institution */}
       <Section
         id="institutional-thesis"
-        tone="ivory"
+        tone="paper"
         eyebrow="02 · The institution"
         title="We begin with biology."
         intro="Human biology is interconnected. ORIGINA studies systems — not symptoms in isolation — before designing intervention."
@@ -89,7 +89,7 @@ export default function Home() {
 
       {/* 04 · Biology First */}
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="04 · Biology First™"
         title="A philosophical framework for innovation."
         intro="Four principles that govern how ORIGINA asks questions, designs research, and evaluates claims."
@@ -103,7 +103,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <div className="mt-10 grid overflow-hidden rounded-sm bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
+        <div className="mt-10 grid overflow-hidden rounded-none bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
           <div className="p-6 sm:p-8 lg:p-12">
             <ScientificLabel tone="dark">
               Evidence progression
@@ -132,7 +132,7 @@ export default function Home() {
 
       {/* 05 · ORIGINA Labs */}
       <Section
-        tone="ivory"
+        tone="paper"
         eyebrow="05 · ORIGINA Labs™"
         title="The scientific engine of ORIGINA."
         intro="Research · Formulation · Clinical Science · IP · Manufacturing Development"
@@ -154,7 +154,7 @@ export default function Home() {
 
       {/* 06 · Development Framework */}
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="06 · Development framework"
         title="From hypothesis to product."
         intro="Thirteen disciplined stages connect scientific curiosity to responsible commercial output."
@@ -224,7 +224,7 @@ export default function Home() {
         not know, we say we do not know.&rdquo;
       </QuoteBand>
 
-      <Section tone="ivory" eyebrow="10 · Responsible science" title="Ambition without scientific inflation.">
+      <Section tone="paper" eyebrow="10 · Responsible science" title="Ambition without scientific inflation.">
         <p className="max-w-3xl body-copy">
           ORIGINA will not deliberately use unsupported clinically proven claims, exaggerated anti-ageing claims,
           unauthorized disease-treatment claims, or regulatory language implying approval where approval has not
@@ -236,7 +236,7 @@ export default function Home() {
       </Section>
 
       {/* 11 · Founder */}
-      <Section tone="cream" eyebrow="11 · Founder" title="Dr. Elizabeth Consoli">
+      <Section tone="sunk" eyebrow="11 · Founder" title="Dr. Elizabeth Consoli">
         <SplitSection reverse>
           <EditorialImage image={founderImages.portraitClinical} variant="portrait" tone="light" />
           <div className="space-y-4">
@@ -274,7 +274,7 @@ export default function Home() {
       </Section>
 
       {/* 13 · Future ORIGINA */}
-      <Section tone="ivory" eyebrow="13 · Future ORIGINA" title="Built for expansion with discipline.">
+      <Section tone="paper" eyebrow="13 · Future ORIGINA" title="Built for expansion with discipline.">
         <div className="grid gap-4 sm:grid-cols-2">
           {futurePreview.map((item) => (
             <article key={item.id} id={item.id} className="institutional-panel">

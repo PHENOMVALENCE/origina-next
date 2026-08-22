@@ -55,6 +55,7 @@ export default function DivinePage() {
         variant="dark"
 
         crumb="DIVINE™"
+        parent={{ label: "Divisions", href: "/divisions" }}
 
         kicker="Division / Luxury makeup science"
 

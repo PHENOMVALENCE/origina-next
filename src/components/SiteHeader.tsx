@@ -208,7 +208,7 @@ function MobileMenu({
           type="button"
           onClick={onClose}
           aria-label="Close menu"
-          className={`grid h-10 w-10 place-content-center border ${dark ? "border-gold/40" : "border-rule-strong"}`}
+          className={`grid h-11 w-11 place-content-center border ${dark ? "border-gold/40" : "border-rule-strong"}`}
         >
           <span aria-hidden>✕</span>
         </button>
@@ -216,7 +216,7 @@ function MobileMenu({
 
       <nav
         aria-label="Mobile navigation"
-        className="flex flex-1 flex-col gap-8 overflow-y-auto overscroll-contain px-5 py-6 pb-[max(6rem,env(safe-area-inset-bottom))] sm:px-8"
+        className="flex flex-1 flex-col gap-8 overflow-y-auto overscroll-contain px-5 py-6 pb-[max(6rem,env(safe-area-inset-bottom))] sm:max-w-sm sm:px-8"
       >
         {primaryNav.map((item) => {
           const panelLinks = item.panel ? panels[item.panel] : null;

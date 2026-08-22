@@ -52,7 +52,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Institution"
         kicker="The institution"
         title={
@@ -101,7 +101,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section id="purpose" tone="cream" eyebrow="02 · 03 · Purpose">
+      <Section id="purpose" tone="sunk" eyebrow="02 · 03 · Purpose">
         <SplitSection>
           <div>
             <p className="mb-2 text-[0.75rem] uppercase tracking-[0.2em] text-crimson">Mission</p>
@@ -148,7 +148,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section id="founder" tone="ivory" eyebrow="05 · Founder">
+      <Section id="founder" tone="paper" eyebrow="05 · Founder">
         <SplitSection>
           <EditorialImage image={founderImages.portraitClinical} variant="portrait" tone="light" />
           <div>
@@ -179,7 +179,7 @@ export default function AboutPage() {
         </cite>
       </QuoteBand>
 
-      <Section id="mandate" tone="ivory" eyebrow="06 · Mandate">
+      <Section id="mandate" tone="paper" eyebrow="06 · Mandate">
         <SplitSection reverse>
           <PhotoGrid
             images={[
@@ -213,7 +213,7 @@ export default function AboutPage() {
 
       <Section
         id="architecture"
-        tone="cream"
+        tone="sunk"
         eyebrow="07 · Architecture"
         title="The roles that move ideas forward."
         intro="Origina is building a multidisciplinary organisation. These functions define the capability being assembled as the institution grows."

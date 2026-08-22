@@ -16,16 +16,11 @@ export const sectionTones = {
   noir: "bg-noir text-ivory",
   crimson: "bg-crimson text-ivory",
   graphite: "bg-graphite text-ivory",
-
-  // Back-compat aliases.
-  ivory: "bg-paper text-ink",
-  cream: "bg-paper-sunk text-ink",
-  oxblood: "bg-crimson text-ivory",
 } as const;
 
 export type SectionTone = keyof typeof sectionTones;
 
-const DARK_TONES = new Set<SectionTone>(["noir", "crimson", "graphite", "oxblood"]);
+const DARK_TONES = new Set<SectionTone>(["noir", "crimson", "graphite"]);
 
 export function Section({
   tone = "paper",

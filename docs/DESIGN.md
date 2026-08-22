@@ -100,9 +100,25 @@ rules rather than shadows and hover lifts.
 | `--color-rule-soft` | `rgba(27,23,20,0.09)` | secondary divisions |
 | `--color-rule-strong` | `rgba(27,23,20,0.34)` | opening a block, outlined buttons |
 
-**Radius is 0 everywhere.** The floating rounded-pill header, `rounded-full` badges, and
-`rounded-2xl` dropdown panels have all been squared. Institutional interfaces do not use pill
-shapes.
+**Paired-variant tokens added 2026-08-22**, closing out one-off hex values that had accumulated in
+components (`EnquiryForm`, `future/page.tsx`):
+
+| Token | Value | Use |
+|---|---|---|
+| `--color-noir-soft` | `#1e1916` | gradient start on the enquiry-form success panel |
+| `--color-crimson-wash` / `--color-crimson-ink` | `#f6e9e7` / `#692024` | form error alert bg/text |
+| `--color-stone-deep` | `#786d63` | `--color-stone` only reaches ~3.1:1 against `--color-paper`/`--color-form-bg` (fails WCAG AA for normal text) — this pairing passes at ~4.9:1. Use on light grounds; `--color-stone` itself is correct on dark grounds, where it already clears AA. |
+| `--shadow-panel` | `0 20px 50px rgba(27,23,20,0.14)` | the light-mode `.site-nav-panel` dropdown shadow — distinct from `--shadow-nav` (the dark-mode version), not a duplicate of it |
+
+The `Breadcrumbs`, `SiteFooter`, and `EnquiryForm` components all found real AA failures during this
+pass — `text-stone` on a light ground reads fine on screen but fails contrast math. Check new muted
+text against both `--color-paper` and `--color-form-bg`, not just by eye, before reusing `stone`.
+
+**Radius is 0 everywhere**, with two deliberate exceptions: the numbered circular step badge in
+`EvidenceLadder` and the "B" monogram seal on `/divisions/b-melanox` are editorial devices (a
+timeline dot, a wax-seal mark), not pills. Every other rounded corner sitewide — the floating
+rounded-pill header, `rounded-full` badges, `rounded-2xl` dropdown panels, and stray `rounded-sm`
+photo frames — has been squared. Institutional interfaces do not use pill shapes.
 
 **Vertical rhythm:** `--section-y: clamp(4rem, 7vw, 8.5rem)`, increased from `clamp(3rem, 6vw, 7rem)`.
 
@@ -153,14 +169,24 @@ rather than patching sizes with utilities.
 
 ### Hero — `PageHero`
 
-`variant="light"` (default, institution) or `variant="dark"` (division). `"gradient"` and
-`"default"` remain as aliases so existing pages keep working. Supports an optional `meta` line for
-page provenance ("Reviewed August 2026") — institutions state when a page was last reviewed.
+`variant="light"` (default, institution) or `variant="dark"` (division) — the only two values; the
+`"gradient"`/`"default"` aliases were removed 2026-08-22 once every one of the 18 call sites that
+used them (out of 25 routes) was migrated to `"light"`. Renders a `Breadcrumbs` trail; pass
+`parent={{ label, href }}` for pages nested under a hub (`/science/*`, `/divisions/*`,
+`/future/[id]`) to get a three-level "Home / Section / Page" trail instead of the default two-level
+one. Supports an optional `meta` line for page provenance ("Reviewed August 2026").
+
+### Breadcrumbs — `Breadcrumbs`
+
+Extracted from `PageHero`'s inline markup. Always renders "Home", optionally a `parent` level, then
+the current `crumb`. Takes a `dark` flag rather than reading layer from the pathname itself, so it
+stays reusable outside `PageHero` if a future component needs one.
 
 ### Section — `Section`
 
-Tones: `paper` (default), `sunk`, `noir`, `crimson`, `graphite`. `ivory` / `cream` / `oxblood` are
-retained as back-compat aliases resolving to the institutional equivalents. Supports:
+Tones: `paper` (default), `sunk`, `noir`, `crimson`, `graphite` — the only five; the `ivory`/`cream`/
+`oxblood` aliases were removed 2026-08-22 after migrating the 44 call sites (across 21 of 25 routes)
+that used them instead of the canonical names. Supports:
 
 - `index` — an ordinal shown above the title (`.section-index`)
 - `divider` — a hairline opening the section
@@ -179,6 +205,13 @@ every target measured on each pass.
 
 Defaults to `tone="sunk"` — a light band opened by a rule with a crimson primary action. Division
 pages pass `tone="noir"` for a gold action.
+
+### Development framework — `ProcessPathway`
+
+The 13-stage development pipeline (`developmentPathway` in `src/lib/content/science.ts`), grouped
+into four labelled phases — Discovery (1–3), Development (4–6), Validation (7–10), Translation
+(11–13) — rather than one flat 13-cell grid. Grouping is a fixed index range inside the component;
+the underlying step copy and its order are untouched.
 
 ### Institution map — `InstitutionMap`
 

@@ -18,8 +18,9 @@ export default function QualityPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Quality & Safety"
+        parent={{ label: "Science", href: "/science" }}
         kicker="ORIGINA / Evidence & Quality"
         title={
           <>
@@ -43,7 +44,7 @@ export default function QualityPage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Technical file" title="Technical file architecture">
+      <Section tone="sunk" eyebrow="02 · Technical file" title="Technical file architecture">
         <p className="mb-8 max-w-3xl body-copy">
           The intended internal technical-file architecture communicates organizational maturity — the difference between
           making formulas and building a regulated product-development organization.

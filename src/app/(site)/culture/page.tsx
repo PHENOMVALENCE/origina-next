@@ -66,7 +66,7 @@ export default function CulturePage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Culture"
         kicker="Culture & talent"
         title={
@@ -80,7 +80,7 @@ export default function CulturePage() {
         image={founderImages.multidisciplinary}
       />
 
-      <Section tone="ivory" eyebrow="01 · People" title="The person behind the work.">
+      <Section tone="paper" eyebrow="01 · People" title="The person behind the work.">
         <SplitSection>
           <LeadCopy>Origina is built by people whose thinking, discipline, and character compound over time.</LeadCopy>
           <TagList items={traits} />
@@ -106,7 +106,7 @@ export default function CulturePage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Working at Origina">
+      <Section tone="sunk" eyebrow="02 · Working at Origina">
         <SplitSection reverse>
           <MediaFigure
             src={founderImages.multidisciplinary.src}
@@ -152,7 +152,7 @@ export default function CulturePage() {
       />
 
       <Section
-        tone="ivory"
+        tone="paper"
         eyebrow="03 · Culture in practice"
         title="Knowledge moves between people."
         intro="Origina's culture is expressed through listening, demonstration, professional exchange, and the confidence to make scientific knowledge useful in real settings."
@@ -160,7 +160,7 @@ export default function CulturePage() {
         <div className="grid gap-6 md:grid-cols-3">
           {communityPhotos.map((photo) => (
             <figure key={photo.src}>
-              <div className="relative aspect-4/5 overflow-hidden rounded-sm">
+              <div className="relative aspect-4/5 overflow-hidden rounded-none">
                 <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="33vw" />
               </div>
               <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone">{photo.caption}</figcaption>

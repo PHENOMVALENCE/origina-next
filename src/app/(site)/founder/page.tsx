@@ -26,7 +26,7 @@ export default function FounderPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Founder"
         kicker="Institutional leadership"
         title={
@@ -40,7 +40,7 @@ export default function FounderPage() {
         image={founderImages.portraitClinical}
       />
 
-      <Section tone="ivory" eyebrow="01 · Roles">
+      <Section tone="paper" eyebrow="01 · Roles">
         <SplitSection>
           <MediaFigure
             src={founderImages.portraitClinical.src}
@@ -61,7 +61,7 @@ export default function FounderPage() {
       </Section>
 
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="02 · Origin"
         title="Scientific platforms from Africa."
         intro="Dr. Elizabeth Consoli founded ORIGINA around a conviction that scientific innovation does not need to originate elsewhere to be globally relevant."
@@ -79,7 +79,7 @@ export default function FounderPage() {
         </div>
       </Section>
 
-      <Section tone="ivory" eyebrow="03 · Mandate">
+      <Section tone="paper" eyebrow="03 · Mandate">
         <SplitSection reverse>
           <PhotoGrid
             images={[founderImages.professionalEvent, { ...founderImages.conversation, offset: true }]}

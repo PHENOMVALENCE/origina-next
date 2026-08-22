@@ -20,6 +20,7 @@ export default function NoviaPage() {
       <PageHero
         variant="dark"
         crumb="NOVIA™"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Luxury body care"
         title={
           <>
@@ -31,7 +32,7 @@ export default function NoviaPage() {
         intro="NOVIA focuses on texture, sensory performance, barrier compatibility, elegant formulation, and repeatable quality—not generic lifestyle positioning."
       />
 
-      <Section tone="ivory" eyebrow="01 · Position">
+      <Section tone="paper" eyebrow="01 · Position">
         <SplitSection reverse>
           <div>
             <h2 className="section-title">

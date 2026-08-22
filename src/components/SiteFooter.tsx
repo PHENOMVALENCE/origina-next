@@ -14,7 +14,7 @@ export function SiteFooter() {
       <div className="site-container py-16 sm:py-20 lg:py-24">
         <div className="mb-14 border-b border-white/12 pb-14 sm:mb-16 sm:pb-16">
           <p className="eyebrow eyebrow--plain text-crimson-light">ORIGINA™ · Biology First™</p>
-          <h2 className="mt-4 max-w-2xl font-serif text-[2rem] leading-[1.06] text-ivory sm:text-[2.75rem] lg:text-[3.25rem]">
+          <h2 className="mt-4 mb-0 max-w-2xl section-title-light">
             Beginning in Africa.
             <br />
             <span className="text-crimson-light">Serving the world.</span>

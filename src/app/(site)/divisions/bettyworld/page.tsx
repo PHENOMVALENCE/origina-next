@@ -30,6 +30,7 @@ export default function BettyWorldPage() {
       <PageHero
         variant="dark"
         crumb="BettyWorld"
+        parent={{ label: "Divisions", href: "/divisions" }}
         kicker="Division / Everyday dermatological skincare"
         title={
           <>
@@ -71,7 +72,7 @@ export default function BettyWorldPage() {
         </div>
       </Section>
 
-      <Section tone="cream" eyebrow="02 · Ecosystem" title="Everyday dermatological portfolio.">
+      <Section tone="sunk" eyebrow="02 · Ecosystem" title="Everyday dermatological portfolio.">
         <p className="mb-6 max-w-2xl body-copy">
           BettyWorld handles everyday dermatological skincare. B-Melanox handles advanced pigmentation science. The
           distinction is intentional — these brands must not cannibalize each other&apos;s positioning.

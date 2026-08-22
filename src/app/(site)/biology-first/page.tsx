@@ -21,7 +21,7 @@ export default function BiologyFirstPage() {
   return (
     <>
       <PageHero
-        variant="gradient"
+        variant="light"
         crumb="Biology First™"
         kicker="ORIGINA / Science"
         title="Biology First™"
@@ -37,7 +37,7 @@ export default function BiologyFirstPage() {
       </Section>
 
       <Section
-        tone="cream"
+        tone="sunk"
         eyebrow="02 · Four principles"
         title="A framework for innovation."
         intro="Every programme at ORIGINA begins by understanding living systems before designing intervention."

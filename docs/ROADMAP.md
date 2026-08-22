@@ -113,6 +113,27 @@ against it.
 - [x] Crimson-on-noir contrast fixed in the last two places it remained: the homepage's unnamed-
       division eyebrow, and a `ContentStatus` `dark` variant for badges on dark panels
 
+**Done (2026-08-22, design-system discipline pass — Phase 1 of a 90-section master redesign
+brief; see `docs/PROGRESS.md` for the full audit findings behind each item):**
+
+- [x] Unified two coexisting tone/variant naming systems (`Section`'s `ivory/cream/oxblood`, 44
+      call sites; `PageHero`'s `gradient/default`, 18 call sites) onto their canonical names and
+      deleted the aliases
+- [x] Fixed real WCAG AA contrast failures found via computed contrast ratios: `--color-stone` on
+      light grounds (breadcrumbs on ~19 routes, enquiry-form help text, a future-page footnote) —
+      added the AA-safe `--color-stone-deep` pairing
+- [x] Consolidated one-off hex colors in `EnquiryForm`/`future/page.tsx` into named tokens; gave
+      the light-mode nav dropdown shadow its own token (`--shadow-panel`, distinct from
+      `--shadow-nav`); documented the sitewide z-index scale as a comment block
+- [x] `ProcessPathway` groups the 13-stage development framework into four labelled phases
+      (Discovery/Development/Validation/Translation) instead of one flat grid
+- [x] Extracted `Breadcrumbs` from `PageHero`; nested routes (`/science/*`, `/divisions/*`,
+      `/future/[id]`) now show a real "Home / Section / Page" trail
+- [x] Mobile menu capped at `sm:max-w-sm` so 768–1023px tablets get a deliberately-sized menu
+      instead of a stretched phone layout; close button bumped to the 44px touch-target minimum
+- [x] Squared remaining unjustified `rounded-sm` instances; reused `.section-title-light`/
+      `.lead-serif-light` instead of re-typed arbitrary sizes in `SiteFooter`/`InstitutionMap`
+
 **Outstanding:**
 
 - [ ] Verify `SectionNav` scroll tracking in a real browser (preview pane runs hidden, so scroll
@@ -128,6 +149,18 @@ against it.
 - [ ] Audit other `ContentStatus` usages on dark grounds (`/divisions/*`, `InstitutionMap`,
       `/platforms`) for the same crimson-on-noir contrast problem fixed on the homepage — only the
       homepage's Platforms section got the new `dark` prop applied so far
+- [ ] Visually elevate the thin/stub routes with the existing editorial template — no new copy,
+      just better use of what's there: `/divisions/bvalence`, `/divisions/skin-safari`,
+      `/intellectual-property`, `/platforms`, `/science/quality`, `/science/responsible-science`,
+      `/terms`
+- [ ] Full 12-breakpoint responsive QA sweep (320–1920px) and cross-browser QA (Safari especially)
+- [ ] Structured data beyond the sitewide `Organization` JSON-LD — `BreadcrumbList` on nested
+      routes, `Person` on `/founder`
+- [ ] Per-page Open Graph images — every route currently shares one social image
+      (`founder-07.jpeg`) via `getSocialImageUrl()`
+- [ ] Admin app design-system alignment — `admin.css`/`enquiries.css` duplicate the palette with
+      hardcoded hex values and violate the radius-0 rule (`50%`, `99px`, `1rem`). Flagged, not
+      touched: the backend is parked, this brief only ever said "institutional website"
 - [ ] Admin UI restyle — still functional-only, lowest priority
 
 ## Explicitly out of scope for now

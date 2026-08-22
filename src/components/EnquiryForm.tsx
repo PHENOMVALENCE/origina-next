@@ -34,7 +34,7 @@ export function EnquiryForm({
   if (sentReference) {
     return (
       <div className="border border-form-border bg-form-bg p-4 sm:p-8 lg:p-12">
-        <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-[#1e1916] to-noir p-8 text-ivory sm:p-12" role="status">
+        <div className="relative overflow-hidden rounded-none bg-gradient-to-br from-noir-soft to-noir p-8 text-ivory sm:p-12" role="status">
           <span className="inline-grid h-14 w-14 place-items-center rounded-none border border-crimson text-xl text-crimson">
             ✓
           </span>
@@ -64,7 +64,7 @@ export function EnquiryForm({
 
         {errors.form ? (
           <div
-            className="border-l-4 border-crimson bg-[#f6e9e7] px-4 py-3 text-sm text-[#692024] sm:col-span-2"
+            className="border-l-4 border-crimson bg-crimson-wash px-4 py-3 text-sm text-crimson-ink sm:col-span-2"
             role="alert"
           >
             {errors.form}
@@ -106,7 +106,7 @@ export function EnquiryForm({
 
         <div className="flex flex-col gap-2">
           <label htmlFor="organization" className="text-[0.75rem] font-semibold uppercase tracking-[0.14em]">
-            Organisation <span className="font-normal text-[#7b7065]">Optional</span>
+            Organisation <span className="font-normal text-stone-deep">Optional</span>
           </label>
           <input
             id="organization"
@@ -123,7 +123,7 @@ export function EnquiryForm({
 
         <div className="flex flex-col gap-2">
           <label htmlFor="phone" className="text-[0.75rem] font-semibold uppercase tracking-[0.14em]">
-            Phone <span className="font-normal text-[#7b7065]">Optional</span>
+            Phone <span className="font-normal text-stone-deep">Optional</span>
           </label>
           <input
             id="phone"
@@ -172,15 +172,15 @@ export function EnquiryForm({
             aria-describedby="message-help"
             className={`min-h-[150px] resize-y ${fieldClass(Boolean(errors.message))}`}
           />
-          <span id="message-help" className="text-xs text-stone">
+          <span id="message-help" className="text-xs text-stone-deep">
             Include the context, opportunity, timing, and next step you are requesting.
           </span>
-          <p className="border-l-2 border-crimson/30 pl-3 text-xs text-stone">{contactDataNotice}</p>
+          <p className="border-l-2 border-crimson/30 pl-3 text-xs text-stone-deep">{contactDataNotice}</p>
           {errors.message ? <span className="text-xs text-crimson">{errors.message}</span> : null}
         </div>
 
         <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xs text-[0.75rem] text-[#786d63]">
+          <p className="max-w-xs text-[0.75rem] text-stone-deep">
             By submitting, you consent to Origina using these details to respond to your enquiry.
           </p>
           <button
