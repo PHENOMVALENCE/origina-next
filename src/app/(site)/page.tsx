@@ -105,7 +105,7 @@ export default function Home() {
         </div>
         <div className="mt-10 grid overflow-hidden rounded-sm bg-noir lg:mt-12 lg:grid-cols-[1fr_0.9fr]">
           <div className="p-6 sm:p-8 lg:p-12">
-            <ScientificLabel tone="crimson">
+            <ScientificLabel tone="dark">
               Evidence progression
             </ScientificLabel>
             <div className="principle-stack mt-6">
@@ -174,7 +174,7 @@ export default function Home() {
               <h3 className="mt-3 font-serif text-2xl">{platform.name}</h3>
               <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-stone">{platform.summary}</p>
-              <ContentStatus status={platform.status} />
+              <ContentStatus status={platform.status} dark />
               <TextLink href={platform.href} light className="mt-6">
                 View platform
               </TextLink>
@@ -292,7 +292,7 @@ export default function Home() {
 
       {/* 14 · Unnamed Division */}
       <section className="unnamed-division" id="unnamed">
-        <ScientificLabel tone="crimson">
+        <ScientificLabel tone="dark">
           ∞ · Open possibility
         </ScientificLabel>
         <p className="unnamed-division__symbol" aria-hidden="true">

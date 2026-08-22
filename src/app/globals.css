@@ -395,7 +395,7 @@ h4 {
   }
 
   .principle-stack blockquote {
-    @apply font-serif text-[1.375rem] italic leading-relaxed text-ink sm:text-[1.5rem];
+    @apply font-serif text-[1.375rem] italic leading-relaxed text-ivory sm:text-[1.5rem];
   }
 
   /* ============================================================
@@ -436,6 +436,17 @@ h4 {
 
   .content-status--future {
     @apply border-rule bg-transparent text-stone;
+  }
+
+  /*
+   * Dark-ground override. `--development` and `--future` rely on the paper
+   * background showing through a near-transparent fill, so on a noir panel
+   * the crimson text drops to ~1.9:1 (unreadable). Repaint both as a neutral
+   * ivory outline instead of trying to keep crimson legible on noir.
+   */
+  .content-status--dark.content-status--development,
+  .content-status--dark.content-status--future {
+    @apply border-ivory/30 bg-ivory/5 text-ivory/80;
   }
 
   .tag-chip {
