@@ -84,9 +84,23 @@ this pass delivered targeted, build-verified work on a new branch `codex/institu
   the editorial header composition consistently. Also fixed an `02 · 03 · Purpose` eyebrow typo on
   `/about` and untracked/gitignored the local `.claude/` tooling dir.
 
+**Interaction + accessibility follow-up (same day).**
+
+- `feat(ui)` — the `TextLink` trailing arrow now shifts 3px on hover (brief §23/§48), via the existing
+  reduced-motion global rule.
+- `fix(a11y)` — swept `text-stone` (~3.1:1 on paper/ivory, fails WCAG AA for normal text) → `text-stone-deep`
+  (~4.9:1) in every **confirmed light-ground** use: `ResearchLibrary` + evidence research-record
+  meta/footers, the `Quote` figcaption light branch (its ternary resolved to stone on *both* branches),
+  `InstitutionMap` platform/division labels on paper cards, `StatusBadge` planned/future/open, the
+  contact detail-list terms, the science "factors that matter" label, the platforms subtitle, and the
+  culture photo captions. Dark-ground `text-stone` was deliberately left alone — stone clears AA there.
+- **Known remaining:** the shared utility classes in `globals.css` (`.stat-label`, `.quote-attribution`,
+  `.scientific-metadata`, `.page-meta`, `.footnote`, `.editorial-caption`) still use `text-stone` and are
+  used on *both* light and dark grounds, so they can't be blanket-swapped — they need context-aware
+  (light/dark) variants. Deferred as a scoped follow-up.
+
 `npm run lint` and `npm run build` pass clean. Not yet done this pass: in-browser responsive QA
-(320→1600px) and the outstanding Lighthouse/accessibility sweep — the preview pane runs hidden here,
-so those need a real browser.
+(320→1600px) and a full Lighthouse run — the preview pane runs hidden here, so those need a real browser.
 
 ---
 
