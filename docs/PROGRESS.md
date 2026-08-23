@@ -66,6 +66,32 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-23 — Hero section institutional redesign
+
+Rebuilt `HomeHero` from a full-bleed auto-rotating noir carousel into an **editorial split in the
+light register**: a left content column (eyebrow, serif headline with a crimson second line, lede,
+one primary button + one secondary text link, an understated metadata line) beside a single
+landscape documentary photograph, contained on the 12-column grid (`lg` 6/6, `xl` 5/7). The hero now
+shares the paper ground of the light home header so they read as one surface.
+
+- Dropped the carousel (rotation + dot controls were promotional furniture) for a single calm image
+  — reads as an institutional opening page, not a banner. Text sits on paper, never over the photo,
+  so only a small warm gradient at the *foot* of the image aids caption legibility.
+- Height is ~`72vh` on desktop (both columns `min-h-[72vh]`, `items-stretch`), never `100vh`; mobile
+  stacks the image beneath the content at `4/3` (`sm:16/9`).
+- **Now server-rendered** — the entrance is pure CSS (`.hero-rise` / `@keyframes heroRise`, staggered
+  via `animationDelay`, collapsed by the reduced-motion rule), so the hero ships **no client JS**
+  (removed `"use client"`, `useState`, `useEffect`).
+- Removed the old carousel/stats/scroll-cue classes from `globals.css`; also swept the
+  `.home-section-bridge` caption `text-stone` → `text-stone-deep` (light-ground AA).
+
+Copy preserved (headline "Beginning in Africa. / Serving the world.", the existing lede). Semantics:
+one `<h1>` with `aria-labelledby`, meaningful `alt`, `next/image` with `priority`. `docs/DESIGN.md`
+§4 hero entry updated. `npm run lint` and `npm run build` pass clean. In-browser breakpoint QA
+(320→1600px) still needs a real browser.
+
+---
+
 ## 2026-08-23 — Master redesign: editorial header rollout
 
 Received the full institutional redesign brief again (72 sections). Audited the current state
