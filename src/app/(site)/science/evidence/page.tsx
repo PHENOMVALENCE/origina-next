@@ -65,7 +65,7 @@ export default function EvidencePage() {
 
       <Section tone="paper" eyebrow="03 · Research records" title="Research records" intro={evidenceResearchNote}>
         <article className="institutional-panel">
-          <p className="mb-3 flex justify-between gap-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone">
+          <p className="mb-3 flex justify-between gap-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">
             <span>{researchRecordPlaceholder.meta[0]}</span>
             <span>{researchRecordPlaceholder.meta[1]}</span>
           </p>

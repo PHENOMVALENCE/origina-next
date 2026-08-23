@@ -84,7 +84,7 @@ export default function SciencePage() {
               Skin colour is an important biological and clinical consideration — not a single biological category.
             </Quote>
             <div>
-              <p className="mb-2 text-[0.75rem] uppercase tracking-[0.14em] text-stone">Factors that matter</p>
+              <p className="mb-2 text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">Factors that matter</p>
               <ul className="flex flex-wrap gap-2">
                 {biologicalQualifiers.map((item) => (
                   <li key={item} className="tag-chip">

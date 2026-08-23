@@ -23,7 +23,7 @@ export function Quote({
         {children}
       </blockquote>
       {attribution ? (
-        <figcaption className={`mt-3 pl-6 text-[0.75rem] uppercase tracking-[0.16em] ${light ? "text-stone" : "text-stone"}`}>
+        <figcaption className={`mt-3 pl-6 text-[0.75rem] uppercase tracking-[0.16em] ${light ? "text-stone" : "text-stone-deep"}`}>
           {attribution}
         </figcaption>
       ) : null}
