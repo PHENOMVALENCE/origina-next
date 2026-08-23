@@ -111,7 +111,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <dl className="mt-8">
               {contactMeta.map((item) => (
                 <div key={item.label} className="grid gap-1 border-b border-rule py-4 sm:grid-cols-[130px_1fr]">
-                  <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-stone">{item.label}</dt>
+                  <dt className="text-[0.75rem] uppercase tracking-[0.12em] text-stone-deep">{item.label}</dt>
                   <dd className="font-serif text-lg">{item.value}</dd>
                 </div>
               ))}

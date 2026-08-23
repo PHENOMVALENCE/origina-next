@@ -46,13 +46,13 @@ export function ResearchLibrary() {
       <div className="grid gap-4 sm:grid-cols-2">
         {visibleCards.map((card) => (
           <article key={card.title} className="flex flex-col border border-rule bg-ivory p-6">
-            <p className="mb-3 flex justify-between gap-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone">
+            <p className="mb-3 flex justify-between gap-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">
               <span>{card.meta[0]}</span>
               <span>{card.meta[1]}</span>
             </p>
             <h3 className="font-serif text-2xl text-ink">{card.title}</h3>
             <p className="mt-3 flex-1 text-sm text-ink-soft">{card.text}</p>
-            <footer className="mt-6 flex justify-between border-t border-rule pt-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone">
+            <footer className="mt-6 flex justify-between border-t border-rule pt-4 text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">
               <span>{card.footer[0]}</span>
               <span>{card.footer[1]}</span>
             </footer>

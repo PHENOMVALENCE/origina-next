@@ -42,7 +42,7 @@ export default function PlatformsPage() {
                 <ContentStatus status={platform.status} />
               </div>
               <h2 className="mt-4 font-serif text-3xl text-ink">{platform.name}</h2>
-              <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
+              <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone-deep">{platform.subtitle}</p>
               <p className="mt-4 max-w-3xl body-copy">{platform.summary}</p>
               <p className="mt-2 scientific-metadata">Division: {platform.division}</p>
               <TextLink href={platform.href} className="mt-6">

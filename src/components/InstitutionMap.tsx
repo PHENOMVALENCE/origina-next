@@ -47,7 +47,7 @@ export function InstitutionMap() {
             <span className="font-serif text-xl text-ink transition-colors group-hover:text-crimson">
               {platform.name}
             </span>
-            <p className="text-[0.75rem] uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
+            <p className="text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">{platform.subtitle}</p>
             <ContentStatus status={platform.status} />
           </Link>
         ))}
@@ -63,7 +63,7 @@ export function InstitutionMap() {
             <strong className="font-serif text-xl text-ink transition-colors group-hover:text-crimson">
               {division.name}
             </strong>
-            <span className="text-[0.75rem] uppercase tracking-[0.12em] text-stone">{division.role}</span>
+            <span className="text-[0.75rem] uppercase tracking-[0.12em] text-stone-deep">{division.role}</span>
             <span className="text-[0.9375rem] leading-relaxed text-ink-soft">{division.tagline}</span>
           </Link>
         ))}

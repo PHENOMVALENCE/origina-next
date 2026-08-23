@@ -10,9 +10,9 @@ const statusStyles: Record<DivisionStatus, string> = {
   research: "border-crimson/35 bg-crimson/5 text-crimson",
   development: "border-crimson/30 bg-crimson/5 text-crimson",
   emerging: "border-stone/45 bg-paper-sunk text-ink-soft",
-  planned: "border-stone/40 bg-transparent text-stone",
-  future: "border-stone/35 bg-transparent text-stone",
-  open: "border-stone/35 bg-transparent text-stone",
+  planned: "border-stone/40 bg-transparent text-stone-deep",
+  future: "border-stone/35 bg-transparent text-stone-deep",
+  open: "border-stone/35 bg-transparent text-stone-deep",
 };
 
 export function StatusBadge({ status }: { status: DivisionStatus }) {

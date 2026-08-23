@@ -163,7 +163,7 @@ export default function CulturePage() {
               <div className="relative aspect-4/5 overflow-hidden rounded-none">
                 <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="33vw" />
               </div>
-              <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone">{photo.caption}</figcaption>
+              <figcaption className="mt-3 text-[0.72rem] uppercase tracking-[0.12em] text-stone-deep">{photo.caption}</figcaption>
             </figure>
           ))}
         </div>
