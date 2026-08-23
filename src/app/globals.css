@@ -158,6 +158,33 @@ h4 {
     max-width: var(--measure-tight);
   }
 
+  /*
+   * 12-column editorial grid. The institutional layout device the brief asks
+   * for: it lets a section place a heading, a narrative column, and metadata on
+   * the same baseline grid instead of stacking full-width blocks. Collapses to a
+   * single column below lg. Pair with Tailwind col-span-* utilities.
+   */
+  .editorial-grid {
+    @apply grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-12 lg:gap-x-12;
+  }
+
+  /*
+   * Asymmetric section header: title on the left, intro on the right, sharing
+   * one row on large screens (institutional editorial composition, not centred
+   * marketing). Falls back to a stack below lg.
+   */
+  .section-header-split {
+    @apply grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-12;
+  }
+
+  .section-header-split > .section-header-split__title {
+    @apply lg:col-span-6 xl:col-span-7;
+  }
+
+  .section-header-split > .section-header-split__intro {
+    @apply lg:col-span-5 lg:pt-3 xl:col-span-4 xl:col-start-9;
+  }
+
   /* ============================================================
    * Rules - the primary institutional device
    * ============================================================ */

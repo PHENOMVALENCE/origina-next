@@ -29,6 +29,7 @@ export function Section({
   title,
   intro,
   center,
+  split = true,
   id,
   divider = false,
   children,
@@ -40,37 +41,65 @@ export function Section({
   title?: string;
   intro?: string;
   center?: boolean;
+  /**
+   * Asymmetric editorial header: title left, intro right on large screens.
+   * On by default — pass `split={false}` to stack the intro under the title.
+   * Ignored when `center` is set, and only takes effect when both title and
+   * intro are present.
+   */
+  split?: boolean;
   id?: string;
   /** Draw a hairline above the section content. */
   divider?: boolean;
   children: React.ReactNode;
 }) {
   const isDark = DARK_TONES.has(tone);
+  const useSplit = split && !center && Boolean(title) && Boolean(intro);
+
+  const indexEl = index ? (
+    <span className={`section-index ${isDark ? "section-index--dark" : ""} ${center ? "mx-auto" : ""}`}>{index}</span>
+  ) : null;
+
+  const eyebrowEl = eyebrow ? (
+    <Eyebrow plain tone={isDark ? "dark" : "default"} className={center ? "justify-center" : ""}>
+      {eyebrow}
+    </Eyebrow>
+  ) : null;
+
+  const titleEl = title ? (
+    <h2 className={`section-title ${useSplit ? "mb-0" : ""} ${isDark ? "text-ivory" : ""} ${center ? "mx-auto" : ""}`}>
+      {title}
+    </h2>
+  ) : null;
+
+  const introEl = intro ? (
+    <p className={`section-intro ${useSplit ? "mb-0 max-w-none" : ""} ${center ? "mx-auto" : ""} ${isDark ? "text-muted-dark" : ""}`}>
+      {intro}
+    </p>
+  ) : null;
 
   return (
     <section id={id} className={sectionTones[tone]}>
       <div className={`site-container section-shell ${center ? "text-center" : ""}`}>
         {divider ? <hr className={`mb-12 ${isDark ? "bg-white/15" : "rule"}`} /> : null}
 
-        {index ? (
-          <span className={`section-index ${isDark ? "section-index--dark" : ""} ${center ? "mx-auto" : ""}`}>
-            {index}
-          </span>
-        ) : null}
-
-        {eyebrow ? (
-          <Eyebrow plain tone={isDark ? "dark" : "default"} className={center ? "justify-center" : ""}>
-            {eyebrow}
-          </Eyebrow>
-        ) : null}
-
-        {title ? (
-          <h2 className={`section-title ${isDark ? "text-ivory" : ""} ${center ? "mx-auto" : ""}`}>{title}</h2>
-        ) : null}
-
-        {intro ? (
-          <p className={`section-intro ${center ? "mx-auto" : ""} ${isDark ? "text-muted-dark" : ""}`}>{intro}</p>
-        ) : null}
+        {useSplit ? (
+          <div className="section-header-split mb-12 sm:mb-14">
+            <div className="section-header-split__title">
+              {indexEl}
+              {eyebrowEl}
+              {titleEl}
+            </div>
+            <div className="section-header-split__intro">{introEl}</div>
+          </div>
+        ) : (
+          <>
+            {indexEl}
+            {eyebrowEl}
+            {titleEl}
+            {introEl}
+          </>
+        )}
 
         {children}
       </div>

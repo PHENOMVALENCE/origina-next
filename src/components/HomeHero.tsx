@@ -118,7 +118,7 @@ export function HomeHero() {
             {stats.map((stat) => (
               <div key={stat.label} className="home-hero-stat">
                 <dt className="sr-only">{stat.label}</dt>
-                <dd className="stat-figure">{stat.value}</dd>
+                <dd className="stat-figure--dark">{stat.value}</dd>
                 <dd className="stat-label">{stat.label}</dd>
               </div>
             ))}

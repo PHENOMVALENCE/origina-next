@@ -274,7 +274,12 @@ export default function Home() {
       </Section>
 
       {/* 13 · Future ORIGINA */}
-      <Section tone="paper" eyebrow="13 · Future ORIGINA" title="Built for expansion with discipline.">
+      <Section
+        tone="paper"
+        eyebrow="13 · Future ORIGINA"
+        title="Built for expansion with discipline."
+        intro="A staged institutional horizon — an academy, a research institute, and new ventures — advanced only as the evidence and capacity are ready."
+      >
         <div className="grid gap-4 sm:grid-cols-2">
           {futurePreview.map((item) => (
             <article key={item.id} id={item.id} className="institutional-panel">

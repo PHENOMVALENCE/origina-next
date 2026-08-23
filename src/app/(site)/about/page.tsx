@@ -101,7 +101,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section id="purpose" tone="sunk" eyebrow="02 · 03 · Purpose">
+      <Section id="purpose" tone="sunk" eyebrow="02 · Purpose">
         <SplitSection>
           <div>
             <p className="mb-2 text-[0.75rem] uppercase tracking-[0.2em] text-crimson">Mission</p>

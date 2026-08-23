@@ -190,6 +190,16 @@ that used them instead of the canonical names. Supports:
 
 - `index` — an ordinal shown above the title (`.section-index`)
 - `divider` — a hairline opening the section
+- `split` — **on by default.** When a title and intro coexist (and `center` is
+  not set), the header lays out as an asymmetric editorial composition: title on
+  the left, intro on the right, sharing one row on large screens
+  (`.section-header-split`). Pass `split={false}` to stack the intro under the
+  title in the rare case that reads better. This is the institutional editorial
+  header device (DESIGN brief §11, §21) and applies across every public route.
+
+`.editorial-grid` is the reusable 12-column grid primitive (collapses to one
+column below `lg`); pair it with Tailwind `col-span-*` utilities to place a
+heading, a narrative column, and metadata on one baseline grid.
 
 ### Section navigation — `SectionNav`
 
