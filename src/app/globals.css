@@ -368,6 +368,17 @@ h4 {
     @apply inline-flex items-center gap-2 border-b border-gold/40 pb-0.5 text-[0.9375rem] font-medium text-gold transition-colors hover:border-gold hover:text-gold-light;
   }
 
+  /* The trailing directional arrow shifts 3px on hover (DESIGN brief §23, §48). */
+  .text-link > span,
+  .text-link-light > span {
+    @apply transition-transform duration-200;
+  }
+
+  .text-link:hover > span,
+  .text-link-light:hover > span {
+    transform: translateX(3px);
+  }
+
   /* ============================================================
    * Hero
    * ============================================================ */
