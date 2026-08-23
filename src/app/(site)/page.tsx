@@ -203,6 +203,7 @@ export default function Home() {
       {/* 09 · Evidence & Quality */}
       <Section
         tone="noir"
+        split
         eyebrow="09 · Evidence & quality"
         title="Evidence has levels. Quality is designed in."
         intro="ORIGINA is ambitious scientifically and conservative in claims."
@@ -277,7 +278,13 @@ export default function Home() {
       </Section>
 
       {/* 13 · Future ORIGINA */}
-      <Section tone="paper" eyebrow="13 · Future ORIGINA" title="Built for expansion with discipline.">
+      <Section
+        tone="paper"
+        split
+        eyebrow="13 · Future ORIGINA"
+        title="Built for expansion with discipline."
+        intro="A staged institutional horizon — an academy, a research institute, and new ventures — advanced only as the evidence and capacity are ready."
+      >
         <div className="grid gap-4 sm:grid-cols-2">
           {futurePreview.map((item) => (
             <article key={item.id} id={item.id} className="institutional-panel">
