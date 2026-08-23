@@ -90,7 +90,6 @@ export default function Home() {
       {/* 04 · Biology First */}
       <Section
         tone="sunk"
-        split
         eyebrow="04 · Biology First™"
         title="A philosophical framework for innovation."
         intro="Four principles that govern how ORIGINA asks questions, designs research, and evaluates claims."
@@ -156,7 +155,6 @@ export default function Home() {
       {/* 06 · Development Framework */}
       <Section
         tone="sunk"
-        split
         eyebrow="06 · Development framework"
         title="From hypothesis to product."
         intro="Thirteen disciplined stages connect scientific curiosity to responsible commercial output."
@@ -187,7 +185,6 @@ export default function Home() {
 
       {/* 08 · Institutional architecture + Divisions */}
       <Section
-        split
         eyebrow="08 · Divisions"
         title="A scientific institution — not a single brand."
         intro="Distinct expressions. Shared institution. Products are outputs. Brands are expressions."
@@ -203,7 +200,6 @@ export default function Home() {
       {/* 09 · Evidence & Quality */}
       <Section
         tone="noir"
-        split
         eyebrow="09 · Evidence & quality"
         title="Evidence has levels. Quality is designed in."
         intro="ORIGINA is ambitious scientifically and conservative in claims."
@@ -280,7 +276,6 @@ export default function Home() {
       {/* 13 · Future ORIGINA */}
       <Section
         tone="paper"
-        split
         eyebrow="13 · Future ORIGINA"
         title="Built for expansion with discipline."
         intro="A staged institutional horizon — an academy, a research institute, and new ventures — advanced only as the evidence and capacity are ready."

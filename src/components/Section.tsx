@@ -29,7 +29,7 @@ export function Section({
   title,
   intro,
   center,
-  split = false,
+  split = true,
   id,
   divider = false,
   children,
@@ -43,8 +43,9 @@ export function Section({
   center?: boolean;
   /**
    * Asymmetric editorial header: title left, intro right on large screens.
-   * Ignored when `center` is set. Only takes effect when both title and intro
-   * are present.
+   * On by default — pass `split={false}` to stack the intro under the title.
+   * Ignored when `center` is set, and only takes effect when both title and
+   * intro are present.
    */
   split?: boolean;
   id?: string;
