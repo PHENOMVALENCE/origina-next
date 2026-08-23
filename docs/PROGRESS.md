@@ -66,6 +66,30 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-23 — Master redesign: editorial header rollout
+
+Received the full institutional redesign brief again (72 sections). Audited the current state
+against it first (tokens, homepage, shell, both design docs) and confirmed what the two prior passes
+already recorded: the great majority of the brief is implemented. Rather than churn a mature system,
+this pass delivered targeted, build-verified work on a new branch `codex/institutional-redesign`:
+
+- **Real bug** — the homepage hero stats used `.stat-figure` (crimson `#7a171b`) on the noir hero,
+  ~1.9:1 and unreadable; the exact crimson-on-dark violation the docs warn against. Switched to
+  `.stat-figure--dark` (gold).
+- **New primitives** — `.editorial-grid` (12-column, the layout device the brief asks for in §11/§21)
+  and `.section-header-split` (asymmetric title-left / intro-right header), exposed through `Section`'s
+  new `split` prop.
+- **Site-wide rollout** — made `split` the default whenever a `Section` has both a title and intro
+  (opt out with `split={false}`), so every institutional section across all 25 public routes takes
+  the editorial header composition consistently. Also fixed an `02 · 03 · Purpose` eyebrow typo on
+  `/about` and untracked/gitignored the local `.claude/` tooling dir.
+
+`npm run lint` and `npm run build` pass clean. Not yet done this pass: in-browser responsive QA
+(320→1600px) and the outstanding Lighthouse/accessibility sweep — the preview pane runs hidden here,
+so those need a real browser.
+
+---
+
 ## 2026-08-22 — Design-system discipline pass (master redesign, Phase 1)
 
 Received a comprehensive (90-section) master redesign brief for the full site. Audited before
