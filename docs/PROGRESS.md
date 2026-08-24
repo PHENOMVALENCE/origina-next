@@ -66,6 +66,26 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-24 — Institutional revision plan: Phase 1 audit + Phase 2 fonts
+
+**Phase 1 (audit).** Added `docs/institutional-ui-audit.md` — a dimension-by-dimension assessment
+against a fresh 9-phase institutional brief. Committed alone (`docs: audit institutional website UI
+and UX`) on `codex/institutional-ui-audit`, PR #19. Conclusion: tokens, typography scale, header/nav,
+footer, buttons/links, two-layer brand, and the redesigned hero are already at standard; the real
+gaps are homepage length, mixed-ground `text-stone` in shared utility classes, unrun in-browser
+responsive QA, and no full Lighthouse pass.
+
+**Phase 2 (design system — fonts).** Owner chose to follow the brief's font direction. Swapped the
+type faces via `next/font/google`: **Cormorant Garamond → Source Serif 4** (headings/display/quotes)
+and **Montserrat → Source Sans 3** (body/UI). Font CSS variables renamed to `--font-serif-family` /
+`--font-sans-family`; the `--font-serif` / `--font-sans` tokens and fallback stacks updated. The rest
+of the design system (scale, spacing, tokens) already existed, so no other token work was needed.
+`docs/DESIGN.md` §2 updated. **Caveat:** the `clamp()` display scale was calibrated for the narrower
+Cormorant; Source Serif 4 sets wider/heavier, so the largest sizes may want a small trim — flagged
+for in-browser QA (Phase 9). `npm run lint` and `npm run build` pass clean.
+
+---
+
 ## 2026-08-23 — Hero section institutional redesign
 
 Rebuilt `HomeHero` from a full-bleed auto-rotating noir carousel into an **editorial split in the

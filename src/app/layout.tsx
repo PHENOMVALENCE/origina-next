@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import { getSiteUrl, getSocialImageUrl, organizationJsonLd, siteDescription, siteName, siteTagline } from "@/lib/site";
 import "./globals.css";
 
-// Only the weights the design system actually uses. Headings and display type
-// all sit at 400; italic is used by `.principle-stack blockquote`.
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Editorial serif for headings, display type, and pull quotes. Headings sit at
+// 400; 600 is available for the heaviest display use; italic is used by
+// `.principle-stack blockquote`.
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif-family",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600"],
   style: ["normal", "italic"],
 });
 
-// 400 body, 500 nav/labels, 600 buttons and eyebrows.
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+// Sans for body, interface, and labels. 400 body, 500 nav/labels, 600 buttons
+// and eyebrows.
+const sourceSans = Source_Sans_3({
+  variable: "--font-sans-family",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${montserrat.variable} antialiased`}>
+    <html lang="en" className={`${sourceSerif.variable} ${sourceSans.variable} antialiased`}>
       <body className="flex min-h-screen flex-col font-sans">
         <script
           type="application/ld+json"

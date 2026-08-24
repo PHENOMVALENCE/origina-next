@@ -75,8 +75,17 @@ that had been rendering at 9px.
 
 ### Faces
 
-- **Serif** — Cormorant Garamond. All headings, pull quotes, statistics, and section indices.
-- **Sans** — Montserrat. Body, interface, labels.
+- **Serif** — Source Serif 4. All headings, pull quotes, statistics, and section indices. (Replaced
+  Cormorant Garamond 2026-08-24 for more institutional weight and readability — Source Serif 4 has a
+  larger x-height and a solid 400 regular, where Cormorant read light and display-delicate.)
+- **Sans** — Source Sans 3. Body, interface, labels. (Replaced Montserrat, same date.)
+
+Loaded via `next/font/google` in `src/app/layout.tsx` as CSS variables `--font-serif-family` /
+`--font-sans-family`, consumed by the `--font-serif` / `--font-sans` tokens in `globals.css`.
+
+> **Re-tuning note.** The `clamp()` display scale was calibrated for Cormorant, which is narrower and
+> taller. Source Serif 4 sets wider and heavier at the same px, so the largest display sizes may want
+> a small trim — confirm and adjust during in-browser QA (Phase 9).
 
 ### Measure
 
