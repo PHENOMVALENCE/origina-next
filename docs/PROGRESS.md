@@ -84,6 +84,29 @@ of the design system (scale, spacing, tokens) already existed, so no other token
 Cormorant; Source Serif 4 sets wider/heavier, so the largest sizes may want a small trim — flagged
 for in-browser QA (Phase 9). `npm run lint` and `npm run build` pass clean.
 
+**Phase 4 (homepage restructure).** Rebuilt `src/app/(site)/page.tsx` from ~14 numbered sections into
+an executive overview of 8 content sections + hero + closing CTA. Detailed content was **not deleted**
+— it already lives on dedicated pages, so the homepage now carries a glimpse of each and links out:
+
+- Kept & trimmed: The institution (→ /about), Divisions cards (→ /divisions), Founder glimpse
+  (→ /founder), Africa (→ /africa).
+- Merged: Scientific position + Biology First → one "Why ORIGINA exists" section with the four
+  pillar names inline (→ /biology-first); Evidence & quality + Responsible science → one
+  "Evidence & responsibility" section (→ /science/evidence, /science/responsible-science).
+- Condensed into a single "What we do" editorial list: Labs, the 13-stage development framework, and
+  Platforms (→ /labs, /science#framework, /platforms) — dropped the in-page `ProcessPathway`,
+  `EvidenceLadder`, quality grid, full pillar grid, labs-function list, platform cards, and the
+  `InstitutionMap` diagram (all still used on their own pages; no components deleted).
+- Collapsed the large "unnamed division" ∞ block into a link (→ /future#unnamed); Future condensed to
+  three horizon previews (→ /future).
+
+No invented facts or statistics; the responsible-science quote stands in for an impact section rather
+than fabricating metrics. Hero untouched (PR #18); design system untouched (PR #20). Images varied to
+avoid repeating the hero's photo (institution uses `recognition`, founder uses `portraitClinical`).
+`npm run lint` and `npm run build` pass clean. **Typography scale left as-is** — Source Serif 4 may
+render the display sizes large, but that is a system-level call best made against a real browser
+(Phase 9), not blind. In-browser responsive QA still outstanding.
+
 ---
 
 ## 2026-08-23 — Hero section institutional redesign
