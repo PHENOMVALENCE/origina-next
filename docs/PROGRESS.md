@@ -120,6 +120,17 @@ founder portrait used in the Founder section — so the preview is now an explic
 reviewed — the registry's descriptions are accurate and non-speculative, no changes needed.
 `npm run lint` and `npm run build` pass clean.
 
+**Phase 6 (browser QA).** Actually rendered the site — headless Chromium (Playwright) against
+`npm run dev` — and inspected screenshots at 320/375/768/1440/1920 (homepage) plus `/about` (1440)
+and `/contact` (375). This finally closes the standing "needs a real browser" item from every prior
+phase. **Result: the site renders as a polished, production-ready institutional website; no P0/P1
+issues, so no code was changed** (this pass is conservative refinement, not redesign). Key
+confirmations: the Source Serif 4 display scale is controlled, not oversized (the open worry from
+Phase 2); no horizontal overflow at 320; the composition is contained at 1920; the Phase 5 fixes
+render correctly (the "Who we are" landscape crop and the distinct, non-repeating division cards).
+Findings recorded in `docs/browser-qa-report.md`. Accepted-as-is: the 320px hero headline wraps to
+four short lines — judged intentional editorial wrapping, not worth shrinking the hero for.
+
 ---
 
 ## 2026-08-23 — Hero section institutional redesign
