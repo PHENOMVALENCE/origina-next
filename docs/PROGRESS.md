@@ -107,6 +107,19 @@ avoid repeating the hero's photo (institution uses `recognition`, founder uses `
 render the display sizes large, but that is a system-level call best made against a real browser
 (Phase 9), not blind. In-browser responsive QA still outstanding.
 
+**Phase 5 (contextual imagery).** Audited the whole image library: 9 founder photos (all one person —
+Dr. Consoli; 01/02 portrait, 03–09 landscape 1080×719), 5 B-Melanox product shots, 2 brand marks.
+Nothing else — no research/lab/community/team/facility/partnership photography. Two real homepage
+fixes: (1) the "Who we are" image (`recognition`, a landscape source) was in a `portrait` 4/5 frame
+and hard-cropping — switched to the `landscape` variant, which matches its 3:2 source; (2) the
+division preview `slice(0,3)` included BValence, whose card image is `portraitClinical` — the same
+founder portrait used in the Founder section — so the preview is now an explicit slug list
+(`b-melanox`, `bettyworld`, `novia`) with distinct images. No new images invented; text-only sections
+(What we do, Evidence, Horizon) kept text-only rather than forced to carry an irrelevant photo. Added
+`docs/client-photography-requirements.md` documenting the seven genuine gaps to commission. Alt text
+reviewed — the registry's descriptions are accurate and non-speculative, no changes needed.
+`npm run lint` and `npm run build` pass clean.
+
 ---
 
 ## 2026-08-23 — Hero section institutional redesign

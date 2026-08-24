@@ -19,7 +19,16 @@ import { founderImages } from "@/lib/content/images";
  * Divisions, Evidence, Founder, Africa, Future). See Phase 4 in docs/PROGRESS.md.
  */
 
-const divisionPreviews = divisions.filter((division) => division.slug !== "labs").slice(0, 3);
+// Explicit preview selection (not a slice) so the three cards avoid reusing a
+// photograph shown elsewhere on the homepage: the default first-three includes
+// BValence, whose card image is `portraitClinical` — the same founder portrait
+// used in the Founder section. b-melanox (product shot), bettyworld, and novia
+// each carry a distinct image. Card imagery is still placeholder founder
+// photography — see docs/client-photography-requirements.md.
+const previewSlugs = ["b-melanox", "bettyworld", "novia"] as const;
+const divisionPreviews = previewSlugs
+  .map((slug) => divisions.find((division) => division.slug === slug))
+  .filter((division): division is (typeof divisions)[number] => Boolean(division));
 const horizon = roadmapItems.filter((item) => !item.unnamed).slice(0, 3);
 const biologyFirstPillars = biologyFirst.pillars.map((pillar) => pillar.name).join(" · ");
 
@@ -71,7 +80,7 @@ export default function Home() {
             <LeadCopy>Understand the biological system before attempting to change it.</LeadCopy>
           </div>
           <div className="space-y-6">
-            <EditorialImage image={founderImages.recognition} variant="portrait" tone="light" />
+            <EditorialImage image={founderImages.recognition} variant="landscape" tone="light" />
             <div className="space-y-5 body-copy">
               <p>
                 Skin of colour is ORIGINA&apos;s first scientific specialization — populations historically
