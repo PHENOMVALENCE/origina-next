@@ -442,7 +442,13 @@ h4 {
   }
 
   .quote-attribution {
-    @apply mt-7 text-[0.75rem] uppercase tracking-[0.18em] text-stone;
+    @apply mt-7 text-[0.75rem] uppercase tracking-[0.18em] text-stone-deep;
+  }
+
+  /* Dark-ground override: on a noir quote band the AA-safe light pairing is too
+     dark, so restore the lighter stone (which clears AA on noir). */
+  .quote-band--dark .quote-attribution {
+    color: var(--color-stone);
   }
 
   .pull-quote {
@@ -469,16 +475,23 @@ h4 {
   }
 
   .scientific-metadata {
-    @apply text-[0.6875rem] uppercase tracking-[0.14em] text-stone;
+    @apply text-[0.6875rem] uppercase tracking-[0.14em] text-stone-deep;
   }
 
   /* Page provenance line - institutions state when a page was reviewed. */
   .page-meta {
-    @apply flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-rule pt-5 text-[0.75rem] text-stone;
+    @apply flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-rule pt-5 text-[0.75rem] text-stone-deep;
+  }
+
+  /* Dark-ground override — the page-meta and portrait caption sit on the noir
+     hero on division pages; restore the lighter stone there. */
+  .page-hero--dark .page-meta,
+  .page-hero--dark .editorial-caption {
+    color: var(--color-stone);
   }
 
   .footnote {
-    @apply border-t border-rule pt-4 text-[0.8125rem] leading-relaxed text-stone;
+    @apply border-t border-rule pt-4 text-[0.8125rem] leading-relaxed text-stone-deep;
   }
 
   .content-status {
@@ -498,7 +511,7 @@ h4 {
   }
 
   .content-status--future {
-    @apply border-rule bg-transparent text-stone;
+    @apply border-rule bg-transparent text-stone-deep;
   }
 
   /*
@@ -526,7 +539,7 @@ h4 {
   }
 
   .stat-label {
-    @apply mt-2 text-[0.6875rem] uppercase tracking-[0.16em] text-stone;
+    @apply mt-2 text-[0.6875rem] uppercase tracking-[0.16em] text-stone-deep;
   }
 
   /* ============================================================
@@ -564,7 +577,7 @@ h4 {
   }
 
   .editorial-caption {
-    @apply mt-3 border-l border-rule pl-3 text-[0.75rem] leading-relaxed tracking-[0.02em] text-stone;
+    @apply mt-3 border-l border-rule pl-3 text-[0.75rem] leading-relaxed tracking-[0.02em] text-stone-deep;
   }
 
   .image-break {
