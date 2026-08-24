@@ -169,15 +169,20 @@ export default function Home() {
       <Section tone="graphite" eyebrow="07 · Platforms" title="Proprietary science platforms.">
         <div className="grid gap-4 lg:grid-cols-2">
           {platforms.map((platform) => (
-            <article key={platform.id} className="institutional-panel border-white/10 bg-noir/40 text-ivory">
+            <article
+              key={platform.id}
+              className="institutional-panel flex h-full flex-col border-white/10 bg-noir/40 text-ivory"
+            >
               <ScientificLabel tone="dark">Platform / {platform.name}</ScientificLabel>
               <h3 className="mt-3 font-serif text-2xl">{platform.name}</h3>
               <p className="mt-1 text-sm uppercase tracking-[0.14em] text-stone">{platform.subtitle}</p>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-stone">{platform.summary}</p>
-              <ContentStatus status={platform.status} dark />
-              <TextLink href={platform.href} light className="mt-6">
-                View platform
-              </TextLink>
+              <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+                <ContentStatus status={platform.status} dark />
+                <TextLink href={platform.href} light>
+                  View platform
+                </TextLink>
+              </div>
             </article>
           ))}
         </div>

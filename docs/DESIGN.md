@@ -134,31 +134,33 @@ type is 13–14px.
 
 ### Homepage hero — `HomeHero`
 
-Full-bleed, auto-rotating photograph carousel on a noir ground (dark-mode punctuation opening the
-page — see *Accent discipline* above), not the institution's usual paper/crimson. Held to the
-viewport: `lg:h-[calc(100dvh-var(--header-offset))]`, clamped between 600px and 880px.
+**Editorial split, light register (redesigned 2026-08-23).** An asymmetric composition — a left
+content column (eyebrow, serif headline with a crimson second line, lede, one primary button + one
+secondary text link, an understated metadata line) beside a right documentary photograph — contained
+within `.site-container` on the 12-column grid (`lg:col-span-6` / `lg:col-span-6`, `xl` 5 / 7). It
+sits in the **light** register (paper ground, crimson accent) so it reads continuously with the
+light institution header, rather than the previous noir carousel.
 
-This matters because the content is vertically centred. Left to grow with its content the hero ran
-**1205px on a 720px viewport**, so "centred" pushed the composition below the fold — a large dead
-gap under the header and the stats invisible. Holding it to the viewport is what makes the centring
-read.
+Why the change from the old full-bleed noir carousel: the brief called for an "opening page of an
+institutional publication" — left-aligned editorial content beside authentic photography, not a
+promotional image banner. A single **landscape-composed** image (no rotation) is calmer and reads as
+more institutional; rotation and dot controls were promotional furniture. Text sits on the paper
+ground, never over the photograph, so no heavy overlay is needed — only a small warm gradient at the
+*foot* of the image for caption legibility (`.home-hero-figure-shade`).
 
-**Carousel images must be landscape-composed.** The rotation only uses founder photography that is
-already framed wide (group and event shots) — never a portrait-oriented photo. `object-cover`
-forces a portrait crop into an unrecognisable close-up when stretched across a full-bleed landscape
-box (verified in-browser: `founderImages.portraitClinical`, a tall clinical portrait, degraded to a
-tight crop of her chin at `object-center` and was pulled from the rotation). Portrait photography
-belongs in a portrait-aspect frame — the Founder section's `EditorialImage`, not the hero.
-
-Rotation auto-advances every 6.5s and respects `prefers-reduced-motion`; a dot control row lets a
-visitor jump to any frame directly (`aria-pressed`, `aria-live="polite"` on the caption region).
-
-Two related rules:
-
-- `--header-offset` must match the *rendered* header height (69px at `lg`), since the hero height,
-  `scroll-padding-top`, and the `SectionNav` sticky offset all derive from it.
-- The header is **opaque**, not translucent. The hero runs full-bleed beneath it, and any
-  translucency ghosts the photograph through the bar.
+- **Height** is ~`72vh` on desktop via `lg:min-h-[72vh]` on both columns (`items-stretch` equalises
+  them), never `100vh`; a hint of the next section stays visible. Mobile takes natural height with
+  the image stacked *beneath* the content (source order: content first, figure second) at a `4/3`
+  (`sm:16/9`) aspect.
+- **Server-rendered.** The entrance is pure CSS (`.hero-rise` → `@keyframes heroRise`, opacity +
+  12px rise, staggered via `animationDelay`), so no client JS ships for the hero. The reduced-motion
+  rule collapses it.
+- **Photography must stay landscape-composed.** `object-cover` forces a portrait crop into an
+  unrecognisable close-up in the wide figure (verified previously with `portraitClinical`). Portrait
+  shots belong in the Founder section's portrait `EditorialImage`, not here.
+- The header is **opaque** and the hero is now the same paper ground beneath it, so they read as one
+  surface; `--header-offset` must still match the rendered header height (69px at `lg`) since
+  `scroll-padding-top` and `SectionNav` derive from it.
 
 ### Buttons — sizes
 

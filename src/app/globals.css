@@ -610,117 +610,79 @@ h4 {
    * Homepage hero
    * ============================================================ */
   /*
-   * The hero is held to the viewport so its vertically centred content reads as
-   * centred. Left to grow with its content it ran ~1200px on a 720px screen,
-   * which pushed the composition below the fold.
+   * Editorial institutional hero: an asymmetric split — a left content column on
+   * the warm paper ground beside a right documentary photograph — contained by
+   * the site grid. It is in the light register so it reads continuously with the
+   * light institution header, and uses a single calm image (no rotation) plus a
+   * subtle staggered entrance so it reads as an institutional opening statement,
+   * not a promotional banner. Height is ~72vh on desktop (never 100vh), leaving
+   * a hint of the next section; on mobile the image stacks beneath the content.
    */
   .home-hero {
-    @apply relative min-h-[clamp(46rem,calc(100dvh-var(--header-offset)),62rem)] overflow-hidden lg:h-[calc(100dvh-var(--header-offset))] lg:max-h-[880px] lg:min-h-[600px];
+    @apply relative overflow-hidden border-b border-rule bg-paper text-ink;
   }
 
-  .home-hero-media {
-    @apply absolute inset-0 overflow-hidden;
-  }
-
-  .home-hero-image {
-    @apply object-cover object-[center_18%] opacity-0 transition-opacity duration-1000 lg:object-center;
-  }
-
-  .home-hero-image--active {
-    @apply opacity-100;
-  }
-
-  .home-hero-media-shade {
-    background-image:
-      linear-gradient(to bottom, rgba(13, 11, 9, 0.78) 0%, rgba(13, 11, 9, 0.5) 42%, rgba(13, 11, 9, 0.68) 100%);
-    @apply pointer-events-none absolute inset-0;
-  }
-
-  @media (min-width: 1024px) {
-    .home-hero-media-shade {
-      background-image: linear-gradient(90deg, rgba(13, 11, 9, 0.88) 0%, rgba(13, 11, 9, 0.66) 42%, rgba(13, 11, 9, 0.3) 100%);
-    }
-  }
-
-  .home-hero-media-caption {
-    @apply absolute inset-x-0 bottom-0 hidden p-6 lg:block lg:p-9;
-  }
-
-  /*
-   * .home-hero-content's height is driven by its own content, not the
-   * hero's actual (viewport-clamped) height, so its bottom edge sits at a
-   * roughly fixed ~614px from the hero top regardless of hero height.
-   * .home-hero-media-caption is bottom-pinned to the *actual* hero height,
-   * so it climbs upward as the hero shrinks on short viewports — measured
-   * to start overlapping the stats/scroll row below ~850px of viewport
-   * height (a very ordinary laptop browser height). Rather than trying to
-   * keep two independently-positioned blocks from colliding with padding
-   * math that would need retuning every time either block's content
-   * changes, drop the caption below the threshold where they'd collide:
-   * it's a nice-to-have image credit, not load-bearing content.
-   */
-  @media (min-width: 1024px) and (max-height: 899px) {
-    .home-hero-media-caption {
-      display: none;
-    }
+  .home-hero-grid {
+    @apply grid grid-cols-1 items-stretch gap-0 lg:grid-cols-12 lg:gap-x-12;
   }
 
   .home-hero-content {
-    @apply relative z-10 flex min-h-[clamp(46rem,calc(100dvh-var(--header-offset)),62rem)] flex-col justify-center px-5 pt-24 pb-14 sm:px-8 sm:pt-28 sm:pb-20 lg:min-h-0 lg:px-16 lg:py-14 xl:px-24;
-  }
-
-  .home-hero-content-inner {
-    @apply relative max-w-2xl lg:max-w-none;
-  }
-
-  .home-hero-accent {
-    @apply mb-6 h-px w-16 bg-gold lg:mb-7 lg:w-20;
-  }
-
-  .home-hero-kicker {
-    @apply mb-5 max-w-md text-[0.9375rem] leading-relaxed text-ivory/80;
+    @apply flex flex-col justify-center pt-28 pb-14 sm:pt-32 sm:pb-16 lg:col-span-6 lg:min-h-[72vh] lg:py-24 lg:pr-6 xl:col-span-5;
   }
 
   .home-hero-eyebrow {
-    @apply mb-5 text-[0.6875rem] tracking-[0.2em] text-gold-light sm:text-[0.75rem];
+    @apply mb-7 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-crimson sm:text-[0.75rem];
   }
 
-  /* Sized so "Beginning in Africa." holds one line in the content column. */
+  .home-hero-eyebrow::before {
+    content: "";
+    @apply block h-px w-8 shrink-0 bg-crimson/60;
+  }
+
+  /* Fluid on small screens so "Beginning in Africa." never overflows 320px,
+     then steps up on the named breakpoints. */
   .home-hero-title {
-    @apply max-w-[13ch] text-[2.6rem] sm:max-w-none sm:text-[3.5rem] lg:text-[3.75rem] xl:text-[4.25rem];
+    @apply font-serif text-[clamp(2.1rem,8.5vw,2.9rem)] leading-[1.03] tracking-[-0.015em] text-ink sm:text-[3.5rem] sm:leading-[0.98] lg:text-[3.9rem] xl:text-[4.4rem];
   }
 
-  .home-hero-tagline {
-    @apply mt-2 block font-serif text-[1.85rem] leading-[1.0] text-gold-light sm:mt-3 sm:text-[2.5rem] lg:mt-3 lg:text-[2.75rem] xl:text-[3.15rem];
+  .home-hero-title-accent {
+    @apply mt-1 block text-crimson;
   }
 
   .home-hero-lede {
-    @apply mt-6 max-w-(--measure-tight) text-[1.0625rem] leading-[1.65] text-ivory/90 sm:mt-7 lg:text-[1.125rem];
-  }
-
-  .home-hero-origin {
-    @apply mt-3 text-[0.9375rem] text-ivory/70;
+    @apply mt-6 max-w-[52ch] text-[1.0625rem] leading-[1.65] text-ink-soft sm:mt-7 lg:text-[1.15rem];
   }
 
   .home-hero-actions {
-    @apply mt-7 sm:mt-8;
+    @apply mt-9 flex flex-col items-start gap-5 sm:mt-10 sm:flex-row sm:items-center sm:gap-8;
   }
 
-  .home-hero-stats {
-    @apply mt-8 grid max-w-lg grid-cols-3 gap-0 border-t border-white/25 pt-5 sm:mt-12 sm:pt-7;
+  .home-hero-meta {
+    @apply mt-10 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-rule pt-6 text-[0.6875rem] uppercase tracking-[0.16em] text-stone-deep sm:mt-12;
   }
 
-  .home-hero-stat {
-    @apply px-0 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-white/25 [&:not(:first-child)]:pl-5 sm:[&:not(:first-child)]:pl-7;
+  .home-hero-meta-sep {
+    @apply text-rule-strong;
   }
 
-  .home-hero-scroll {
-    @apply mt-10 hidden items-center gap-3 text-[0.6875rem] uppercase tracking-[0.18em] text-ivory/70 transition-colors hover:text-gold-light lg:inline-flex;
+  .home-hero-figure {
+    @apply relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] lg:col-span-6 lg:aspect-auto lg:min-h-[72vh] xl:col-span-7;
   }
 
-  .home-hero-scroll::after {
-    content: "";
-    @apply block h-6 w-px bg-gold/60;
+  /* Warm gradient at the foot of the image only — for caption legibility, not to
+     darken the whole photograph. */
+  .home-hero-figure-shade {
+    background-image: linear-gradient(to top, rgba(23, 20, 17, 0.72) 0%, rgba(23, 20, 17, 0) 46%);
+    @apply pointer-events-none absolute inset-0;
+  }
+
+  .home-hero-caption {
+    @apply absolute inset-x-0 bottom-0 flex flex-wrap gap-x-2 p-5 text-[0.6875rem] uppercase tracking-[0.16em] text-ivory/85 sm:p-6;
+  }
+
+  /* Subtle staggered load-in; disabled wholesale by the reduced-motion rule. */
+  .hero-rise {
+    animation: heroRise 640ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .home-section-bridge {
@@ -728,7 +690,7 @@ h4 {
   }
 
   .home-section-bridge p {
-    @apply mx-auto max-w-(--content-max) text-center text-[0.6875rem] uppercase tracking-[0.18em] text-stone;
+    @apply mx-auto max-w-(--content-max) text-center text-[0.6875rem] uppercase tracking-[0.18em] text-stone-deep;
   }
 
   /* ============================================================
@@ -756,6 +718,17 @@ h4 {
 
   .reading-progress {
     @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-crimson transition-transform duration-150;
+  }
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
