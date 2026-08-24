@@ -123,6 +123,14 @@ The `Breadcrumbs`, `SiteFooter`, and `EnquiryForm` components all found real AA 
 pass — `text-stone` on a light ground reads fine on screen but fails contrast math. Check new muted
 text against both `--color-paper` and `--color-form-bg`, not just by eye, before reusing `stone`.
 
+**Shared muted-text classes default to `stone-deep` (2026-08-24).** The utility classes
+`.scientific-metadata`, `.page-meta`, `.footnote`, `.editorial-caption`, `.quote-attribution`,
+`.stat-label`, and `.content-status--future` now use `text-stone-deep` so they clear AA on the light
+grounds they mostly sit on. The two places these render on a **dark** ground restore the lighter
+`--color-stone` via scoped overrides on the existing wrappers — `.page-hero--dark .page-meta`,
+`.page-hero--dark .editorial-caption`, and `.quote-band--dark .quote-attribution`. Prefer this
+wrapper-scoped pattern over one-off page colours.
+
 **Radius is 0 everywhere**, with two deliberate exceptions: the numbered circular step badge in
 `EvidenceLadder` and the "B" monogram seal on `/divisions/b-melanox` are editorial devices (a
 timeline dot, a wax-seal mark), not pills. Every other rounded corner sitewide — the floating

@@ -131,6 +131,21 @@ render correctly (the "Who we are" landscape crop and the distinct, non-repeatin
 Findings recorded in `docs/browser-qa-report.md`. Accepted-as-is: the 320px hero headline wraps to
 four short lines — judged intentional editorial wrapping, not worth shrinking the hero for.
 
+**Phase 7 (site-wide responsive & consistency QA).** Rendered representative routes across both brand
+layers in headless Chromium — `/science`, `/labs` (375, SectionNav), `/divisions/b-melanox` (dark
+layer), `/updates`, `/founder`, plus the homepage set — and ran a Lighthouse baseline (homepage:
+**accessibility 96**, performance 61 in *dev mode*, so not production-representative). Every route
+reads as one institution; no P0/P1 visual/responsive defects. The one real fix (Step 9, an AA
+accessibility issue): the shared muted-text utility classes (`.scientific-metadata`, `.page-meta`,
+`.footnote`, `.editorial-caption`, `.quote-attribution`, `.stat-label`, `.content-status--future`)
+hard-coded `text-stone`, which fails AA (~3.1:1) on the light grounds they mostly sit on. Fixed at the
+class level → `text-stone-deep` (~4.9:1), with the lighter `stone` restored on the two dark wrappers
+(`.page-hero--dark`, `.quote-band--dark`) — no one-off page overrides. Verified in-browser that light
+grounds (`/founder` metadata/captions) improved and dark grounds (`/divisions/b-melanox` hero) did not
+regress. Accepted P3s: `/updates` is a thin "archive being prepared" empty state (no publications in
+the DB — content, not layout); division card imagery remains placeholder (see
+`docs/client-photography-requirements.md`). `npm run lint` and `npm run build` pass clean.
+
 ---
 
 ## 2026-08-23 — Hero section institutional redesign
