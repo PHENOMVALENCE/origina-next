@@ -131,6 +131,18 @@ render correctly (the "Who we are" landscape crop and the distinct, non-repeatin
 Findings recorded in `docs/browser-qa-report.md`. Accepted-as-is: the 320px hero headline wraps to
 four short lines — judged intentional editorial wrapping, not worth shrinking the hero for.
 
+**Division color identity system.** Gave four divisions distinct palettes (BettyWorld warm gold,
+B-Melanox oxblood, NOVIA forest/sage, DIVINE midnight/burgundy) via a new `DivisionTheme` wrapper
+(`data-division`) and scoped `[data-division]` CSS-variable overrides of the division-layer tokens —
+so every existing `bg-noir`/`text-gold`/`btn-gold` usage retints with **no layout, type, or
+photography change**. Signature CTAs (oxblood, deep sage, burgundy) added as scoped `.btn-gold`
+overrides with light text where the brand colour is too dark for accent text (contrast-checked).
+`DivisionCard` carries the same attribute for a subtle per-division tint on the homepage/index without
+recolouring the institution. BValence and Skin Safari have no palette and stay on the default gold.
+Verified in headless Chromium (b-melanox, novia, divine, bettyworld at 1440; novia at 375): each is
+distinct and readable, and the ORIGINA header/footer/typography are preserved. Institution pages
+untouched. See `docs/DESIGN.md` §1. `npm run lint` and `npm run build` pass clean.
+
 **Phase 7 (site-wide responsive & consistency QA).** Rendered representative routes across both brand
 layers in headless Chromium — `/science`, `/labs` (375, SectionNav), `/divisions/b-melanox` (dark
 layer), `/updates`, `/founder`, plus the homepage set — and ran a Lighthouse baseline (homepage:

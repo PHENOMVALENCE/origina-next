@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { ContentStatus } from "@/components/ContentStatus";
 
+import { DivisionTheme } from "@/components/DivisionTheme";
+
 import { DetailList } from "@/components/DetailList";
 
 import { PageCta } from "@/components/PageCta";
@@ -48,7 +50,7 @@ export default function DivinePage() {
 
   return (
 
-    <>
+    <DivisionTheme division="divine">
 
       <PageHero
 
@@ -112,7 +114,7 @@ export default function DivinePage() {
 
       />
 
-    </>
+    </DivisionTheme>
 
   );
 

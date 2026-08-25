@@ -45,6 +45,32 @@ portfolio.
   panel. Pass the `dark` prop wherever the badge sits on a dark ground (e.g. the homepage Platforms
   section) — it repaints as a neutral ivory outline instead.
 
+### Division color identities (§7)
+
+The six division pages share the dark register, but four now carry a **distinct palette** so each
+reads as its own world within ORIGINA. Implemented purely as **scoped CSS-variable overrides**: each
+page is wrapped in `<DivisionTheme division="slug">` (a full-width, layout-neutral `div[data-division]`),
+and the matching `[data-division]` block in `globals.css` re-points the division-layer tokens
+(`--color-noir` ground, `--color-gold` accent, `--color-ivory` text, `--color-muted-dark`). Every
+existing `bg-noir` / `text-gold` / `btn-gold` usage retints automatically — **no layout, typography,
+or photography change**. `DivisionCard` carries the same `data-division`, so cards on the homepage and
+`/divisions` index take a subtle per-division tint without recolouring the institution around them.
+
+| Division | Ground | Accent | Signature CTA | Character |
+|---|---|---|---|---|
+| BettyWorld | Deep Ink `#12120b` | Antique Gold `#c8ac6a` | gold (default) | warm, creative |
+| B-Melanox | Warm Charcoal `#26251c` | clinical red `#c56a6a`¹ | oxblood `#8f1717` → `#5a0b0b` | clinical, precise |
+| NOVIA | Forest Noir `#16220f` | Antique Gold `#c8ac6a` | deep sage `#506b43` | botanical |
+| DIVINE | Midnight `#11130a` | Sovereign Gold `#b89a2f` | imperial burgundy `#722333` | heritage luxury |
+
+BValence and Skin Safari have no palette yet and inherit the default institutional gold/noir division
+treatment. **Contrast rule carried over:** a brand colour too dark to read as text on the dark ground
+(oxblood, burgundy) is used only as a solid button fill with light text, never as accent text —
+¹ B-Melanox's readable accent is a lighter tint of its oxblood, with true oxblood reserved for the CTA.
+Light "interlude" sections inside a division page keep the institution crimson eyebrow (they are the
+institution's own voice); division colour lives in the dark sections. The site header and footer sit
+outside `DivisionTheme` and keep the parent ORIGINA register on every page.
+
 ---
 
 ## 2. Typography
