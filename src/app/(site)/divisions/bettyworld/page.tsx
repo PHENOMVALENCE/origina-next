@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContentStatus } from "@/components/ContentStatus";
+import { DivisionTheme } from "@/components/DivisionTheme";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
@@ -26,7 +27,7 @@ const bettyworldEcosystem = [
 
 export default function BettyWorldPage() {
   return (
-    <>
+    <DivisionTheme division="bettyworld">
       <PageHero
         variant="dark"
         crumb="BettyWorld"
@@ -98,7 +99,7 @@ export default function BettyWorldPage() {
           { href: "/contact", label: "Enquire", variant: "secondary" },
         ]}
       />
-    </>
+    </DivisionTheme>
   );
 }
 

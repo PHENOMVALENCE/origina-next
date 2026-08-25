@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { DisclaimerBand } from "@/components/DisclaimerBand";
+import { DivisionTheme } from "@/components/DivisionTheme";
 import { ContentStatus } from "@/components/ContentStatus";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
@@ -26,7 +27,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function BMelanoxPage() {
   return (
-    <>
+    <DivisionTheme division="b-melanox">
       <PageHero
         variant="dark"
         crumb="B-Melanox™"
@@ -188,6 +189,6 @@ export default function BMelanoxPage() {
           </div>
         </SplitSection>
       </Section>
-    </>
+    </DivisionTheme>
   );
 }

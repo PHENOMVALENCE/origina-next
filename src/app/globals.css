@@ -758,3 +758,86 @@ h4 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+ * Division color identities
+ *
+ * Each division page is wrapped in <DivisionTheme division="slug">, which sets
+ * data-division on a full-width wrapper. These blocks re-point the division-
+ * layer tokens (--color-noir ground, --color-gold accent, --color-ivory text,
+ * --color-muted-dark) to the division's palette, so every existing bg-noir /
+ * text-gold / btn-gold usage on the page retints automatically — no change to
+ * layout, typography, or photography. The institution layer (homepage, about,
+ * science, …) never carries these, so it is untouched.
+ *
+ * Accents are chosen to clear WCAG AA on their own ground. Where a brand colour
+ * is too dark to read as text on the dark ground (oxblood, burgundy), it is used
+ * as a solid button fill with light text (the .btn-gold overrides below) rather
+ * than as accent text. Palettes are documented in docs/DESIGN.md §7.
+ * ============================================================ */
+
+/* BettyWorld — warm, creative: the ORIGINA gold/noir, made warmer. */
+[data-division="bettyworld"] {
+  --color-noir: #12120b;
+  --color-noir-deep: #0c0c07;
+  --color-noir-soft: #1c1b12;
+  --color-gold: #c8ac6a;
+  --color-gold-light: #e8d9a5;
+  --color-ivory: #f7f7f0;
+  --color-muted-dark: #bcb096;
+}
+
+/* B-Melanox — clinical, oxblood: warm-charcoal ground, oxblood signature. */
+[data-division="b-melanox"] {
+  --color-noir: #26251c; /* warm charcoal */
+  --color-noir-deep: #1a1913;
+  --color-noir-soft: #302e22;
+  --color-gold: #c56a6a; /* readable clinical-red accent (a tint of oxblood) */
+  --color-gold-light: #dc9090;
+  --color-ivory: #f7f5f0; /* near clinical white */
+  --color-muted-dark: #b3a892; /* mid-brown muted */
+}
+[data-division="b-melanox"] .btn-gold {
+  background-color: #8f1717; /* true oxblood */
+  color: #ffffff;
+}
+[data-division="b-melanox"] .btn-gold:hover {
+  background-color: #5a0b0b; /* deep oxblood */
+}
+
+/* NOVIA — botanical: forest-noir ground, deep-sage action, antique-gold accent. */
+[data-division="novia"] {
+  --color-noir: #16220f; /* forest noir */
+  --color-noir-deep: #0e1709;
+  --color-noir-soft: #1d2c14;
+  --color-gold: #c8ac6a; /* antique gold — the tie to ORIGINA */
+  --color-gold-light: #d9c78f;
+  --color-ivory: #f7f2e6; /* warm cream */
+  --color-muted-dark: #a3b391; /* sage-tinted muted */
+}
+[data-division="novia"] .btn-gold {
+  background-color: #506b43; /* deep sage */
+  color: #f7f2e6;
+}
+[data-division="novia"] .btn-gold:hover {
+  background-color: #16220f;
+}
+
+/* DIVINE — heritage luxury: midnight ground, sovereign gold (sparingly),
+   imperial-burgundy action. */
+[data-division="divine"] {
+  --color-noir: #11130a; /* midnight stable */
+  --color-noir-deep: #0a0b05;
+  --color-noir-soft: #1a1c11;
+  --color-gold: #b89a2f; /* sovereign gold */
+  --color-gold-light: #d3b84f;
+  --color-ivory: #f4efdf; /* aged parchment */
+  --color-muted-dark: #b3a583;
+}
+[data-division="divine"] .btn-gold {
+  background-color: #722333; /* imperial burgundy */
+  color: #f4efdf;
+}
+[data-division="divine"] .btn-gold:hover {
+  background-color: #11130a;
+}

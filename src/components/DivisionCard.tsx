@@ -17,7 +17,7 @@ export function DivisionCard({ division }: { division: DivisionPreview }) {
   const image = divisionImages[division.slug];
 
   return (
-    <Link href={division.href} className="division-card group">
+    <Link href={division.href} data-division={division.slug} className="division-card group">
       {image ? (
         <div className="division-card-media">
           <Image

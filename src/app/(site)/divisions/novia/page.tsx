@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DivisionTheme } from "@/components/DivisionTheme";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { QuoteBand } from "@/components/Quote";
@@ -16,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function NoviaPage() {
   return (
-    <>
+    <DivisionTheme division="novia">
       <PageHero
         variant="dark"
         crumb="NOVIA™"
@@ -121,6 +122,6 @@ export default function NoviaPage() {
           { href: "/divisions/b-melanox", label: "Explore B-Melanox", variant: "secondary" },
         ]}
       />
-    </>
+    </DivisionTheme>
   );
 }
