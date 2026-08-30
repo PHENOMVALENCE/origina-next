@@ -19,7 +19,8 @@ ORIGINA speaks in two registers, and the design maps directly onto the informati
 |---|---|---|
 | **Ground** | `--color-paper` `#fdfbf7` | `--color-noir` `#161210` |
 | **Text** | `--color-ink` `#1b1714` | `--color-ivory` `#f8f4ec` |
-| **Accent** | `--color-crimson` `#7a171b` | `--color-gold` `#b5924a` |
+| **Accent** | `--color-brand-accent` `#b5924a` Origin Gold, as rule/fill only | `--color-brand-accent` — the division's own |
+| **Primary action** | `--color-brand-action` `#161210` Origina Noir | `--color-brand-action` — the division's own |
 | **Used by** | home, about, science, labs, evidence, founder, africa, future, culture, platforms, contact, legal, `/divisions` index | `/divisions/<slug>` — B-Melanox, Novia, DIVINE, BValence, Skin Safari, BettyWorld |
 
 **Why two layers.** Gold-on-noir is the language of luxury and cosmetics. It is right for a product
@@ -51,25 +52,37 @@ The six division pages share the dark register, but four now carry a **distinct 
 reads as its own world within ORIGINA. Implemented purely as **scoped CSS-variable overrides**: each
 page is wrapped in `<DivisionTheme division="slug">` (a full-width, layout-neutral `div[data-division]`),
 and the matching `[data-division]` block in `globals.css` re-points the division-layer tokens
-(`--color-noir` ground, `--color-gold` accent, `--color-ivory` text, `--color-muted-dark`). Every
-existing `bg-noir` / `text-gold` / `btn-gold` usage retints automatically — **no layout, typography,
+**two** layers: the legacy pigment tokens (`--color-noir` ground, `--color-gold` accent,
+`--color-ivory` text, `--color-muted-dark`), so existing `bg-noir` / `text-gold` / `btn-gold` markup
+retints with no JSX change; and the semantic role tokens (`--color-brand-ground`, `-accent`,
+`-action`, `-rule`), which is what new work should consume — **no layout, typography,
 or photography change**. `DivisionCard` carries the same `data-division`, so cards on the homepage and
 `/divisions` index take a subtle per-division tint without recolouring the institution around them.
 
 | Division | Ground | Accent | Signature CTA | Character |
 |---|---|---|---|---|
 | BettyWorld | Deep Ink `#12120b` | Antique Gold `#c8ac6a` | gold (default) | warm, creative |
-| B-Melanox | Warm Charcoal `#26251c` | clinical red `#c56a6a`¹ | oxblood `#8f1717` → `#5a0b0b` | clinical, precise |
+| B-Melanox | Warm Charcoal `#26251c` | clinical red `#cc7676`¹ | oxblood `#8f1717` → `#5a0b0b` | clinical, precise |
 | NOVIA | Forest Noir `#16220f` | Antique Gold `#c8ac6a` | deep sage `#506b43` | botanical |
 | DIVINE | Midnight `#11130a` | Sovereign Gold `#b89a2f` | imperial burgundy `#722333` | heritage luxury |
 
-BValence and Skin Safari have no palette yet and inherit the default institutional gold/noir division
-treatment. **Contrast rule carried over:** a brand colour too dark to read as text on the dark ground
-(oxblood, burgundy) is used only as a solid button fill with light text, never as accent text —
-¹ B-Melanox's readable accent is a lighter tint of its oxblood, with true oxblood reserved for the CTA.
-Light "interlude" sections inside a division page keep the institution crimson eyebrow (they are the
-institution's own voice); division colour lives in the dark sections. The site header and footer sit
-outside `DivisionTheme` and keep the parent ORIGINA register on every page.
+Each signature CTA comes from that division's `--color-brand-action` binding, so there are no
+per-division `.btn-gold` rules — `.btn-gold` reads the token. BValence and Skin Safari have no
+approved palette yet; a `[data-division]` baseline keeps them on gold-on-noir rather than letting
+them fall through to the institution's noir-filled primary, which would be invisible on a noir
+ground.
+
+**Contrast rule carried over:** a brand colour too dark to read as text on the dark ground
+(oxblood, burgundy) is used only as a solid button fill with light text, never as accent text.
+¹ B-Melanox's readable accent is a lighter tint of its oxblood — an accessibility adaptation, named
+as one in `globals.css` — with true oxblood reserved for the CTA.
+
+Light "interlude" sections inside a division page carry the institution's own eyebrow treatment
+(Warm Graphite label, gold rule); division colour lives in the dark sections. Because text roles are
+ground-dependent, they are resolved by a ground-scoped block matching `.bg-noir` / `.bg-noir-deep` /
+`.bg-brand-ground` — **not** on the `[data-division]` wrapper, which would push dark-ground text
+colours into these light sections. The site header and footer sit outside `DivisionTheme` and keep
+the parent ORIGINA register on every page.
 
 ---
 
@@ -181,8 +194,9 @@ type is 13–14px.
 content column (eyebrow, serif headline with a crimson second line, lede, one primary button + one
 secondary text link, an understated metadata line) beside a right documentary photograph — contained
 within `.site-container` on the 12-column grid (`lg:col-span-6` / `lg:col-span-6`, `xl` 5 / 7). It
-sits in the **light** register (paper ground, crimson accent) so it reads continuously with the
-light institution header, rather than the previous noir carousel.
+sits in the **light** register (paper ground, gold accent) so it reads continuously with the
+light institution header, rather than the previous noir carousel. The crimson second line is
+retained editorial emphasis and is an open client decision — see root `DESIGN.md` §4.4.
 
 Why the change from the old full-bleed noir carousel: the brief called for an "opening page of an
 institutional publication" — left-aligned editorial content beside authentic photography, not a
@@ -258,8 +272,8 @@ every target measured on each pass.
 
 ### Closing CTA — `PageCta`
 
-Defaults to `tone="sunk"` — a light band opened by a rule with a crimson primary action. Division
-pages pass `tone="noir"` for a gold action.
+Defaults to `tone="sunk"` — a light band opened by a rule with an Origina Noir primary action.
+Division pages pass `tone="noir"`, where `.btn-gold` resolves to that division's own action colour.
 
 ### Development framework — `ProcessPathway`
 
@@ -289,11 +303,17 @@ neutrals with crimson-light on the headline.
 ## 5. Accessibility
 
 - 11px interface floor (above), 17px body.
-- Focus ring: 2px crimson at 3px offset.
+- Focus ring: 2px `--color-brand-focus` at 3px offset — Origina Noir on light grounds, Gold Light
+  on dark ones, so it always clears the 3:1 required by WCAG 2.2 §1.4.11.
 - `prefers-reduced-motion` disables smooth scroll and collapses transitions.
 - Skip-to-content link on every page.
-- Contrast: crimson `#7a171b` on paper `#fdfbf7` is ~9.4:1. This is why crimson is never placed on
-  a dark ground — see *Accent discipline* above.
+- Contrast: Origin Gold `#b5924a` on paper `#fdfbf7` is only **2.83:1** — it fails AA for text and
+  even the 3:1 large-text floor. Gold is therefore a *mark*, never light-ground accent text: rules,
+  fills behind dark text (5.7:1), or accents on a dark ground (5.7:1 on Noir). Where light-ground
+  accent text is genuinely needed, `--color-brand-accent-readable` `#866a2a` gives 4.94:1 and is
+  labelled in `globals.css` as an accessibility adaptation.
+- Crimson `#7a171b` is ~9.4:1 on paper but ~1.9:1 on noir, which is why it is never placed on a
+  dark ground — see *Accent discipline* above.
 
 ---
 

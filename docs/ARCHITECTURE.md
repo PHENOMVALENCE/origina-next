@@ -111,17 +111,41 @@ Defined in `src/app/globals.css` via `@theme` tokens and `@layer components` uti
 
 ### Color tokens
 
-| Token | Value | Use |
+Two layers. **Pigment tokens** name colours; **role tokens** name jobs. New work should consume
+role tokens, because a pigment name can be rebound to something it no longer describes — on
+B-Melanox, `--color-gold` resolves to a pink-red.
+
+Pigment tokens (client-approved ORIGINA palette, corroborated against the legacy PHP repo):
+
+| Token | Value | Client name |
 |---|---|---|
-| `--color-noir` | `#161210` | Primary dark backgrounds |
-| `--color-ivory` | `#f8f4ec` | Primary light background |
-| `--color-gold` | `#b5924a` | CTAs, eyebrows, accents |
-| `--color-gold-light` | `#d6bd83` | Hover states on dark |
-| `--color-graphite` | `#3a332c` | Body text on light |
-| `--color-stone` | `#9a8e80` | Muted text |
+| `--color-noir` | `#161210` | Origina Noir — dark grounds |
+| `--color-ivory` | `#f8f4ec` | Institution Ivory — light surface, text on noir |
+| `--color-gold` | `#b5924a` | Origin Gold — the institutional thread; rules and fills, **not** light-ground text (2.83:1) |
+| `--color-gold-light` | `#d6bd83` | Emphasis and hover on dark |
+| `--color-graphite` | `#3a332c` | Warm Graphite — body text on light |
+| `--color-stone` | `#9a8e80` | Antiqued Stone — borders and dark-ground muted text |
+| `--color-stone-deep` | `#6f6459` | Light-ground muted text (Stone is only ~3.1:1 on paper) |
 | `--color-oxblood` | `#7a171b` | B-Melanox / pigmentation |
 | `--color-cream` | `#eee6d8` | Secondary light surface |
 | `--color-sage` | `#566b46` | NOVIA contexts |
+
+Role tokens, rebound per division in `[data-division]` blocks:
+
+| Token | Institution default | Job |
+|---|---|---|
+| `--color-brand-ground` / `-ground-deep` | `#161210` / `#0d0b09` | Dark ground, highest-emphasis fill |
+| `--color-brand-surface` / `-surface-muted` | `#fdfbf7` / `#f0e9df` | Reading surfaces |
+| `--color-brand-text` / `-text-muted` | `#1b1714` / `#3a332c` | Text on the current ground |
+| `--color-brand-accent` / `-on-accent` | `#b5924a` / `#161210` | Identity mark and text on it |
+| `--color-brand-accent-readable` | `#866a2a` | Accent **text**, AA-safe (accessibility adaptation) |
+| `--color-brand-action` / `-action-hover` / `-action-text` | `#161210` / `#3a332c` / `#f8f4ec` | Primary action |
+| `--color-brand-rule` | gold @ 42% | The thread as a hairline |
+| `--color-brand-focus` | `#161210` | Focus indicator |
+
+`brand-text`, `brand-text-muted`, `brand-accent-readable` and `brand-focus` are **ground-dependent**
+and are resolved by a block matching `.bg-noir` / `.bg-noir-deep` / `.bg-brand-ground` — never on
+the `[data-division]` wrapper, since division pages contain light sections too.
 
 Extend `@theme` for new colors — avoid one-off arbitrary Tailwind values.
 
@@ -139,8 +163,10 @@ Extend `@theme` for new colors — avoid one-off arbitrary Tailwind values.
 
 | Class | Use |
 |---|---|
-| `.btn-primary`, `.btn-secondary`, `.btn-secondary-dark` | CTA buttons |
-| `.text-link`, `.text-link-light` | Inline navigation links |
+| `.btn-primary` | Institutional CTA — Origina Noir fill, ivory text |
+| `.btn-gold` | Division CTA — reads `--color-brand-action`, so each division's own colour applies |
+| `.btn-secondary`, `.btn-secondary-dark` | Outlined CTAs for dark / light grounds |
+| `.text-link`, `.text-link-light` | Inline navigation links — ink text with a gold underline |
 | `.institutional-card` | Bordered content cards |
 | `.quote-band` | Full-width quote sections |
 | `.principle-stack` | Stacked doctrine quotes |
