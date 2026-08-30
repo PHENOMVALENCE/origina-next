@@ -121,19 +121,61 @@ resolved from the pathname in `src/lib/layer.ts`.
 
 ### Accent discipline (hard rules)
 
-1. **Crimson never sits on a dark ground.** `#7a171b` on `#161210` is ~1.9:1. On dark bands use
-   warm neutrals for numerals, `gold-light` for emphasis, and `white/12`–`white/20` for rules.
-2. **Gold never sits on an institution page.** It belongs to the division layer.
-3. **Gold never sits on a light ground even inside a division page.** Division pages contain
-   light sections; inside them the accent reverts to crimson.
-4. Any component that can render on both grounds takes a `dark` prop and repaints — it never
-   relies on a translucent fill letting the ground through.
+1. **Origin Gold `#b5924a` is the institutional thread, and it is a mark — not a text colour.**
+   On paper it measures 2.83:1, which fails AA for body text *and* the 3:1 large-text floor. It is
+   therefore only ever used as a hairline rule, as a fill behind dark text (gold ground + noir text
+   = 5.7:1), or as accent text on a dark ground (5.7:1 on Origina Noir).
+2. **Where accent *text* is needed on a light ground, use `brand-accent-readable` `#866a2a`** — a
+   deepened Origin Gold at 4.94:1 on paper. It is an accessibility adaptation, not an approved
+   client colour, and is labelled as such in `globals.css`.
+3. **Crimson never sits on a dark ground.** `#7a171b` on `#161210` is ~1.9:1.
+4. **Crimson is no longer the institutional default.** It reads as B-Melanox. See §4.1.
+5. Any component that can render on both grounds either takes a `dark` prop and repaints, or
+   consumes a ground-scoped role token — it never relies on a translucent fill letting the ground
+   through.
 
 ---
 
 ## 4. Colour tokens
 
 Defined once in `src/app/globals.css` under `@theme`. Never write a hex value in a component.
+
+### 4.1 The client-approved palette and the crimson question
+
+The client board defines the parent identity as five colours, and these are authoritative:
+
+| Client name | Value | Institutional role |
+|---|---|---|
+| Origina Noir | `#161210` | Headings, navigation, dark bands, **solid primary buttons** |
+| Institution Ivory | `#f8f4ec` | Primary light surface; text on noir |
+| Origin Gold | `#b5924a` | The institutional thread — rules, fills, selected states, marks |
+| Warm Graphite | `#3a332c` | Body text, secondary headings, supporting copy |
+| Antiqued Stone | `#9a8e80` | Low-emphasis surfaces and borders; **not** small text on light |
+
+The same five values already exist in the legacy PHP site
+(`origina/admin/assets/css/origina-admin.css`), which corroborates them.
+
+The architectural conflict this resolved: the institution layer had been using **crimson** as its
+dominant accent — primary buttons, eyebrows, links, focus ring, section numerals. But crimson is
+B-Melanox's identity colour. Using it as the parent CTA made the institution look like one of its
+own divisions rather than the house they all sit beneath.
+
+It was fixed by role, not by find-and-replace:
+
+| Element | Was | Now | Why |
+|---|---|---|---|
+| Primary button | crimson fill | **Origina Noir fill**, ivory text | The client board assigns solid primary buttons to Noir |
+| Eyebrow label | crimson text | Warm Graphite text | 12:1 on paper; the gold thread moves to its rule |
+| Eyebrow rule | crimson hairline | **Origin Gold hairline** | Where gold earns presence without failing contrast |
+| Text link | crimson text + crimson underline | ink text + **gold underline** | Keeps AA, and colour alone no longer marks a link (1.4.1) |
+| Section numeral | crimson at 45% | `brand-accent-readable` | Deepened gold, AA-safe |
+| Focus ring | crimson | `brand-focus` (Noir on light, Gold Light on dark) | Ground-aware, ≥3:1 either way (1.4.11) |
+| Selection | crimson wash | gold wash | Thread |
+| Reading progress | crimson | Origin Gold | Decorative, exempt |
+
+Crimson deliberately **remains** for: B-Melanox's identity, semantic error states in
+`EnquiryForm`, and controlled editorial emphasis in display headings. The last of these is still
+an open client decision — see §4.4.
 
 ### Ground and surface
 
@@ -173,21 +215,77 @@ wherever it appears on a light section.
 `--color-sage` / `--color-sage-light` (operating), `--color-rule` (hairline), `--color-crimson-wash`
 (callout ground), `--color-crimson-ink` (text on wash).
 
-### Division sub-brand
+### 4.2 Semantic role tokens
 
-Each `/divisions/<slug>` re-binds `--color-noir*`, `--color-gold*`, and `--color-ivory` in a
-`[data-division]` block. Every division therefore shares typography, layout, navigation,
-components, spacing, and interaction language, and differs only in accent and ground temperature.
+The tokens above name **pigments**. The tokens below name **jobs**, and new work should consume
+these. This exists because `--color-gold` was overloaded: on B-Melanox it resolves to a pink-red,
+so the name actively lied about its value and made the system error-prone to maintain.
 
-| Division | Ground | Accent |
+| Role token | Institution default | Meaning |
 |---|---|---|
-| B-Melanox | `#26251c` warm charcoal | `#cc7676` clinical red |
-| Novia | `#12120b` | `#c8ac6a` |
-| DIVINE | `#11130a` midnight | `#b89a2f` sovereign gold |
-| BValence | `#16220f` forest noir | `#c8ac6a` |
+| `--color-brand-ground` | `#161210` | Dark ground / highest-emphasis fill |
+| `--color-brand-ground-deep` | `#0d0b09` | Deepest ground (colophon) |
+| `--color-brand-surface` | `#fdfbf7` | Reading surface |
+| `--color-brand-surface-muted` | `#f0e9df` | Recessed surface |
+| `--color-brand-text` | `#1b1714` | Primary text on the current ground |
+| `--color-brand-text-muted` | `#3a332c` | Secondary text on the current ground |
+| `--color-brand-accent` | `#b5924a` | Identity mark — rules and fills |
+| `--color-brand-on-accent` | `#161210` | Text on an accent fill |
+| `--color-brand-accent-readable` | `#866a2a` | Accent **text**, AA-safe on the current ground |
+| `--color-brand-action` | `#161210` | Primary action fill |
+| `--color-brand-action-hover` | `#3a332c` | Action hover |
+| `--color-brand-action-text` | `#f8f4ec` | Text on the action fill |
+| `--color-brand-rule` | `gold @ 42%` | The thread as a hairline |
+| `--color-brand-focus` | `#161210` | Focus indicator |
 
-The accent touches eyebrows, section rules, numerals, links, callouts, and selected states. It
-does not recolour every component.
+**Ground-dependent roles are not bound on the wrapper.** `brand-text`, `brand-text-muted`,
+`brand-accent-readable` and `brand-focus` depend on the ground, and a division page carries both
+light and dark sections. Binding them on `[data-division]` put light-on-light text into every
+division page's light sections — measured and caught during validation. They are resolved instead
+by a ground-scoped block matching `.bg-noir`, `.bg-noir-deep`, `.bg-brand-ground`.
+
+### 4.3 Division sub-brand
+
+Each `/divisions/<slug>` rebinds both layers in its `[data-division]` block: the legacy pigment
+tokens, so existing `bg-noir` / `text-gold` markup retints with no JSX change, and the semantic
+roles, which is what new work reads. A `[data-division]` baseline also exists so divisions with no
+approved palette yet (Skin Safari, BValence) inherit the ORIGINA gold-on-noir treatment rather than
+the institution's noir-filled primary, which would be invisible on a noir ground.
+
+Every division shares typography, spacing, grid, header, footer, button and card construction,
+focus behaviour, motion, and editorial hierarchy. Identity comes only from token rebinding,
+imagery, and controlled surface changes.
+
+| Division | Ground | Accent (text) | Action fill | Action text |
+|---|---|---|---|---|
+| BettyWorld | `#12120b` Deep Ink | `#c8ac6a` Antique Gold | `#c8ac6a` Antique Gold | Deep Ink |
+| B-Melanox | `#26251c` Warm Charcoal | `#cc7676` *adapted* | `#8f1717` Oxblood | white |
+| NOVIA | `#16220f` Forest Noir | `#c8ac6a` Antique Gold | `#506b43` Deep Sage | Warm Cream |
+| DIVINE | `#11130a` Midnight Stable | `#b89a2f` Sovereign Gold | `#722333` Imperial Burgundy | Aged Parchment |
+
+Because the button now reads `--color-brand-action`, the four per-division `.btn-gold` override
+rules were deleted — the token layer expresses them.
+
+**B-Melanox accessibility adaptation.** Oxblood `#8b141a` on Warm Charcoal is ~1.6:1, unusable as
+text. `#cc7676` is a derived readable tint used for accent text only; true Oxblood remains the
+action fill, where white text on it clears AA. This is an adaptation, and is named as one.
+
+Each division page uses one ground, one text colour, one accent, one action, and one supporting
+neutral — not its whole palette.
+
+### 4.4 Open client decisions
+
+1. **Division hex values are unconfirmed.** The palette board supplied is 554px wide; its hex
+   labels render at ~4px and are not legibly recoverable at any magnification. The five ORIGINA
+   institution values are confirmed independently against the legacy PHP repo, but the ~21
+   division values are currently *approximations* carried over from an earlier session. They need
+   confirming as text before they can be called client-exact.
+2. **Display-heading crimson.** Hero headings still set their second clause in crimson
+   (`Beginning in Africa. / Serving the world.`). It is the most prominent remaining institutional
+   crimson. Whether it becomes Noir, Warm Graphite, or stays as approved editorial emphasis is a
+   brand decision, not a technical one, so it has been left untouched.
+3. **Antiqued Stone as metadata.** `#9a8e80` reaches only ~3.1:1 on paper, so light-ground
+   metadata uses `--color-stone-deep` `#6f6459` instead. Confirm this substitution is acceptable.
 
 ---
 
