@@ -66,6 +66,43 @@ See `docs/SETUP.md` for full deployment instructions.
 
 ---
 
+## 2026-08-30 — Client palette adopted as the authoritative colour system
+
+**Palette extraction.** The supplied palette board is 554px wide; its hex labels render at ~4px
+and are not legibly recoverable at any magnification. The five ORIGINA institution values were
+instead confirmed independently against the legacy PHP repo
+(`origina/admin/assets/css/origina-admin.css`), which carries exactly
+`--noir:#161210 --ivory:#f8f4ec --gold:#b5924a --graphite:#3a332c --stone:#9a8e80`. Those five are
+now treated as authoritative and already matched what `origina-next` implemented. The ~21 division
+values remain approximations pending confirmation as text.
+
+**Strategic fix.** The institution layer had been using crimson — B-Melanox's identity colour — as
+its dominant accent, which made the parent look like one of its own divisions. Reassigned by role
+per the client board rather than by find-and-replace: Origina Noir now fills solid primary buttons,
+Origin Gold became the institutional thread (rules, fills, selected states), Warm Graphite carries
+eyebrow labels, and text links keep ink text with a gold underline. Crimson deliberately remains
+for B-Melanox, semantic error states, and display-heading editorial emphasis.
+
+**Token architecture.** Added a semantic role layer (`--color-brand-ground`, `-text`, `-accent`,
+`-accent-readable`, `-action`, `-rule`, …). `--color-gold` resolved to a pink-red on B-Melanox, so
+the pigment name misreported its value; components now consume roles instead. Divisions bind
+`--color-brand-action`, which made the four per-division `.btn-gold` overrides redundant — deleted.
+
+**Contrast work.** Origin Gold is 2.83:1 on paper, failing AA for text *and* the 3:1 large-text
+floor, so it is never accent text on a light ground; `--color-brand-accent-readable` `#866a2a`
+(4.94:1) covers that case and is labelled in-file as an accessibility adaptation, matching the
+treatment already given B-Melanox's readable red.
+
+**Regression caught in validation.** Binding ground-dependent roles on the `[data-division]`
+wrapper put light-on-light text into every division page's light sections (9 routes failing).
+Those roles are now resolved by a ground-scoped block. Re-measured: 5 routes reporting, all
+pre-existing over-image false positives where the measurement walks past an absolutely-positioned
+photograph to the page background.
+
+`npm run lint` and `npm run build` pass clean. Open decisions recorded in `DESIGN.md` §4.4.
+
+---
+
 ## 2026-08-24 — Institutional revision plan: Phase 1 audit + Phase 2 fonts
 
 **Phase 1 (audit).** Added `docs/institutional-ui-audit.md` — a dimension-by-dimension assessment
