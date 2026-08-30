@@ -146,9 +146,18 @@ brief; see `docs/PROGRESS.md` for the full audit findings behind each item):**
 - [ ] Footnote / reference apparatus for scientific pages (`.footnote` exists, unused)
 - [ ] Full Lighthouse + accessibility audit across all routes
 - [ ] Review division pages for gold-layer consistency after the split
-- [ ] Audit other `ContentStatus` usages on dark grounds (`/divisions/*`, `InstitutionMap`,
-      `/platforms`) for the same crimson-on-noir contrast problem fixed on the homepage — only the
-      homepage's Platforms section got the new `dark` prop applied so far
+- [x] Audit other `ContentStatus` / `StatusBadge` usages on dark grounds for the crimson-on-noir
+      contrast problem — `dark` variant added and applied via `DivisionCard` and `/future`
+      (2026-08-30)
+- [x] Adopt the client ORIGINA palette as the authoritative colour system; retire crimson as the
+      institutional default accent; add the `--color-brand-*` semantic role layer (2026-08-30)
+- [ ] **Blocked on client:** obtain the ~21 division hex values as text. The supplied palette board
+      is 554px wide and its hex labels are unreadable, so current division values are
+      approximations. See root `DESIGN.md` §4.4
+- [ ] **Client decision:** display-heading crimson (`Beginning in Africa. / Serving the world.`) —
+      keep as editorial emphasis, or move to Origina Noir / Warm Graphite
+- [ ] **Client decision:** confirm Antiqued Stone `#9a8e80` may be substituted with `stone-deep`
+      `#6f6459` for light-ground metadata (Stone is only ~3.1:1 on paper)
 - [ ] Visually elevate the thin/stub routes with the existing editorial template — no new copy,
       just better use of what's there: `/divisions/bvalence`, `/divisions/skin-safari`,
       `/intellectual-property`, `/platforms`, `/science/quality`, `/science/responsible-science`,
