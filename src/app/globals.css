@@ -50,7 +50,60 @@
    * ("Optional") and fine print; --color-stone itself remains correct on
    * dark grounds, where it already clears AA.
    */
-  --color-stone-deep: #786d63;
+  --color-stone-deep: #6f6459;
+
+  /* ============================================================
+   * SEMANTIC BRAND ROLES
+   *
+   * The role layer every component should consume. The literal colour tokens
+   * above (crimson, gold, noir…) name pigments; these name *jobs*. A division
+   * rebinds these in its [data-division] block, so a component written against
+   * `brand-action` stays correct when that action becomes oxblood on B-Melanox
+   * or deep sage on NOVIA — without the token name lying about its value.
+   *
+   * Defaults below are the client-approved ORIGINA institution palette:
+   *   Origina Noir #161210 · Institution Ivory #f8f4ec · Origin Gold #b5924a
+   *   Warm Graphite #3a332c · Antiqued Stone #9a8e80
+   * ============================================================ */
+
+  /* Grounds — dark surfaces and the highest-emphasis fills. */
+  --color-brand-ground: #161210;
+  --color-brand-ground-deep: #0d0b09;
+
+  /* Reading surfaces. */
+  --color-brand-surface: #fdfbf7;
+  --color-brand-surface-muted: #f0e9df;
+
+  /* Typography. */
+  --color-brand-text: #1b1714;
+  --color-brand-text-muted: #3a332c;
+
+  /*
+   * Origin Gold is the institutional thread. It is a *mark*, not a text
+   * colour: at 2.8:1 on paper it fails AA for text and even the 3:1 large-text
+   * floor, so it is only ever used as a rule, a fill behind dark text, or an
+   * accent on a dark ground (5.7:1 on Origina Noir).
+   */
+  --color-brand-accent: #b5924a;
+  --color-brand-on-accent: #161210;
+
+  /*
+   * ACCESSIBILITY ADAPTATION — not a client palette colour. A deepened Origin
+   * Gold for the cases that need accent *text* on a light ground: 4.9:1 on
+   * paper. Named explicitly so it is never mistaken for approved gold.
+   */
+  --color-brand-accent-readable: #866a2a;
+
+  /* Actions. ORIGINA Noir is the institutional primary, per the client board. */
+  --color-brand-action: #161210;
+  --color-brand-action-hover: #3a332c;
+  --color-brand-action-text: #f8f4ec;
+
+  /* The gold hairline — the thread made structural. */
+  --color-brand-rule: rgba(181, 146, 74, 0.42);
+
+  /* Focus indicator. Needs 3:1 against adjacent colour (WCAG 2.2 1.4.11). */
+  --color-brand-focus: #161210;
 
   /* --- Rules: hairlines are the primary institutional device --- */
   --color-rule: rgba(27, 23, 20, 0.16);
@@ -128,12 +181,12 @@ h4 {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-crimson);
+  outline: 2px solid var(--color-brand-focus);
   outline-offset: 3px;
 }
 
 ::selection {
-  background: rgba(122, 23, 27, 0.16);
+  background: rgba(181, 146, 74, 0.28);
   color: var(--color-ink);
 }
 
@@ -288,14 +341,18 @@ h4 {
     color: var(--color-muted-dark);
   }
 
-  /* Eyebrow - small caps label, never below 11px. */
+  /*
+   * Eyebrow — small caps label, never below 11px. The label reads in Warm
+   * Graphite (12:1 on paper) and the gold thread appears as its rule, which is
+   * how Origin Gold earns institutional presence without failing contrast.
+   */
   .eyebrow {
-    @apply mb-4 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-crimson sm:mb-5 sm:text-[0.75rem];
+    @apply mb-4 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-brand-text-muted sm:mb-5 sm:text-[0.75rem];
   }
 
   .eyebrow::before {
     content: "";
-    @apply block h-px w-8 shrink-0 bg-crimson/60;
+    @apply block h-px w-8 shrink-0 bg-brand-accent;
   }
 
   .eyebrow--plain::before {
@@ -312,7 +369,7 @@ h4 {
 
   /* Section numbering - the ordinal index used on institutional pages. */
   .section-index {
-    @apply mb-3 block font-serif text-[1.5rem] leading-none text-crimson/45;
+    @apply mb-3 block font-serif text-[1.5rem] leading-none text-brand-accent-readable;
   }
 
   .section-index--dark {
@@ -322,8 +379,14 @@ h4 {
   /* ============================================================
    * Buttons - squared, generous, legible
    * ============================================================ */
+  /*
+   * Institutional primary. ORIGINA Noir fill, per the client board's role for
+   * it ("solid primary buttons, highest-emphasis interface elements"). This
+   * replaced a crimson fill: crimson reads as B-Melanox, and using it as the
+   * parent CTA associated the institution with one of its own divisions.
+   */
   .btn-primary {
-    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-crimson px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-200 hover:bg-crimson-deep;
+    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-brand-action px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-brand-action-text transition-colors duration-200 hover:bg-brand-action-hover;
   }
 
   .btn-secondary {
@@ -331,12 +394,17 @@ h4 {
   }
 
   .btn-secondary-dark {
-    @apply inline-flex min-h-12 items-center justify-center rounded-none border border-rule-strong px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-200 hover:border-crimson hover:text-crimson;
+    @apply inline-flex min-h-12 items-center justify-center rounded-none border border-rule-strong px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-200 hover:border-brand-accent hover:text-brand-accent-readable;
   }
 
-  /* Gold primary - division layer only. */
+  /*
+   * Division primary — division layer only. Reads the semantic action role, so
+   * each division's approved action colour (Antique Gold, Oxblood, Deep Sage,
+   * Imperial Burgundy) applies from its [data-division] block with no
+   * per-division button rule.
+   */
   .btn-gold {
-    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-gold px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-noir transition-colors duration-200 hover:bg-gold-light;
+    @apply inline-flex min-h-12 items-center justify-center rounded-none bg-brand-action px-7 py-3.5 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-brand-action-text transition-colors duration-200 hover:bg-brand-action-hover;
   }
 
   /*
@@ -360,8 +428,13 @@ h4 {
   }
 
   /* Text links carry a considered underline, not a colour change alone. */
+  /*
+   * Institutional text link. The word stays in ink for legibility; the gold
+   * thread carries the affordance as the underline. Colour alone never marks a
+   * link here, so this also satisfies WCAG 1.4.1.
+   */
   .text-link {
-    @apply inline-flex items-center gap-2 border-b border-crimson/35 pb-0.5 text-[0.9375rem] font-medium text-crimson transition-colors hover:border-crimson hover:text-crimson-deep;
+    @apply inline-flex items-center gap-2 border-b border-brand-accent pb-0.5 text-[0.9375rem] font-medium text-brand-text transition-colors hover:border-brand-accent-readable hover:text-brand-accent-readable;
   }
 
   .text-link-light {
@@ -419,7 +492,7 @@ h4 {
   }
 
   .pillar-card-index {
-    @apply mb-3 block font-serif text-[1.375rem] leading-none text-crimson/50;
+    @apply mb-3 block font-serif text-[1.375rem] leading-none text-crimson/75;
   }
 
   /* ============================================================
@@ -580,6 +653,15 @@ h4 {
     @apply mt-3 border-l border-rule pl-3 text-[0.75rem] leading-relaxed tracking-[0.02em] text-stone-deep;
   }
 
+  /*
+   * stone-deep is tuned for paper; on a noir band it drops to ~3.2:1. Any
+   * caption inside a dark section repaints to the dark-ground muted token.
+   */
+  .bg-noir .editorial-caption,
+  .bg-noir-deep .editorial-caption {
+    color: var(--color-stone);
+  }
+
   .image-break {
     @apply relative overflow-hidden;
   }
@@ -718,7 +800,7 @@ h4 {
   }
 
   .systems-thinking__connector {
-    @apply mt-3 block text-center text-sm text-crimson/60;
+    @apply mt-3 block text-center text-sm text-crimson/80;
   }
 
   .unnamed-division {
@@ -730,7 +812,7 @@ h4 {
   }
 
   .reading-progress {
-    @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-crimson transition-transform duration-150;
+    @apply fixed inset-x-0 top-0 z-[60] h-0.5 origin-left scale-x-0 bg-brand-accent transition-transform duration-150;
   }
 }
 
@@ -776,7 +858,32 @@ h4 {
  * than as accent text. Palettes are documented in docs/DESIGN.md §7.
  * ============================================================ */
 
-/* BettyWorld — warm, creative: the ORIGINA gold/noir, made warmer. */
+/*
+ * Every division block below rebinds BOTH layers:
+ *   - the legacy pigment tokens (--color-noir/gold/ivory), so existing
+ *     bg-noir / text-gold markup retints with no JSX change; and
+ *   - the semantic role tokens (--color-brand-*), which is what new work
+ *     should consume.
+ * A division page therefore needs one ground, one text, one accent, one action,
+ * and one supporting neutral — not its whole palette on every page.
+ */
+
+/*
+ * Division-layer baseline. Applies to every wrapped division, including those
+ * with no approved palette yet (Skin Safari, BValence): they inherit the
+ * ORIGINA gold-on-noir division treatment rather than the institution's
+ * noir-filled primary, which would be invisible on a noir ground.
+ */
+[data-division] {
+  --color-brand-accent: #b5924a;
+  --color-brand-on-accent: #161210;
+  --color-brand-action: #b5924a;
+  --color-brand-action-hover: #d6bd83;
+  --color-brand-action-text: #161210;
+  --color-brand-rule: rgba(181, 146, 74, 0.42);
+}
+
+/* BettyWorld — Deep Ink ground, Antique Gold accent, Gold Light emphasis. */
 [data-division="bettyworld"] {
   --color-noir: #12120b;
   --color-noir-deep: #0c0c07;
@@ -785,6 +892,15 @@ h4 {
   --color-gold-light: #e8d9a5;
   --color-ivory: #f7f7f0;
   --color-muted-dark: #bcb096;
+
+  --color-brand-ground: #12120b;
+  --color-brand-ground-deep: #0c0c07;
+  --color-brand-accent: #c8ac6a;
+  --color-brand-on-accent: #12120b;
+  --color-brand-action: #c8ac6a;
+  --color-brand-action-hover: #e8d9a5;
+  --color-brand-action-text: #12120b;
+  --color-brand-rule: rgba(200, 172, 106, 0.42);
 }
 
 /* B-Melanox — clinical, oxblood: warm-charcoal ground, oxblood signature. */
@@ -792,17 +908,24 @@ h4 {
   --color-noir: #26251c; /* warm charcoal */
   --color-noir-deep: #1a1913;
   --color-noir-soft: #302e22;
-  --color-gold: #c56a6a; /* readable clinical-red accent (a tint of oxblood) */
+  --color-gold: #cc7676; /* readable clinical-red accent (a tint of oxblood) */
   --color-gold-light: #dc9090;
   --color-ivory: #f7f5f0; /* near clinical white */
   --color-muted-dark: #b3a892; /* mid-brown muted */
-}
-[data-division="b-melanox"] .btn-gold {
-  background-color: #8f1717; /* true oxblood */
-  color: #ffffff;
-}
-[data-division="b-melanox"] .btn-gold:hover {
-  background-color: #5a0b0b; /* deep oxblood */
+
+  --color-brand-ground: #26251c; /* Warm Charcoal */
+  --color-brand-ground-deep: #1a1913;
+  /*
+   * ACCESSIBILITY ADAPTATION — Oxblood is far too dark to read as text on Warm
+   * Charcoal (~1.6:1). --color-gold above is a derived readable tint of Oxblood
+   * used for accent text; true Oxblood remains the action fill.
+   */
+  --color-brand-accent: #cc7676;
+  --color-brand-on-accent: #26251c;
+  --color-brand-action: #8f1717; /* Oxblood */
+  --color-brand-action-hover: #5a0b0b; /* Deep Oxblood */
+  --color-brand-action-text: #ffffff;
+  --color-brand-rule: rgba(204, 118, 118, 0.4);
 }
 
 /* NOVIA — botanical: forest-noir ground, deep-sage action, antique-gold accent. */
@@ -814,13 +937,15 @@ h4 {
   --color-gold-light: #d9c78f;
   --color-ivory: #f7f2e6; /* warm cream */
   --color-muted-dark: #a3b391; /* sage-tinted muted */
-}
-[data-division="novia"] .btn-gold {
-  background-color: #506b43; /* deep sage */
-  color: #f7f2e6;
-}
-[data-division="novia"] .btn-gold:hover {
-  background-color: #16220f;
+
+  --color-brand-ground: #16220f; /* Forest Noir */
+  --color-brand-ground-deep: #0e1709;
+  --color-brand-accent: #c8ac6a; /* Antique Gold — the ORIGINA thread */
+  --color-brand-on-accent: #16220f;
+  --color-brand-action: #506b43; /* Deep Sage */
+  --color-brand-action-hover: #16220f;
+  --color-brand-action-text: #f7f2e6;
+  --color-brand-rule: rgba(200, 172, 106, 0.42);
 }
 
 /* DIVINE — heritage luxury: midnight ground, sovereign gold (sparingly),
@@ -833,11 +958,33 @@ h4 {
   --color-gold-light: #d3b84f;
   --color-ivory: #f4efdf; /* aged parchment */
   --color-muted-dark: #b3a583;
+
+  --color-brand-ground: #11130a; /* Midnight Stable */
+  --color-brand-ground-deep: #0a0b05;
+  --color-brand-accent: #b89a2f; /* Sovereign Gold — used sparingly */
+  --color-brand-on-accent: #11130a;
+  --color-brand-action: #722333; /* Imperial Burgundy */
+  --color-brand-action-hover: #11130a;
+  --color-brand-action-text: #f4efdf;
+  --color-brand-rule: rgba(184, 154, 47, 0.4);
 }
-[data-division="divine"] .btn-gold {
-  background-color: #722333; /* imperial burgundy */
-  color: #f4efdf;
-}
-[data-division="divine"] .btn-gold:hover {
-  background-color: #11130a;
+
+/* ============================================================
+ * Ground-dependent roles
+ *
+ * Text and accent-text roles depend on the ground they sit on, not on the
+ * brand — and a division page carries both light and dark sections. So these
+ * cannot be bound on the [data-division] wrapper: doing so put light-on-light
+ * text into the light sections of every division page. They are resolved here
+ * per dark section instead, reading the pigment tokens the division already
+ * rebound above.
+ * ============================================================ */
+.bg-noir,
+.bg-noir-deep,
+.bg-brand-ground,
+.bg-brand-ground-deep {
+  --color-brand-text: var(--color-ivory);
+  --color-brand-text-muted: var(--color-muted-dark);
+  --color-brand-accent-readable: var(--color-gold-light);
+  --color-brand-focus: var(--color-gold-light);
 }

@@ -13,11 +13,11 @@ export function SiteFooter() {
     <footer className="bg-noir-deep text-stone">
       <div className="site-container py-16 sm:py-20 lg:py-24">
         <div className="mb-14 border-b border-white/12 pb-14 sm:mb-16 sm:pb-16">
-          <p className="eyebrow eyebrow--plain text-crimson-light">ORIGINA™ · Biology First™</p>
+          <p className="eyebrow eyebrow--plain text-gold-light">ORIGINA™ · Biology First™</p>
           <h2 className="mt-4 mb-0 max-w-2xl section-title-light">
             Beginning in Africa.
             <br />
-            <span className="text-crimson-light">Serving the world.</span>
+            <span className="text-gold-light">Serving the world.</span>
           </h2>
           <p className="mt-5 text-[0.75rem] uppercase tracking-[0.16em] text-stone">
             Dar es Salaam, Tanzania · Est. 2024
@@ -74,7 +74,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-9 flex flex-col justify-between gap-2 text-[0.75rem] uppercase tracking-[0.12em] text-stone/75 sm:flex-row">
+        <div className="mt-9 flex flex-col justify-between gap-2 text-[0.75rem] uppercase tracking-[0.12em] text-stone sm:flex-row">
           <span>© {new Date().getFullYear()} ORIGINA™. All rights reserved.</span>
           <span>Biology First™ · Evidence-led · Africa Originating</span>
         </div>

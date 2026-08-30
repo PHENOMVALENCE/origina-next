@@ -96,6 +96,13 @@ export function MediaFigure({
   );
 }
 
+/*
+ * A duo mosaic always sits inside a SplitSection, so it occupies half the
+ * container at lg (two ~25vw columns) but the full width below it — one column
+ * under sm, two above. A flat "25vw" served a 256px file into a 342px box.
+ */
+const MOSAIC_DUO_SIZES = "(min-width: 1024px) 25vw, (min-width: 640px) 45vw, 92vw";
+
 export function PhotoGrid({
   images,
 }: {
@@ -109,7 +116,7 @@ export function PhotoGrid({
           image={image}
           variant="portrait"
           tone="none"
-          sizes="25vw"
+          sizes={MOSAIC_DUO_SIZES}
           className={index === 1 || image.offset ? "sm:mt-12 lg:mt-16" : ""}
         />
       ))}
@@ -138,7 +145,7 @@ export function ImageBreak({
                 <p className="font-serif text-2xl leading-tight text-ivory sm:text-3xl lg:text-5xl">{title}</p>
               ) : null}
               {subtitle ? (
-                <p className="mt-2 max-w-xl text-[0.875rem] leading-relaxed text-stone sm:mt-3 sm:text-[0.9375rem]">{subtitle}</p>
+                <p className="mt-2 max-w-xl text-[0.875rem] leading-relaxed text-ivory/80 sm:mt-3 sm:text-[0.9375rem]">{subtitle}</p>
               ) : null}
             </div>
           </div>
@@ -147,6 +154,9 @@ export function ImageBreak({
     </section>
   );
 }
+
+/* Trio: one column under sm, two to lg, three above — never a flat third. */
+const MOSAIC_TRIO_SIZES = "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw";
 
 export function PhotoMosaic({
   images,
@@ -158,13 +168,19 @@ export function PhotoMosaic({
   if (layout === "trio" && images.length >= 3) {
     return (
       <div className="photo-mosaic photo-mosaic--trio">
-        <EditorialImage image={images[0]} variant="portrait" tone="none" sizes="33vw" />
-        <EditorialImage image={images[1]} variant="portrait" tone="none" sizes="33vw" className="mt-10" />
+        <EditorialImage image={images[0]} variant="portrait" tone="none" sizes={MOSAIC_TRIO_SIZES} />
+        <EditorialImage
+          image={images[1]}
+          variant="portrait"
+          tone="none"
+          sizes={MOSAIC_TRIO_SIZES}
+          className="mt-10"
+        />
         <EditorialImage
           image={images[2]}
           variant="landscape"
           tone="none"
-          sizes="33vw"
+          sizes={MOSAIC_TRIO_SIZES}
           className="sm:col-span-2 lg:col-span-1"
         />
       </div>
@@ -179,7 +195,7 @@ export function PhotoMosaic({
           image={image}
           variant="portrait"
           tone="none"
-          sizes="25vw"
+          sizes={MOSAIC_DUO_SIZES}
           className={index === 1 ? "mt-12 lg:mt-16" : ""}
         />
       ))}

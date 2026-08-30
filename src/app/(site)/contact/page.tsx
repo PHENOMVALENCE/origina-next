@@ -46,26 +46,26 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
       <section className="bg-graphite pb-16 pt-4 sm:pb-24">
         <div className="site-container">
-          <p className="mb-4 max-w-2xl text-sm leading-relaxed text-stone">
+          <p className="mb-4 max-w-2xl text-sm leading-relaxed text-ivory/80">
             Choose the enquiry pathway that matches your intent. Each route opens the form with the appropriate category
             pre-selected.
           </p>
-          <p className="mb-6 max-w-2xl border-l-2 border-crimson/40 pl-4 text-sm leading-relaxed text-stone sm:mb-8">
+          <p className="mb-6 max-w-2xl border-l-2 border-gold/50 pl-4 text-sm leading-relaxed text-ivory/80 sm:mb-8">
             {contactDataNotice}
           </p>
-          <div className="grid grid-cols-1 border-l border-crimson/25 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 border-l border-gold/25 sm:grid-cols-2 lg:grid-cols-4">
             {contactDirectory.map((item) => (
               <Link
                 key={item.subject}
                 href={`/contact?subject=${item.subject}#enquiry-form`}
-                className="group flex min-h-[200px] flex-col border-b border-r border-crimson/20 p-5 text-ivory transition-colors active:bg-noir/40 sm:min-h-[240px] sm:p-6 lg:min-h-[280px] lg:p-8 hover:border-crimson/45 hover:bg-noir/40"
+                className="group flex min-h-[200px] flex-col border-b border-r border-gold/20 p-5 text-ivory transition-colors active:bg-noir/40 sm:min-h-[240px] sm:p-6 lg:min-h-[280px] lg:p-8 hover:border-gold/45 hover:bg-noir/40"
               >
-                <span className="text-[0.75rem] uppercase tracking-[0.16em] text-crimson">{item.index}</span>
-                <h2 className="mt-auto font-serif text-xl transition-colors group-hover:text-crimson sm:text-2xl lg:text-3xl">
+                <span className="text-[0.75rem] uppercase tracking-[0.16em] text-gold-light">{item.index}</span>
+                <h2 className="mt-auto font-serif text-xl transition-colors group-hover:text-gold-light sm:text-2xl lg:text-3xl">
                   {item.title}
                 </h2>
-                <p className="mt-2 text-sm leading-relaxed text-stone sm:mt-3">{item.description}</p>
-                <span className="mt-4 text-sm text-crimson sm:mt-5 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
+                <p className="mt-2 text-sm leading-relaxed text-ivory/80 sm:mt-3">{item.description}</p>
+                <span className="mt-4 text-sm text-gold-light sm:mt-5 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
                   Select category →
                 </span>
               </Link>

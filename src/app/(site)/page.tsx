@@ -128,7 +128,7 @@ export default function Home() {
               key={area.num}
               className="grid gap-4 border-b border-rule py-7 sm:grid-cols-[3rem_1fr_auto] sm:items-baseline sm:gap-8"
             >
-              <span className="font-serif text-2xl leading-none text-crimson/50">{area.num}</span>
+              <span className="font-serif text-2xl leading-none text-crimson/75">{area.num}</span>
               <div>
                 <h3 className="font-serif text-2xl text-ink">{area.title}</h3>
                 <p className="mt-2 max-w-xl body-copy">{area.text}</p>

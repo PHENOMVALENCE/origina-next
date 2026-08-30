@@ -15,10 +15,26 @@ const statusStyles: Record<DivisionStatus, string> = {
   open: "border-stone/35 bg-transparent text-stone-deep",
 };
 
-export function StatusBadge({ status }: { status: DivisionStatus }) {
+/**
+ * On a noir ground the crimson and stone variants collapse to ~1.9:1, so every
+ * state repaints as a neutral ivory outline rather than fighting the ground.
+ */
+const darkStatusStyles: Record<DivisionStatus, string> = {
+  active: "border-sage/50 bg-sage/10 text-sage-light",
+  research: "border-ivory/30 bg-ivory/5 text-ivory/85",
+  development: "border-ivory/30 bg-ivory/5 text-ivory/85",
+  emerging: "border-ivory/25 bg-ivory/5 text-ivory/80",
+  planned: "border-ivory/25 bg-transparent text-ivory/80",
+  future: "border-ivory/25 bg-transparent text-ivory/80",
+  open: "border-ivory/25 bg-transparent text-ivory/80",
+};
+
+export function StatusBadge({ status, dark = false }: { status: DivisionStatus; dark?: boolean }) {
   return (
     <span
-      className={`inline-flex w-fit rounded-none border px-2.5 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.1em] ${statusStyles[status]}`}
+      className={`inline-flex w-fit rounded-none border px-2.5 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.1em] ${
+        dark ? darkStatusStyles[status] : statusStyles[status]
+      }`}
     >
       {statusLabels[status]}
     </span>
