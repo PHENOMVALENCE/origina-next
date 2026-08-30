@@ -10,7 +10,7 @@ export function LabsCapabilities() {
           key={item.num}
           className="grid gap-4 border-b border-rule py-6 last:border-b-0 sm:grid-cols-[4rem_1fr] sm:gap-6"
         >
-          <ScientificLabel tone="crimson">
+          <ScientificLabel tone="dark">
             {item.num}
           </ScientificLabel>
           <div>

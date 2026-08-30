@@ -50,7 +50,7 @@
    * ("Optional") and fine print; --color-stone itself remains correct on
    * dark grounds, where it already clears AA.
    */
-  --color-stone-deep: #786d63;
+  --color-stone-deep: #6f6459;
 
   /* --- Rules: hairlines are the primary institutional device --- */
   --color-rule: rgba(27, 23, 20, 0.16);
@@ -419,7 +419,7 @@ h4 {
   }
 
   .pillar-card-index {
-    @apply mb-3 block font-serif text-[1.375rem] leading-none text-crimson/50;
+    @apply mb-3 block font-serif text-[1.375rem] leading-none text-crimson/75;
   }
 
   /* ============================================================
@@ -580,6 +580,15 @@ h4 {
     @apply mt-3 border-l border-rule pl-3 text-[0.75rem] leading-relaxed tracking-[0.02em] text-stone-deep;
   }
 
+  /*
+   * stone-deep is tuned for paper; on a noir band it drops to ~3.2:1. Any
+   * caption inside a dark section repaints to the dark-ground muted token.
+   */
+  .bg-noir .editorial-caption,
+  .bg-noir-deep .editorial-caption {
+    color: var(--color-stone);
+  }
+
   .image-break {
     @apply relative overflow-hidden;
   }
@@ -718,7 +727,7 @@ h4 {
   }
 
   .systems-thinking__connector {
-    @apply mt-3 block text-center text-sm text-crimson/60;
+    @apply mt-3 block text-center text-sm text-crimson/80;
   }
 
   .unnamed-division {
@@ -792,7 +801,7 @@ h4 {
   --color-noir: #26251c; /* warm charcoal */
   --color-noir-deep: #1a1913;
   --color-noir-soft: #302e22;
-  --color-gold: #c56a6a; /* readable clinical-red accent (a tint of oxblood) */
+  --color-gold: #cc7676; /* readable clinical-red accent (a tint of oxblood) */
   --color-gold-light: #dc9090;
   --color-ivory: #f7f5f0; /* near clinical white */
   --color-muted-dark: #b3a892; /* mid-brown muted */

@@ -95,9 +95,15 @@ export default function BMelanoxPage() {
           {bMelanoxProducts.map((product) => (
             <article key={product.title} className="institutional-card">
               <div className="relative mb-4 aspect-4/5 overflow-hidden rounded-none">
-                <Image src={product.image} alt={product.alt} fill className="object-cover" />
+                <Image
+                  src={product.image}
+                  alt={product.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 31vw, 92vw"
+                />
               </div>
-              <span className="text-[0.75rem] uppercase tracking-[0.14em] text-stone">{product.label}</span>
+              <span className="text-[0.75rem] uppercase tracking-[0.14em] text-stone-deep">{product.label}</span>
               <h3 className="mt-2 font-serif text-2xl text-ink">{product.title}</h3>
               <p className="mt-2 body-copy">{product.text}</p>
             </article>
@@ -149,19 +155,19 @@ export default function BMelanoxPage() {
             <LeadCopy>The first visible product expression of the B-Melanox pigmentation-science platform.</LeadCopy>
             <dl className="mt-8 grid gap-4 border-t border-rule pt-4">
               <div>
-                <dt className="text-stone">Format</dt>
+                <dt className="text-stone-deep">Format</dt>
                 <dd className="font-medium text-ink">Targeted night serum</dd>
               </div>
               <div>
-                <dt className="text-stone">Platform</dt>
+                <dt className="text-stone-deep">Platform</dt>
                 <dd className="font-medium text-ink">B-Melanox · Origina Labs</dd>
               </div>
               <div>
-                <dt className="text-stone">Focus</dt>
+                <dt className="text-stone-deep">Focus</dt>
                 <dd className="font-medium text-ink">Uneven tone and visible pigmentation</dd>
               </div>
               <div>
-                <dt className="text-stone">Status</dt>
+                <dt className="text-stone-deep">Status</dt>
                 <dd className="font-medium text-ink">Institutional preview</dd>
               </div>
             </dl>

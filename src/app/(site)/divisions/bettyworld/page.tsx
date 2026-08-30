@@ -57,8 +57,8 @@ export default function BettyWorldPage() {
             </ul>
             <ContentStatus status="development" />
           </div>
-          <div className="institutional-panel border-gold/30">
-            <span className="scientific-label text-gold">B-Melanox™</span>
+          <div className="institutional-panel border-crimson/30">
+            <span className="scientific-label text-crimson">B-Melanox™</span>
             <p className="mt-4 font-serif text-xl text-ink">Advanced pigmentation science</p>
             <ul className="mt-4 space-y-2 body-copy">
               <li>Deeper pigmentation science</li>

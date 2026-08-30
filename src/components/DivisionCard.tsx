@@ -25,13 +25,13 @@ export function DivisionCard({ division }: { division: DivisionPreview }) {
             alt={image.alt}
             fill
             className="object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-noir via-noir/30 to-transparent" aria-hidden="true" />
         </div>
       ) : null}
       <div className="division-card-body text-ivory">
-        <StatusBadge status={division.status} />
+        <StatusBadge status={division.status} dark />
         <strong className="mt-3 block font-serif text-xl transition-colors group-hover:text-gold-light sm:text-2xl">
           {division.name}
         </strong>

@@ -26,7 +26,7 @@ export default function DivisionsPage() {
           <>
             Distinct expressions.
             <br />
-            <span className="text-gold-light">Shared institution.</span>
+            <span className="text-crimson">Shared institution.</span>
           </>
         }
         intro="Brands are expressions of the institution. Research is part of the institutional infrastructure."

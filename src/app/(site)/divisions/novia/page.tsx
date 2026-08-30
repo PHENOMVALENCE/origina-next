@@ -73,7 +73,7 @@ export default function NoviaPage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {noviaPillars.map((pillar) => (
             <article key={pillar.title} className="institutional-card">
-              <span className="font-serif text-gold">{pillar.num}</span>
+              <span className="font-serif text-crimson">{pillar.num}</span>
               <h3 className="mt-2 font-serif text-xl text-ink">{pillar.title}</h3>
               <p className="mt-2 body-copy">{pillar.text}</p>
             </article>

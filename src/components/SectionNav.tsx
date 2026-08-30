@@ -53,7 +53,7 @@ export function SectionNav({ items }: { items: readonly SectionNavItem[] }) {
       <div className="site-container">
         <ul className="-mx-1 flex items-center gap-1 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <li className="shrink-0 pr-3">
-            <span className="scientific-label text-ink/45">On this page</span>
+            <span className="scientific-label text-stone-deep">On this page</span>
           </li>
 
           {items.map((item) => {

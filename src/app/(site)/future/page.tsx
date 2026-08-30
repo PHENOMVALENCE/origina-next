@@ -67,7 +67,7 @@ export default function FuturePage() {
                 <p className={`text-sm ${item.unnamed ? "text-ink-soft" : "text-stone"}`}>{item.description}</p>
                 {!item.unnamed ? (
                   <div className="mt-4 flex flex-wrap items-center gap-4">
-                    <ContentStatus status="future" />
+                    <ContentStatus status="future" dark />
                     <Link
                       href={`/future/${item.id}`}
                       className="text-[0.75rem] uppercase tracking-[0.14em] text-ivory/75 transition-colors hover:text-ivory"
